@@ -43,6 +43,16 @@ This is the one rule every other rule in this file exists to serve. If a new rul
 3. If the concept has a pass/fail heuristic, add it to (or start) a matching skill in `/skills/`.
 4. Never duplicate the page's explanation inside a skill or prompt — link back to the page and extract only the actionable checklist.
 
+## Engineering standards
+
+Every piece of markup, CSS, or code in this repo — the site, a skill, a prompt, a tool in `/scripts` — holds to:
+
+- **Standards-compliant, not clever.** HTML and CSS must match current WHATWG/W3C specs and documented MDN behavior. No deprecated elements or attributes, no browser-specific hacks, no relying on undocumented behavior.
+- **YAGNI.** Don't add a page, script, dependency, or abstraction for a need that doesn't exist yet. Build for the concept in front of you, not a hypothetical future one.
+- **KISS.** The simplest markup, CSS, or script that correctly does the job wins over a more "capable" one nobody asked for. This is a static reference site — reach for a build step, framework, or dependency only when plain HTML/CSS genuinely can't do it.
+- **DRY.** A rule, checklist, or nav list is written once and reused, never hand-duplicated in a way that can drift out of sync — the shared nav block across pages, or a skill linking back to its canonical page instead of restating it, are both this rule in practice.
+- **Verify before calling it done.** Run `scripts/verify-site.py` after any change to the site: it checks that internal links resolve, that HTML tags balance, and that every principle page has all the sections the skeleton above requires. A change isn't finished until that check passes clean — this is the repo's substitute for a test suite.
+
 ## Tone
 
 Direct, warm, zero condescension, zero hype. Write like a senior designer explaining something to a smart junior colleague over coffee, not like marketing copy or a spec document. Never write "simply" or "just" before an instruction — if it were simple or just, the reader would not need the page.
