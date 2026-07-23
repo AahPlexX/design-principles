@@ -6,7 +6,6 @@ CLAUDE.md's "Engineering standards" and "Page skeleton" sections for the
 rules this enforces.
 """
 
-import re
 import sys
 from html.parser import HTMLParser
 from pathlib import Path

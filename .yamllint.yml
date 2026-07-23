@@ -1,0 +1,7 @@
+extends: default
+
+rules:
+  # GitHub Actions' `on:` key is valid YAML 1.1 truthy shorthand for `true`;
+  # flagging it is a well-known false positive when linting workflow files.
+  truthy: disable
+  line-length: disable

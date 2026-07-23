@@ -1,0 +1,79 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  verify-site:
+    name: Verify site (links, structure, W3C HTML)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Run site verification script
+        run: python3 scripts/verify-site.py
+
+      - name: Install html5validator
+        run: pip install html5validator
+
+      - name: Validate HTML against the W3C Nu Html Checker
+        run: html5validator --root docs
+
+  super-linter:
+    name: Super-Linter
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+
+      # super-linter/super-linter, pinned to the commit for the v8.7.0 release
+      - name: Super-linter
+        uses: super-linter/super-linter@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          DEFAULT_BRANCH: main
+          VALIDATE_ALL_CODEBASE: true
+          # One modern linter instead of stacking pylint/flake8/black/isort,
+          # which would otherwise report overlapping, sometimes-conflicting findings.
+          VALIDATE_PYTHON_RUFF: true
+          VALIDATE_PYTHON_PYLINT: false
+          VALIDATE_PYTHON_FLAKE8: false
+          VALIDATE_PYTHON_ISORT: false
+          VALIDATE_PYTHON_BLACK: false
+
+  link-check:
+    name: External link check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      # lycheeverse/lychee-action, pinned to the commit the v2 tag points to
+      - name: Lychee link check
+        uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
+        with:
+          # Restricting to http(s) schemes skips our own root-relative internal
+          # links entirely (already covered by scripts/verify-site.py) and checks
+          # only genuine external links (MDN, WCAG, GitHub, etc.).
+          args: --no-progress --scheme https,http 'docs/**/*.html'
+          fail: true
