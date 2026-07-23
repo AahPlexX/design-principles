@@ -209,7 +209,7 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 .example.bad .example-label { color: var(--bad); }
 .example pre {
   white-space: pre-wrap;
-  word-break: break-word;
+  overflow-wrap: break-word;
   margin: 0;
 }
 
