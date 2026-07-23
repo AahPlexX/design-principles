@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Typography — Design Principles</title>
+<meta name="description" content="How type size, line length, and hierarchy decide whether text gets read or skipped.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/typography.html" aria-current="page">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Typography</h1>
+    <p class="definition">
+      Typography is the set of decisions that control how easy text is to read: how big it is,
+      how long each line runs, how much space separates lines and paragraphs, and which words
+      stand out as more important than others.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      Text is what most of the web actually is. A page can have a striking layout and still fail
+      if the paragraphs are painful to read — lines too long to track, text too small to see
+      comfortably, or no visual difference between a heading and a caption. Readers don't
+      consciously notice good typography; they notice bad typography, as fatigue, and they leave.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Keep line length between <strong>45 and 75 characters</strong> (about 60 is the sweet spot),
+      keep line height around <strong>1.4–1.6× the font size</strong> for body text, and make sure
+      every level of hierarchy (heading, subheading, body, caption) is distinguishable by more than
+      one signal — size <em>and</em> weight, not size alone.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>body {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  max-width: 65ch;
+}
+h1 { font-size: 2.5rem; font-weight: 700; }
+h2 { font-size: 1.75rem; font-weight: 700; }</code></pre>
+        <p>Body text is capped at a readable line length, line height gives text room to
+        breathe, and headings are distinguished by both size and weight.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>body {
+  font-size: 0.9rem;
+  line-height: 1.1;
+  /* no max-width — text spans
+     the full browser window */
+}
+h1 { font-size: 1.1rem; font-weight: 400; }</code></pre>
+        <p>Lines run the full width of a wide monitor, text is cramped together, and the
+        heading barely differs from body text — a reader has to work to find the structure.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Letting lines run edge-to-edge on wide screens.</strong> Past about 75
+      characters, the eye loses track of which line to return to when it wraps. Always cap
+      the width of a text block, even on a full-width layout.</li>
+      <li><strong>Using font size as the only signal of hierarchy.</strong> A heading that's
+      only slightly bigger than body text, in the same weight, reads as an accident rather
+      than a heading. Pair size changes with weight or color changes.</li>
+      <li><strong>Tight line height on body text.</strong> Line height under 1.4 makes lines
+      of text feel like they're touching, which slows reading, especially for longer
+      paragraphs.</li>
+      <li><strong>Centering paragraphs of body text.</strong> Centered alignment works for a
+      short headline; for multiple lines, the ragged left edge forces the eye to hunt for
+      where each new line starts.</li>
+      <li><strong>Too many typefaces or weights on one page.</strong> More than two typeface
+      families, or more than three weights of one family, usually means the hierarchy is
+      being carried by novelty instead of a clear system.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Body text line length stays under ~75 characters at any viewport width.</li>
+      <li>Body line height is 1.4–1.6×.</li>
+      <li>Each heading level is distinguishable by more than one property (size + weight, or size + color).</li>
+      <li>Body text is at least 16px (1rem) on mobile — smaller forces zooming.</li>
+      <li>No more than two typeface families are in use.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>Modular scales:</strong> instead of picking heading sizes by eye, multiply a
+        base size by a fixed ratio (1.25 for a moderate scale, 1.333 or higher for something
+        more dramatic) to get each next size up. This keeps the relationships between sizes
+        consistent as you add more heading levels.
+      </p>
+      <p>
+        <strong>Optical sizing:</strong> some variable fonts adjust stroke thickness and
+        spacing automatically as size changes (the <code>font-optical-sizing</code> CSS
+        property), so a heading and a caption of the same family both look correct rather
+        than the caption looking like a shrunk heading.
+      </p>
+      <p>
+        <strong>Fluid type:</strong> <code>clamp()</code> lets a font size scale smoothly
+        between a minimum and maximum based on viewport width, e.g.
+        <code>font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem)</code>, instead of jumping
+        abruptly at breakpoints.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>

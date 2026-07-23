@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Forms &amp; Inputs — Design Principles</title>
+<meta name="description" content="Why most forms lose people, and the handful of rules that fix almost all of it.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html" aria-current="page">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Forms &amp; Inputs</h1>
+    <p class="definition">
+      A form is any part of a page where someone types, selects, or uploads something. Form
+      design is about removing every point of friction and confusion between "I want to submit
+      this" and actually submitting it.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      Forms are where a site asks something of the reader instead of just giving them
+      information, and that's exactly where people quit. A confusing error message, a field
+      whose purpose isn't clear, or a validation rule discovered only after submitting is often
+      the single biggest drop-off point in a signup, checkout, or contact flow.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Every field needs a visible label, a clear reason for existing, and an error message that
+      says exactly what to fix — shown as close to the moment of the mistake as possible, not
+      only after a full-page submit. If you can't explain why a field is required, remove it.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>&lt;label for="email"&gt;Email&lt;/label&gt;
+&lt;input id="email" type="email" required&gt;
+&lt;p id="email-err" role="alert"&gt;
+  Enter an email with an @ symbol,
+  like name@example.com
+&lt;/p&gt;</code></pre>
+        <p>A real label, the right input type (brings up an email keyboard on mobile), and an
+        error that tells you exactly what a valid answer looks like.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>&lt;input type="text" placeholder="Email"&gt;
+&lt;p&gt;Invalid input&lt;/p&gt;</code></pre>
+        <p>The label disappears once you start typing, the input type doesn't help mobile
+        keyboards, and "Invalid input" gives no clue what was wrong or how to fix it.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Placeholder text used as the only label.</strong> It vanishes the moment
+      someone starts typing, so if they get interrupted or scroll back up, the field's purpose
+      is gone. Use a persistent, visible label.</li>
+      <li><strong>Vague error messages.</strong> "Invalid input" or "Something went wrong"
+      forces the reader to guess. Say what's wrong ("Password needs at least 8 characters")
+      and, ideally, how to fix it.</li>
+      <li><strong>Validating only on submit.</strong> Waiting until the whole form is
+      submitted to reveal an error made three fields ago means the reader has to scroll back
+      and re-find their mistake. Validate a field once the reader has finished with it, not
+      only at the very end.</li>
+      <li><strong>Asking for information the task doesn't need.</strong> Every extra field is
+      another chance to abandon the form. If a field's answer isn't used anywhere, remove it.</li>
+      <li><strong>Wrong input type or keyboard.</strong> A phone number field using
+      <code>type="text"</code> brings up a full alphabetic keyboard on mobile instead of a
+      numeric one — a small thing that adds friction to every single user on a phone.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Every field has a persistent, visible <code>&lt;label&gt;</code> — not just a placeholder.</li>
+      <li>Error messages state the specific problem and, where possible, the fix.</li>
+      <li>Fields validate as the reader finishes each one, not only on final submit.</li>
+      <li>Input types match the data (<code>email</code>, <code>tel</code>, <code>number</code>) so mobile keyboards adapt.</li>
+      <li>Every field's purpose could be explained in one sentence — if it can't, it's cut.</li>
+      <li>Required fields are marked clearly, not implied.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>Autocomplete attributes:</strong> <code>autocomplete="email"</code>,
+        <code>autocomplete="name"</code>, <code>autocomplete="street-address"</code>, and
+        similar values let the browser fill known fields automatically, which measurably
+        speeds up form completion and reduces typos.
+      </p>
+      <p>
+        <strong>Associating errors with fields for screen readers:</strong> pairing
+        <code>aria-describedby</code> on the input with the error message's <code>id</code>
+        means a screen reader announces the error when the field receives focus, not only when
+        it's visually near the input.
+      </p>
+      <p>
+        <strong>Multi-step forms:</strong> breaking a long form into steps can reduce the
+        perceived effort, but only if progress is visible (a step indicator) and answers are
+        preserved when someone goes back — an invisible multi-step flow just adds extra clicks
+        without the psychological benefit.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>

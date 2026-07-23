@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Spacing &amp; Layout — Design Principles</title>
+<meta name="description" content="Whitespace and alignment as the tools that show a reader what belongs together.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html" aria-current="page">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Spacing &amp; Layout</h1>
+    <p class="definition">
+      Spacing is the empty room you leave around and between things. Layout is how you arrange
+      them. Together they're the main tool for showing a reader which things are related without
+      needing a label or a border to say so.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      The human eye groups things that are close together and separates things that are far
+      apart — this is automatic, not a preference (it's one of the Gestalt principles of
+      perception, "proximity"). If a form's label sits closer to the field above it than the
+      field it actually belongs to, people will misread which label goes with which field, no
+      matter how clear the wording is.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Space between related items should always be smaller than the space between unrelated
+      groups of items. And pick spacing values from a fixed scale (like multiples of 4px or
+      8px) instead of ad hoc numbers — it keeps every gap on the page visually related to every
+      other gap, instead of looking randomly inconsistent.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>.field { margin-bottom: 24px; }  /* between fields */
+.field label { margin-bottom: 8px; } /* label to input */</code></pre>
+        <p>The gap between a label and its own input (8px) is clearly smaller than the gap
+        between one field group and the next (24px) — proximity tells the reader what
+        belongs together before they even read the labels.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>.field { margin-bottom: 16px; }
+.field label { margin-bottom: 16px; }</code></pre>
+        <p>Equal spacing everywhere means there's no visual signal for which label belongs to
+        which input — the reader has to figure it out from position and guesswork alone.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Equal spacing everywhere.</strong> If every gap on the page is the same size,
+      nothing reads as "grouped" — the layout looks like a uniform grid of unrelated pieces.</li>
+      <li><strong>Centering everything.</strong> Center alignment has no consistent edge for
+      the eye to follow down a page; left-aligned (in LTR languages) text and controls give
+      the reader one vertical line to scan.</li>
+      <li><strong>Picking spacing values by eye, per component.</strong> Without a shared
+      scale, a page ends up with dozens of near-identical gaps (13px here, 15px there) that
+      read as sloppy even though no single one looks wrong in isolation.</li>
+      <li><strong>Cramming content edge-to-edge on mobile to "fit more in."</strong> Removing
+      margin on small screens doesn't create more usable space — it removes the breathing
+      room that makes content feel readable rather than crowded.</li>
+      <li><strong>Using borders or background colors to separate sections instead of space.</strong>
+      A visible line is a heavier signal than most page structure needs; often a gap alone (or
+      a gap plus a heading) does the job with less visual noise.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Related items sit closer together than unrelated items.</li>
+      <li>Spacing values come from one scale (e.g. 4, 8, 12, 16, 24, 32, 48px), not arbitrary numbers.</li>
+      <li>Page content has consistent margin on mobile — nothing touches the screen edge.</li>
+      <li>Alignment is consistent: one clear left (or right, for RTL) edge per column of content.</li>
+      <li>A section break is legible from spacing alone, before adding a border or background.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>The 8-point grid:</strong> a common convention is to make every spacing and
+        sizing value a multiple of 8px (or 4px for finer adjustments). This isn't a hard
+        technical requirement — it's a discipline that makes a design system's spacing choices
+        predictable and easy to reuse across a whole product.
+      </p>
+      <p>
+        <strong>Gestalt principles beyond proximity:</strong> similarity (things that look
+        alike are read as related), common region (a shared background or border groups
+        items), and alignment (items sharing an edge are read as connected) all combine with
+        spacing to communicate structure without words.
+      </p>
+      <p>
+        <strong>CSS tools that encode this directly:</strong> flexbox's <code>gap</code> and
+        grid's <code>gap</code> apply consistent spacing between children without needing
+        margin on individual items (which can double up unpredictably at the edges of a row).
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>

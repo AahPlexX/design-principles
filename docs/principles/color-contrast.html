@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Color &amp; Contrast — Design Principles</title>
+<meta name="description" content="Why some color pairs are unreadable, and the math that tells you which ones are safe.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html" aria-current="page">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Color &amp; Contrast</h1>
+    <p class="definition">
+      Contrast is how different two colors look next to each other — usually text against its
+      background. It's not a matter of taste: there's a formula for it, and a minimum score
+      text needs to hit before it's reliably readable.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      Low contrast doesn't just look "soft" or "modern" — it's illegible to a meaningful chunk of
+      any audience: people with low vision, people over 40 (whose eyes naturally lose contrast
+      sensitivity), and anyone using a phone outdoors in direct sunlight. Light-gray text on a
+      white background might look fine on a calibrated laptop screen in a dim office and be
+      unreadable everywhere else.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Body text needs a contrast ratio of at least <strong>4.5:1</strong> against its background.
+      Large text (24px+, or 18.66px+ bold) can drop to <strong>3:1</strong>. These numbers come
+      from WCAG (the Web Content Accessibility Guidelines) and every browser's dev tools will
+      calculate the ratio for you — you never have to eyeball it.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good — 7.7:1</span>
+        <pre><code>color: #1a1a2e;      /* near-black text */
+background: #ffffff; /* white */</code></pre>
+        <p>Comfortably passes the minimum for body text, with room to spare on smaller screens
+        or in bright light.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad — 2.4:1</span>
+        <pre><code>color: #a0a0a0;      /* light gray text */
+background: #ffffff; /* white */</code></pre>
+        <p>Looks like "subtle" gray text in a design mockup, and is genuinely hard to read for
+        a large share of real users. Fails the 4.5:1 minimum by a wide margin.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Using gray-on-gray for "de-emphasized" text.</strong> Muted text (captions,
+      timestamps, helper text) still needs to clear the contrast minimum — "less important"
+      doesn't mean "allowed to be unreadable."</li>
+      <li><strong>Placing text over a photo without a scrim.</strong> A busy image behind text
+      makes contrast unpredictable pixel-by-pixel. Add a solid or gradient overlay behind the
+      text so the ratio holds everywhere it appears.</li>
+      <li><strong>Checking contrast in isolation, not in the actual UI.</strong> A color pair
+      that passes in a swatch can still fail once it's a link color on a tinted background,
+      or a disabled-looking gray on a card. Check the ratio where the color is actually used.</li>
+      <li><strong>Relying on color alone to carry meaning.</strong> Red/green to mean
+      error/success fails for colorblind users if there's no icon, label, or shape backing it
+      up.</li>
+      <li><strong>Trusting how it looks on your monitor.</strong> Screens vary in brightness
+      and calibration far more than people assume. Measure the ratio; don't eyeball it.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Body text is at least 4.5:1 against its background.</li>
+      <li>Large text (24px+/18.66px+ bold) is at least 3:1.</li>
+      <li>Text over images has a scrim or overlay, tested in the darkest and lightest parts of the image.</li>
+      <li>Any color-coded meaning (error, success, warning) also has an icon or text label.</li>
+      <li>Contrast was checked with a tool, not by eye.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>How the ratio is calculated:</strong> WCAG 2.x contrast is based on relative
+        luminance — a weighted mix of a color's red, green, and blue channels adjusted for how
+        the human eye perceives brightness (green looks brighter than blue at the same value).
+        The ratio is <code>(L1 + 0.05) / (L2 + 0.05)</code>, where L1 is the lighter color's
+        luminance and L2 the darker one's. You don't need to compute this by hand — browser
+        DevTools' color picker, and tools like WebAIM's contrast checker, do it for you.
+      </p>
+      <p>
+        <strong>WCAG 3 / APCA:</strong> a newer contrast algorithm (APCA) accounts for font
+        weight and size, not just color, and is expected to eventually replace the WCAG 2.x
+        ratio. It isn't a formal requirement yet, but it's worth knowing the current numeric
+        thresholds (4.5:1, 3:1) are a stepping stone, not a permanent law of physics.
+      </p>
+      <p>
+        <strong>Dark mode isn't automatically higher contrast.</strong> Pure white text
+        (#fff) on pure black (#000) can cause "halation" — a glow/blur effect for some
+        readers with astigmatism. Slightly off-white text on a dark gray (not pure black)
+        background is usually more comfortable while still clearing the ratio.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>
