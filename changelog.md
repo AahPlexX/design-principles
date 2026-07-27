@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 10**
+**Current turncount: 11**
 
 ---
 
@@ -120,6 +120,7 @@ User asked to proceed to v3. Presented 4 candidate categories via `AskUserQuesti
 - **Caught a second wrong assumption via actual testing, not by reasoning about it:** assumed modern browsers auto-expand `<details>` content when printing. Testing with Playwright's print-media emulation showed the "Go deeper" section stayed collapsed. Investigated the real mechanism (`getComputedStyle(details, "::details-content")` showed `content-visibility: hidden` on a newer Chromium-specific pseudo-element, not a plain `display:none`) and chose a portable `beforeprint`/`afterprint` JS toggle (`docs/assets/print-details.js`) over a CSS hack tied to an experimental, non-standardized pseudo-element — consistent with `CLAUDE.md`'s "no relying on undocumented behavior" standard. Verified the fix with an actual rendered PDF (`page.pdf()` + `pypdf` text extraction), not just media emulation: confirmed the "Go deeper" text is present in the printed output for all 3 new pages and a sample of existing ones, confirmed nav text is absent, and confirmed the `<details>` reverts to closed on-screen after printing.
 - Re-verified everything after both fixes: `scripts/verify-site.py` (19/19 `ok`), the real `html5validator` (0 HTML errors; the CSS-only check flags the new logical properties the same way it already flagged `text-decoration-thickness` in v1 — an extension of the same documented, accepted validator limitation, not a new regression), nav parity (1 unique variant, 19 files), a Playwright screenshot of the default LTR rendering, and — going beyond what the locked criteria required — a forced `dir="rtl"` screenshot confirming the logical properties correctly mirror the checklist markers, mistake-list borders, and good/bad example order under a right-to-left layout.
 - Cleaned up all test artifacts (local server, venv, screenshots, PDFs, scratch scripts) before committing.
+- ***(added at turn 11)*** CI and Pages deploy confirmed green for the v3 push (commit `8020113`), checked via the GitHub Actions API: CI run `30291917438` `conclusion: success`; Deploy GitHub Pages run `30291917990` `conclusion: success`. **v3 is complete.**
 
 ## Turn 10 — 2026-07-27
 
@@ -138,3 +139,13 @@ Fixed all of it in `docs/assets/style.css` (plus one class added to `docs/index.
 - Replaced the checklist's Unicode `☐` glyph with a real CSS-drawn checkbox (`::before` with border/border-radius), gave the mistakes list items a subtle background pill, and rebuilt the "Go deeper" `<details>`/`summary` as a proper row with a background tint and a custom rotating chevron (`list-style: none` + a `::after` border-chevron) instead of the browser's bare default triangle.
 - Added dark-mode-appropriate shadow tokens (`--shadow-sm`/`--shadow-md`) so the new depth treatments look right in both color schemes, not just light mode.
 - Re-verified everything the same way as every other change this session, not just by eyeballing the CSS diff: `scripts/verify-site.py` (19/19 `ok`), the real `html5validator` (0 HTML errors; the CSS check flags the new logical properties used in the chevron the same documented way as before — `border-inline-end`/`border-block-end`, same accepted-exception category), nav parity (unaffected, still 1 variant), and a fresh round of Playwright screenshots at all 4 viewports plus a `color-scheme: dark` pass and a rendered-PDF print re-check, confirming the fix actually looks right rather than assuming it does from the source alone.
+
+## Turn 11 — 2026-07-27
+
+User asked me to check the CI/Deploy GitHub Pages runs for the v3 push (commit `8020113`, per the fallback wakeup scheduled at turn 9) and update the record with real results.
+
+- Checked via the GitHub Actions API: both `8020113` (v3) and `85a35c1` (turn 10's design fix, pushed after the wakeup was scheduled) are fully green.
+  - `8020113`: CI run `30291917438` `conclusion: success`; Deploy GitHub Pages run `30291917990` `conclusion: success`.
+  - `85a35c1`: CI run `30292918436` `conclusion: success`; Deploy GitHub Pages run `30292918359` `conclusion: success`.
+- Appended the `8020113` result directly into the Turn 9 entry above (per the user's request to update that specific entry), stamped as added at turn 11 rather than silently backdated, so the record stays honest about when the confirmation actually happened.
+- Updated `todo.md`: checked v3's last two boxes and the "Post-v3 design QA fix" section's last two boxes, both with the real run IDs/conclusions. **Both v3 and the design QA fix are now complete**, independently verified via the API, not inferred.

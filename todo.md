@@ -103,8 +103,8 @@ User asked to proceed to v3. Presented 4 candidate categories via `AskUserQuesti
 - [x] *(turn 9)* Nav parity verified byte-for-byte across all 19 HTML pages (16 existing + 3 new) — scripted comparison confirms exactly 1 unique nav variant
 - [x] *(turn 9)* The logical-property CSS conversion is verified to NOT change the default (LTR) rendering — checked visually via Playwright screenshot (skip-link focus position, home page layout) in default LTR mode, not just by reading the diff. **Went further than the locked criterion required:** also force-set `dir="rtl"` via JS and screenshotted a full principle page — nav, checklist checkboxes, mistake-list borders, and the good/bad example pair order all correctly mirrored, real evidence the logical properties work both directions, not just that LTR didn't break.
 - [x] *(turn 9)* The print stylesheet is verified by actually rendering the page in print media emulation, not just by reading the CSS. **Caught a real bug this way:** initial testing (`page.emulate_media`) showed nav/footer correctly hidden, but the "Go deeper" `<details>` stayed collapsed — contradicting my assumption that browsers auto-expand it for print. Confirmed the actual mechanism via `getComputedStyle(details, "::details-content")` (a newer Chromium pseudo-element, not a plain `display:none` on children as older browsers use), decided against a fragile CSS-only fix targeting an experimental pseudo-element, and used a small `beforeprint`/`afterprint` JS toggle instead (portable, no reliance on undocumented/engine-specific CSS). Verified with an *actual rendered PDF* (`page.pdf()` + text extraction via `pypdf`), not just media emulation — confirmed the "Go deeper" text appears in the printed PDF for all 3 new pages plus a sample of the existing ones, nav text does not appear, and the `<details>` correctly reverts to closed on-screen afterward.
-- [ ] CI confirmed green on GitHub Actions for the actual push, checked via the API, not inferred
-- [ ] Pages deploy confirmed to still succeed after these changes
+- [x] *(turn 11)* CI confirmed green on GitHub Actions for the actual push, checked via the API, not inferred — run `30291917438` (commit `8020113`), `conclusion: success`
+- [x] *(turn 11)* Pages deploy confirmed to still succeed after these changes — run `30291917990` (commit `8020113`), `conclusion: success`
 
 ### Explicitly OUT of scope for v3 (deferred, not forgotten)
 - SEO & discoverability tooling (sitemap.xml, robots.txt, Open Graph/Twitter Card tags, JSON-LD structured data) — offered as a v3 candidate, not selected
@@ -117,6 +117,8 @@ User asked to proceed to v3. Presented 4 candidate categories via `AskUserQuesti
 
 v3 is DONE when every box above is checked and independently verified, the same discipline as v1 and v2. At that point: stop, report status, and wait for explicit go-ahead before any v4 work.
 
+**Status as of turn 11: every box is checked and independently verified via the GitHub API, not inferred — run `30291917438` (CI) and `30291917990` (Pages), both for commit `8020113`, both `conclusion: success`. v3 is complete.**
+
 ## Post-v3: design QA fix (turn 10, user-reported)
 
 Not part of the locked v1/v2/v3 scope — a real bug report ("the design/layout feels like a rushed vibe code project"), fixed as reported rather than deferred to a future version, the same way turn-3's Pages outage and turn-7's MCP re-audit were handled outside the versioned checklist.
@@ -127,5 +129,7 @@ Not part of the locked v1/v2/v3 scope — a real bug report ("the design/layout 
 - [x] *(turn 10)* Added a `.wrap-wide` (64rem) shell for the home page's card grid only, so it uses more of a wide viewport (3 columns instead of 2 at 1920px) without widening its own reading-measure paragraphs
 - [x] *(turn 10)* Gave the header, cards, checklist, mistakes list, and "Go deeper" details/summary real visual depth and custom-drawn components (shadows, hover lift, a CSS-drawn checkbox, a rotating chevron) instead of bare/default-looking treatments
 - [x] *(turn 10)* Re-verified: `scripts/verify-site.py` (19/19 ok), real `html5validator` (0 HTML errors), nav parity (unaffected), Playwright screenshots at 375/768/1280/1920px in both light and dark color schemes, and a rendered-PDF print re-check — confirmed the fix actually renders correctly, not just that the CSS reads correctly
-- [ ] CI confirmed green on GitHub Actions for this fix's push, checked via the API
-- [ ] Pages deploy confirmed to still succeed after this fix
+- [x] *(turn 11)* CI confirmed green on GitHub Actions for this fix's push, checked via the API — run `30292918436` (commit `85a35c1`), `conclusion: success`
+- [x] *(turn 11)* Pages deploy confirmed to still succeed after this fix — run `30292918359` (commit `85a35c1`), `conclusion: success`
+
+**Status as of turn 11: every box above is checked and independently verified. Design QA fix is complete.**
