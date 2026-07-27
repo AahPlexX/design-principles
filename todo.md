@@ -158,8 +158,8 @@ User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but this
 - [x] *(turn 12)* Nav parity unaffected — still 1 unique variant, now across 20 HTML pages
 - [x] *(turn 12)* New skills link back to their canonical pages instead of restating content
 - [x] *(turn 12)* **Self-caught risk before it could become a CI failure:** the new canonical/`og:url`/JSON-LD tags use full absolute `https://aahplexx.github.io/...` URLs, which CI's `lychee` link-checker would try to fetch live — including `404.html`'s own self-reference, which can't possibly resolve until the *separate* Pages workflow finishes deploying this exact push. Downloaded the real `lychee` binary locally to test rather than assuming: confirmed 20 of these self-references genuinely fail without a fix (a real, reproducible risk, not hypothetical), then confirmed a `--exclude 'https://aahplexx\.github\.io/design-principles'` pattern correctly skips them (0 errors, 20 excluded) without weakening the check for genuinely external links. Applied the fix to `.github/workflows/ci.yml` before this ever reached the real CI run.
-- [ ] CI confirmed green on GitHub Actions for the actual push, checked via the API, not inferred
-- [ ] Pages deploy confirmed to still succeed after these changes
+- [x] *(turn 13)* CI confirmed green on GitHub Actions for the actual push, checked via the API, not inferred — run `30314389179` (commit `23fa48d`), `conclusion: success`. Specifically checked the `External link check` job (id `90136745261`... `90136745297`) at the job level, not just the aggregate run: `Lychee link check` step `conclusion: success`, and the actual job log confirms the `--exclude` fix worked identically in real CI as it did locally — Total 487, Unique 65, Successful 467, **Excluded 20**, Errors 0.
+- [x] *(turn 13)* Pages deploy confirmed to still succeed after these changes — run `30314389159` (commit `23fa48d`), `conclusion: success`
 
 ### Explicitly OUT of scope for v4 (deferred, not forgotten, or deliberately rejected)
 - `og:image` / a Twitter `summary_large_image` card — would need a real raster image and this repo has no image-generation pipeline and no build step by design (`CLAUDE.md`'s KISS mandate); shipping a half-working image tag would violate "no half-finished implementations." Text-only OG/Twitter cards (title/description/url) still work and degrade gracefully.
@@ -172,3 +172,5 @@ User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but this
 ## v4 completion checkpoint
 
 v4 is DONE when every box above is checked and independently verified, the same discipline as v1-v3. At that point: stop, report status, and wait for explicit go-ahead before any v5 work.
+
+**Status as of turn 13: every box above is checked and independently verified via the GitHub API, not inferred — including the specific `External link check`/lychee job the self-referencing-URL fix targeted, confirmed at the job level. v4 is complete.**

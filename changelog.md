@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 12**
+**Current turncount: 13**
 
 ---
 
@@ -162,3 +162,11 @@ User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but expl
 - Added repo hygiene: 2 GitHub issue templates, a PR template, and a single-owner `CODEOWNERS`. Deliberately skipped `CODE_OF_CONDUCT.md` as ceremonial overhead not clearly justified for a one-owner personal reference repo.
 - **Self-caught a real CI risk before it ever reached a real run:** the new canonical/`og:url`/JSON-LD URLs are absolute (`https://aahplexx.github.io/...`), which CI's `lychee` link-checker treats as live external links to fetch — including `404.html`'s own self-reference, which can't resolve until the separate Pages workflow finishes deploying this exact push. Downloaded the actual `lychee` binary locally rather than assuming: confirmed all 20 self-references genuinely fail without a fix, then confirmed a `--exclude 'https://aahplexx\.github\.io/design-principles'` pattern fixes it cleanly (0 errors, 20 excluded, real external links like the GitHub repo URL still checked). Applied the fix to `.github/workflows/ci.yml` before pushing.
 - Re-verified everything: `scripts/verify-site.py` (20/20 `ok`), the real `html5validator` (0 HTML errors), a scripted XML-namespace check on `sitemap.xml`, a scripted JSON-LD validity + required-fields check (17/17 pass), and nav parity (still 1 unique variant, now 20 files).
+
+## Turn 13 — 2026-07-27
+
+User asked me to check CI/Pages for the v4 push (commit `23fa48d`) and specifically confirm the `lychee` link-check job itself, not just the aggregate CI conclusion — that's the job the turn-12 `--exclude` fix targeted.
+
+- Checked via the GitHub Actions API: CI run `30314389179` and Deploy GitHub Pages run `30314389159`, both for commit `23fa48d`, both `conclusion: success`.
+- Went to job level as asked rather than stopping at the run conclusion: the `External link check` job (id `90136745297`) and its `Lychee link check` step both show `conclusion: success`. Pulled the actual job log rather than trusting the checkmark — it reports Total 487, Unique 65, Successful 467, **Excluded 20**, Errors 0, exactly matching the local test run from turn 12. The fix behaves identically in real CI as it did locally.
+- Updated `todo.md`'s last two v4 boxes and the v4 completion checkpoint with this evidence. **v4 is complete.**
