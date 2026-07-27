@@ -11,8 +11,8 @@ This is the finish line for the current phase. Nothing beyond this list gets add
 - [x] *(turn 1)* 3 Claude Code skills in `/skills`: design-critique, accessibility-audit, plain-language-rewrite
 - [x] *(turn 1)* 3 system prompts in `/prompts`: web-design-mentor, design-critique-reviewer, plain-language-rewriter
 - [x] *(turn 1)* 1 verification script (`scripts/verify-site.py`, stdlib-only)
-- [x] *(turn 1)* 2 GitHub Actions workflows (`pages.yml`, `ci.yml`) + 1 Dependabot config
-- [ ] *(turn 1, pending)* CI confirmed green on GitHub Actions for a real push to `main` — 2 rounds of real failures found and fixed so far (round 1: setup-python cache, Super-Linter flag conflict, lychee resolution error; round 2: lychee's actual fix didn't work and needed a different approach, 3 genuine CSS issues, several real Markdown issues, a missing `statuses: write` permission). Not yet confirmed green after round 2's push — that push is part of this same turn, verify before checking this box.
+- [x] *(turn 2)* 2 GitHub Actions workflows (`pages.yml`, `ci.yml`, 2 jobs: verify-site, link-check) + 1 Dependabot config. Super-Linter was tried and removed by explicit user instruction after 3 rounds of real failures (see `changelog.md` turn 2) — `scripts/verify-site.py` plus real `html5validator`/`stylelint` runs already covered correctness without it.
+- [ ] *(turn 2, pending)* CI confirmed green on GitHub Actions for a real push to `main` — verify-site and link-check jobs both passed on the round-2 push; confirm again on the round-3 push (Super-Linter removed) before checking this box.
 - [ ] *(blocked on user)* GitHub Pages confirmed live and publicly reachable — requires the one-time Settings -> Pages -> Source: GitHub Actions toggle, which no available tool can set
 
 ### Qualitative acceptance criteria

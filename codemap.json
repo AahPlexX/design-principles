@@ -2,7 +2,7 @@
   "_meta": {
     "purpose": "Machine-readable map of this repo's structure and purpose, so any future turn/session/agent can orient without re-exploring the whole tree.",
     "conventions": "Append-only per user instruction: 'paths' reflects current state and may be corrected in place, but every structural change must also add an entry to 'history' so nothing is silently lost. Never delete a 'history' entry.",
-    "last_updated_turncount": 1,
+    "last_updated_turncount": 2,
     "mcp_selection": {
       "memory": {
         "name": "Mem0",
@@ -38,9 +38,9 @@
     "changelog.md": { "type": "doc", "purpose": "Turn-by-turn history with the non-negotiable turncount. Append-only.", "status": "active" },
     "codemap.json": { "type": "doc", "purpose": "This file.", "status": "active" },
     ".gitignore": { "type": "config", "purpose": "OS/editor/build cruft exclusions (.DS_Store, __pycache__, .ruff_cache, node_modules).", "status": "active" },
-    ".yamllint.yml": { "type": "config", "purpose": "Disables yamllint's truthy (workflow `on:` key) and line-length rules; both confirmed false positives for this repo.", "status": "active" },
-    ".markdownlint.yml": { "type": "config", "purpose": "Attempts to disable MD013 (line-length); confirmed NOT honored by Super-Linter's markdownlint invocation (its bundled default of 400 wins instead) -- kept for local/other tooling, but don't rely on it in CI. All .md files are instead kept under 400 chars/line directly.", "status": "active" },
-    ".stylelintrc.json": { "type": "config", "purpose": "Extends stylelint-config-standard, disabling 4 purely-cosmetic rules (declaration-block-single-line-max-declarations, rule-empty-line-before, custom-property-empty-line-before, at-rule-empty-line-before) that conflict with this repo's intentional compact CSS formatting. Verified locally against real stylelint.", "status": "active" },
+    ".yamllint.yml": { "type": "config", "purpose": "Was: disables yamllint's truthy/line-length rules for Super-Linter's yamllint. REMOVED at turncount 2 along with Super-Linter (user instruction) -- had no other consumer.", "status": "removed" },
+    ".markdownlint.yml": { "type": "config", "purpose": "Was: attempted to disable MD013 for Super-Linter's markdownlint; confirmed NOT honored (its bundled default of 400 won instead). REMOVED at turncount 2 along with Super-Linter (user instruction) -- had no other consumer.", "status": "removed" },
+    ".stylelintrc.json": { "type": "config", "purpose": "Was: extends stylelint-config-standard, disabling 4 cosmetic rules for Super-Linter's stylelint. REMOVED at turncount 2 along with Super-Linter (user instruction) -- had no other consumer.", "status": "removed" },
     "docs/": {
       "type": "dir",
       "purpose": "GitHub Pages site source (the Pages 'source' folder). Plain HTML/CSS, no build step, no JS.",
@@ -93,12 +93,13 @@
     },
     ".github/workflows/ci.yml": {
       "type": "ci",
-      "purpose": "Three parallel jobs: verify-site (scripts/verify-site.py + W3C html5validator), super-linter (opt-in whitelist: HTML/CSS/Markdown/YAML/JSON/GitHub Actions/Python-ruff), link-check (lychee, external links only).",
+      "purpose": "Two parallel jobs: verify-site (scripts/verify-site.py + W3C html5validator), link-check (lychee, external links only). Previously had a third super-linter job, removed at turncount 2 (see history) after 3 rounds of real failures -- verify-site + real html5validator/stylelint runs already covered correctness.",
       "status": "active"
     },
     ".github/dependabot.yml": { "type": "ci", "purpose": "Weekly PRs to keep every pinned GitHub Action version/SHA current.", "status": "active" }
   },
   "history": [
-    { "turncount": 1, "change": "Initial codemap created capturing full repo state as of this turn (repo already contained the site, skills, prompts, and CI/CD from prior turns; this is the first turn codemap.json itself has existed)." }
+    { "turncount": 1, "change": "Initial codemap created capturing full repo state as of this turn (repo already contained the site, skills, prompts, and CI/CD from prior turns; this is the first turn codemap.json itself has existed)." },
+    { "turncount": 2, "change": "Removed Super-Linter job from .github/workflows/ci.yml (explicit user instruction, after 3 rounds of real failures). Removed .stylelintrc.json, .markdownlint.yml, .yamllint.yml as a consequence -- they existed solely to configure Super-Linter's bundled tools and had no other consumer once it was gone." }
   ]
 }

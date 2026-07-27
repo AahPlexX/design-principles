@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 1**
+**Current turncount: 2**
 
 ---
 
@@ -38,3 +38,12 @@ Turncount did not exist before this turn — there is no turn 0 to backfill, sin
     4. Super-Linter was also getting a 403 posting per-linter commit statuses back to the GitHub API, because the workflow's `contents: read`-only permission didn't include `statuses: write`. Added that permission scoped to just the `super-linter` job (least-privilege: the other two jobs don't need it).
   - Re-verified everything locally one more time after all of the above (`scripts/verify-site.py`, `html5validator`, real `stylelint`, the manual markdown sweep, and a browser screenshot at a narrow viewport to confirm the CSS changes didn't break the responsive layout) before pushing again.
 - No principle pages, skills, or prompts were added this turn — the v1 count stays at 10/3/3, per the no-scope-creep instruction.
+
+## Turn 2 — 2026-07-27
+
+- Round 3 of CI: the round-2 push (`f080954`) had `verify-site` and `link-check` both pass on GitHub's real runner (confirming the round-2 fixes actually worked), but `super-linter` failed again on a new, different real issue: a 506-char line in `todo.md` tripped `MD013` at Super-Linter's actual 400-char default, plus new `yamllint` warnings on the workflow files (missing `---` document-start, a few lines over 80 chars) that hadn't surfaced before.
+- User interrupted mid-diagnosis with an explicit instruction: **remove Super-Linter from the CI workflow entirely.** After 3 rounds of real, unrelated failures from a single tool, this is the right call — `scripts/verify-site.py` plus the `verify-site` job's real `html5validator` run, and the manual `stylelint`/markdown verification already done in Turn 1, cover this repo's actual correctness needs without it.
+- Removed the `super-linter` job from `.github/workflows/ci.yml`. Also removed `.stylelintrc.json`, `.markdownlint.yml`, and `.yamllint.yml`, since all three existed solely to configure Super-Linter's bundled tools and had no other consumer once it was gone — keeping them would have been orphaned, unread config (this repo's own "backend file system stays clean" standard, established earlier).
+- `ci.yml` is now two jobs: `verify-site` (unchanged) and `link-check` (unchanged). Verified locally (YAML parses, `scripts/verify-site.py` passes) before pushing.
+- Updated `todo.md` and `codemap.json` to reflect the removal, marking the three deleted config files `"status": "removed"` in `codemap.json`'s history rather than deleting their entries outright, per this file's own append-only convention.
+- Queried Mem0 at the start of this turn to recall prior context before acting (consistent MCP use, per explicit instruction) — confirmed it correctly recalled the locked v1 scope, the tracking-file convention, and the two human-blocked items from Turn 1.

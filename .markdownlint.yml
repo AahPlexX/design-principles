@@ -1,4 +1,0 @@
-default: true
-
-# Prose files here rely on soft-wrap, not hard 80-column wrapping.
-MD013: false

@@ -38,41 +38,6 @@ jobs:
       - name: Validate HTML against the W3C Nu Html Checker
         run: html5validator --root docs
 
-  super-linter:
-    name: Super-Linter
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      # Super-Linter posts a per-linter commit status via the GitHub API;
-      # the workflow-level contents:read-only token got a 403 doing this
-      # (confirmed via a failed CI run, not assumed).
-      statuses: write
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v7
-        with:
-          fetch-depth: 0
-
-      # super-linter/super-linter, pinned to the commit for the v8.7.0 release
-      - name: Super-linter
-        uses: super-linter/super-linter@4ce20838b8ab83717e78138c5b3a1407148e0918 # v8.7.0
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          DEFAULT_BRANCH: main
-          # Super-Linter rejects mixing VALIDATE_ALL_CODEBASE with explicit
-          # per-linter true/false overrides (confirmed via a failed CI run,
-          # not assumed), so this is an opt-in whitelist instead: everything
-          # not listed here simply doesn't run.
-          VALIDATE_HTML: true
-          VALIDATE_CSS: true
-          VALIDATE_MARKDOWN: true
-          VALIDATE_YAML: true
-          VALIDATE_JSON: true
-          VALIDATE_GITHUB_ACTIONS: true
-          # One modern linter instead of stacking pylint/flake8/black/isort,
-          # which would otherwise report overlapping, sometimes-conflicting findings.
-          VALIDATE_PYTHON_RUFF: true
-
   link-check:
     name: External link check
     runs-on: ubuntu-latest
