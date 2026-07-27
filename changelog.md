@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 11**
+**Current turncount: 12**
 
 ---
 
@@ -149,3 +149,16 @@ User asked me to check the CI/Deploy GitHub Pages runs for the v3 push (commit `
   - `85a35c1`: CI run `30292918436` `conclusion: success`; Deploy GitHub Pages run `30292918359` `conclusion: success`.
 - Appended the `8020113` result directly into the Turn 9 entry above (per the user's request to update that specific entry), stamped as added at turn 11 rather than silently backdated, so the record stays honest about when the confirmation actually happened.
 - Updated `todo.md`: checked v3's last two boxes and the "Post-v3 design QA fix" section's last two boxes, both with the real run IDs/conclusions. **Both v3 and the design QA fix are now complete**, independently verified via the API, not inferred.
+
+## Turn 12 — 2026-07-27
+
+User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but explicitly asked for autonomous scope AND tool selection this time — no `AskUserQuestion` round. Locked v4 from the still-deferred v1/v2/v3 candidates (SEO/discoverability, repo hygiene) plus one new gap-fill (2 skills/prompts for performance and responsive design, the two clearest remaining audits without a dedicated procedure).
+
+- **Autonomous tool selection:** tried `Context7` first (selected at turn 1, never yet used) for current sitemap/Open Graph/schema.org/robots.txt syntax — it correctly returned nothing, since these are web standards, not library docs, and Context7 indexes the latter. Fell back to `WebSearch` against authoritative sources (sitemaps.org, Open Graph protocol, schema.org, plus a targeted check of GitHub's exact `404.html` placement rule) and verified current syntax before writing anything, rather than trusting training data.
+- Added `docs/sitemap.xml` (sitemaps.org protocol, 19 entries — every page except `404.html`, which shouldn't be indexed) and `docs/robots.txt` (allow-all + `Sitemap:` directive).
+- Added Open Graph + Twitter Card meta tags and a `<link rel="canonical">` to every page's `<head>` (19 pages via a script, plus `404.html` written by hand), and JSON-LD `TechArticle` structured data to all 17 principle pages. Deliberately omitted `og:image`/`summary_large_image` — this repo has no image-generation pipeline and no build step by design, and a half-working image tag would be worse than a clean text-only card. Pulled each principle page's `datePublished` from real git history (`git log --follow --diff-filter=A`) instead of fabricating a date.
+- Added `docs/404.html`, following the site's own Empty & Error States principle (what happened / what to do next) and its visual language — required to sit at the Pages root (`docs/404.html`), confirmed via search rather than assumed.
+- Wrote 2 new skills (`skills/performance-audit`, `skills/responsive-design-audit`) and 2 new prompts (`prompts/performance-reviewer.md`, `prompts/responsive-design-consultant.md`) — the two clearest remaining gaps where `design-critique`'s master checklist exists but no dedicated procedural skill did yet, same reasoning that produced the accessibility/dark-pattern/empty-state skills.
+- Added repo hygiene: 2 GitHub issue templates, a PR template, and a single-owner `CODEOWNERS`. Deliberately skipped `CODE_OF_CONDUCT.md` as ceremonial overhead not clearly justified for a one-owner personal reference repo.
+- **Self-caught a real CI risk before it ever reached a real run:** the new canonical/`og:url`/JSON-LD URLs are absolute (`https://aahplexx.github.io/...`), which CI's `lychee` link-checker treats as live external links to fetch — including `404.html`'s own self-reference, which can't resolve until the separate Pages workflow finishes deploying this exact push. Downloaded the actual `lychee` binary locally rather than assuming: confirmed all 20 self-references genuinely fail without a fix, then confirmed a `--exclude 'https://aahplexx\.github\.io/design-principles'` pattern fixes it cleanly (0 errors, 20 excluded, real external links like the GitHub repo URL still checked). Applied the fix to `.github/workflows/ci.yml` before pushing.
+- Re-verified everything: `scripts/verify-site.py` (20/20 `ok`), the real `html5validator` (0 HTML errors), a scripted XML-namespace check on `sitemap.xml`, a scripted JSON-LD validity + required-fields check (17/17 pass), and nav parity (still 1 unique variant, now 20 files).

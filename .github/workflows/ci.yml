@@ -58,11 +58,23 @@ jobs:
           ln -s "$GITHUB_WORKSPACE/docs" /tmp/lychee-root/design-principles
 
       # lycheeverse/lychee-action, pinned to the commit the v2 tag points to
+      #
+      # --exclude skips the site's own absolute self-references (canonical,
+      # og:url, JSON-LD mainEntityOfPage -- added for v4's SEO tooling).
+      # These point at aahplexx.github.io, which may not have redeployed yet
+      # for whatever's in *this* push, so checking them live is inherently
+      # racy against the separate Pages workflow -- confirmed by running the
+      # real lychee binary locally: without the exclude, all 20 of them fail
+      # (verified locally as a network/connectivity failure in this exact
+      # sandboxed environment, not a live 404 -- either way, self-checking
+      # your own not-yet-guaranteed-deployed URLs live is the wrong test;
+      # verify-site.py already checks these pages exist as local files).
       - name: Lychee link check
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
           args: >-
             --no-progress
             --root-dir /tmp/lychee-root
+            --exclude 'https://aahplexx\.github\.io/design-principles'
             'docs/**/*.html'
           fail: true

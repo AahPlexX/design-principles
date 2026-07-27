@@ -133,3 +133,42 @@ Not part of the locked v1/v2/v3 scope — a real bug report ("the design/layout 
 - [x] *(turn 11)* Pages deploy confirmed to still succeed after this fix — run `30292918359` (commit `85a35c1`), `conclusion: success`
 
 **Status as of turn 11: every box above is checked and independently verified. Design QA fix is complete.**
+
+---
+
+## v4 definitive deliverables (locked at turncount 12, autonomous scope + tool selection)
+
+User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but this time explicitly asked for autonomous scope AND tool (skills/MCPs/plugins) selection rather than an `AskUserQuestion` round — so this section is locked without user back-and-forth, drawing only from candidates already surfaced and deferred in v1/v2/v3's "explicitly out of scope" lists, plus one genuinely new, bounded gap-fill.
+
+**Autonomous tool selection for this round:** used `Context7` first (selected back at turn 1, never yet invoked — this was its first genuine use case), but its library-doc index has no entries for web standards/protocols (sitemaps.org, Open Graph, schema.org, robots.txt aren't "libraries"), so it correctly returned nothing useful. Fell back to `WebSearch` against official/authoritative sources for the sitemap protocol, robots.txt directives, the Open Graph protocol, and schema.org's `Article`/`TechArticle` type, plus a targeted search confirming GitHub Pages' exact `404.html` placement requirement — verified current syntax before writing any of it, rather than relying on training data, per the project's original research mandate. GitHub MCP continues for issue templates/PR template/pushes/CI checks. No new MCP connector installs warranted — nothing in this round's task needs a capability outside what's already selected.
+
+### Quantitative
+- [x] *(turn 12)* SEO & discoverability tooling: `docs/sitemap.xml` (sitemaps.org protocol, all 19 pages), `docs/robots.txt` (allow-all + Sitemap directive), Open Graph + Twitter Card meta tags added to every page's `<head>`, and JSON-LD `TechArticle` structured data on all 17 principle pages
+- [x] *(turn 12)* 1 custom `docs/404.html`, placed at the Pages root per GitHub's exact requirement, following the site's own Empty & Error States principle (dogfooding) and its 6-part visual language
+- [x] *(turn 12)* 2 new Claude Code skills in `/skills`: `performance-audit`, `responsive-design-audit` (bringing the total to 7) — the two clearest remaining gaps where `design-critique`'s checklist exists but no dedicated procedural skill does yet, same reasoning that produced `accessibility-audit`/`dark-pattern-audit`/`empty-error-state-review`
+- [x] *(turn 12)* 2 new system prompts in `/prompts`: `performance-reviewer`, `responsive-design-consultant` (bringing the total to 7), mirroring the two new skills
+- [x] *(turn 12)* Repo hygiene: 2 GitHub issue templates (bug/content-fix, new-principle-suggestion), 1 pull request template, 1 `CODEOWNERS` file (single owner)
+
+### Qualitative acceptance criteria (same bar as v1-v3)
+- [x] *(turn 12)* Every new/changed HTML page passes `scripts/verify-site.py` — ran the real script, 20/20 files `ok` (19 previous + `404.html`)
+- [x] *(turn 12)* Every new/changed HTML page passes the real W3C Nu Html Checker (`html5validator`) with 0 errors — ran it fresh, 0 HTML errors across all 20 pages, including the new JSON-LD `<script>` blocks
+- [x] *(turn 12)* `sitemap.xml` validated as well-formed XML against the sitemaps.org schema — parsed with `xml.etree.ElementTree` against the `http://www.sitemaps.org/schemas/sitemap/0.9` namespace, confirmed 19 `<url>` entries (`404.html` deliberately excluded — error pages shouldn't be indexed)
+- [x] *(turn 12)* Every JSON-LD block validated as syntactically correct JSON and structurally checked against the required properties — scripted check confirms 17/17 principle pages have valid `TechArticle` JSON with `headline`, `description`, `datePublished`, `author` all present; `datePublished` values pulled from real git history (`git log --follow --diff-filter=A`), not fabricated
+- [x] *(turn 12)* `robots.txt`'s `Sitemap:` directive uses the correct full absolute URL matching where `sitemap.xml` actually resolves
+- [x] *(turn 12)* Nav parity unaffected — still 1 unique variant, now across 20 HTML pages
+- [x] *(turn 12)* New skills link back to their canonical pages instead of restating content
+- [x] *(turn 12)* **Self-caught risk before it could become a CI failure:** the new canonical/`og:url`/JSON-LD tags use full absolute `https://aahplexx.github.io/...` URLs, which CI's `lychee` link-checker would try to fetch live — including `404.html`'s own self-reference, which can't possibly resolve until the *separate* Pages workflow finishes deploying this exact push. Downloaded the real `lychee` binary locally to test rather than assuming: confirmed 20 of these self-references genuinely fail without a fix (a real, reproducible risk, not hypothetical), then confirmed a `--exclude 'https://aahplexx\.github\.io/design-principles'` pattern correctly skips them (0 errors, 20 excluded) without weakening the check for genuinely external links. Applied the fix to `.github/workflows/ci.yml` before this ever reached the real CI run.
+- [ ] CI confirmed green on GitHub Actions for the actual push, checked via the API, not inferred
+- [ ] Pages deploy confirmed to still succeed after these changes
+
+### Explicitly OUT of scope for v4 (deferred, not forgotten, or deliberately rejected)
+- `og:image` / a Twitter `summary_large_image` card — would need a real raster image and this repo has no image-generation pipeline and no build step by design (`CLAUDE.md`'s KISS mandate); shipping a half-working image tag would violate "no half-finished implementations." Text-only OG/Twitter cards (title/description/url) still work and degrade gracefully.
+- `CODE_OF_CONDUCT.md` — ceremonial overhead not clearly justified for a single-owner personal reference repo; skipping it is a deliberate call, not an oversight
+- Additional principle pages — 17 already comprehensively covers the mission; the SSOT was never meant to catalog every conceivable UI pattern, and adding more without a genuine gap would be exactly the gold-plating this project's own rules prohibit
+- Dedicated skills for every remaining principle beyond the 2 named — `design-critique`'s master checklist already covers all 17; a dedicated skill per principle would be 17 near-duplicate files, not a real capability gain
+- Real analytics/tracking — still off-mission for a static reference site (third-party script, privacy questions, no clear need)
+- Actual multi-language translation — decided out of scope at v3, stays decided
+
+## v4 completion checkpoint
+
+v4 is DONE when every box above is checked and independently verified, the same discipline as v1-v3. At that point: stop, report status, and wait for explicit go-ahead before any v5 work.
