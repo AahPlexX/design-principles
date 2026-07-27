@@ -24,8 +24,12 @@
   --step-2: clamp(1.5rem, 1.35rem + 0.7vw, 1.9rem);
   --step-3: clamp(1.9rem, 1.65rem + 1.2vw, 2.6rem);
 
-  --content-width: 42rem;
+  --content-width: 46rem;
+  --prose-width: 42rem;
+  --content-width-wide: 64rem;
   --radius: 0.5rem;
+  --shadow-sm: 0 1px 2px rgba(23, 23, 40, 0.06);
+  --shadow-md: 0 6px 16px rgba(23, 23, 40, 0.08);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -40,6 +44,8 @@
     --bad: #f87171;
     --good-bg: #10261a;
     --bad-bg: #2a1414;
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
   }
 }
 
@@ -103,13 +109,20 @@ a:not(:hover) { text-decoration-thickness: 1px; }
   padding: 0 var(--space-4);
 }
 main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
+main .wrap > p, main .wrap > .definition { max-width: var(--prose-width); }
+
+/* A wider shell for pages whose content is a grid rather than flowing prose
+   (currently just the home page) -- keeps header/main/footer aligned to the
+   same edge everywhere else while letting the card grid use more of a wide
+   viewport instead of sitting in a narrow reading column. */
+.wrap-wide { max-width: var(--content-width-wide); }
 
 /* ---- Header ---- */
 .site-header {
+  background: var(--bg-raised);
   border-bottom: 1px solid var(--border);
 }
 .site-header .wrap {
-  max-width: 60rem;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -119,10 +132,11 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
   padding-bottom: var(--space-3);
 }
 .brand {
-  font-weight: 700;
+  font-weight: 800;
   font-size: var(--step-1);
   color: var(--text);
   text-decoration: none;
+  letter-spacing: -0.01em;
 }
 .site-nav ul {
   list-style: none;
@@ -188,21 +202,26 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 /* ---- Home: card grid ---- */
 .card-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr));
   gap: var(--space-3);
   margin: var(--space-4) 0 var(--space-6);
 }
 .card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: var(--space-3);
+  padding: var(--space-4);
   text-decoration: none;
   color: var(--text);
   background: var(--bg-raised);
-  transition: border-color 0.15s ease;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.15s ease;
 }
-.card:hover { border-color: var(--accent); }
-.card h3 { margin: 0 0 var(--space-1); font-size: var(--step-0); color: var(--accent); }
+.card:hover {
+  border-color: var(--accent);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+.card h3 { margin: 0 0 var(--space-2); font-size: var(--step-0); color: var(--accent); }
 .card p { margin: 0; color: var(--text-muted); font-size: var(--step-neg-1); }
 
 /* ---- Callouts ---- */
@@ -250,40 +269,63 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 /* ---- Checklist ---- */
 .checklist { list-style: none; padding: 0; }
 .checklist li {
-  padding-inline-start: 1.75em;
+  padding-inline-start: 2em;
   position: relative;
   margin-bottom: var(--space-2);
 }
 .checklist li::before {
-  content: "☐";
+  content: "";
   position: absolute;
   inset-inline-start: 0;
-  color: var(--accent);
+  top: 0.15em;
+  width: 1.05em;
+  height: 1.05em;
+  border: 2px solid var(--accent);
+  border-radius: 0.3em;
 }
 
 /* ---- Mistakes list ---- */
 .mistakes { padding-inline-start: 0; list-style: none; }
 .mistakes li {
   border-inline-start: 3px solid var(--bad);
-  padding-inline-start: var(--space-3);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  background: var(--bg-raised);
+  padding: var(--space-2) var(--space-3);
   margin-bottom: var(--space-3);
 }
-.mistakes strong { display: block; color: var(--bad); }
+.mistakes strong { display: block; color: var(--bad); margin-bottom: 0.2em; }
 
 /* ---- Details / "Go deeper" ---- */
 details {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: var(--space-2) var(--space-3);
+  padding: 0 var(--space-3);
   margin: var(--space-4) 0;
+  background: var(--bg-raised);
 }
 details[open] { padding-bottom: var(--space-3); }
 summary {
   cursor: pointer;
   font-weight: 700;
-  padding: var(--space-1) 0;
+  padding: var(--space-3) 0;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-summary::marker { color: var(--accent); }
+summary::-webkit-details-marker { display: none; }
+summary::after {
+  content: "";
+  width: 0.55em;
+  height: 0.55em;
+  border-inline-end: 2px solid var(--accent);
+  border-block-end: 2px solid var(--accent);
+  transform: rotate(45deg);
+  transition: transform 0.15s ease;
+  flex: none;
+  margin-inline-start: var(--space-3);
+}
+details[open] summary::after { transform: rotate(225deg); }
 
 /* ---- Definition strip ---- */
 .definition {
@@ -318,9 +360,11 @@ th, td {
   main .wrap { max-width: none; padding: 0; }
   a { color: #000; text-decoration: underline; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #333; }
-  .card, .callout, .example, details {
+  .card, .callout, .example, details, .mistakes li {
     border-color: #000;
     background: #fff;
+    box-shadow: none;
   }
-  .checklist li::before, summary::marker { color: #000; }
+  .checklist li::before { border-color: #000; }
+  summary::after { border-color: #000; }
 }

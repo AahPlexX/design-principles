@@ -116,3 +116,16 @@ User asked to proceed to v3. Presented 4 candidate categories via `AskUserQuesti
 ## v3 completion checkpoint
 
 v3 is DONE when every box above is checked and independently verified, the same discipline as v1 and v2. At that point: stop, report status, and wait for explicit go-ahead before any v4 work.
+
+## Post-v3: design QA fix (turn 10, user-reported)
+
+Not part of the locked v1/v2/v3 scope — a real bug report ("the design/layout feels like a rushed vibe code project"), fixed as reported rather than deferred to a future version, the same way turn-3's Pages outage and turn-7's MCP re-audit were handled outside the versioned checklist.
+
+- [x] *(turn 10)* Used the `web-design-reviewer` skill to actually inspect the rendered site (4 viewports, Playwright screenshots) instead of guessing fixes from the CSS source
+- [x] *(turn 10)* Found and fixed a real layout bug: header used a different container width (60rem) than main/footer (42rem default), independently centered, so the logo and every page's h1 never aligned — unified to one shared `--content-width` (46rem)
+- [x] *(turn 10)* Decoupled prose measure (`--prose-width: 42rem`, applied only to flowing `<p>`/`.definition`) from container width, so the existing good line-length is preserved while headings/components use the full container
+- [x] *(turn 10)* Added a `.wrap-wide` (64rem) shell for the home page's card grid only, so it uses more of a wide viewport (3 columns instead of 2 at 1920px) without widening its own reading-measure paragraphs
+- [x] *(turn 10)* Gave the header, cards, checklist, mistakes list, and "Go deeper" details/summary real visual depth and custom-drawn components (shadows, hover lift, a CSS-drawn checkbox, a rotating chevron) instead of bare/default-looking treatments
+- [x] *(turn 10)* Re-verified: `scripts/verify-site.py` (19/19 ok), real `html5validator` (0 HTML errors), nav parity (unaffected), Playwright screenshots at 375/768/1280/1920px in both light and dark color schemes, and a rendered-PDF print re-check — confirmed the fix actually renders correctly, not just that the CSS reads correctly
+- [ ] CI confirmed green on GitHub Actions for this fix's push, checked via the API
+- [ ] Pages deploy confirmed to still succeed after this fix
