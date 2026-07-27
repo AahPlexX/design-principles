@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding &amp; Progressive Disclosure — Design Principles</title>
+<meta name="description" content="Introducing a new user to a product's complexity gradually, showing only what's needed for the very next step instead of everything at once.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html" aria-current="page">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Onboarding &amp; Progressive Disclosure</h1>
+    <p class="definition">
+      Onboarding is how someone gets from "just arrived" to their first real success in a
+      product. Progressive disclosure is the technique that makes good onboarding possible:
+      showing only what's needed right now, and revealing more capability only once someone's
+      ready to use it.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      A brand-new user opens a project-management tool and lands on a dashboard with thirty
+      visible options, custom-field settings, integration panels, and empty charts — before
+      they've created a single task. None of it is wrong on its own, but none of it means
+      anything yet either, so it reads as noise. Some people push through; a lot of people
+      quietly leave before finding the one button that would have gotten them started at all.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Show the smallest interface that lets someone complete one meaningful first action, and
+      reveal additional capability only once they've reached the point where they'd actually
+      use it. Never surface a feature before the person in front of it has a reason to care.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>&lt;div class="empty-state"&gt;
+  &lt;h2&gt;Create your first project&lt;/h2&gt;
+  &lt;button&gt;New project&lt;/button&gt;
+&lt;/div&gt;
+&lt;!-- advanced settings live behind
+     a separate "Settings" page --&gt;</code></pre>
+        <p>One clear action for a first-time visitor, with everything else (custom fields,
+        integrations, advanced settings) deliberately out of view until there's an actual
+        project to configure.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>&lt;div class="dashboard"&gt;
+  &lt;!-- 30 widgets, settings panels,
+       and empty charts, all visible
+       on a brand-new account --&gt;
+&lt;/div&gt;</code></pre>
+        <p>Every feature the product has is visible immediately, regardless of whether the
+        person looking at it has done anything yet — there's no signal about what actually
+        matters first.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Mandatory tours instead of just-in-time teaching.</strong> A ten-step
+      walkthrough that must be sat through before anything is usable front-loads information
+      the person can't act on yet — most of it will be forgotten before it's relevant. A hint
+      that appears exactly when the related feature becomes available teaches at the moment
+      it can actually be used.</li>
+      <li><strong>Tours with no skip or exit.</strong> Forcing every new user through the same
+      fixed sequence, with no way to skip ahead or dismiss it, punishes someone who already
+      understands the product or just wants to explore on their own.</li>
+      <li><strong>Surfacing admin/advanced settings before the basic task is done.</strong>
+      Custom fields, API keys, and integration settings shown on day one compete with the one
+      thing a new user actually needs to find.</li>
+      <li><strong>Hiding functionality with no way back to it.</strong> Progressive disclosure
+      means deferring visibility, not removing access — if the "advanced" panel a feature is
+      tucked behind is itself hard to find later, the feature has effectively been hidden, not
+      progressively disclosed.</li>
+      <li><strong>Treating onboarding as a one-time popup sequence.</strong> A single tour
+      shown once at signup can't cover capability a user won't need for weeks — contextual
+      hints that appear when a related feature becomes relevant reach the person at a moment
+      they can actually use the information.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>A new user can complete one meaningful first action without configuring anything else first.</li>
+      <li>Advanced or rarely-used options are tucked behind a clear, findable disclosure (a toggle, a menu, a settings page), not shown by default.</li>
+      <li>Any tour or walkthrough can be skipped and revisited later, never forced start-to-finish.</li>
+      <li>Contextual help appears at the moment a feature becomes relevant, not all at once upfront.</li>
+      <li>Hidden functionality stays reachable — disclosure hides visually, it never removes access.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>Time-to-value.</strong> Product-growth teams often measure onboarding by how
+        quickly a new user reaches their first genuine "aha" moment — the point where the
+        product's value becomes obvious from direct experience rather than from being told
+        about it. Progressive disclosure is largely in service of shortening that path.
+      </p>
+      <p>
+        <strong>This is not the same as a dark pattern.</strong> See
+        <a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp;
+        Ethics</a> — progressive disclosure delays complexity for the reader's own benefit, and
+        the hidden functionality remains fully reachable. A dark pattern instead hides
+        information the reader needs to make a fair decision, or makes something they'd want
+        artificially hard to find. The test is who benefits from what's currently out of view.
+      </p>
+      <p>
+        <strong>First-run empty states are a specific case of this.</strong> See
+        <a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error
+        States</a> for how the very first screen someone sees — with zero data in it yet —
+        should be designed as its own deliberate moment, not a placeholder.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/print-details.js"></script>
+</body>
+</html>

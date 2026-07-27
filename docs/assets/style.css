@@ -70,7 +70,7 @@ h1 { font-size: var(--step-3); margin: 0 0 var(--space-3); }
 h2 { font-size: var(--step-2); margin: var(--space-6) 0 var(--space-3); }
 h3 { font-size: var(--step-1); margin: var(--space-4) 0 var(--space-2); }
 p, ul, ol { margin: 0 0 var(--space-3); }
-ul, ol { padding-left: 1.25em; }
+ul, ol { padding-inline-start: 1.25em; }
 
 a { color: var(--accent); }
 a:not(:hover) { text-decoration-thickness: 1px; }
@@ -83,7 +83,7 @@ a:not(:hover) { text-decoration-thickness: 1px; }
 /* ---- Skip link ---- */
 .skip-link {
   position: absolute;
-  left: -999px;
+  inset-inline-start: -999px;
   top: auto;
   background: var(--accent);
   color: #fff;
@@ -92,7 +92,7 @@ a:not(:hover) { text-decoration-thickness: 1px; }
   z-index: 100;
 }
 .skip-link:focus {
-  left: var(--space-3);
+  inset-inline-start: var(--space-3);
   top: var(--space-3);
 }
 
@@ -208,7 +208,7 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 /* ---- Callouts ---- */
 .callout {
   border: 1px solid var(--border);
-  border-left: 4px solid var(--accent);
+  border-inline-start: 4px solid var(--accent);
   border-radius: var(--radius);
   padding: var(--space-3);
   background: var(--bg-raised);
@@ -250,22 +250,22 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 /* ---- Checklist ---- */
 .checklist { list-style: none; padding: 0; }
 .checklist li {
-  padding-left: 1.75em;
+  padding-inline-start: 1.75em;
   position: relative;
   margin-bottom: var(--space-2);
 }
 .checklist li::before {
   content: "☐";
   position: absolute;
-  left: 0;
+  inset-inline-start: 0;
   color: var(--accent);
 }
 
 /* ---- Mistakes list ---- */
-.mistakes { padding-left: 0; list-style: none; }
+.mistakes { padding-inline-start: 0; list-style: none; }
 .mistakes li {
-  border-left: 3px solid var(--bad);
-  padding: 0 0 0 var(--space-3);
+  border-inline-start: 3px solid var(--bad);
+  padding-inline-start: var(--space-3);
   margin-bottom: var(--space-3);
 }
 .mistakes strong { display: block; color: var(--bad); }
@@ -301,7 +301,7 @@ table {
   font-size: var(--step-neg-1);
 }
 th, td {
-  text-align: left;
+  text-align: start;
   padding: var(--space-2);
   border-bottom: 1px solid var(--border);
 }
@@ -309,4 +309,18 @@ th, td {
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   * { transition: none !important; }
+}
+
+/* ---- Print ---- */
+@media print {
+  body { background: #fff; color: #000; }
+  .skip-link, .site-header, .site-footer, .search-box, .search-empty { display: none; }
+  main .wrap { max-width: none; padding: 0; }
+  a { color: #000; text-decoration: underline; }
+  a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #333; }
+  .card, .callout, .example, details {
+    border-color: #000;
+    background: #fff;
+  }
+  .checklist li::before, summary::marker { color: #000; }
 }

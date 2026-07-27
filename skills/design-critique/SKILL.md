@@ -1,6 +1,6 @@
 ---
 name: design-critique
-description: Reviews a web page, component, or mockup against core design principles (hierarchy, typography, contrast, spacing, icons/imagery, responsiveness, performance, motion, navigation/IA, forms, microcopy, empty/error states, accessibility, dark patterns) and gives specific, actionable feedback. Use when a user asks for a design review, UI critique, or "does this look right" check on HTML/CSS, a screenshot, or a Figma-style description.
+description: Reviews a web page, component, or mockup against core design principles (hierarchy, typography, contrast, spacing, icons/imagery, responsiveness, performance, motion, i18n/l10n, navigation/IA, forms, microcopy, empty/error states, data tables, onboarding, accessibility, dark patterns) and gives specific, actionable feedback. Use when a user asks for a design review, UI critique, or "does this look right" check on HTML/CSS, a screenshot, or a Figma-style description.
 ---
 
 # Design Critique
@@ -58,6 +58,11 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 - Actions that take noticeable time show a loading or pending indicator.
 - `prefers-reduced-motion: reduce` disables or minimizes non-essential animation.
 
+**Internationalization & localization** — full reference: <https://aahplexx.github.io/design-principles/principles/internationalization-localization.html>
+- Containers holding translatable text use flexible widths, not pixel widths measured against the source language.
+- Dates, numbers, and currency are produced by a locale-aware formatting API, not a hand-built string.
+- CSS uses logical properties (`margin-inline-start`, `text-align: start`) instead of `left`/`right`.
+
 **Navigation & IA** — full reference: <https://aahplexx.github.io/design-principles/principles/navigation-ia.html>
 - Navigation labels describe visitor goals, not internal org structure.
 - The current page's location is visually indicated (`aria-current="page"`, a highlighted nav item, or a breadcrumb).
@@ -77,6 +82,16 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 - Every empty state explains why it's empty and suggests a next action.
 - Error messages use plain language — no raw codes or stack traces shown to users.
 - Every error state offers a way forward: retry, go back, or get help.
+
+**Data & tables** — full reference: <https://aahplexx.github.io/design-principles/principles/data-tables.html>
+- Every table uses real `<th>` elements with the correct `scope`, not styled `div`s or plain `<td>`.
+- Numeric columns are aligned consistently, not left-aligned like prose.
+- A `<caption>` or equivalent text explains what the table contains.
+
+**Onboarding & progressive disclosure** — full reference: <https://aahplexx.github.io/design-principles/principles/onboarding-progressive-disclosure.html>
+- A new user can complete one meaningful first action without configuring anything else first.
+- Advanced or rarely-used options are tucked behind a clear, findable disclosure, not shown by default.
+- Any tour or walkthrough can be skipped and revisited later, never forced start-to-finish.
 
 **Accessibility** — full reference: <https://aahplexx.github.io/design-principles/principles/accessibility.html>
 - Interactive elements are real, focusable, keyboard-operable elements (button/a/input), not divs with click handlers.

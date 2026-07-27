@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internationalization &amp; Localization — Design Principles</title>
+<meta name="description" content="Designing so the interface still works when the language, reading direction, or cultural conventions change, not just when the words get swapped.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html" aria-current="page">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Internationalization &amp; Localization</h1>
+    <p class="definition">
+      Internationalization (often shortened to i18n) is building an interface so it <em>can</em>
+      adapt to any language, reading direction, or region. Localization (l10n) is actually
+      adapting it for one specific one. You need the first before you can do the second well.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      A button built to fit "Add to cart" exactly, in a fixed-width box, holds up fine in
+      English — then breaks the moment the German translation ("In den Warenkorb legen") comes
+      in nearly twice as long and wraps onto three lines or gets clipped. A date field showing
+      "03/04/2026" means March 4th in the United States and the 3rd of April almost everywhere
+      else — the same string, two different real dates, and a shipping or billing error that
+      looks like a typo but is actually a design assumption baked into the interface.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Never hardcode an assumption that belongs to one language or region: not a fixed-width
+      container sized for your source text, not a date/number format, not which side of the
+      screen "forward" is. Build the interface to ask the locale what it needs, rather than
+      assuming everyone reads and formats things the way you do.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>&lt;button style="min-width: max-content"&gt;
+  Add to cart
+&lt;/button&gt;
+
+new Intl.DateTimeFormat(userLocale)
+  .format(orderDate);</code></pre>
+        <p>The button's width flexes to whatever the translated label needs, and the date is
+        formatted according to the reader's actual locale instead of a hardcoded string —
+        both adapt automatically instead of assuming English/US conventions.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>&lt;button style="width: 90px"&gt;
+  Add to cart
+&lt;/button&gt;
+
+`${month}/${day}/${year}`</code></pre>
+        <p>The fixed width was measured against the English label and will clip or wrap a
+        longer translation; the hand-built date string always means MM/DD/YYYY no matter who's
+        reading it, silently misreading dates for most of the world.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Fixed-width containers sized for the source language.</strong> English is
+      often one of the more compact languages for UI labels — German, Finnish, and many other
+      languages routinely run 30–50% longer for the same meaning, and a button or nav item
+      sized tightly around English text has nowhere for that extra length to go.</li>
+      <li><strong>Hardcoded date, number, or currency formatting.</strong> Building a date or
+      currency string by hand (concatenating month/day/year, or prepending a "$") locks the
+      output to one convention. A locale-aware formatting API produces the right format for
+      whoever's actually reading it.</li>
+      <li><strong>Only flipping text direction, not layout.</strong> A right-to-left language
+      (Arabic, Hebrew) needs the whole layout mirrored — icons like a "back" arrow, the
+      position of a sidebar, the reading order of a toolbar — not just the paragraph text
+      itself reversed while everything around it stays pinned to the original side.</li>
+      <li><strong>Concatenating translated string fragments.</strong> Building a sentence out
+      of separately translated pieces ("You have " + count + " items") assumes every language
+      shares English word order and pluralization rules; most don't. A full template sentence
+      with a placeholder, translated as one unit, survives translation intact.</li>
+      <li><strong>Culturally specific imagery with no way to swap it.</strong> A hand gesture,
+      a color used for celebration in one culture and mourning in another, or an icon whose
+      meaning is regionally specific can misfire badly once the same image ships everywhere
+      with no localization hook to change it per region.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Containers holding translatable text use flexible widths, not pixel widths measured against the source language.</li>
+      <li>Dates, numbers, and currency are produced by a locale-aware formatting API, not a hand-built string.</li>
+      <li>CSS uses logical properties (<code>margin-inline-start</code>, <code>text-align: start</code>) instead of <code>left</code>/<code>right</code>, so a right-to-left layout doesn't require rewriting styles.</li>
+      <li>Translated strings are handed to translators as full sentences with placeholders, never assembled from separately translated fragments.</li>
+      <li>Icons, imagery, and color choices have been checked against the specific cultures the product actually ships to.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>The Unicode CLDR.</strong> The Common Locale Data Repository is the standard
+        source most locale-aware formatting libraries (including the browser's built-in
+        <code>Intl</code> object) draw from for date formats, number separators, plural rules,
+        and more, across thousands of locales — reaching for it via <code>Intl</code> is almost
+        always better than hand-rolling locale logic.
+      </p>
+      <p>
+        <strong>Plural rules are not just singular/plural.</strong> English has two plural
+        forms; some languages (Arabic, for example) have six. A message-formatting system that
+        supports full CLDR plural categories (like ICU MessageFormat) handles this correctly;
+        a simple <code>count === 1 ? "item" : "items"</code> check only works for languages
+        shaped like English.
+      </p>
+      <p>
+        <strong>The <code>lang</code> attribute isn't cosmetic.</strong> Setting
+        <code>lang</code> on the <code>&lt;html&gt;</code> element (or on a specific element
+        with mixed-language content) tells screen readers which pronunciation rules to use —
+        without it, a screen reader may read foreign-language text using the wrong language's
+        pronunciation rules entirely.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/print-details.js"></script>
+</body>
+</html>
