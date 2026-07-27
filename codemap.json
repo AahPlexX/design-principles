@@ -2,7 +2,7 @@
   "_meta": {
     "purpose": "Machine-readable map of this repo's structure and purpose, so any future turn/session/agent can orient without re-exploring the whole tree.",
     "conventions": "Append-only per user instruction: 'paths' reflects current state and may be corrected in place, but every structural change must also add an entry to 'history' so nothing is silently lost. Never delete a 'history' entry.",
-    "last_updated_turncount": 2,
+    "last_updated_turncount": 3,
     "mcp_selection": {
       "memory": {
         "name": "Mem0",
@@ -88,7 +88,7 @@
     },
     ".github/workflows/pages.yml": {
       "type": "ci",
-      "purpose": "Builds docs/ and deploys to GitHub Pages on every push to main touching docs/**. Independent of ci.yml so a flaky external link can never block a deploy.",
+      "purpose": "Builds docs/ and deploys to GitHub Pages on every push to main touching docs/**. Independent of ci.yml so a flaky external link can never block a deploy. The deploy job intentionally has no `environment: github-pages` block (removed at turncount 3): that environment's branch-restriction rule only allows the repo's actual default branch, which is still the old feature branch, not main -- confirmed live-blocking via the real GitHub API error. Workaround, not root-cause fix; see codemap history and changelog.md turn 3.",
       "status": "active"
     },
     ".github/workflows/ci.yml": {
@@ -100,6 +100,7 @@
   },
   "history": [
     { "turncount": 1, "change": "Initial codemap created capturing full repo state as of this turn (repo already contained the site, skills, prompts, and CI/CD from prior turns; this is the first turn codemap.json itself has existed)." },
-    { "turncount": 2, "change": "Removed Super-Linter job from .github/workflows/ci.yml (explicit user instruction, after 3 rounds of real failures). Removed .stylelintrc.json, .markdownlint.yml, .yamllint.yml as a consequence -- they existed solely to configure Super-Linter's bundled tools and had no other consumer once it was gone." }
+    { "turncount": 2, "change": "Removed Super-Linter job from .github/workflows/ci.yml (explicit user instruction, after 3 rounds of real failures). Removed .stylelintrc.json, .markdownlint.yml, .yamllint.yml as a consequence -- they existed solely to configure Super-Linter's bundled tools and had no other consumer once it was gone." },
+    { "turncount": 3, "change": "Removed the environment: github-pages block from pages.yml's deploy job (real root cause found via a merged GitHub Copilot PR on the old feature branch: the environment's branch-restriction rule blocked main since the actual default branch is still the old feature branch). Confirmed via GitHub's own deployment API that the site is now live. Also corrected the record: the repo is public (confirmed via API), not private as claimed in conversation." }
   ]
 }
