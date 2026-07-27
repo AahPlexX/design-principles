@@ -27,12 +27,13 @@ jobs:
         with:
           python-version: "3.12"
           cache: pip
+          cache-dependency-path: scripts/requirements.txt
 
       - name: Run site verification script
         run: python3 scripts/verify-site.py
 
       - name: Install html5validator
-        run: pip install html5validator
+        run: pip install -r scripts/requirements.txt
 
       - name: Validate HTML against the W3C Nu Html Checker
         run: html5validator --root docs
@@ -52,14 +53,19 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BRANCH: main
-          VALIDATE_ALL_CODEBASE: true
+          # Super-Linter rejects mixing VALIDATE_ALL_CODEBASE with explicit
+          # per-linter true/false overrides (confirmed via a failed CI run,
+          # not assumed), so this is an opt-in whitelist instead: everything
+          # not listed here simply doesn't run.
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_MARKDOWN: true
+          VALIDATE_YAML: true
+          VALIDATE_JSON: true
+          VALIDATE_GITHUB_ACTIONS: true
           # One modern linter instead of stacking pylint/flake8/black/isort,
           # which would otherwise report overlapping, sometimes-conflicting findings.
           VALIDATE_PYTHON_RUFF: true
-          VALIDATE_PYTHON_PYLINT: false
-          VALIDATE_PYTHON_FLAKE8: false
-          VALIDATE_PYTHON_ISORT: false
-          VALIDATE_PYTHON_BLACK: false
 
   link-check:
     name: External link check
@@ -72,8 +78,14 @@ jobs:
       - name: Lychee link check
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
-          # Restricting to http(s) schemes skips our own root-relative internal
-          # links entirely (already covered by scripts/verify-site.py) and checks
-          # only genuine external links (MDN, WCAG, GitHub, etc.).
-          args: --no-progress --scheme https,http 'docs/**/*.html'
+          # --exclude skips our own root-relative internal links (already
+          # covered by scripts/verify-site.py) *before* lychee tries to
+          # resolve them as filesystem paths, which otherwise errors --
+          # confirmed via a failed CI run: --scheme alone does not prevent
+          # that resolution attempt. --scheme stays as defense in depth.
+          args: >-
+            --no-progress
+            --exclude '^/design-principles'
+            --scheme https,http
+            'docs/**/*.html'
           fail: true
