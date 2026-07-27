@@ -151,6 +151,40 @@ main .wrap { padding-top: var(--space-5); padding-bottom: var(--space-6); }
 }
 .site-footer .wrap { padding: var(--space-4); }
 
+/* ---- Home: search/filter box ---- */
+.search-box {
+  margin: var(--space-4) 0;
+}
+.search-box label {
+  display: block;
+  font-size: var(--step-neg-1);
+  font-weight: 700;
+  margin-bottom: var(--space-1);
+}
+.search-box input {
+  width: 100%;
+  max-width: 24rem;
+  font: inherit;
+  font-size: var(--step-0);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+}
+.search-box input:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 1px;
+}
+.search-empty {
+  color: var(--text-muted);
+}
+
+/* ---- Home: principle category groups ---- */
+.principle-group h2 {
+  margin-bottom: var(--space-1);
+}
+
 /* ---- Home: card grid ---- */
 .card-grid {
   display: grid;

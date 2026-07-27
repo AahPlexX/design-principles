@@ -19,12 +19,16 @@
         <li><a href="/design-principles/principles/typography.html">Typography</a></li>
         <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
         <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
         <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
         <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
         <li><a href="/design-principles/principles/performance.html">Performance</a></li>
         <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
         <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
         <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
         <li><a href="/design-principles/about.html">About</a></li>
       </ul>
     </nav>
@@ -46,49 +50,92 @@
       and a checklist you can run against your own work.
     </p>
 
-    <h2>Principles</h2>
-    <div class="card-grid">
-      <a class="card" href="/design-principles/principles/visual-hierarchy.html">
-        <h3>Visual Hierarchy</h3>
-        <p>How size, contrast, spacing, and position decide what a reader notices first.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/typography.html">
-        <h3>Typography</h3>
-        <p>How type size, spacing, and hierarchy decide whether text gets read or skipped.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/color-contrast.html">
-        <h3>Color &amp; Contrast</h3>
-        <p>Why some color pairs are unreadable, and the math that tells you which ones are safe.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/spacing-layout.html">
-        <h3>Spacing &amp; Layout</h3>
-        <p>Whitespace and alignment as the tools that show a reader what belongs together.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/accessibility.html">
-        <h3>Accessibility</h3>
-        <p>Designing so the site works for people using a keyboard, a screen reader, or low vision.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/responsive-design.html">
-        <h3>Responsive Design</h3>
-        <p>Making one layout hold up on a phone, a tablet, and a 32-inch monitor.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/performance.html">
-        <h3>Performance</h3>
-        <p>How fast a page feels to use, and the handful of design decisions that control it.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/motion-feedback.html">
-        <h3>Motion &amp; Feedback</h3>
-        <p>Using animation to confirm an action happened, without turning it into decoration.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/forms-inputs.html">
-        <h3>Forms &amp; Inputs</h3>
-        <p>Why most forms lose people, and the handful of rules that fix almost all of it.</p>
-      </a>
-      <a class="card" href="/design-principles/principles/content-microcopy.html">
-        <h3>Content &amp; Microcopy</h3>
-        <p>The small pieces of text that guide someone through an interface, and why vague ones lose people.</p>
-      </a>
+    <div class="search-box">
+      <label for="principle-search">Filter principles</label>
+      <input type="search" id="principle-search" placeholder="e.g. contrast, forms, icons&hellip;" autocomplete="off">
     </div>
+
+    <section class="principle-group" data-group>
+      <h2>Foundations</h2>
+      <div class="card-grid">
+        <a class="card" href="/design-principles/principles/visual-hierarchy.html" data-search="visual hierarchy how size, contrast, spacing, and position decide what a reader notices first">
+          <h3>Visual Hierarchy</h3>
+          <p>How size, contrast, spacing, and position decide what a reader notices first.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/typography.html" data-search="typography how type size, spacing, and hierarchy decide whether text gets read or skipped">
+          <h3>Typography</h3>
+          <p>How type size, spacing, and hierarchy decide whether text gets read or skipped.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/color-contrast.html" data-search="color contrast why some color pairs are unreadable and the math that tells you which ones are safe">
+          <h3>Color &amp; Contrast</h3>
+          <p>Why some color pairs are unreadable, and the math that tells you which ones are safe.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/spacing-layout.html" data-search="spacing layout whitespace and alignment as the tools that show a reader what belongs together">
+          <h3>Spacing &amp; Layout</h3>
+          <p>Whitespace and alignment as the tools that show a reader what belongs together.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/iconography-imagery.html" data-search="iconography imagery icons choosing icons and images so their meaning is clear not just decorative filler">
+          <h3>Iconography &amp; Imagery</h3>
+          <p>Choosing icons and images so their meaning is clear, not just decorative filler.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="principle-group" data-group>
+      <h2>Inclusive by Default</h2>
+      <div class="card-grid">
+        <a class="card" href="/design-principles/principles/accessibility.html" data-search="accessibility designing so the site works for people using a keyboard a screen reader or low vision">
+          <h3>Accessibility</h3>
+          <p>Designing so the site works for people using a keyboard, a screen reader, or low vision.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/responsive-design.html" data-search="responsive design making one layout hold up on a phone a tablet and a 32-inch monitor">
+          <h3>Responsive Design</h3>
+          <p>Making one layout hold up on a phone, a tablet, and a 32-inch monitor.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/performance.html" data-search="performance how fast a page feels to use and the handful of design decisions that control it">
+          <h3>Performance</h3>
+          <p>How fast a page feels to use, and the handful of design decisions that control it.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/motion-feedback.html" data-search="motion feedback animation using animation to confirm an action happened without turning it into decoration">
+          <h3>Motion &amp; Feedback</h3>
+          <p>Using animation to confirm an action happened, without turning it into decoration.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="principle-group" data-group>
+      <h2>Task-Specific</h2>
+      <div class="card-grid">
+        <a class="card" href="/design-principles/principles/navigation-ia.html" data-search="navigation ia information architecture how a site's structure and labels either help someone find things or leave them stuck">
+          <h3>Navigation &amp; IA</h3>
+          <p>How a site's structure and labels either help someone find things, or leave them stuck.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/forms-inputs.html" data-search="forms inputs why most forms lose people and the handful of rules that fix almost all of it">
+          <h3>Forms &amp; Inputs</h3>
+          <p>Why most forms lose people, and the handful of rules that fix almost all of it.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/content-microcopy.html" data-search="content microcopy the small pieces of text that guide someone through an interface and why vague ones lose people">
+          <h3>Content &amp; Microcopy</h3>
+          <p>The small pieces of text that guide someone through an interface, and why vague ones lose people.</p>
+        </a>
+        <a class="card" href="/design-principles/principles/empty-error-states.html" data-search="empty error states designing what a reader sees when there's nothing to show yet or when something has gone wrong">
+          <h3>Empty &amp; Error States</h3>
+          <p>Designing what a reader sees when there's nothing to show yet, or when something has gone wrong.</p>
+        </a>
+      </div>
+    </section>
+
+    <section class="principle-group" data-group>
+      <h2>Ethics</h2>
+      <div class="card-grid">
+        <a class="card" href="/design-principles/principles/dark-patterns-ethics.html" data-search="dark patterns ethics recognizing interfaces designed to trick people and the test for whether yours is one of them">
+          <h3>Dark Patterns &amp; Ethics</h3>
+          <p>Recognizing interfaces designed to trick people, and the test for whether yours is one of them.</p>
+        </a>
+      </div>
+    </section>
+
+    <p class="search-empty" id="search-empty" hidden>No principles match that search.</p>
 
     <h2>Beyond the site</h2>
     <p>
@@ -104,5 +151,37 @@
     <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
   </div>
 </footer>
+
+<script>
+(function () {
+  "use strict";
+  var input = document.getElementById("principle-search");
+  if (!input) return;
+  var cards = Array.prototype.slice.call(document.querySelectorAll(".card[data-search]"));
+  var groups = Array.prototype.slice.call(document.querySelectorAll("[data-group]"));
+  var emptyMessage = document.getElementById("search-empty");
+
+  input.addEventListener("input", function () {
+    var query = input.value.trim().toLowerCase();
+    var anyVisibleAtAll = false;
+
+    cards.forEach(function (card) {
+      var matches = !query || card.getAttribute("data-search").indexOf(query) !== -1;
+      card.hidden = !matches;
+      if (matches) anyVisibleAtAll = true;
+    });
+
+    groups.forEach(function (group) {
+      var groupCards = group.querySelectorAll(".card");
+      var groupHasVisible = Array.prototype.some.call(groupCards, function (c) {
+        return !c.hidden;
+      });
+      group.hidden = !groupHasVisible;
+    });
+
+    if (emptyMessage) emptyMessage.hidden = anyVisibleAtAll;
+  });
+})();
+</script>
 </body>
 </html>

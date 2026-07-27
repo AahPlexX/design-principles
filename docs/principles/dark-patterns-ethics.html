@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dark Patterns &amp; Ethics — Design Principles</title>
+<meta name="description" content="Recognizing interfaces designed to trick people, and the test for whether yours is one of them.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html" aria-current="page">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Dark Patterns &amp; Ethics</h1>
+    <p class="definition">
+      A dark pattern is an interface deliberately designed to trick someone into doing
+      something they wouldn't choose if the choice were presented plainly — subscribing,
+      sharing data, or paying for more than they meant to.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      Dark patterns can lift a short-term metric — more signups, more items in the cart — but
+      they spend down trust every time someone notices the trick, and a lot of people notice.
+      The cost shows up as support complaints, chargebacks, public callouts, and increasingly
+      as real legal exposure: regulators in the US, EU, and elsewhere have begun fining
+      companies specifically for dark-pattern practices, not just for the outcomes those
+      patterns produced.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      If you had to explain the interaction to the person going through it, and they'd feel
+      tricked by what you described, redesign it. The test for a dark pattern is whether the
+      design depends on the reader <em>not</em> noticing what's actually happening.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>&lt;label&gt;
+  &lt;input type="checkbox"&gt;
+  Email me product updates
+&lt;/label&gt;
+&lt;!-- unchecked by default --&gt;</code></pre>
+        <p>Consent is an active choice the reader makes, not a default they have to notice
+        and undo.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>&lt;label&gt;
+  &lt;input type="checkbox" checked&gt;
+  Uncheck to opt out of updates,
+  offers, and partner emails
+&lt;/label&gt;</code></pre>
+        <p>Pre-checked and worded so skimming eyes miss it — the design is relying on the
+        reader not reading closely enough to notice they're being opted in.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Pre-checked opt-ins.</strong> Marketing emails, data sharing, or add-on
+      purchases defaulted to "on" put the burden of noticing and opting out on the reader,
+      instead of asking for a genuine yes.</li>
+      <li><strong>Confirmshaming.</strong> Wording a decline option to guilt the reader
+      ("No thanks, I don't want to save money") instead of a neutral "No thanks" turns a
+      simple choice into an emotional one.</li>
+      <li><strong>The "roach motel" pattern.</strong> Making it one click to sign up and a
+      phone call, a hidden menu, or multiple confirmation screens to cancel — easy in, hard
+      out.</li>
+      <li><strong>Fabricated urgency or scarcity.</strong> A countdown timer that resets on
+      refresh, or an "only 2 left!" label that doesn't reflect real inventory, manufactures
+      pressure that isn't real.</li>
+      <li><strong>Drip pricing.</strong> Revealing mandatory fees only at the final checkout
+      step, after the reader has already invested time choosing items, instead of showing the
+      full cost upfront.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>No pre-checked boxes for anything that isn't strictly required to use the product.</li>
+      <li>Declining an offer uses neutral wording, not guilt or shame.</li>
+      <li>Canceling or unsubscribing takes the same or fewer steps than signing up did.</li>
+      <li>Any urgency or scarcity claim shown is real, not fabricated.</li>
+      <li>All costs are shown before the final confirmation step, not added afterward.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>Where the terminology comes from.</strong> UX researcher Harry Brignull
+        coined "dark pattern" in 2010 and cataloged recurring types — the roach motel,
+        confirmshaming, and others named above are his terms, now in common industry use.
+      </p>
+      <p>
+        <strong>Regulatory enforcement.</strong> The FTC in the US and regulators under the
+        EU's Digital Services Act and Digital Markets Act have both taken enforcement action
+        specifically citing dark-pattern design, treating manipulative interface design as a
+        compliance issue distinct from the underlying business practice.
+      </p>
+      <p>
+        <strong>Compliance theater vs. genuine consent.</strong> A cookie banner that makes
+        "Reject all" three clicks deeper than "Accept all," while technically offering a
+        choice, is itself a dark pattern — the presence of an opt-out doesn't make a design
+        ethical if the opt-out is deliberately harder to find or use.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>

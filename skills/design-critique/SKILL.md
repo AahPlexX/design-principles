@@ -1,6 +1,6 @@
 ---
 name: design-critique
-description: Reviews a web page, component, or mockup against core design principles (hierarchy, typography, contrast, spacing, responsiveness, performance, motion, forms, microcopy) and gives specific, actionable feedback. Use when a user asks for a design review, UI critique, or "does this look right" check on HTML/CSS, a screenshot, or a Figma-style description.
+description: Reviews a web page, component, or mockup against core design principles (hierarchy, typography, contrast, spacing, icons/imagery, responsiveness, performance, motion, navigation/IA, forms, microcopy, empty/error states, accessibility, dark patterns) and gives specific, actionable feedback. Use when a user asks for a design review, UI critique, or "does this look right" check on HTML/CSS, a screenshot, or a Figma-style description.
 ---
 
 # Design Critique
@@ -38,6 +38,11 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 - Spacing values look like they come from one consistent scale, not arbitrary numbers.
 - Consistent alignment edge per column of content.
 
+**Iconography & imagery** — full reference: <https://aahplexx.github.io/design-principles/principles/iconography-imagery.html>
+- Every icon whose meaning isn't universally obvious (search, close) has a visible text label or accessible name.
+- Icons come from one consistent visual system (stroke width, corner radius, fill style).
+- Every image serves a real communicative purpose, not decoration for its own sake.
+
 **Responsive design** — full reference: <https://aahplexx.github.io/design-principles/principles/responsive-design.html>
 - No horizontal scroll or overflow at narrow widths.
 - Fixed pixel widths aren't used for layout containers.
@@ -53,6 +58,11 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 - Actions that take noticeable time show a loading or pending indicator.
 - `prefers-reduced-motion: reduce` disables or minimizes non-essential animation.
 
+**Navigation & IA** — full reference: <https://aahplexx.github.io/design-principles/principles/navigation-ia.html>
+- Navigation labels describe visitor goals, not internal org structure.
+- The current page's location is visually indicated (`aria-current="page"`, a highlighted nav item, or a breadcrumb).
+- Navigation works by tap as well as by mouse hover.
+
 **Forms & inputs** — full reference: <https://aahplexx.github.io/design-principles/principles/forms-inputs.html>
 - Every field has a persistent visible label, not just a placeholder.
 - Error messages state the specific problem and, ideally, the fix.
@@ -60,13 +70,24 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 
 **Content & microcopy** — full reference: <https://aahplexx.github.io/design-principles/principles/content-microcopy.html>
 - Button/link labels describe the specific result, not a generic verb ("Submit," "OK").
-- Empty states explain why they're empty and suggest a next action.
 - Destructive-action confirmations name the specific thing being affected.
+- The same concept is called the same thing everywhere in the product.
+
+**Empty & error states** — full reference: <https://aahplexx.github.io/design-principles/principles/empty-error-states.html>
+- Every empty state explains why it's empty and suggests a next action.
+- Error messages use plain language — no raw codes or stack traces shown to users.
+- Every error state offers a way forward: retry, go back, or get help.
 
 **Accessibility** — full reference: <https://aahplexx.github.io/design-principles/principles/accessibility.html>
 - Interactive elements are real, focusable, keyboard-operable elements (button/a/input), not divs with click handlers.
 - Focus states are visible, not removed without replacement.
 - Images have appropriate alt text.
+
+**Dark patterns & ethics** — full reference: <https://aahplexx.github.io/design-principles/principles/dark-patterns-ethics.html>
+- No pre-checked boxes for anything that isn't strictly required to use the product.
+- Declining an offer uses neutral wording, not guilt or shame.
+- Canceling or unsubscribing takes the same or fewer steps than signing up did.
+- Any urgency or scarcity claim shown is real, not fabricated.
 
 ## Output format
 

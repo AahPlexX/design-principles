@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empty &amp; Error States — Design Principles</title>
+<meta name="description" content="Designing what a reader sees when there's nothing to show yet, or when something has gone wrong.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html" aria-current="page">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <h1>Empty &amp; Error States</h1>
+    <p class="definition">
+      An empty state is what a reader sees when there's genuinely nothing to show yet — an
+      inbox with no messages, a search with no matches. An error state is what they see when
+      something has gone wrong. Both are real screens that need real design, not a blank gap
+      left over after the "actual" design was finished.
+    </p>
+
+    <h2>Why it matters</h2>
+    <p>
+      Empty and error states are often the very first thing a new user experiences — a
+      brand-new account with zero data in it, or a search typo that turns up nothing. A blank
+      white screen or a raw stack trace at that exact moment reads as broken, even when the
+      underlying system is working exactly as intended. First impressions formed by an
+      unhandled edge case are just as real as ones formed by the polished happy path.
+    </p>
+
+    <h2>The core rule</h2>
+    <p>
+      Every empty or error state needs three things: what happened, in plain language; why, if
+      that's useful and knowable; and what to do next. A state missing all three isn't a
+      screen, it's a dead end.
+    </p>
+
+    <h2>Good vs. bad</h2>
+    <div class="example-pair">
+      <div class="example good">
+        <span class="example-label">Good</span>
+        <pre><code>&lt;div class="empty-state"&gt;
+  &lt;h2&gt;No projects yet&lt;/h2&gt;
+  &lt;p&gt;Create your first project
+     to get started.&lt;/p&gt;
+  &lt;button&gt;New project&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+        <p>Names the situation, and gives the reader something to do about it immediately,
+        without needing to hunt for the right button elsewhere on the page.</p>
+      </div>
+      <div class="example bad">
+        <span class="example-label">Bad</span>
+        <pre><code>&lt;div class="empty-state"&gt;
+  &lt;p&gt;No data&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+        <p>States the fact and stops there — a brand-new user has no idea whether this is
+        expected, broken, or something they need to fix.</p>
+      </div>
+    </div>
+
+    <h2>Common mistakes</h2>
+    <ul class="mistakes">
+      <li><strong>Rendering nothing at all for an empty state.</strong> A section that
+      collapses to a blank gap with no heading or explanation reads as a loading glitch, not
+      an intentional "there's nothing here yet."</li>
+      <li><strong>Generic error text with no next step.</strong> "Something went wrong" tells
+      the reader there's a problem without telling them whether to wait, retry, or give up —
+      always pair an error with an action.</li>
+      <li><strong>Showing raw technical detail to end users.</strong> A stack trace or a bare
+      HTTP status code is meaningful to a developer and alarming or meaningless to almost
+      everyone else — translate it into plain language before it reaches the reader.</li>
+      <li><strong>Treating every empty state the same.</strong> "You haven't created anything
+      yet" and "no results match your filters" are different situations that need different
+      messages — the first needs encouragement to start, the second needs a way to loosen the
+      search.</li>
+      <li><strong>Error states with no way forward.</strong> A failed page load with no retry
+      button, no link back, and no contact option leaves the reader stuck exactly where the
+      error occurred.</li>
+    </ul>
+
+    <h2>Checklist</h2>
+    <ul class="checklist">
+      <li>Every empty state explains why it's empty and suggests a next action.</li>
+      <li>Error messages use plain language — no raw codes or stack traces shown to users.</li>
+      <li>"Nothing here yet" and "nothing matches your filter" are worded differently.</li>
+      <li>Every error state offers a way forward: retry, go back, or get help.</li>
+      <li>Empty and error states were actually designed, not left as an unstyled placeholder.</li>
+    </ul>
+
+    <details>
+      <summary>Go deeper</summary>
+      <p>
+        <strong>Loading vs. empty.</strong> A skeleton screen (a gray placeholder shaped like
+        the content that's coming) communicates "this is still loading"; an empty state
+        communicates "this finished loading, and there's genuinely nothing here." Using the
+        same visual for both makes a reader wait for content that was never coming.
+      </p>
+      <p>
+        <strong>404 pages as a design surface.</strong> A broken link is already a moment of
+        friction — a 404 page that offers search, a link home, and possibly the page's likely
+        intended destination turns a dead end back into forward progress.
+      </p>
+      <p>
+        <strong>Offline states.</strong> For anything that works (or partly works) offline, a
+        distinct "you're offline" state — separate from a generic error — sets the right
+        expectation and can point to what's still available without a connection.
+      </p>
+    </details>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 3**
+**Current turncount: 5**
 
 ---
 
@@ -62,3 +62,28 @@ Turncount did not exist before this turn — there is no turn 0 to backfill, sin
   - Attempted to visually confirm the live page myself via both `WebFetch` and a direct `curl` from this sandbox; both were blocked (403) by network layers *in this environment* (WebFetch's GitHub-domain handling, and this sandbox's own outbound proxy) — unrelated to the site's real status, and distinct from the actual evidence above. Documenting this honestly rather than either claiming a visual check that didn't happen or doubting GitHub's own authoritative deployment confirmation.
   - Checked Mem0 again before concluding: still disconnected (an infrastructure event outside my control, unchanged from Turn 2's finding).
 - **v1 is now complete.** Every functional checklist item in `todo.md` is checked and verified, including the site actually being live. The one remaining item (switching the actual default branch to `main`) is cosmetic/repo-hygiene only as of this turn, not a functional blocker for anything.
+
+## Turn 4 — 2026-07-27
+
+- User asked to continue development "until complete," repeated verbatim from a prior turn. Since v1 was already verified complete, re-verified nothing had regressed (repo visibility, latest Pages run, default branch) rather than assuming the prior turn's findings still held, then used `AskUserQuestion` instead of guessing: is v1 done, is there a v2, or is something still actually broken?
+- User chose to define v2, then picked all four candidates from v1's "explicitly out of scope" list: more principle pages, more skills/prompts, site UX improvements, repo hygiene finish-up.
+- Re-checked exhaustively (again) whether any tool can change repo-level settings (default branch, environment protection) — confirmed once more there is no such tool. Reframed that item from "pending, re-check each turn" to "permanent tooling limitation, tracked via a filed GitHub issue instead" so it stops being re-investigated identically every turn.
+- Brainstormed and locked v2 scope in `todo.md`, the same discipline as v1: 4 new principle pages (iconography-imagery, navigation-ia, empty-error-states, dark-patterns-ethics), 2 new skills (dark-pattern-audit, empty-error-state-review), 2 new prompts (ethical-ux-reviewer, ia-consultant), a `design-critique` checklist extension, nav/home updates with category grouping now that the count is growing, a minimal vanilla-JS filter box, and a GitHub issue for the admin-only blocker. Explicitly bounded — no real search library, no i18n, no visual redesign.
+
+## Turn 5 — 2026-07-27
+
+Executed the full locked v2 scope end to end.
+
+- Wrote the 4 new principle pages (`iconography-imagery.html`, `navigation-ia.html`, `empty-error-states.html`, `dark-patterns-ethics.html`), each following `CLAUDE.md`'s 6-part skeleton exactly.
+- Regenerated the shared nav block across all 12 pre-existing pages via a scripted regex pass (preserving each file's own `aria-current="page"`), then confirmed programmatically that all 16 HTML files now carry exactly one unique nav variant — not eyeballed.
+- Restructured `docs/index.html`: replaced the flat card grid with 4 `<section class="principle-group">` blocks (Foundations, Inclusive by Default, Task-Specific, Ethics), added a `data-search` attribute to every card, and added a small vanilla-JS substring filter (`docs/assets/style.css` got the matching `.search-box`/`.search-empty`/`.principle-group` rules). Caught and fixed a naming regression before it shipped: briefly wrote `var(--step--1)` (the old, pre-rename token) instead of `var(--step-neg-1)`; a `grep` swept the whole `docs/` tree afterward and confirmed no other stale references exist.
+- Verified the search box in a real browser (Playwright against a local static server), not just by reading the code: 14 cards visible by default, a query of "icon" narrows to exactly the Iconography & Imagery card, and a non-matching query correctly hides all cards and reveals the "No principles match" empty-state message.
+- Wrote the 2 new skills (`skills/dark-pattern-audit/SKILL.md`, `skills/empty-error-state-review/SKILL.md`) and 2 new prompts (`prompts/ethical-ux-reviewer.md`, `prompts/ia-consultant.md`), matching the existing skills'/prompts' conventions — each skill opens with a link back to its canonical page rather than restating the page's prose.
+- Extended `skills/design-critique/SKILL.md`'s checklist with sections for all 4 new principles (and updated its frontmatter `description` to list them), and removed a now-duplicated empty-state bullet from its Content & Microcopy section since Empty & Error States has its own dedicated section — a DRY fix, not scope creep.
+- Filed **[GitHub issue #2](https://github.com/AahPlexX/design-principles/issues/2)**, "Admin action needed: default branch is still the old feature branch, not main," documenting the exact remaining admin-only fix (change the default branch to `main`, or edit the `github-pages` environment's deployment branch policy) — confirmed via `search_repositories` that `default_branch` is still `claude/web-design-principles-repo-rw51z6`, not `main`, before writing the issue, rather than assuming the earlier finding still held.
+- Re-verified everything before committing, the same discipline as every prior push:
+  - `scripts/verify-site.py`: 16/16 files `ok`.
+  - Nav-parity script: 1 unique variant across all 16 files.
+  - The real `html5validator` (W3C Nu Html Checker) via the existing local venv: 0 HTML errors across every page. Running it with `--also-check-css` flags `text-decoration-thickness` as an unrecognized CSS property — this is a pre-existing v1 property (not touched this turn), already documented in `todo.md` as an accepted validator false-positive, not a new regression.
+- Cleaned up test artifacts left over from the previous turn's verification: killed a still-running local test HTTP server (background shell, port 8101) and removed its scratch symlink directory, the html5validator venv is kept (still in active use for the check above), and swept the scratchpad for stray screenshots/scripts.
+- Marked `todo.md`'s v2 boxes checked with the evidence above; the two boxes needing a real push (CI green, Pages deploy) are checked in this same entry once the push below is confirmed via the API.

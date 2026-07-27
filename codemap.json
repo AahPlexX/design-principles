@@ -2,11 +2,11 @@
   "_meta": {
     "purpose": "Machine-readable map of this repo's structure and purpose, so any future turn/session/agent can orient without re-exploring the whole tree.",
     "conventions": "Append-only per user instruction: 'paths' reflects current state and may be corrected in place, but every structural change must also add an entry to 'history' so nothing is silently lost. Never delete a 'history' entry.",
-    "last_updated_turncount": 3,
+    "last_updated_turncount": 5,
     "mcp_selection": {
       "memory": {
         "name": "Mem0",
-        "reason": "Purpose-built AI memory layer (add_memory/search_memories/entities), tested reachable this turn via add_memory."
+        "reason": "Purpose-built AI memory layer (add_memory/search_memories/entities), tested reachable turn 1 via add_memory. Disconnected since turn 2 (infrastructure issue outside this project's control, re-confirmed via ToolSearch at turns 3-4); not re-checked every turn once confirmed down."
       },
       "additional": [
         {
@@ -50,9 +50,9 @@
         "about.html": { "purpose": "How to read the site and use the /skills and /prompts exports." },
         "assets/style.css": { "purpose": "Whole site's CSS: design tokens, responsive nav, good/bad example blocks, checklist styling, light/dark mode." },
         ".nojekyll": { "purpose": "Skips GitHub's default Jekyll processing since the site is plain static HTML." },
-        "principles/*.html (10 files)": {
+        "principles/*.html (14 files)": {
           "purpose": "One canonical page per concept, each following CLAUDE.md's 6-part skeleton (definition, why it matters, core rule, good/bad example, common mistakes, checklist).",
-          "files": ["visual-hierarchy", "typography", "color-contrast", "spacing-layout", "accessibility", "responsive-design", "performance", "motion-feedback", "forms-inputs", "content-microcopy"]
+          "files": ["visual-hierarchy", "typography", "color-contrast", "spacing-layout", "iconography-imagery", "accessibility", "responsive-design", "performance", "motion-feedback", "navigation-ia", "forms-inputs", "content-microcopy", "empty-error-states", "dark-patterns-ethics"]
         }
       }
     },
@@ -61,9 +61,11 @@
       "purpose": "Claude Code skills (SKILL.md format) turning principle checklists into agent-runnable procedures.",
       "status": "active",
       "children": {
-        "design-critique/SKILL.md": { "purpose": "Reviews UI/HTML against all 10 principles' checklists; links back to every canonical page." },
+        "design-critique/SKILL.md": { "purpose": "Reviews UI/HTML against all 14 principles' checklists; links back to every canonical page." },
         "accessibility-audit/SKILL.md": { "purpose": "Line-by-line code-scanning a11y audit with severity tiers; links back to the accessibility page." },
-        "plain-language-rewrite/SKILL.md": { "purpose": "Operationalizes Rule Zero itself for arbitrary text; no single canonical page (it's the site's whole ethos, not one principle)." }
+        "plain-language-rewrite/SKILL.md": { "purpose": "Operationalizes Rule Zero itself for arbitrary text; no single canonical page (it's the site's whole ethos, not one principle)." },
+        "dark-pattern-audit/SKILL.md": { "purpose": "Flow-by-flow dark-pattern audit (pre-checked opt-ins, confirmshaming, roach motel, fabricated urgency, drip pricing, forced continuity, misdirection); links back to the dark-patterns-ethics page." },
+        "empty-error-state-review/SKILL.md": { "purpose": "Per-state review of empty/error screens against the three-part rule (what happened, why, what's next); links back to the empty-error-states page." }
       }
     },
     "prompts/": {
@@ -73,7 +75,9 @@
       "children": {
         "web-design-mentor.md": { "purpose": "Teaching persona for conversational design guidance." },
         "design-critique-reviewer.md": { "purpose": "Structured-feedback persona for reviewing UI, mirrors skills/design-critique's checklist." },
-        "plain-language-rewriter.md": { "purpose": "Rewriting persona mirroring skills/plain-language-rewrite." }
+        "plain-language-rewriter.md": { "purpose": "Rewriting persona mirroring skills/plain-language-rewrite." },
+        "ethical-ux-reviewer.md": { "purpose": "Dark-pattern review persona, mirrors skills/dark-pattern-audit's test and pattern list." },
+        "ia-consultant.md": { "purpose": "Navigation/IA planning persona, mirrors skills/design-critique's navigation-ia checklist plus card-sorting/tree-testing guidance." }
       }
     },
     "scripts/verify-site.py": {
@@ -101,6 +105,7 @@
   "history": [
     { "turncount": 1, "change": "Initial codemap created capturing full repo state as of this turn (repo already contained the site, skills, prompts, and CI/CD from prior turns; this is the first turn codemap.json itself has existed)." },
     { "turncount": 2, "change": "Removed Super-Linter job from .github/workflows/ci.yml (explicit user instruction, after 3 rounds of real failures). Removed .stylelintrc.json, .markdownlint.yml, .yamllint.yml as a consequence -- they existed solely to configure Super-Linter's bundled tools and had no other consumer once it was gone." },
-    { "turncount": 3, "change": "Removed the environment: github-pages block from pages.yml's deploy job (real root cause found via a merged GitHub Copilot PR on the old feature branch: the environment's branch-restriction rule blocked main since the actual default branch is still the old feature branch). Confirmed via GitHub's own deployment API that the site is now live. Also corrected the record: the repo is public (confirmed via API), not private as claimed in conversation." }
+    { "turncount": 3, "change": "Removed the environment: github-pages block from pages.yml's deploy job (real root cause found via a merged GitHub Copilot PR on the old feature branch: the environment's branch-restriction rule blocked main since the actual default branch is still the old feature branch). Confirmed via GitHub's own deployment API that the site is now live. Also corrected the record: the repo is public (confirmed via API), not private as claimed in conversation." },
+    { "turncount": 5, "change": "v2 scope executed: added 4 principle pages (iconography-imagery, navigation-ia, empty-error-states, dark-patterns-ethics), 2 skills (dark-pattern-audit, empty-error-state-review), 2 prompts (ethical-ux-reviewer, ia-consultant); extended design-critique's checklist to cover the 4 new pages; regenerated nav across all 16 HTML files and regrouped the home page into 4 category sections; added a vanilla-JS substring filter box to the home page; filed GitHub issue #2 documenting the still-unresolved default-branch/environment-protection admin blocker." }
   ]
 }
