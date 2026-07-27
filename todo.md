@@ -1,0 +1,37 @@
+# TODO — Design Principles, v1 Scope
+
+> **Append-only.** Never delete a line. Mark items done in place; if scope changes, add a new line explaining why rather than editing history away. Every edit to this file is stamped with the turncount it happened at (see `changelog.md` for what a turncount is and its current value).
+
+## v1 definitive deliverables (locked at turncount 1)
+
+This is the finish line for the current phase. Nothing beyond this list gets added until every box below is checked **and verified** (not assumed) — see "Completion checkpoint." Brainstormed against the original ask ("gold-standard SSOT for web design principles, exportable as skills/prompts") and then deliberately bounded, since that ask has no natural ceiling otherwise.
+
+### Quantitative
+- [x] *(turn 1)* 10 canonical principle pages in `docs/principles/`: visual-hierarchy, typography, color-contrast, spacing-layout, accessibility, responsive-design, performance, motion-feedback, forms-inputs, content-microcopy
+- [x] *(turn 1)* 3 Claude Code skills in `/skills`: design-critique, accessibility-audit, plain-language-rewrite
+- [x] *(turn 1)* 3 system prompts in `/prompts`: web-design-mentor, design-critique-reviewer, plain-language-rewriter
+- [x] *(turn 1)* 1 verification script (`scripts/verify-site.py`, stdlib-only)
+- [x] *(turn 1)* 2 GitHub Actions workflows (`pages.yml`, `ci.yml`) + 1 Dependabot config
+- [ ] *(turn 1, pending)* CI confirmed green on GitHub Actions for a real push to `main` — 2 rounds of real failures found and fixed so far (round 1: setup-python cache, Super-Linter flag conflict, lychee resolution error; round 2: lychee's actual fix didn't work and needed a different approach, 3 genuine CSS issues, several real Markdown issues, a missing `statuses: write` permission). Not yet confirmed green after round 2's push — that push is part of this same turn, verify before checking this box.
+- [ ] *(blocked on user)* GitHub Pages confirmed live and publicly reachable — requires the one-time Settings -> Pages -> Source: GitHub Actions toggle, which no available tool can set
+
+### Qualitative acceptance criteria
+- [x] *(turn 1)* Every principle page passes `scripts/verify-site.py` (skeleton sections present, links resolve, tags balanced)
+- [x] *(turn 1)* Every HTML page passes the real W3C Nu Html Checker (`html5validator`) with 0 errors — verified by actually running it, not assumed
+- [x] *(turn 1)* No deprecated CSS properties; 1 documented validator false-positive exception (`text-decoration-thickness`, a legitimate CSS Text Decoration Level 3 property the W3C CSS checker's property list hasn't caught up with)
+- [x] *(turn 1)* Nav parity verified byte-for-byte across all 12 HTML pages (audited via script, not eyeballed)
+- [x] *(turn 1)* Every skill links back to its canonical page instead of restating content (accessibility-audit was missing this link; fixed)
+- [ ] *(blocked on user)* `main` is the repository's actual default branch (currently still the old feature branch in repo settings; not required for CI/Pages to function, but recommended)
+
+## Explicitly OUT of scope for v1 (deferred, not forgotten)
+
+- Additional principle pages beyond the 10 locked above
+- Additional skills/prompts beyond the 6 locked above
+- Visual/design-system overhaul of the site itself
+- Site search, i18n/translation, analytics, SEO tooling
+- Additional MCP integrations beyond the ones selected in `codemap.json`'s `_meta.mcp_selection`
+- External task trackers (Todoist, Notion, Sanity, Craft, Superhuman Docs) as a parallel system to this file — rejected as a DRY violation; this file is the one source of truth for task state
+
+## Completion checkpoint
+
+v1 is DONE when every box above is checked and independently verified (a workflow run actually observed green, not inferred). At that point: stop, report status, and wait for explicit go-ahead before starting any v2 work.

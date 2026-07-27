@@ -41,6 +41,12 @@ jobs:
   super-linter:
     name: Super-Linter
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      # Super-Linter posts a per-linter commit status via the GitHub API;
+      # the workflow-level contents:read-only token got a 403 doing this
+      # (confirmed via a failed CI run, not assumed).
+      statuses: write
     steps:
       - name: Checkout
         uses: actions/checkout@v7
@@ -74,18 +80,24 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
+      # Our internal links use an absolute /design-principles/... prefix
+      # (the GitHub Pages subpath), which isn't a real filesystem path.
+      # lychee's --exclude only matches URLs it already resolved, but these
+      # fail to resolve at all before that filter ever runs (confirmed by
+      # running the real lychee binary locally, not assumed from --help
+      # text) -- so instead this makes the convention real for resolution:
+      # a symlink plus --root-dir. Verified locally: 197/197 links OK.
+      - name: Prepare local root for absolute-path link resolution
+        run: |
+          mkdir -p /tmp/lychee-root
+          ln -s "$GITHUB_WORKSPACE/docs" /tmp/lychee-root/design-principles
+
       # lycheeverse/lychee-action, pinned to the commit the v2 tag points to
       - name: Lychee link check
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
-          # --exclude skips our own root-relative internal links (already
-          # covered by scripts/verify-site.py) *before* lychee tries to
-          # resolve them as filesystem paths, which otherwise errors --
-          # confirmed via a failed CI run: --scheme alone does not prevent
-          # that resolution attempt. --scheme stays as defense in depth.
           args: >-
             --no-progress
-            --exclude '^/design-principles'
-            --scheme https,http
+            --root-dir /tmp/lychee-root
             'docs/**/*.html'
           fail: true

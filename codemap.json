@@ -1,0 +1,104 @@
+{
+  "_meta": {
+    "purpose": "Machine-readable map of this repo's structure and purpose, so any future turn/session/agent can orient without re-exploring the whole tree.",
+    "conventions": "Append-only per user instruction: 'paths' reflects current state and may be corrected in place, but every structural change must also add an entry to 'history' so nothing is silently lost. Never delete a 'history' entry.",
+    "last_updated_turncount": 1,
+    "mcp_selection": {
+      "memory": {
+        "name": "Mem0",
+        "reason": "Purpose-built AI memory layer (add_memory/search_memories/entities), tested reachable this turn via add_memory."
+      },
+      "additional": [
+        {
+          "name": "Context7",
+          "reason": "Current library/framework/spec documentation lookup, directly serves CLAUDE.md's standards-compliance mandate. Selected, not yet invoked (no concrete need arose)."
+        },
+        {
+          "name": "Mermaid Chart",
+          "reason": "Lightweight code-as-diagram rendering, fits a git-tracked static site better than an external whiteboard tool. Reserved for future use; not invoked (would be scope creep without a concrete need)."
+        }
+      ],
+      "rejected": {
+        "redundant_with_git_tracked_files": ["Todoist", "Notion", "Sanity", "Craft", "Superhuman Docs", "Whimsical", "Excalidraw"],
+        "out_of_domain_for_static_site": ["Cloudflare Developer Platform", "Make", "Postman", "Sentry", "Semrush", "HyperFrames by HeyGen", "Magic Patterns", "Three.js 3D Viewer"]
+      }
+    }
+  },
+  "root": "design-principles",
+  "paths": {
+    "CLAUDE.md": {
+      "type": "doc",
+      "purpose": "Internal authoring constitution. Governs writing style (Rule Zero: plain words first, anti-slop) and engineering standards (WHATWG/W3C/MDN compliance, YAGNI/KISS/DRY, verify-before-done) for everything in this repo. Never referenced from published pages.",
+      "status": "active"
+    },
+    "README.md": { "type": "doc", "purpose": "Public repo overview: what this is, how to use the site/skills/prompts exports.", "status": "active" },
+    "CONTRIBUTING.md": { "type": "doc", "purpose": "How to add a principle page, skill, or prompt; points to scripts/verify-site.py as the pre-commit gate.", "status": "active" },
+    "LICENSE": { "type": "doc", "purpose": "MIT license.", "status": "active" },
+    "todo.md": { "type": "doc", "purpose": "Locked v1 deliverables checklist and completion checkpoint. Append-only.", "status": "active" },
+    "changelog.md": { "type": "doc", "purpose": "Turn-by-turn history with the non-negotiable turncount. Append-only.", "status": "active" },
+    "codemap.json": { "type": "doc", "purpose": "This file.", "status": "active" },
+    ".gitignore": { "type": "config", "purpose": "OS/editor/build cruft exclusions (.DS_Store, __pycache__, .ruff_cache, node_modules).", "status": "active" },
+    ".yamllint.yml": { "type": "config", "purpose": "Disables yamllint's truthy (workflow `on:` key) and line-length rules; both confirmed false positives for this repo.", "status": "active" },
+    ".markdownlint.yml": { "type": "config", "purpose": "Attempts to disable MD013 (line-length); confirmed NOT honored by Super-Linter's markdownlint invocation (its bundled default of 400 wins instead) -- kept for local/other tooling, but don't rely on it in CI. All .md files are instead kept under 400 chars/line directly.", "status": "active" },
+    ".stylelintrc.json": { "type": "config", "purpose": "Extends stylelint-config-standard, disabling 4 purely-cosmetic rules (declaration-block-single-line-max-declarations, rule-empty-line-before, custom-property-empty-line-before, at-rule-empty-line-before) that conflict with this repo's intentional compact CSS formatting. Verified locally against real stylelint.", "status": "active" },
+    "docs/": {
+      "type": "dir",
+      "purpose": "GitHub Pages site source (the Pages 'source' folder). Plain HTML/CSS, no build step, no JS.",
+      "status": "active",
+      "children": {
+        "index.html": { "purpose": "Home page: card grid linking every principle page, in pedagogical order." },
+        "about.html": { "purpose": "How to read the site and use the /skills and /prompts exports." },
+        "assets/style.css": { "purpose": "Whole site's CSS: design tokens, responsive nav, good/bad example blocks, checklist styling, light/dark mode." },
+        ".nojekyll": { "purpose": "Skips GitHub's default Jekyll processing since the site is plain static HTML." },
+        "principles/*.html (10 files)": {
+          "purpose": "One canonical page per concept, each following CLAUDE.md's 6-part skeleton (definition, why it matters, core rule, good/bad example, common mistakes, checklist).",
+          "files": ["visual-hierarchy", "typography", "color-contrast", "spacing-layout", "accessibility", "responsive-design", "performance", "motion-feedback", "forms-inputs", "content-microcopy"]
+        }
+      }
+    },
+    "skills/": {
+      "type": "dir",
+      "purpose": "Claude Code skills (SKILL.md format) turning principle checklists into agent-runnable procedures.",
+      "status": "active",
+      "children": {
+        "design-critique/SKILL.md": { "purpose": "Reviews UI/HTML against all 10 principles' checklists; links back to every canonical page." },
+        "accessibility-audit/SKILL.md": { "purpose": "Line-by-line code-scanning a11y audit with severity tiers; links back to the accessibility page." },
+        "plain-language-rewrite/SKILL.md": { "purpose": "Operationalizes Rule Zero itself for arbitrary text; no single canonical page (it's the site's whole ethos, not one principle)." }
+      }
+    },
+    "prompts/": {
+      "type": "dir",
+      "purpose": "Standalone system prompts (personas + judgment), for use outside Claude Code with any LLM.",
+      "status": "active",
+      "children": {
+        "web-design-mentor.md": { "purpose": "Teaching persona for conversational design guidance." },
+        "design-critique-reviewer.md": { "purpose": "Structured-feedback persona for reviewing UI, mirrors skills/design-critique's checklist." },
+        "plain-language-rewriter.md": { "purpose": "Rewriting persona mirroring skills/plain-language-rewrite." }
+      }
+    },
+    "scripts/verify-site.py": {
+      "type": "script",
+      "purpose": "Stdlib-only checker: HTML tag balance, internal link resolution, CLAUDE.md skeleton-section presence, CSS brace balance. The repo's substitute for a test suite; also run in CI.",
+      "status": "active"
+    },
+    "scripts/requirements.txt": {
+      "type": "config",
+      "purpose": "Pins html5validator==0.4.2 (the only external Python dependency, used in CI for real W3C HTML validation). Exists specifically so actions/setup-python's pip cache has a lockfile to key off.",
+      "status": "active"
+    },
+    ".github/workflows/pages.yml": {
+      "type": "ci",
+      "purpose": "Builds docs/ and deploys to GitHub Pages on every push to main touching docs/**. Independent of ci.yml so a flaky external link can never block a deploy.",
+      "status": "active"
+    },
+    ".github/workflows/ci.yml": {
+      "type": "ci",
+      "purpose": "Three parallel jobs: verify-site (scripts/verify-site.py + W3C html5validator), super-linter (opt-in whitelist: HTML/CSS/Markdown/YAML/JSON/GitHub Actions/Python-ruff), link-check (lychee, external links only).",
+      "status": "active"
+    },
+    ".github/dependabot.yml": { "type": "ci", "purpose": "Weekly PRs to keep every pinned GitHub Action version/SHA current.", "status": "active" }
+  },
+  "history": [
+    { "turncount": 1, "change": "Initial codemap created capturing full repo state as of this turn (repo already contained the site, skills, prompts, and CI/CD from prior turns; this is the first turn codemap.json itself has existed)." }
+  ]
+}

@@ -2,14 +2,14 @@
 
 The single source of truth for web design principles, methods, and concepts — explained so anyone can follow them, and packaged so a machine can act on them too.
 
-**Live site:** https://aahplexx.github.io/design-principles/
+**Live site:** <https://aahplexx.github.io/design-principles/>
 
 ## What's here
 
 Every concept in this repo is written once, in one canonical place, and reused everywhere else so nothing drifts out of sync.
 
 | Folder | What it is | Who uses it |
-|---|---|---|
+| --- | --- | --- |
 | [`/docs`](./docs) | The browsable site (published to GitHub Pages) | Anyone learning or looking something up |
 | [`/skills`](./skills) | Claude Code skills — checklists an agent can run against real work | Claude Code users, via `.claude/skills` |
 | [`/prompts`](./prompts) | Standalone system prompts that give an LLM the judgment to apply these principles | Anyone building an LLM app or agent |

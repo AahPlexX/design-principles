@@ -5,6 +5,8 @@ description: Audits HTML/CSS/JSX for keyboard, screen-reader, and low-vision acc
 
 # Accessibility Audit
 
+Full explanation and the underlying rule: <https://aahplexx.github.io/design-principles/principles/accessibility.html> — this skill turns that page's checklist into a line-by-line code-scanning procedure.
+
 Read the target code (not a description of it — the actual markup) and check it against the rules below. Every finding needs a file/line reference and a specific fix; a finding without a fix is not useful.
 
 ## What to check, in priority order
@@ -21,7 +23,11 @@ Read the target code (not a description of it — the actual markup) and check i
 
 6. **Color-only meaning.** Search for patterns like error/success states styled only with a color class and no icon or text — flag these as relying on color alone.
 
-7. **Custom components (modals, dropdowns, tabs).** Check for the matching ARIA pattern: a modal needs `role="dialog"` and focus trapped inside it while open; a dropdown/menu needs `aria-expanded` on its trigger; tabs need `role="tablist"/"tab"/"tabpanel"`. If a custom component reinvents one of these without the ARIA and keyboard behavior, flag it and point to using the native element instead if one exists.
+7. **Custom components (modals, dropdowns, tabs).** Check for the matching ARIA pattern:
+   - A modal needs `role="dialog"` and focus trapped inside it while open.
+   - A dropdown/menu needs `aria-expanded` on its trigger.
+   - Tabs need `role="tablist"/"tab"/"tabpanel"`.
+   - If a component reinvents one of these without the ARIA and keyboard behavior, flag it and point to the native element instead, if one exists.
 
 ## Output format
 
