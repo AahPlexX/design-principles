@@ -12,7 +12,7 @@ This is the finish line for the current phase. Nothing beyond this list gets add
 - [x] *(turn 1)* 3 system prompts in `/prompts`: web-design-mentor, design-critique-reviewer, plain-language-rewriter
 - [x] *(turn 1)* 1 verification script (`scripts/verify-site.py`, stdlib-only)
 - [x] *(turn 2)* 2 GitHub Actions workflows (`pages.yml`, `ci.yml`, 2 jobs: verify-site, link-check) + 1 Dependabot config. Super-Linter was tried and removed by explicit user instruction after 3 rounds of real failures (see `changelog.md` turn 2) — `scripts/verify-site.py` plus real `html5validator`/`stylelint` runs already covered correctness without it.
-- [ ] *(turn 2, pending)* CI confirmed green on GitHub Actions for a real push to `main` — verify-site and link-check jobs both passed on the round-2 push; confirm again on the round-3 push (Super-Linter removed) before checking this box.
+- [x] *(turn 2)* CI confirmed green on GitHub Actions for a real push to `main` — run 30236119416 (commit `c4feedb`), both jobs (verify-site, link-check) `conclusion: success`, overall run `conclusion: success`. Checked via the GitHub API directly, not inferred.
 - [ ] *(blocked on user)* GitHub Pages confirmed live and publicly reachable — requires the one-time Settings -> Pages -> Source: GitHub Actions toggle, which no available tool can set
 
 ### Qualitative acceptance criteria
@@ -35,3 +35,5 @@ This is the finish line for the current phase. Nothing beyond this list gets add
 ## Completion checkpoint
 
 v1 is DONE when every box above is checked and independently verified (a workflow run actually observed green, not inferred). At that point: stop, report status, and wait for explicit go-ahead before starting any v2 work.
+
+**Status as of turn 2: every item within available tooling's control is checked and verified.** The only two remaining boxes are both `*(blocked on user)*` — repo Settings changes no available tool can make. v1 is functionally complete pending those two manual steps.
