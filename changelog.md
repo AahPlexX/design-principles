@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 5**
+**Current turncount: 7**
 
 ---
 
@@ -87,3 +87,18 @@ Executed the full locked v2 scope end to end.
   - The real `html5validator` (W3C Nu Html Checker) via the existing local venv: 0 HTML errors across every page. Running it with `--also-check-css` flags `text-decoration-thickness` as an unrecognized CSS property — this is a pre-existing v1 property (not touched this turn), already documented in `todo.md` as an accepted validator false-positive, not a new regression.
 - Cleaned up test artifacts left over from the previous turn's verification: killed a still-running local test HTTP server (background shell, port 8101) and removed its scratch symlink directory, the html5validator venv is kept (still in active use for the check above), and swept the scratchpad for stray screenshots/scripts.
 - Marked `todo.md`'s v2 boxes checked with the evidence above; the two boxes needing a real push (CI green, Pages deploy) are checked in this same entry once the push below is confirmed via the API.
+- Committed (`b89bfeb`) and pushed to `main`. Scheduled a check-in to confirm the resulting CI/Pages runs rather than assume they'd pass, and ended the turn there.
+
+## Turn 6 — 2026-07-27
+
+- Pure Q&A: user asked why an admin action is needed at all for the site to work. Answered directly (the site is already live; the admin item is a cosmetic/root-cause fix for a workaround, not a functional requirement) — no file changes resulted, so no substantive entry was needed at the time. Recorded here only so the turncount stays accurate against the "every response" rule; not every turncount produces a diff, and that's expected.
+
+## Turn 7 — 2026-07-27
+
+- Checked the two workflow runs triggered by turn 5's push rather than assuming they'd pass: `CI` run `30275201107` and `Deploy GitHub Pages` run `30275201186`, both for commit `b89bfeb`, both `status: completed` / `conclusion: success`. Checked via the GitHub Actions API directly.
+- **v2 is now complete.** Every box in `todo.md`'s v2 section is checked with real evidence, matching the same discipline v1 was held to.
+- User asked to "re-attempt MCPs + plug ins + skills." Re-ran the discovery pass instead of assuming the turn-1 MCP selection was still the full picture: `ListConnectors`, `SearchMcpRegistry` (memory-focused keywords), `SearchPlugins`, and `SearchSkills` (web-design/accessibility/review keywords).
+  - Mem0 remains the correct memory-MCP pick — no better memory-purpose-built option exists in the registry (checked DevRev, Actively, Turquoise, Mem, Mercury, Glean, Enterpret, Bigdata.com, Klarity; all out of domain). New, more precise finding: `ListConnectors` shows Mem0 as `installState: "connected"` but `enabledInChat: false` for this chat — a real distinction from a flat "disconnected," though still not something any available tool call can flip.
+  - Every other org-connected server surfaced (Cloudflare, Craft, Exa, Excalidraw, HyperFrames, Magic Patterns, Make, Notion, Postman, Sanity, Semrush, Sentry, Superhuman Docs, Three.js Viewer, Todoist, Whimsical, Mermaid Chart, Context7) matches the turn-1 selection/rejection exactly — nothing warrants revising that decision.
+  - Found one already-enabled plugin (`design`, marketplace `knowledge-work-plugins`, slash commands `/design:critique`, `/design:handoff`, `/design:accessibility`, `/design:ux-copy`, `/design:research-synthesis`) and two already-enabled personal skills (`web-design-reviewer`, `frontend-design`) relevant to this domain. All three are general-purpose personal tools outside this repo, not this project's own deliverables — no DRY conflict, nothing to install (already enabled), nothing adopted into the repo. A fourth match, Anthropic's `doc-coauthoring` example skill, is not enabled and wasn't recommended: this repo's own `CLAUDE.md` already specifies authoring workflow and voice more precisely than a generic skill would.
+  - No action resulted from the re-audit beyond documenting it here — the existing selection stands.
