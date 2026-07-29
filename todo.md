@@ -236,23 +236,23 @@ User said "Continue" (explicit go-ahead per the v5 checkpoint's own condition) a
 After v6: Foundations 4/5, Inclusive by Default 2/5, Task-Specific 1/6, Ethics 1/1. Remaining principles (iconography-imagery, performance, motion-feedback, internationalization-localization, navigation-ia, content-microcopy, empty-error-states, data-tables, onboarding-progressive-disclosure) stay explicit future work — 9 is still "numerous future capacity," not a backlog to clear in one turn.
 
 ### Quantitative
-- [ ] 5 course folders (`docs/craft/typography/`, `spacing-layout/`, `responsive-design/`, `forms-inputs/`, `dark-patterns-ethics/`), each with an overview `index.html` + 3 lesson pages + 1 quiz per lesson, built by 5 parallel subagents each grounded in its own full re-read of the paired principle page
-- [ ] `docs/craft/courses.json` gains 5 new entries (manifest updated centrally, not by the subagents, to avoid 5-way write races on one shared file)
-- [ ] `docs/craft/index.html` catalog gains 5 new cards
-- [ ] "Craft" nav already present everywhere; the 5 new course pages get the same shared nav block (byte-identical to every other page)
-- [ ] Each of the 5 paired principle pages gets one "Practice this" cross-link to its new course
-- [ ] `CLAUDE.md`'s Course skeleton section needs no change — it already generalizes past 3 courses
+- [x] *(turn 15)* 5 course folders (`docs/craft/typography/`, `spacing-layout/`, `responsive-design/`, `forms-inputs/`, `dark-patterns-ethics/`), each with an overview `index.html` + 3 lesson pages + 1 quiz per lesson, built by 5 parallel subagents each grounded in its own full re-read of the paired principle page — all 20 files created, each subagent independently ran `scripts/verify-site.py` before reporting back
+- [x] *(turn 15)* `docs/craft/courses.json` gains 5 new entries (manifest updated centrally, not by the subagents, to avoid 5-way write races on one shared file) — now 8 total courses, JSON validated
+- [x] *(turn 15)* `docs/craft/index.html` catalog gains 5 new cards, each with a hidden-until-earned progress badge and `data-search` text, matching the existing 3 cards' pattern
+- [x] *(turn 15)* "Craft" nav already present everywhere; the 5 new course pages get the same shared nav block (byte-identical to every other page) — confirmed via a scripted nav-parity check across all 53 HTML files
+- [x] *(turn 15)* Each of the 5 paired principle pages (typography, spacing-layout, responsive-design, forms-inputs, dark-patterns-ethics) gets one "Practice this" cross-link to its new course, placed before the Go-deeper `<details>` block, matching the v5 pattern exactly
+- [x] *(turn 15)* `CLAUDE.md`'s Course skeleton section needed no change — confirmed it already generalizes past 3 courses, no edit made
 
 ### Qualitative acceptance criteria (same bar as v1-v5)
-- [ ] Every subagent's course content grounded in a full read of its paired principle page — no invented numbers, rules, or examples
-- [ ] Every new/changed HTML page passes `scripts/verify-site.py`
-- [ ] Every new/changed HTML page passes the real W3C Nu Html Checker with 0 errors
-- [ ] Nav parity maintained across every HTML page in the site (still 1 unique variant)
-- [ ] `courses.json` still valid JSON after the merge
-- [ ] Quizzes verified working in a real browser (Playwright) for at least the 5 new courses' first lesson each, not just read as markup
-- [ ] No content duplication: every new lesson links back to its principle page rather than restating it
-- [ ] CI confirmed green on GitHub Actions for the actual push, checked via the API
-- [ ] Pages deploy confirmed to still succeed after these changes
+- [x] *(turn 15)* Every subagent's course content grounded in a full read of its paired principle page — spot-checked by independently re-reading all 5 principle pages myself and cross-referencing every quiz's claimed grounding against the actual page text; all checked out, no invented facts found
+- [x] *(turn 15)* Every new/changed HTML page passes `scripts/verify-site.py` — ran the real script after full integration, 53/53 files `ok`
+- [x] *(turn 15)* Every new/changed HTML page passes the real W3C Nu Html Checker with 0 errors — ran `html5validator==0.4.2` in a fresh venv; traced its reported exit code 1 to a single non-HTML false positive (the JVM's own `Picked up JAVA_TOOL_OPTIONS` startup banner, printed because this sandboxed environment sets that env var for its proxy config, which html5validator's naive stdout+stderr line-counting miscounts as an "error" line) — confirmed by running vnu.jar directly with the identical file list and flags, which returned exit 0 with zero output. 0 genuine HTML errors.
+- [x] *(turn 15)* Nav parity maintained across every HTML page in the site (still 1 unique variant) — scripted check across all 53 files after stripping `aria-current="page"`
+- [x] *(turn 15)* `courses.json` still valid JSON after the merge — parsed with `json.load`, confirmed 8 entries
+- [x] *(turn 15)* Quizzes verified working in a real browser (Playwright) for all 5 new courses' first lesson each, not just read as markup — 45 assertions across 5 courses (typography/spacing-layout/responsive-design/forms-inputs in light mode, dark-patterns-ethics in dark mode): catalog badge hidden pre-activity, quiz has exactly 4 options, wrong-answer feedback renders and marks `is-incorrect`, all options disable after answering, `localStorage` records completion, course-overview lesson list shows the lesson complete after reload, and the catalog badge updates to "1/3 complete" — all 45 passed
+- [x] *(turn 15)* No content duplication: every new lesson links back to its principle page rather than restating it — confirmed present in all 15 new lesson files
+- [x] *(turn 15)* CI confirmed green on GitHub Actions for the actual push, checked via the API — see run IDs in changelog Turn 15
+- [x] *(turn 15)* Pages deploy confirmed to still succeed after these changes — see run IDs in changelog Turn 15
 
 ### Explicitly OUT of scope for v6 (deferred, not forgotten)
 - The remaining 9 principles without a Craft course yet — future work, tracked above, not gold-plated in now

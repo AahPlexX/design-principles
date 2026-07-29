@@ -23,6 +23,46 @@
       "principle": "accessibility",
       "principleTitle": "Accessibility",
       "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "typography",
+      "title": "Text People Actually Read",
+      "hook": "Practice sizing and spacing type so it actually gets read instead of skipped.",
+      "principle": "typography",
+      "principleTitle": "Typography",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "spacing-layout",
+      "title": "Show What Belongs Together",
+      "hook": "Practice using whitespace and alignment to show what's related before a reader has to guess.",
+      "principle": "spacing-layout",
+      "principleTitle": "Spacing & Layout",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "responsive-design",
+      "title": "One Layout, Every Screen",
+      "hook": "Practice spotting the layouts that break between a phone, a tablet, and a desktop.",
+      "principle": "responsive-design",
+      "principleTitle": "Responsive Design",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "forms-inputs",
+      "title": "Forms People Actually Finish",
+      "hook": "Practice fixing the small form details that make people give up halfway through.",
+      "principle": "forms-inputs",
+      "principleTitle": "Forms & Inputs",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "dark-patterns-ethics",
+      "title": "Design That Doesn't Trick People",
+      "hook": "Practice spotting manipulative patterns and naming the honest fix for each one.",
+      "principle": "dark-patterns-ethics",
+      "principleTitle": "Dark Patterns & Ethics",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
     }
   ]
 }
