@@ -54,10 +54,13 @@ A Craft course is the practice companion to exactly one principle page. It never
 ```
 docs/craft/
   index.html            the dedicated course index (data-driven from courses.json)
-  courses.json           single source of truth: id, title, hook, linked principle, lesson list
+  courses.json           single source of truth: id, title, hook, linked principle, level/lesson structure
   <course-id>/
-    index.html            course overview: the hook, what you'll practice, the lesson list
-    lesson-1.html, lesson-2.html, ...   one short lesson per file
+    index.html            course overview: the hook, what you'll practice, the level-by-level lesson list
+    level-1/
+      lesson-1.html, lesson-2.html, ...   one short lesson per file
+    level-2/
+      lesson-1.html, ...
 ```
 The catalog page (`docs/craft/index.html`) renders itself from `courses.json` the same way the home page's search already reads `data-search` attributes — a new course is added to the manifest once, never hand-copied into a second listing.
 
@@ -65,15 +68,16 @@ The catalog page (`docs/craft/index.html`) renders itself from `courses.json` th
 1. **The hook** — one sentence, stated as a concrete outcome, on the overview page and in the manifest (this is what sells the click — see Tone below for how persuasive differs from hype).
 2. **What you'll practice** — 1-2 sentences, plain language, naming the specific skill.
 3. **A link to the paired principle page** — "why this rule holds" lives there, not here.
-4. **2-4 short lessons**, each: a one-paragraph bite-sized framing (not a restatement of the principle page), then one interactive multiple-choice question with instant right/wrong feedback and a one-sentence explanation of *why* — never a question without a real explanation on both the correct and incorrect paths.
-5. **Progress**, tracked client-side only (`localStorage` via `docs/assets/craft-progress.js`) — no accounts, no server. A course/lesson is either complete or not; no points, streaks, or leaderboards (see Engineering standards — that's gamification scope, not proof-of-skill scope, and stays out until a real need for it exists).
+4. **Levels and lessons, sized to the topic, never to a formula.** A course is organized into levels — thematic sub-sections of the subject — each containing several short lessons. How many levels and lessons a course has is determined by how much the subject genuinely supports, not a preset target: a narrow topic might complete in 3-4 levels; a broad one might need six or more. Never pad a level or a lesson to hit a round number — the same anti-slop rule that governs a principle page's checklist ("no padding a list to look thorough") applies here exactly. Each lesson is still short: a one-paragraph bite-sized framing (not a restatement of the principle page), then one interactive multiple-choice question with instant right/wrong feedback and a one-sentence explanation of *why* — never a question without a real explanation on both the correct and incorrect paths.
+5. **Progress**, tracked client-side only (`localStorage` via `docs/assets/craft-progress.js`) — no accounts, no server. A lesson is either complete or not; a course's progress badge counts completed lessons against its actual total, whatever that total is. No points, streaks, or leaderboards (see Engineering standards — that's gamification scope, not proof-of-skill scope, and stays out until a real need for it exists).
 
 ## Adding a new course
 
-1. Add the course's entry to `docs/craft/courses.json` first — id, title (per the naming rule above), hook, the principle it pairs with, and its lesson filenames.
-2. Write the course folder following the Course skeleton above.
-3. Add a "Practice this" link from the paired principle page to the new course — the only place the principle page should mention Craft at all.
-4. Run `python3 scripts/verify-site.py` before committing, same as any other site change.
+1. Add the course's entry to `docs/craft/courses.json` first — id, title (per the naming rule above), hook, the principle it pairs with, and its full level/lesson structure.
+2. Plan the level/lesson outline before writing any lesson content — level titles and lesson titles, sized to what the topic actually supports (see point 4 above). Sense-check the outline for padding before writing a single lesson.
+3. Write the course folder following the Course skeleton above.
+4. Add a "Practice this" link from the paired principle page to the new course — the only place the principle page should mention Craft at all.
+5. Run `python3 scripts/verify-site.py` before committing, same as any other site change.
 
 ## Engineering standards
 

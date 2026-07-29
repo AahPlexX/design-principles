@@ -6,7 +6,7 @@
 Every entry in this file is filed under the turncount it happened at. Every edit to `todo.md` or `codemap.json` is stamped with the same turncount for cross-reference.
 Turncount did not exist before this turn — there is no turn 0 to backfill, since this tracking infrastructure is being created in the same turn it starts counting from.
 
-**Current turncount: 16**
+**Current turncount: 17**
 
 ---
 
@@ -220,3 +220,14 @@ User said "Continue" and set explicit research standards for this and all subseq
 - Verified: `scripts/verify-site.py` (53/53 ok after the edits), the real W3C html5validator run against all 4 changed files (0 errors).
 - Updated `todo.md` with a new "Post-v6 accuracy audit fix" section (following the same non-versioned-fix pattern as the turn-10 "Post-v3 design QA fix") documenting the full audit, confirmed-accurate findings, and the 3 applied fixes with their sourcing.
 - Committed (`344357f`) and pushed to `main`. Checked via the GitHub Actions API: CI run `30490496364` and Deploy GitHub Pages run `30490496397`, both for commit `344357f`, both `conclusion: success`. **The accuracy audit fix is complete.**
+
+## Turn 17 — 2026-07-29 (in progress)
+
+Asked how many Craft courses exist (answered from `courses.json`: 8, all with the flat 3-lesson structure). User challenged that 3 lessons/course can't match UXcel's real depth — "the standard we have to emulate and meet" — and required the same source-verified research discipline as the earlier accuracy audit before any response.
+
+- Researched UXcel's actual current structure via `WebSearch` (site copy, course pages, G2, app store listings, a first-hand Medium walkthrough) since `WebFetch` remains blocked in this session. Resolved a real conflict in the sourced numbers: UXcel's own site says 60+ courses; Google Play's listing says 40+ (likely stale), so weighted the official site higher per the user's stated source-priority rule.
+- Found UXcel courses are structured as **levels** (thematic sub-sections) containing multiple lessons each, not a flat list. Confirmed concretely: the flagship "UX Design Foundations" course has 6 levels totaling 25 lessons and 200+ exercises; independently verified Level 1 and Level 2 each contain exactly 4 lessons, consistent with that total. A narrower course ("AI Fundamentals for UX") has 4 levels.
+- Presented findings with sources, then asked the user two scoping questions via `AskUserQuestion`: whether to retrofit the 8 existing courses or only apply the deeper structure going forward, and what depth target to use. User chose to retrofit all 8, and explicitly rejected any fixed lesson-count formula: depth should follow what each subject genuinely supports, in the user's own words "Some courses may have >=15 lessons others may have >=50."
+- Updated `CLAUDE.md`'s Course skeleton and "Adding a new course" sections to the new architecture: courses organized into levels (not a flat lesson list), file layout changed to `<course-id>/level-N/lesson-M.html`, explicit anti-padding rule (depth follows the subject, never a preset target), and an explicit "plan the outline before writing lesson content" step added to "Adding a new course."
+- Given the scale (8 courses that could total 150-400+ new lesson files), deliberately split execution into two phases rather than mass-generating content against an unconfirmed plan: dispatched 8 parallel subagents (one per existing course) to produce planning-only outlines — level/lesson topic lists, each lesson flagged as grounded-in-the-principle-page / needs-new-material / needs-verification, explicitly instructed not to invent statistics or unverified spec citations, and to cross-link rather than duplicate content across courses with genuine subject overlap (e.g., touch targets in both Accessibility and Responsive Design).
+- Locked this as "v7" in `todo.md` with the research findings, architecture decision, and remaining steps (collect outlines, review for accuracy/overlap, get user approval, only then update `courses.json`'s schema and generate actual lesson content).

@@ -281,3 +281,27 @@ User required deep, source-verified research (only reputable/official sources, �
 **Verification:** `scripts/verify-site.py` (53/53 ok after the edits), the real W3C html5validator run against all 4 changed files (0 errors). Pushed as commit `344357f`; CI run `30490496364` and Pages run `30490496397` both confirmed `conclusion: success` via the GitHub Actions API.
 
 **Explicitly left as-is per user's own choice:** the "Dark Patterns & Ethics" page/course/URL/nav label itself — not renamed to "Deceptive Patterns," per the user's explicit "add a note only" decision.
+
+---
+
+## v7: deepen Craft to match UXcel's real depth (in progress, locked at turncount 17)
+
+User challenged that 3 lessons/course "cannot possibly be the depth and breadth of UXcel — which is the standard we have to emulate and meet," and required the same source-verified research discipline before any response: research UXcel's actual current structure via reputable/official sources, ≥95% confidence, current-date info, no guessing.
+
+**Research findings (sourced, not assumed):** UXcel's own current site copy states 60+ courses (a Google Play listing says 40+, likely stale — weighted the official site higher). Courses are NOT flat lesson lists — they're organized into **levels** (thematic sub-sections), each with several lessons. Confirmed concretely: UXcel's flagship "UX Design Foundations" course has 6 levels (Design Fundamentals, Intro to UI Design, Simple Components, Complex Components, Intro to UX Design, Bonus Lessons) totaling **25 interactive lessons and 200+ exercises** — independently cross-checked that Level 1 and Level 2 each contain exactly 4 lessons, consistent with the 25-lesson total. A narrower course ("AI Fundamentals for UX") runs 4 levels — still far more than 3 lessons. Lessons are ~5 minutes each, interactive.
+
+**User's explicit direction on scope:** retrofit all 8 existing courses (not just future ones) to this deeper structure. Explicitly rejected a fixed lesson-count formula — depth must follow what each course's subject genuinely supports, with the user's own words: "Some courses may have >=15 lessons others may have >=50." Padding to hit a number is exactly what CLAUDE.md's own anti-slop rule already forbids elsewhere on the site.
+
+**Architecture updated in `CLAUDE.md`** (Course skeleton + Adding a new course sections): courses are now organized into **levels** (thematic sub-sections), each containing several lessons; file layout changed from flat `lesson-N.html` files to `<course-id>/level-N/lesson-M.html`; `courses.json`'s schema will need a nested level/lesson structure (not yet applied to the file — planning first); no fixed level/lesson count, explicit anti-padding rule.
+
+**Current phase — outline planning, not yet full content generation.** Given the scale (8 courses × an estimated 15-50+ lessons each could mean 150-400+ new lesson files), dispatched 8 parallel subagents — one per existing course — each tasked with reading its paired principle page in full and proposing a non-formulaic level/lesson outline (level titles + specific lesson topics, each flagged as grounded-in-the-principle-page / needs-new-material / needs-verification), explicitly avoiding invented statistics or unverified spec citations. This is a deliberate two-phase execution (outline first, reviewed and approved, THEN full lesson-writing) rather than mass-generating hundreds of files against an unconfirmed plan — outlines are cheap to review and correct; full content across 8 courses is not.
+
+### Next steps (not yet done)
+- [ ] Collect all 8 course outlines from the planning subagents
+- [ ] Review outlines for accuracy, non-duplication across courses (several topics legitimately overlap — e.g., touch targets appear in both Accessibility and Responsive Design — agents were instructed to cross-link rather than duplicate), and anything flagged "needs verification" (research those specific claims before they reach a lesson)
+- [ ] Present consolidated outlines to the user for approval before generating any lesson content
+- [ ] Once approved: update `courses.json`'s schema to the new nested level/lesson structure
+- [ ] Update `docs/assets/craft-progress.js` and the course-overview page template to render/track a level-grouped lesson list instead of a flat one
+- [ ] Generate the actual lesson content per course (likely via parallel subagents again, given the scale), grounded per the approved outlines
+- [ ] Full verification pass (`scripts/verify-site.py`, real html5validator, nav parity, Playwright) before commit
+- [ ] Commit, push, confirm CI/Pages via the API
