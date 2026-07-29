@@ -128,8 +128,9 @@
       column onto a phone by shrinking font size instead of letting the column narrow and
       text wrap makes everything hard to read instead of just re-laid-out.</li>
       <li><strong>Touch targets sized for a mouse pointer.</strong> A link or button under
-      about 44×44px is hard to tap accurately with a finger, even if it's perfectly clickable
-      with a precise mouse cursor.</li>
+      44×44px is hard to tap accurately with a finger, even if it's perfectly clickable
+      with a precise mouse cursor. WCAG 2.2's actual minimum is smaller (24×24px, with
+      exceptions) — 44×44px is the safer size to design for, not the bare legal floor.</li>
       <li><strong>Hiding content on mobile instead of re-prioritizing it.</strong> "Just hide
       it on small screens" often removes something a mobile user specifically needed (like a
       phone number or address), rather than re-arranging it to fit.</li>
@@ -140,7 +141,7 @@
       <li>No horizontal scrolling at any viewport width from ~320px up.</li>
       <li>Layout uses flexible units and wrapping (Grid/Flexbox), not fixed pixel widths for containers.</li>
       <li>Breakpoints are placed where the specific layout breaks, not at guessed device sizes.</li>
-      <li>Tap targets are at least 44×44px on touch devices.</li>
+      <li>Tap targets are at least 44×44px on touch devices (comfortably above WCAG 2.2's 24×24px minimum).</li>
       <li>The page has a <code>&lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;</code> tag.</li>
     </ul>
 
@@ -165,6 +166,15 @@
         max)</code> lets sizes (font size, padding, width) scale smoothly with viewport width
         between a floor and a ceiling, often removing the need for a breakpoint entirely for
         that property.
+      </p>
+      <p>
+        <strong>The exact WCAG numbers:</strong> WCAG 2.2's Success Criterion 2.5.8 (Target
+        Size Minimum, Level AA) actually requires only 24×24 CSS pixels, with exceptions for
+        inline text links, small targets with enough spacing around them, and a few other
+        cases. The widely-cited 44×44px figure is a different, higher criterion — SC 2.5.5
+        (Target Size Enhanced), a Level AAA bar carried over from WCAG 2.1. Designing to
+        44×44px clears both comfortably; treating it as the only acceptable size overstates
+        what's strictly required.
       </p>
     </details>
   </div>
