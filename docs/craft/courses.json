@@ -46,7 +46,15 @@
       "hook": "Practice spotting the layouts that break between a phone, a tablet, and a desktop.",
       "principle": "responsive-design",
       "principleTitle": "Responsive Design",
-      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+      "levels": [
+        { "id": "level-1", "title": "Foundations: Why \"One Layout\" Beats Device-Specific Builds", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-2", "title": "Flexible Units & Fluid Sizing", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-3", "title": "Breakpoint Strategy", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-4", "title": "Flexible Media & Responsive Images", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-5", "title": "Touch, Input & Responsive Navigation", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-6", "title": "Responsive Typography", "lessons": ["lesson-1", "lesson-2"] },
+        { "id": "level-7", "title": "Testing & the Edges of the Spectrum", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5", "lesson-6"] }
+      ]
     },
     {
       "id": "forms-inputs",
