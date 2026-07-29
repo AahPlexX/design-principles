@@ -219,3 +219,46 @@ User asked for a UXcel clone ("better UX and UI"): numerous dedicated, single-to
 v5 is DONE when every box above is checked and independently verified, the same discipline as v1-v4. At that point: stop, report status, and wait for explicit go-ahead before adding more courses.
 
 **Status as of turn 14: every Quantitative and Qualitative box above is checked and independently verified — `scripts/verify-site.py` (33/33 ok, after fixing one self-caught stray tag), the real W3C html5validator (0 errors), nav parity (1 unique variant across 33 files), JSON validation of `courses.json`, and a real Playwright browser test of the quiz/progress mechanic (which caught and led to fixing a genuine CSS specificity bug). Pushed as commit `c071f21`; CI run `30470209750` and Pages run `30470209646` both confirmed `conclusion: success` via the GitHub Actions API, not inferred. v5 is complete.**
+
+---
+
+## v6 definitive deliverables ("Craft, batch 2" — locked at turncount 15)
+
+User said "Continue" (explicit go-ahead per the v5 checkpoint's own condition) and asked to use workflows/subagents with validation where beneficial. v5 deliberately bounded the launch to 3 courses and named "more courses" as explicit v6+ future work — this is that work, executed with parallel subagents (one per course, each reading its paired principle page directly rather than being fed invented facts) and a centralized validation pass, since course content is naturally parallelizable (independent files) while shared-file integration (manifest, nav, cross-links) is not (same 33 files — parallel edits there would race) and stays serial.
+
+**Scope (bounded, not "do all remaining 14 principles"):** 5 new courses, chosen to spread across every category that still has zero or one course, rather than piling onto Foundations again:
+- **Text People Actually Read** (typography) — Foundations
+- **Show What Belongs Together** (spacing-layout) — Foundations
+- **One Layout, Every Screen** (responsive-design) — Inclusive by Default
+- **Forms People Actually Finish** (forms-inputs) — Task-Specific
+- **Design That Doesn't Trick People** (dark-patterns-ethics) — Ethics (completes this category)
+
+After v6: Foundations 4/5, Inclusive by Default 2/5, Task-Specific 1/6, Ethics 1/1. Remaining principles (iconography-imagery, performance, motion-feedback, internationalization-localization, navigation-ia, content-microcopy, empty-error-states, data-tables, onboarding-progressive-disclosure) stay explicit future work — 9 is still "numerous future capacity," not a backlog to clear in one turn.
+
+### Quantitative
+- [ ] 5 course folders (`docs/craft/typography/`, `spacing-layout/`, `responsive-design/`, `forms-inputs/`, `dark-patterns-ethics/`), each with an overview `index.html` + 3 lesson pages + 1 quiz per lesson, built by 5 parallel subagents each grounded in its own full re-read of the paired principle page
+- [ ] `docs/craft/courses.json` gains 5 new entries (manifest updated centrally, not by the subagents, to avoid 5-way write races on one shared file)
+- [ ] `docs/craft/index.html` catalog gains 5 new cards
+- [ ] "Craft" nav already present everywhere; the 5 new course pages get the same shared nav block (byte-identical to every other page)
+- [ ] Each of the 5 paired principle pages gets one "Practice this" cross-link to its new course
+- [ ] `CLAUDE.md`'s Course skeleton section needs no change — it already generalizes past 3 courses
+
+### Qualitative acceptance criteria (same bar as v1-v5)
+- [ ] Every subagent's course content grounded in a full read of its paired principle page — no invented numbers, rules, or examples
+- [ ] Every new/changed HTML page passes `scripts/verify-site.py`
+- [ ] Every new/changed HTML page passes the real W3C Nu Html Checker with 0 errors
+- [ ] Nav parity maintained across every HTML page in the site (still 1 unique variant)
+- [ ] `courses.json` still valid JSON after the merge
+- [ ] Quizzes verified working in a real browser (Playwright) for at least the 5 new courses' first lesson each, not just read as markup
+- [ ] No content duplication: every new lesson links back to its principle page rather than restating it
+- [ ] CI confirmed green on GitHub Actions for the actual push, checked via the API
+- [ ] Pages deploy confirmed to still succeed after these changes
+
+### Explicitly OUT of scope for v6 (deferred, not forgotten)
+- The remaining 9 principles without a Craft course yet — future work, tracked above, not gold-plated in now
+- Any change to the quiz/progress mechanic itself (CSS, `craft-progress.js`) — v5's implementation already generalizes to any number of courses; no new capability is needed to add 5 more
+- Gamification, accounts, or server-side persistence — same rejection as v5, unchanged
+
+## v6 completion checkpoint
+
+v6 is DONE when every box above is checked and independently verified, the same discipline as v1-v5. At that point: stop, report status, and wait for explicit go-ahead before adding more courses.
