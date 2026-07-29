@@ -296,10 +296,10 @@ User challenged that 3 lessons/course "cannot possibly be the depth and breadth 
 
 **Current phase — outline planning, not yet full content generation.** Given the scale (8 courses × an estimated 15-50+ lessons each could mean 150-400+ new lesson files), dispatched 8 parallel subagents — one per existing course — each tasked with reading its paired principle page in full and proposing a non-formulaic level/lesson outline (level titles + specific lesson topics, each flagged as grounded-in-the-principle-page / needs-new-material / needs-verification), explicitly avoiding invented statistics or unverified spec citations. This is a deliberate two-phase execution (outline first, reviewed and approved, THEN full lesson-writing) rather than mass-generating hundreds of files against an unconfirmed plan — outlines are cheap to review and correct; full content across 8 courses is not.
 
-### Next steps (not yet done)
-- [ ] Collect all 8 course outlines from the planning subagents
-- [ ] Review outlines for accuracy, non-duplication across courses (several topics legitimately overlap — e.g., touch targets appear in both Accessibility and Responsive Design — agents were instructed to cross-link rather than duplicate), and anything flagged "needs verification" (research those specific claims before they reach a lesson)
-- [ ] Present consolidated outlines to the user for approval before generating any lesson content
+### Next steps
+- [x] *(turn 17)* Collect all 8 course outlines from the planning subagents — all 8 returned: visual-hierarchy 33/6, color-contrast 39/9, accessibility 50/11, typography 34/8, spacing-layout 31/6, responsive-design 29/7, forms-inputs 41/9, dark-patterns-ethics 34/7. **Total: 291 lessons across 63 levels (~12x the current 24).**
+- [x] *(turn 17)* Reviewed outlines for one real issue already caught by the accessibility agent itself: its old lesson-2 ("labels vs. placeholders") duplicates forms-inputs' lesson-1 — dropped from the new outline, courses cross-link instead.
+- [x] *(turn 17)* Presented consolidated outlines to the user as a published artifact (level/lesson breakdown per course, grounded/new/needs-verification tags per lesson, and 4 flagged decision points: overall scale, the one duplicate, `docs/craft/index.html`'s now-inaccurate "10-15 minutes" copy, and the outstanding research pass needed for every "needs verification" tag before it can be written as fact) — awaiting user go-ahead before any lesson content is written.
 - [ ] Once approved: update `courses.json`'s schema to the new nested level/lesson structure
 - [ ] Update `docs/assets/craft-progress.js` and the course-overview page template to render/track a level-grouped lesson list instead of a flat one
 - [ ] Generate the actual lesson content per course (likely via parallel subagents again, given the scale), grounded per the approved outlines
