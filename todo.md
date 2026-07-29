@@ -251,8 +251,8 @@ After v6: Foundations 4/5, Inclusive by Default 2/5, Task-Specific 1/6, Ethics 1
 - [x] *(turn 15)* `courses.json` still valid JSON after the merge — parsed with `json.load`, confirmed 8 entries
 - [x] *(turn 15)* Quizzes verified working in a real browser (Playwright) for all 5 new courses' first lesson each, not just read as markup — 45 assertions across 5 courses (typography/spacing-layout/responsive-design/forms-inputs in light mode, dark-patterns-ethics in dark mode): catalog badge hidden pre-activity, quiz has exactly 4 options, wrong-answer feedback renders and marks `is-incorrect`, all options disable after answering, `localStorage` records completion, course-overview lesson list shows the lesson complete after reload, and the catalog badge updates to "1/3 complete" — all 45 passed
 - [x] *(turn 15)* No content duplication: every new lesson links back to its principle page rather than restating it — confirmed present in all 15 new lesson files
-- [x] *(turn 15)* CI confirmed green on GitHub Actions for the actual push, checked via the API — see run IDs in changelog Turn 15
-- [x] *(turn 15)* Pages deploy confirmed to still succeed after these changes — see run IDs in changelog Turn 15
+- [x] *(turn 15)* CI confirmed green on GitHub Actions for the actual push, checked via the API — run `30472580979` (commit `5e5a64f`), `conclusion: success`
+- [x] *(turn 15)* Pages deploy confirmed to still succeed after these changes — run `30472581682` (commit `5e5a64f`), `conclusion: success`
 
 ### Explicitly OUT of scope for v6 (deferred, not forgotten)
 - The remaining 9 principles without a Craft course yet — future work, tracked above, not gold-plated in now
@@ -262,3 +262,5 @@ After v6: Foundations 4/5, Inclusive by Default 2/5, Task-Specific 1/6, Ethics 1
 ## v6 completion checkpoint
 
 v6 is DONE when every box above is checked and independently verified, the same discipline as v1-v5. At that point: stop, report status, and wait for explicit go-ahead before adding more courses.
+
+**Status as of turn 15: every box above is checked and independently verified — 5 subagent-built courses (20 files), grounding spot-checked against the real principle pages, `scripts/verify-site.py` (53/53 ok), the real W3C html5validator (0 genuine errors, after tracing a false-positive exit code to this environment's own JVM proxy banner), nav parity (1 unique variant across 53 files), and a 45-assertion Playwright test across all 5 new courses in light and dark mode. Pushed across 3 commits (`afc2238`, `af3960c`, `5e5a64f`); every one confirmed green via the GitHub Actions API — the final integration commit `5e5a64f`: CI run `30472580979` and Pages run `30472581682`, both `conclusion: success`. v6 is complete.**
