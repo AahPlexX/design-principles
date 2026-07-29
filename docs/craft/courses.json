@@ -1,0 +1,28 @@
+{
+  "courses": [
+    {
+      "id": "visual-hierarchy",
+      "title": "Where the Eye Goes First",
+      "hook": "Practice spotting broken hierarchy and fixing it with size, contrast, and position.",
+      "principle": "visual-hierarchy",
+      "principleTitle": "Visual Hierarchy",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "color-contrast",
+      "title": "Contrast You Can Prove",
+      "hook": "Practice reading contrast ratios and catching pairs that fail before a user does.",
+      "principle": "color-contrast",
+      "principleTitle": "Color & Contrast",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    },
+    {
+      "id": "accessibility",
+      "title": "Built for Everyone",
+      "hook": "Practice finding the keyboard traps and missing labels that shut people out.",
+      "principle": "accessibility",
+      "principleTitle": "Accessibility",
+      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+    }
+  ]
+}

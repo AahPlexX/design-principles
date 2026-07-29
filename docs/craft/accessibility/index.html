@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Page not found — Design Principles</title>
-<meta name="description" content="This page doesn't exist — find your way back to the design principles reference.">
-<link rel="canonical" href="https://aahplexx.github.io/design-principles/404.html">
-<meta property="og:title" content="Page not found">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aahplexx.github.io/design-principles/404.html">
-<meta property="og:description" content="This page doesn't exist — find your way back to the design principles reference.">
+<title>Built for Everyone — Craft | Design Principles</title>
+<meta name="description" content="Practice finding the keyboard traps and missing labels that shut people out.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/accessibility/">
+<meta property="og:title" content="Built for Everyone">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/accessibility/">
+<meta property="og:description" content="Practice finding the keyboard traps and missing labels that shut people out.">
 <meta property="og:site_name" content="Design Principles">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Page not found">
-<meta name="twitter:description" content="This page doesn't exist — find your way back to the design principles reference.">
+<meta name="twitter:title" content="Built for Everyone">
+<meta name="twitter:description" content="Practice finding the keyboard traps and missing labels that shut people out.">
 <link rel="stylesheet" href="/design-principles/assets/style.css">
 </head>
 <body>
@@ -24,7 +24,7 @@
     <a class="brand" href="/design-principles/">Design Principles</a>
     <nav class="site-nav" aria-label="Primary">
       <ul>
-        <li><a href="/design-principles/craft/">Craft</a></li>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
         <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
         <li><a href="/design-principles/principles/typography.html">Typography</a></li>
         <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
@@ -50,24 +50,27 @@
 
 <main id="main">
   <div class="wrap">
-    <h1>This page doesn't exist</h1>
+    <p><a href="/design-principles/craft/">&larr; Craft</a></p>
+    <h1>Built for Everyone</h1>
     <p class="definition">
-      The link that brought you here is either outdated or mistyped — this exact page was never
-      part of the site, or it's been renamed since whatever linked to it was written.
+      Practice finding the keyboard traps and missing labels that shut people out — three short
+      lessons, each with a real code example and instant feedback.
     </p>
 
-    <h2>What to do next</h2>
     <p>
-      Head back to the <a href="/design-principles/">home page</a> and use the filter box to find
-      the principle you were looking for, or pick one directly from the navigation above.
+      This course pairs with <a href="/design-principles/principles/accessibility.html">Accessibility</a>
+      — read that page first for the full explanation of why keyboard and screen-reader support
+      matter. This is where you practice spotting the actual code patterns that break them.
     </p>
 
-    <div class="callout">
-      <p>
-        If you followed a link from somewhere else on the web and it led you here, that link is
-        stale — the page it pointed to has moved or no longer exists under that name.
-      </p>
-    </div>
+    <h2>Lessons</h2>
+    <ul class="lesson-progress-list" data-course="accessibility">
+      <li data-lesson="lesson-1"><span class="lesson-check">✓</span><a href="lesson-1.html">Lesson 1: Keyboard reachability</a></li>
+      <li data-lesson="lesson-2"><span class="lesson-check">✓</span><a href="lesson-2.html">Lesson 2: Labels vs. placeholders</a></li>
+      <li data-lesson="lesson-3"><span class="lesson-check">✓</span><a href="lesson-3.html">Lesson 3: Focus visibility</a></li>
+    </ul>
+
+    <p><a href="lesson-1.html">Start Lesson 1 &rarr;</a></p>
   </div>
 </main>
 
@@ -76,5 +79,6 @@
     <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
   </div>
 </footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
 </body>
 </html>

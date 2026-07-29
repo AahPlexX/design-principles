@@ -6,11 +6,12 @@ This file governs how anyone — human or AI — writes, edits, or reviews conte
 
 This repo is the single source of truth (SSOT) for web design principles, methods, and concepts. Every concept has exactly one canonical page. Skills and prompts draw their checklists from that page instead of re-explaining the concept in their own words, so nothing drifts out of sync as the canonical page evolves.
 
-The work takes three exported forms:
+The work takes four exported forms:
 
 1. **The site** (`/docs`) — a browsable reference, published via GitHub Pages.
 2. **Skills** (`/skills`) — Claude Code skills that turn a principle into a checklist an agent can run against real work.
 3. **Prompts** (`/prompts`) — standalone system prompts that give an LLM the persona and judgment to apply these principles without being reminded.
+4. **Craft** (`/docs/craft`) — short, hands-on practice courses that pair with a principle page. The principle page is the textbook (why the rule holds); a Craft course is the practice (proving you can apply it). A course never re-teaches its principle's explanation — it links back to it, the same rule skills and prompts already follow.
 
 ## Rule Zero (internal only — never surface this on a page, in a skill, or in a prompt's visible text)
 
@@ -42,6 +43,37 @@ This is the one rule every other rule in this file exists to serve. If a new rul
 2. Add its card to the home page grid (`/docs/index.html`) — title plus the one-sentence definition, nothing more.
 3. If the concept has a pass/fail heuristic, add it to (or start) a matching skill in `/skills/`.
 4. Never duplicate the page's explanation inside a skill or prompt — link back to the page and extract only the actionable checklist.
+
+## Course skeleton (every course in `/docs/craft/*`)
+
+A Craft course is the practice companion to exactly one principle page. It never restates that page's explanation — it links to it, then puts the reader to work.
+
+**Naming rule.** A course's title is a short (3–6 word) concrete outcome-phrase, not a category label. "Where the Eye Goes First," not "Visual Hierarchy 101" or "Introduction to Hierarchy." If you can't tell what you'll be *able to do* after the course from its title alone, rewrite the title.
+
+**File layout — one manifest, one folder per course, nothing hand-duplicated:**
+```
+docs/craft/
+  index.html            the dedicated course index (data-driven from courses.json)
+  courses.json           single source of truth: id, title, hook, linked principle, lesson list
+  <course-id>/
+    index.html            course overview: the hook, what you'll practice, the lesson list
+    lesson-1.html, lesson-2.html, ...   one short lesson per file
+```
+The catalog page (`docs/craft/index.html`) renders itself from `courses.json` the same way the home page's search already reads `data-search` attributes — a new course is added to the manifest once, never hand-copied into a second listing.
+
+**Per course:**
+1. **The hook** — one sentence, stated as a concrete outcome, on the overview page and in the manifest (this is what sells the click — see Tone below for how persuasive differs from hype).
+2. **What you'll practice** — 1-2 sentences, plain language, naming the specific skill.
+3. **A link to the paired principle page** — "why this rule holds" lives there, not here.
+4. **2-4 short lessons**, each: a one-paragraph bite-sized framing (not a restatement of the principle page), then one interactive multiple-choice question with instant right/wrong feedback and a one-sentence explanation of *why* — never a question without a real explanation on both the correct and incorrect paths.
+5. **Progress**, tracked client-side only (`localStorage` via `docs/assets/craft-progress.js`) — no accounts, no server. A course/lesson is either complete or not; no points, streaks, or leaderboards (see Engineering standards — that's gamification scope, not proof-of-skill scope, and stays out until a real need for it exists).
+
+## Adding a new course
+
+1. Add the course's entry to `docs/craft/courses.json` first — id, title (per the naming rule above), hook, the principle it pairs with, and its lesson filenames.
+2. Write the course folder following the Course skeleton above.
+3. Add a "Practice this" link from the paired principle page to the new course — the only place the principle page should mention Craft at all.
+4. Run `python3 scripts/verify-site.py` before committing, same as any other site change.
 
 ## Engineering standards
 

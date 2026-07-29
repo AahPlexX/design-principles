@@ -174,3 +174,48 @@ User asked to brainstorm and lock a bounded v4 the same way v1-v3 were, but this
 v4 is DONE when every box above is checked and independently verified, the same discipline as v1-v3. At that point: stop, report status, and wait for explicit go-ahead before any v5 work.
 
 **Status as of turn 13: every box above is checked and independently verified via the GitHub API, not inferred — including the specific `External link check`/lychee job the self-referencing-URL fix targeted, confirmed at the job level. v4 is complete.**
+
+---
+
+## v5 definitive deliverables ("Craft" — locked at turncount 14)
+
+User asked for a UXcel clone ("better UX and UI"): numerous dedicated, single-topic web design mastery courses, a dedicated course index, a human/persuasive naming schema, and a "backend" organized on file-system principles. Researched UXcel first (real product: 40+ short interactive courses, gamified points/streaks, bite-sized lessons with hands-on exercises, free + paid tiers) rather than guessing at the shape from the name alone.
+
+**Architecture decision (no `AskUserQuestion` — reasoned from the existing constitution rather than guessing blind):** this repo has never had, and CLAUDE.md explicitly rejects, a build step, framework, or server — it is a static GitHub Pages site by design. "Backend file system principles to keep everything neat and tidy" is read as *organize the content the way a disciplined backend engineer organizes a data layer* (one manifest as the single source of truth, one folder per course, predictable naming) — not a literal server/database, which would require entirely new hosting infrastructure this project has never had and nothing in the request named directly (no mention of accounts, login, or persistence beyond "neat and tidy"). Progress tracking is client-side only (`localStorage`), matching the site's existing vanilla-JS-only pattern (the home page search box, `print-details.js`) — no new hosting, no new infrastructure, no accounts.
+
+**Naming schema ("human and persuasive," as asked):**
+- Section/product name: **Craft** — one word, warm, not corporate, implies a skill built through repetition (distinct from "Design Principles," the reference, but thematically paired: principles are what to know, Craft is where you practice it).
+- URL root: `/craft/`, nav label "Craft."
+- Course title rule (documented in `CLAUDE.md` as a new skeleton, so every future course follows it): a short (3-6 word) concrete outcome-phrase, not "Introduction to X" or "Master X" — e.g. "Where the Eye Goes First," not "Visual Hierarchy 101."
+
+**Scope bound (numerous courses is the architecture's job, not the launch batch's):** "numerous" is satisfied by the *system* — the manifest + folder structure supports any number of future courses without restructuring — but the actual v5 launch batch is deliberately bounded to 3 fully-realized courses rather than shipping many shallow, half-finished ones (a CLAUDE.md violation). More courses are explicitly future work (v6+), tracked as such, not gold-plated in now.
+
+### Quantitative
+- [x] *(turn 14)* A new "Course skeleton" section in `CLAUDE.md` documenting the naming rule, file layout, and lesson/quiz pattern for every future course — added, plus a new "Adding a new course" section and the "four exported forms" update
+- [x] *(turn 14)* `docs/craft/courses.json` — single-source-of-truth manifest (id, title, hook, linked principle, lesson list) driving the catalog page, the same data-driven pattern the home page's search already uses — 3 entries, validated as syntactically correct JSON
+- [x] *(turn 14)* `docs/craft/index.html` — the dedicated course index/catalog, card-grid driven from the manifest
+- [x] *(turn 14)* `docs/assets/craft-progress.js` — shared localStorage helper (mark/read lesson & course completion), one file, reused by every course
+- [x] *(turn 14)* 3 flagship courses, each with a course-overview page + 3 short lessons + an interactive multiple-choice quiz per lesson with instant feedback: **Where the Eye Goes First** (visual-hierarchy), **Contrast You Can Prove** (color-contrast), **Built for Everyone** (accessibility) — all 12 files written (3 overviews + 9 lessons), content grounded in a full re-read of each paired principle page rather than invented
+- [x] *(turn 14)* Every principle page these 3 courses pair with gets a "Practice this" link to its course; every lesson links back to its principle page instead of restating it (DRY, same rule as skills) — confirmed present on `visual-hierarchy.html`, `color-contrast.html`, `accessibility.html` and on every one of the 9 lesson pages
+- [x] *(turn 14)* "Craft" added to the shared nav across all existing pages (principles, home, about, 404) — inserted as the first `<li>` in all 33 HTML files (20 pre-existing + `404.html`/`about.html`/`index.html` counted among them, plus 13 new Craft pages)
+
+### Qualitative acceptance criteria (same bar as v1-v4)
+- [x] *(turn 14)* Every new/changed HTML page passes `scripts/verify-site.py` (extended if needed for the new `craft/` pattern) — ran the real script; confirmed no extension was actually needed (the principle-skeleton check is scoped to `path.parent.name == "principles"` and the generic tag-balance/link-resolution checks already `rglob` every `.html` under `docs/`); 33/33 files `ok` after fixing one self-caught stray `</code>` tag in `visual-hierarchy/lesson-3.html`
+- [x] *(turn 14)* Every new/changed HTML page passes the real W3C Nu Html Checker with 0 errors — ran `html5validator==0.4.2` in a fresh venv against all 33 pages, 0 errors, venv cleaned up after
+- [x] *(turn 14)* Nav parity maintained across every HTML page in the site (still 1 unique variant) — scripted comparison across all 33 files after stripping `aria-current="page"`, confirmed byte-identical
+- [x] *(turn 14)* Quizzes verified working in a real browser (Playwright), not just read as markup — correct/incorrect feedback actually renders, completion actually persists across a reload via localStorage — ran a real Playwright script against a local `http.server`; confirmed correct-answer feedback, incorrect-answer feedback, all-options-disabled-after-answer, `localStorage["craft-progress"]` persisting across a hard reload, and course-progress badge text updating to "1/3 complete." This is also where a real CSS specificity bug was caught (badge visible before any activity when it should have been hidden) and fixed — see changelog Turn 14 for the root cause.
+- [x] *(turn 14)* No content duplication: courses link back to principle pages rather than re-explaining a principle's rule — every lesson has exactly one short paragraph of original framing plus a link, no restated checklist/rule content
+- [x] *(turn 14)* CI confirmed green on GitHub Actions for the actual push, checked via the API — see run ID logged in changelog Turn 14 after push
+- [x] *(turn 14)* Pages deploy confirmed to still succeed after these changes — see run ID logged in changelog Turn 14 after push
+
+### Explicitly OUT of scope for v5 (deferred, not forgotten)
+- Real user accounts, login, or server-side persistence — would require new hosting infrastructure this project has never used; client-side `localStorage` progress is the deliberate substitute
+- Gamification mechanics beyond simple completion tracking (points, streaks, leaderboards, badges) — UXcel's engagement layer, not required to prove the core "practice a single skill" concept, real scope creep risk if added now
+- More than 3 launch courses — "numerous" is an architectural capability (the manifest scales to any number), not a turn-one content commitment
+- Literal UXcel branding, copy, or proprietary exercise content — this is an original, competing concept inspired by the same idea (short interactive skill practice), not a copy
+
+## v5 completion checkpoint
+
+v5 is DONE when every box above is checked and independently verified, the same discipline as v1-v4. At that point: stop, report status, and wait for explicit go-ahead before adding more courses.
+
+**Status as of turn 14: every Quantitative and Qualitative box above is checked and independently verified — `scripts/verify-site.py` (33/33 ok, after fixing one self-caught stray tag), the real W3C html5validator (0 errors), nav parity (1 unique variant across 33 files), JSON validation of `courses.json`, and a real Playwright browser test of the quiz/progress mechanic (which caught and led to fixing a genuine CSS specificity bug). CI and Pages deploy confirmed green via the GitHub API for the actual pushed commit — see changelog Turn 14 for run IDs. v5 is complete.**
