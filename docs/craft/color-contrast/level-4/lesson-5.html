@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 4, Lesson 5: Distinguishing adjacent chart categories without relying on hue alone — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice keeping neighboring chart categories tellable apart without depending on hue alone.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-4/lesson-5.html">
+<meta property="og:title" content="Level 4, Lesson 5: Distinguishing adjacent chart categories without relying on hue alone">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-4/lesson-5.html">
+<meta property="og:description" content="Practice keeping neighboring chart categories tellable apart without depending on hue alone.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 4, Lesson 5: Distinguishing adjacent chart categories without relying on hue alone">
+<meta name="twitter:description" content="Practice keeping neighboring chart categories tellable apart without depending on hue alone.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 4, Lesson 5: Distinguishing adjacent chart categories without relying on hue alone</h1>
+    <p>
+      Status colors are usually a small, fixed set — four or five values you can hand-pick for
+      lightness separation. Charts are a harder case: a stacked bar chart or a multi-line graph
+      can have many categories, often generated from an automatic palette, and once you're past a
+      handful of colors, some neighboring hues are going to land close enough to collide under a
+      color vision deficiency no matter how carefully the palette was built. At that point the
+      fix isn't a better palette — it's giving each category a second, non-color way to be told
+      apart: a direct label, a distinct line pattern, or a texture on the fill.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-4-lesson-5">
+      <p class="quiz-question">
+        A stacked bar chart has six categories drawn from an auto-generated color palette. Two
+        of the middle categories are both muted teal-ish tones that render as the same color once
+        simulated for a red-green deficiency. What's the most direct fix?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Give each category a second way to be identified that doesn't depend on color — a label placed directly on the segment, or a distinct fill pattern per category.</button></li>
+        <li><button class="quiz-option" data-correct="false">Increase the saturation of the whole palette so all six colors look more vivid.</button></li>
+        <li><button class="quiz-option" data-correct="false">Add a bigger legend title above the chart.</button></li>
+        <li><button class="quiz-option" data-correct="false">Remove two of the six categories so the chart has fewer colors, regardless of what the data needs.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Once a palette has enough categories that some neighbors are going to land close
+          together under some pattern of color vision deficiency, re-tuning the palette alone
+          doesn't reliably fix it — brightening or shifting the whole set can just move the
+          collision to a different pair of categories. Giving each category an independent,
+          non-color signal, like a label placed directly on it or a distinct pattern, keeps it
+          readable even if two colors still collide.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-4.html">&larr; Lesson 4: Choosing a status palette that survives colorblind simulation</a>
+      <a href="../level-5/lesson-1.html">Level 5, Lesson 1: Dark mode isn't automatically higher contrast &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 5, Lesson 4: Elevation/surface colors need their own contrast pass — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice checking contrast against every raised surface a dark theme uses, not just its base background.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-4.html">
+<meta property="og:title" content="Level 5, Lesson 4: Elevation/surface colors need their own contrast pass">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-4.html">
+<meta property="og:description" content="Practice checking contrast against every raised surface a dark theme uses, not just its base background.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 5, Lesson 4: Elevation/surface colors need their own contrast pass">
+<meta name="twitter:description" content="Practice checking contrast against every raised surface a dark theme uses, not just its base background.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 5, Lesson 4: Elevation/surface colors need their own contrast pass</h1>
+    <p>
+      Dark interfaces often show depth by making a raised surface — a card, a dropdown, a modal —
+      a lighter shade of gray than the page behind it, since drop shadows barely read against a
+      dark background. That means a single dark theme can have several different background
+      shades stacked on top of each other, not just one.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-5-lesson-4">
+      <p class="quiz-question">
+        A dark theme's design tokens define a page background of <code>#121212</code> and a modal
+        surface of <code>#2c2c2c</code> (lighter, so it reads as "raised" above the page). The
+        theme's body text color was measured and approved against the <code>#121212</code> page
+        background only. That same text color is then used inside the modal. What should the team
+        check before shipping the modal?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The contrast ratio again, specifically against the lighter modal surface — elevated surfaces in dark mode are usually lighter than the base background, which shrinks the gap between them and light-colored text, so a ratio that passed on the base doesn't automatically pass on every elevated surface.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing further — a text color that passes against any background in a theme passes against every background in that same theme.</button></li>
+        <li><button class="quiz-option" data-correct="false">Whether the modal has a drop shadow, since shadows are what actually determine text contrast.</button></li>
+        <li><button class="quiz-option" data-correct="false">Whether the modal is triggered by a click or a hover, since the trigger type determines the required contrast ratio.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Elevation in dark mode is usually communicated with a lighter surface color rather than a
+          shadow, so a theme can end up with several distinct background shades layered on top of
+          the base. Light-colored text sitting on a lighter, more-elevated surface is closer in
+          lightness to that surface than it was to the darker base, which shrinks the ratio. Each
+          surface shade needs its own contrast check against the text placed on it.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Saturated colors that work in light mode often glare in dark mode</a>
+      <a href="lesson-5.html">Lesson 5: A ratio verified in one theme doesn't carry over to the other &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

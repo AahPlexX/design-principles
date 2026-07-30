@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 8, Lesson 4: A disabled button that reads as "just faint" instead of "unavailable" — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice spotting a disabled button that only looks quiet rather than clearly unavailable.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-8/lesson-4.html">
+<meta property="og:title" content="Level 8, Lesson 4: A disabled button that reads as &quot;just faint&quot; instead of &quot;unavailable&quot;">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-8/lesson-4.html">
+<meta property="og:description" content="Practice spotting a disabled button that only looks quiet rather than clearly unavailable.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 8, Lesson 4: A disabled button that reads as &quot;just faint&quot; instead of &quot;unavailable&quot;">
+<meta name="twitter:description" content="Practice spotting a disabled button that only looks quiet rather than clearly unavailable.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 8, Lesson 4: A disabled button that reads as "just faint" instead of "unavailable"</h1>
+    <p>
+      A disabled control is usually let off the hook on contrast, on the assumption that a user
+      can already tell it's off some other way. That assumption only holds if "some other way"
+      actually exists — if dimming the color is the only change, a disabled button and a quiet,
+      still-clickable one can look identical.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-8-lesson-4">
+      <p class="quiz-question">
+        A "Submit" button dims to a soft gray, at roughly 3:1 label contrast, whenever a required
+        field is empty. Nothing else about it changes: same shape, same cursor on hover, no lock
+        icon, no helper text. A designer defends it by saying disabled buttons aren't held to the
+        text contrast minimum, so it's fine. What's the flaw in that defense?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The relaxed rule for disabled elements assumes the control is obviously unavailable through some other cue — if dimming is the only signal and it just looks like a quietly styled active button, low contrast doesn't communicate "unavailable," it just looks like a mistake.</button></li>
+        <li><button class="quiz-option" data-correct="false">There's no such thing as relaxed contrast rules for disabled elements — every state has to pass the same minimum as body text.</button></li>
+        <li><button class="quiz-option" data-correct="false">The button should be removed entirely from the layout instead of disabled.</button></li>
+        <li><button class="quiz-option" data-correct="false">The real fix is raising the button's opacity to 100% at all times, whether it's active or not.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Disabled controls get more contrast latitude because a user isn't meant to be
+          straining to read them — they're not supposed to be interacted with at all, and that
+          should already be obvious. If the only cue is "a bit lighter than the active version,"
+          people can't tell the difference between disabled and deliberately subtle, and they'll
+          keep clicking. Pair the dimmed color with a real state change: a different cursor,
+          a tooltip explaining what's missing, or copy that names the blocking condition.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Placeholder text dark enough to be mistaken for a real value</a>
+      <a href="lesson-5.html">Lesson 5: Toast/tooltip dismiss icons too faint against their own background &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

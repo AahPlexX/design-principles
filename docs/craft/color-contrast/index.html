@@ -53,8 +53,8 @@
     <p><a href="/design-principles/craft/">&larr; Craft</a></p>
     <h1>Contrast You Can Prove</h1>
     <p class="definition">
-      Practice reading contrast ratios and catching pairs that fail before a user does — three
-      short lessons, each with a real ratio and instant feedback.
+      Practice reading contrast ratios and catching pairs that fail before a user does — real
+      ratios and real UI, level by level, each with instant feedback.
     </p>
 
     <p>
@@ -63,14 +63,84 @@
       and how the ratio is calculated. This is where you practice applying it.
     </p>
 
-    <h2>Lessons</h2>
+    <h2>Levels</h2>
+
+    <h3>Level 1: The Ratio, Precisely</h3>
     <ul class="lesson-progress-list" data-course="color-contrast">
-      <li data-lesson="lesson-1"><span class="lesson-check">✓</span><a href="lesson-1.html">Lesson 1: Reading the ratio, not guessing it</a></li>
-      <li data-lesson="lesson-2"><span class="lesson-check">✓</span><a href="lesson-2.html">Lesson 2: Large text gets a lower bar</a></li>
-      <li data-lesson="lesson-3"><span class="lesson-check">✓</span><a href="lesson-3.html">Lesson 3: Color-only meaning</a></li>
+      <li data-lesson="level-1-lesson-1"><span class="lesson-check">✓</span><a href="level-1/lesson-1.html">Lesson 1: Luminance, not RGB distance</a></li>
+      <li data-lesson="level-1-lesson-2"><span class="lesson-check">✓</span><a href="level-1/lesson-2.html">Lesson 2: Always lighter over darker</a></li>
+      <li data-lesson="level-1-lesson-3"><span class="lesson-check">✓</span><a href="level-1/lesson-3.html">Lesson 3: The scale: 1:1 to 21:1</a></li>
+      <li data-lesson="level-1-lesson-4"><span class="lesson-check">✓</span><a href="level-1/lesson-4.html">Lesson 4: A screen can lie about contrast</a></li>
     </ul>
 
-    <p><a href="lesson-1.html">Start Lesson 1 &rarr;</a></p>
+    <h3>Level 2: Text Thresholds in Context</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-2-lesson-1"><span class="lesson-check">✓</span><a href="level-2/lesson-1.html">Lesson 1: The 4.5:1 minimum for body text</a></li>
+      <li data-lesson="level-2-lesson-2"><span class="lesson-check">✓</span><a href="level-2/lesson-2.html">Lesson 2: The 3:1 minimum for large text</a></li>
+      <li data-lesson="level-2-lesson-3"><span class="lesson-check">✓</span><a href="level-2/lesson-3.html">Lesson 3: Why large text gets a lower bar</a></li>
+      <li data-lesson="level-2-lesson-4"><span class="lesson-check">✓</span><a href="level-2/lesson-4.html">Lesson 4: Helper text and captions still owe the full minimum</a></li>
+      <li data-lesson="level-2-lesson-5"><span class="lesson-check">✓</span><a href="level-2/lesson-5.html">Lesson 5: Disabled controls are exempt, but must still read as disabled</a></li>
+    </ul>
+
+    <h3>Level 3: Beyond Text — Non-Text &amp; UI Component Contrast</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-3-lesson-1"><span class="lesson-check">✓</span><a href="level-3/lesson-1.html">Lesson 1: Icon-only buttons need contrast too</a></li>
+      <li data-lesson="level-3-lesson-2"><span class="lesson-check">✓</span><a href="level-3/lesson-2.html">Lesson 2: Input borders have their own minimum</a></li>
+      <li data-lesson="level-3-lesson-3"><span class="lesson-check">✓</span><a href="level-3/lesson-3.html">Lesson 3: Focus indicators need double contrast</a></li>
+      <li data-lesson="level-3-lesson-4"><span class="lesson-check">✓</span><a href="level-3/lesson-4.html">Lesson 4: Chart lines need contrast too</a></li>
+    </ul>
+
+    <h3>Level 4: Designing for Color Vision Deficiency</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-4-lesson-1"><span class="lesson-check">✓</span><a href="level-4/lesson-1.html">Lesson 1: Colorblindness isn't one thing</a></li>
+      <li data-lesson="level-4-lesson-2"><span class="lesson-check">✓</span><a href="level-4/lesson-2.html">Lesson 2: Red/green status pairing is the most common failure</a></li>
+      <li data-lesson="level-4-lesson-3"><span class="lesson-check">✓</span><a href="level-4/lesson-3.html">Lesson 3: Simulating color vision deficiency during design review</a></li>
+      <li data-lesson="level-4-lesson-4"><span class="lesson-check">✓</span><a href="level-4/lesson-4.html">Lesson 4: Choosing a status palette that survives simulation</a></li>
+      <li data-lesson="level-4-lesson-5"><span class="lesson-check">✓</span><a href="level-4/lesson-5.html">Lesson 5: Distinguishing chart categories without relying on hue alone</a></li>
+    </ul>
+
+    <h3>Level 5: Dark Mode &amp; Theming</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-5-lesson-1"><span class="lesson-check">✓</span><a href="level-5/lesson-1.html">Lesson 1: Dark mode isn't automatically higher contrast</a></li>
+      <li data-lesson="level-5-lesson-2"><span class="lesson-check">✓</span><a href="level-5/lesson-2.html">Lesson 2: Pure white on pure black causes halation</a></li>
+      <li data-lesson="level-5-lesson-3"><span class="lesson-check">✓</span><a href="level-5/lesson-3.html">Lesson 3: Saturated colors often glare in dark mode</a></li>
+      <li data-lesson="level-5-lesson-4"><span class="lesson-check">✓</span><a href="level-5/lesson-4.html">Lesson 4: Elevation/surface colors need their own contrast pass</a></li>
+      <li data-lesson="level-5-lesson-5"><span class="lesson-check">✓</span><a href="level-5/lesson-5.html">Lesson 5: A ratio verified in one theme doesn't carry over</a></li>
+    </ul>
+
+    <h3>Level 6: Contrast on Unpredictable Backgrounds</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-6-lesson-1"><span class="lesson-check">✓</span><a href="level-6/lesson-1.html">Lesson 1: Text over photos needs a tested scrim</a></li>
+      <li data-lesson="level-6-lesson-2"><span class="lesson-check">✓</span><a href="level-6/lesson-2.html">Lesson 2: A gradient can pass at one end and fail at the other</a></li>
+      <li data-lesson="level-6-lesson-3"><span class="lesson-check">✓</span><a href="level-6/lesson-3.html">Lesson 3: Video captions need their own outline/scrim</a></li>
+      <li data-lesson="level-6-lesson-4"><span class="lesson-check">✓</span><a href="level-6/lesson-4.html">Lesson 4: Translucent "glass" panels reintroduce the same problem</a></li>
+    </ul>
+
+    <h3>Level 7: Tools &amp; Workflow</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-7-lesson-1"><span class="lesson-check">✓</span><a href="level-7/lesson-1.html">Lesson 1: Browser DevTools' color picker</a></li>
+      <li data-lesson="level-7-lesson-2"><span class="lesson-check">✓</span><a href="level-7/lesson-2.html">Lesson 2: Dedicated checkers, e.g. WebAIM's</a></li>
+      <li data-lesson="level-7-lesson-3"><span class="lesson-check">✓</span><a href="level-7/lesson-3.html">Lesson 3: Check the color where it's actually used</a></li>
+      <li data-lesson="level-7-lesson-4"><span class="lesson-check">✓</span><a href="level-7/lesson-4.html">Lesson 4: Baking contrast checks into design tokens/CI</a></li>
+    </ul>
+
+    <h3>Level 8: Real-World Failure Patterns Across UI</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-8-lesson-1"><span class="lesson-check">✓</span><a href="level-8/lesson-1.html">Lesson 1: Ghost buttons</a></li>
+      <li data-lesson="level-8-lesson-2"><span class="lesson-check">✓</span><a href="level-8/lesson-2.html">Lesson 2: Link color indistinguishable from body text</a></li>
+      <li data-lesson="level-8-lesson-3"><span class="lesson-check">✓</span><a href="level-8/lesson-3.html">Lesson 3: Placeholder text mistaken for a real value</a></li>
+      <li data-lesson="level-8-lesson-4"><span class="lesson-check">✓</span><a href="level-8/lesson-4.html">Lesson 4: A disabled button that reads as "just faint"</a></li>
+      <li data-lesson="level-8-lesson-5"><span class="lesson-check">✓</span><a href="level-8/lesson-5.html">Lesson 5: Toast/tooltip dismiss icons too faint</a></li>
+    </ul>
+
+    <h3>Level 9: Where the Standard Is Headed</h3>
+    <ul class="lesson-progress-list" data-course="color-contrast">
+      <li data-lesson="level-9-lesson-1"><span class="lesson-check">✓</span><a href="level-9/lesson-1.html">Lesson 1: APCA vs. the WCAG 2 ratio</a></li>
+      <li data-lesson="level-9-lesson-2"><span class="lesson-check">✓</span><a href="level-9/lesson-2.html">Lesson 2: Not a safe target yet</a></li>
+      <li data-lesson="level-9-lesson-3"><span class="lesson-check">✓</span><a href="level-9/lesson-3.html">Lesson 3: Color spaces built for predictable steps</a></li>
+    </ul>
+
+    <p><a href="level-1/lesson-1.html">Start Lesson 1 &rarr;</a></p>
   </div>
 </main>
 

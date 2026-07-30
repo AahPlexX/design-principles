@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 7, Lesson 4: Baking contrast checks into design tokens/CI — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice catching contrast drift before it ships, not after a user complains.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-7/lesson-4.html">
+<meta property="og:title" content="Level 7, Lesson 4: Baking contrast checks into design tokens/CI">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-7/lesson-4.html">
+<meta property="og:description" content="Practice catching contrast drift before it ships, not after a user complains.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 7, Lesson 4: Baking contrast checks into design tokens/CI">
+<meta name="twitter:description" content="Practice catching contrast drift before it ships, not after a user complains.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 7, Lesson 4: Baking contrast checks into design tokens/CI</h1>
+    <p>
+      A manual check catches a problem once. It won't catch the same problem when someone edits a
+      shared color token six months later and every component using it quietly drifts out of
+      compliance. The fix is to make the computer check automatically, every time, instead of
+      relying on someone remembering to look.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-7-lesson-4">
+      <p class="quiz-question">
+        A design system defines a muted-text token at <code>#8a8a8a</code> against a surface
+        token of <code>#ffffff</code>, documented as passing. Six months later, a designer
+        lightens the muted-text token for a cleaner look, without rechecking contrast. Nobody
+        notices until a support ticket comes in about unreadable captions. What fix prevents this
+        from happening again, rather than just patching this one instance?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Add an automated check to the build pipeline that recomputes the ratio for every documented token pair and fails the build if a change drops one below the required minimum.</button></li>
+        <li><button class="quiz-option" data-correct="false">Ask designers to double-check contrast by eye before every token change.</button></li>
+        <li><button class="quiz-option" data-correct="false">Delete the muted-text token entirely so there's nothing left to get wrong.</button></li>
+        <li><button class="quiz-option" data-correct="false">Schedule a manual contrast audit once a year.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A one-time check only proves a pair was fine on the day someone looked at it. Wiring the
+          same math into continuous integration — the automated checks that run on every code
+          change — means any token edit that breaks a documented pair fails the build immediately,
+          instead of shipping quietly and waiting for a user to notice.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Check the color where it's actually used, not in isolation</a>
+      <a href="../level-8/lesson-1.html">Level 8, Lesson 1: Ghost buttons &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

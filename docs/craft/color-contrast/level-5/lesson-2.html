@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 2: Large text gets a lower bar — Contrast You Can Prove | Design Principles</title>
-<meta name="description" content="Practice applying the 3:1 minimum that applies to large text instead of the 4.5:1 body-text minimum.">
-<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/lesson-2.html">
-<meta property="og:title" content="Lesson 2: Large text gets a lower bar">
+<title>Level 5, Lesson 2: Pure white on pure black causes halation for some readers — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice weighing a maximum-contrast color swap against the reading discomfort it can cause.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-2.html">
+<meta property="og:title" content="Level 5, Lesson 2: Pure white on pure black causes halation for some readers">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/lesson-2.html">
-<meta property="og:description" content="Practice applying the 3:1 minimum that applies to large text instead of the 4.5:1 body-text minimum.">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-2.html">
+<meta property="og:description" content="Practice weighing a maximum-contrast color swap against the reading discomfort it can cause.">
 <meta property="og:site_name" content="Design Principles">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lesson 2: Large text gets a lower bar">
-<meta name="twitter:description" content="Practice applying the 3:1 minimum that applies to large text instead of the 4.5:1 body-text minimum.">
+<meta name="twitter:title" content="Level 5, Lesson 2: Pure white on pure black causes halation for some readers">
+<meta name="twitter:description" content="Practice weighing a maximum-contrast color swap against the reading discomfort it can cause.">
 <link rel="stylesheet" href="/design-principles/assets/style.css">
 </head>
 <body>
@@ -51,28 +51,35 @@
 <main id="main">
   <div class="wrap">
     <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
-    <h1>Lesson 2: Large text gets a lower bar</h1>
+    <h1>Level 5, Lesson 2: Pure white on pure black causes halation for some readers</h1>
     <p>
-      The 4.5:1 minimum is for body text. Large text — 24px and up, or 18.66px and up if it's
-      bold — only needs to clear 3:1. Bigger letterforms are inherently easier to read at lower
-      contrast, so the bar genuinely is lower, not just relaxed as a shortcut.
+      Maximum contrast sounds like the safe default: pure white text on pure black background
+      clears every ratio with room to spare. But the sharp edge between the two extremes creates a
+      side effect that a ratio number alone won't show you.
     </p>
 
-    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="lesson-2">
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-5-lesson-2">
       <p class="quiz-question">
-        A 28px bold heading measures 3.2:1 against its background. Does it pass?
+        A dark-mode redesign changes body text from an off-white
+        (<code>#e8e8e8</code>) on dark gray (<code>#121212</code>) to pure white
+        (<code>#ffffff</code>) on pure black (<code>#000000</code>), on the theory that maximum
+        contrast is always the safest choice. A reader with astigmatism reports that the text now
+        seems to "glow" or blur at the edges, making it harder to read than the previous version.
+        What's going on?
       </p>
       <ul class="quiz-options">
-        <li><button class="quiz-option" data-correct="false">No — all text needs at least 4.5:1, no exceptions.</button></li>
-        <li><button class="quiz-option" data-correct="true">Yes — text this large and bold only needs 3:1, and 3.2:1 clears it.</button></li>
-        <li><button class="quiz-option" data-correct="false">No — headings actually need a higher ratio than body text, not lower.</button></li>
-        <li><button class="quiz-option" data-correct="false">Only if the heading is also underlined.</button></li>
+        <li><button class="quiz-option" data-correct="true">The stark edge between pure white and pure black can cause halation — a blur or glow effect around high-contrast edges — for some readers with astigmatism, even though the numeric ratio went up.</button></li>
+        <li><button class="quiz-option" data-correct="false">The reader's screen brightness must be set too high; the color values themselves aren't a factor.</button></li>
+        <li><button class="quiz-option" data-correct="false">This can't be a real effect, since a passing contrast ratio guarantees a comfortable reading experience for every reader.</button></li>
+        <li><button class="quiz-option" data-correct="false">Halation only happens with colored text, never with pure white or pure black.</button></li>
       </ul>
       <div class="quiz-feedback" hidden>
         <p>
-          At 28px bold, this qualifies as "large text" under the size/weight thresholds (24px+
-          regular, or 18.66px+ bold), so the 3:1 minimum applies instead of 4.5:1. 3.2:1 clears
-          that bar, even though it would fail the stricter body-text minimum.
+          This is halation: the extreme edge between pure white and pure black can produce a glow
+          or blur for some readers, most often those with astigmatism. It's a real cost of maxing
+          out contrast that the ratio number doesn't capture. Slightly off-white text on a dark
+          gray (not pure black) background is usually more comfortable to read while still
+          clearing the minimum ratio.
         </p>
       </div>
     </div>
@@ -82,8 +89,8 @@
     </p>
 
     <nav class="lesson-nav">
-      <a href="lesson-1.html">&larr; Lesson 1: Reading the ratio, not guessing it</a>
-      <a href="lesson-3.html">Lesson 3: Color-only meaning &rarr;</a>
+      <a href="lesson-1.html">&larr; Lesson 1: Dark mode isn't automatically higher contrast</a>
+      <a href="lesson-3.html">Lesson 3: Saturated colors that work in light mode often glare in dark mode &rarr;</a>
     </nav>
   </div>
 </main>

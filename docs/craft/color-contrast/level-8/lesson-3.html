@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 8, Lesson 3: Placeholder text dark enough to be mistaken for a real value — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice telling when placeholder text is too close in darkness to a real, entered value.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-8/lesson-3.html">
+<meta property="og:title" content="Level 8, Lesson 3: Placeholder text dark enough to be mistaken for a real value">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-8/lesson-3.html">
+<meta property="og:description" content="Practice telling when placeholder text is too close in darkness to a real, entered value.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 8, Lesson 3: Placeholder text dark enough to be mistaken for a real value">
+<meta name="twitter:description" content="Practice telling when placeholder text is too close in darkness to a real, entered value.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 8, Lesson 3: Placeholder text dark enough to be mistaken for a real value</h1>
+    <p>
+      Placeholder text has an odd job: readable enough to work as a hint, but light enough that
+      nobody confuses it for something already typed in. Most contrast advice pushes placeholder
+      color lighter to hit a minimum ratio — but a placeholder can pass every ratio check and
+      still fail its actual purpose by looking exactly like real, entered data.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-8-lesson-3">
+      <p class="quiz-question">
+        An email field's placeholder, "you@example.com", is styled in <code>#4b4b4b</code> — the
+        same color used for real, typed-in text elsewhere on the same form — and it clears the
+        body-text contrast minimum easily. During testing, several people leave required fields
+        blank because they believed the fields were already filled in. What actually went wrong?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">The placeholder failed the contrast minimum and needs to be made lighter to fix the confusion.</button></li>
+        <li><button class="quiz-option" data-correct="true">Clearing the contrast minimum only guarantees the placeholder is readable — it says nothing about whether it's visually distinct enough from real entered text to be told apart at a glance.</button></li>
+        <li><button class="quiz-option" data-correct="false">Placeholder text should always render at pure black, regardless of what else is on the form.</button></li>
+        <li><button class="quiz-option" data-correct="false">The form needs a red asterisk next to each required field to fix this.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A contrast ratio measures legibility, not identity — it can't tell a hint from an
+          answer. If placeholder text and real input text share a color, weight, and size, the
+          field looks filled in even when it isn't. The fix is a visible gap between the two:
+          placeholders sit clearly lighter than real values, while still landing above the
+          minimum needed to be read at all.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Link color indistinguishable from body text once underline is removed</a>
+      <a href="lesson-4.html">Lesson 4: A disabled button that reads as "just faint" instead of "unavailable" &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 9, Lesson 1: APCA vs. the WCAG 2 ratio — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice telling how a font-aware contrast score differs from a single fixed ratio.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-9/lesson-1.html">
+<meta property="og:title" content="Level 9, Lesson 1: APCA vs. the WCAG 2 ratio">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-9/lesson-1.html">
+<meta property="og:description" content="Practice telling how a font-aware contrast score differs from a single fixed ratio.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 9, Lesson 1: APCA vs. the WCAG 2 ratio">
+<meta name="twitter:description" content="Practice telling how a font-aware contrast score differs from a single fixed ratio.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 9, Lesson 1: APCA vs. the WCAG 2 ratio</h1>
+    <p>
+      Every ratio you've calculated so far in this course treats color as the only input: one
+      text color, one background color, one number, regardless of whether that text renders at
+      12px thin or 40px bold. APCA is an alternative scoring method built around a different
+      idea — that how readable a color pair looks depends on the text's size and weight too, not
+      color alone, so the same two colors can score differently depending on how they're actually
+      being used on the page.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-9-lesson-1">
+      <p class="quiz-question">
+        A design system has one dark-gray text color used two ways: as bold 15px labels on
+        form fields, and as regular-weight 15px helper text underneath them. Both uses sit on the
+        same white background. A standard ratio checker reports the exact same number for both,
+        since the color pair is identical. An APCA-based checker, however, scores the bold
+        labels noticeably higher than the regular-weight helper text. Why the difference?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">The checker made an error — identical color pairs must always produce identical contrast scores no matter what.</button></li>
+        <li><button class="quiz-option" data-correct="true">APCA factors the text's weight and size into its score, not just the color pair, so bold text at a given size can score better than regular-weight text at that same size and color.</button></li>
+        <li><button class="quiz-option" data-correct="false">Bold text is rendered in a slightly different color by the browser, so the two labels aren't actually the same color pair.</button></li>
+        <li><button class="quiz-option" data-correct="false">APCA only scores background colors, so text weight and a standard ratio checker are measuring two unrelated things.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A traditional ratio is pure color math — it can't see the font at all, so it returns
+          the same number whether the text is thin or bold. APCA is built to account for how
+          weight and size change legibility, scoring heavier or larger text more favorably than
+          thinner or smaller text set in the exact same colors. That's the core difference: one
+          method measures the color pair, the other measures the color pair as it's actually
+          being rendered.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="../level-8/lesson-5.html">&larr; Level 8, Lesson 5: Toast/tooltip dismiss icons too faint against their own background</a>
+      <a href="lesson-2.html">Level 9, Lesson 2: Not a safe target yet &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

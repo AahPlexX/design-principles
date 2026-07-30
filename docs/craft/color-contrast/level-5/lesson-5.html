@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 5, Lesson 5: A ratio verified in one theme doesn't carry over to the other — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice spotting why a contrast sign-off in one theme doesn't excuse skipping the check on the other.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-5.html">
+<meta property="og:title" content="Level 5, Lesson 5: A ratio verified in one theme doesn't carry over to the other">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-5.html">
+<meta property="og:description" content="Practice spotting why a contrast sign-off in one theme doesn't excuse skipping the check on the other.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 5, Lesson 5: A ratio verified in one theme doesn't carry over to the other">
+<meta name="twitter:description" content="Practice spotting why a contrast sign-off in one theme doesn't excuse skipping the check on the other.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 5, Lesson 5: A ratio verified in one theme doesn't carry over to the other</h1>
+    <p>
+      Contrast sign-off usually happens once, on whichever theme gets built or reviewed first.
+      Shipping the second theme afterward on the assumption that "the design system already passed
+      contrast" skips the one step that actually proves anything: checking the specific colors the
+      second theme uses.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-5-lesson-5">
+      <p class="quiz-question">
+        A component library's contrast is checked and signed off entirely in light mode. Its
+        dark-mode variant isn't a literal color inversion — it uses a separate set of color tokens
+        for text and backgrounds, including a dark-mode error state (a muted red on a dark,
+        red-tinted card). The dark-mode tokens ship without a separate contrast check, on the
+        reasoning that "contrast already passed for this component." What's wrong with that
+        reasoning?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Passing contrast in one theme says nothing about a different theme's color pairs — dark mode here uses an entirely separate set of tokens, and each pairing needs its own independent check before it ships.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing is wrong; once any theme built from a component passes contrast, every other theme built from it passes automatically.</button></li>
+        <li><button class="quiz-option" data-correct="false">The mistake was checking light mode before dark mode; checking dark mode first would have made the sign-off valid for both.</button></li>
+        <li><button class="quiz-option" data-correct="false">Error states are exempt from contrast minimums, since users already expect them to stand out on their own.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A contrast ratio is proved for one specific pair of colors, not for a component in the
+          abstract. Dark mode here isn't a straightforward inversion of light mode — it's a
+          different set of tokens entirely, so the light-mode sign-off tells you nothing about
+          whether the dark-mode error text actually clears the minimum against its own background.
+          Each theme's color pairs have to be verified on their own.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-4.html">&larr; Lesson 4: Elevation/surface colors need their own contrast pass</a>
+      <a href="../level-6/lesson-1.html">Level 6, Lesson 1: Text over photos needs a tested scrim, not a guess &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

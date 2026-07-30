@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 9, Lesson 3: Color spaces built for predictable steps — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice recognizing what a perceptually uniform color space actually solves, and doesn't.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-9/lesson-3.html">
+<meta property="og:title" content="Level 9, Lesson 3: Color spaces built for predictable steps">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-9/lesson-3.html">
+<meta property="og:description" content="Practice recognizing what a perceptually uniform color space actually solves, and doesn't.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 9, Lesson 3: Color spaces built for predictable steps">
+<meta name="twitter:description" content="Practice recognizing what a perceptually uniform color space actually solves, and doesn't.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 9, Lesson 3: Color spaces built for predictable steps</h1>
+    <p>
+      Build a five-step tint scale by adjusting lightness in equal numeric jumps in an older color
+      model, and the steps rarely look equal — two shades can look nearly identical while the
+      next jump looks huge. That's because those older models weren't built around how the eye
+      actually perceives brightness. A newer generation of color spaces, OKLCH being one that
+      some designers have started reaching for, is designed so a numeric step tracks more closely
+      with the perceived step. It's an emerging tool for reasoning about color relationships, not
+      an official requirement, and it doesn't replace checking the resulting contrast.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-9-lesson-3">
+      <p class="quiz-question">
+        A designer builds a five-shade button scale (default, hover, active, and two disabled
+        states) by moving lightness in equal steps in an older color model. Two of the shades end
+        up looking almost identical on screen, while another step looks jarring. A teammate
+        suggests rebuilding the scale in a perceptually uniform color space like OKLCH instead.
+        What problem would that most likely fix?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Equal numeric steps in a space like OKLCH correspond more closely to equal perceived steps, so the resulting shades would look more evenly spaced instead of some blending together and others jumping.</button></li>
+        <li><button class="quiz-option" data-correct="false">Switching color spaces automatically guarantees every shade in the scale passes contrast requirements, so no further checking would be needed.</button></li>
+        <li><button class="quiz-option" data-correct="false">OKLCH is a mandatory replacement for hex and RGB values in current browsers, so this fixes a rendering error.</button></li>
+        <li><button class="quiz-option" data-correct="false">It wouldn't fix anything — perceived unevenness in a color scale is unrelated to which color space defines the values.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          The uneven-looking scale happens because equal numeric lightness steps in an older
+          model don't correspond to equal perceived brightness steps. A perceptually uniform
+          space like OKLCH is built so the numbers track perception more closely, which makes a
+          scale like this easier to predict and adjust by eye. It's a genuinely useful way to
+          reason about color relationships — but it's still an emerging approach some designers
+          use, not a settled requirement anywhere, and picking colors in it doesn't skip the step
+          of actually checking the contrast ratio once the shades are chosen.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Level 9, Lesson 2: Not a safe target yet</a>
+      <a href="/design-principles/craft/color-contrast/">Back to course overview &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

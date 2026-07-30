@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 4, Lesson 3: Simulating color vision deficiency during design review — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice using color-vision simulation during design review to catch failures a contrast checker alone won't reveal.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-4/lesson-3.html">
+<meta property="og:title" content="Level 4, Lesson 3: Simulating color vision deficiency during design review">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-4/lesson-3.html">
+<meta property="og:description" content="Practice using color-vision simulation during design review to catch failures a contrast checker alone won't reveal.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 4, Lesson 3: Simulating color vision deficiency during design review">
+<meta name="twitter:description" content="Practice using color-vision simulation during design review to catch failures a contrast checker alone won't reveal.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 4, Lesson 3: Simulating color vision deficiency during design review</h1>
+    <p>
+      Contrast ratio and color-vision simulation test two completely different things. Contrast
+      ratio compares how light or dark two colors are against each other — it has nothing to do
+      with hue. A saturated red and a saturated green can land at nearly the same lightness, so
+      someone with a red-green deficiency can see them as visually identical even though each one
+      individually passes a contrast check against the background. Most browsers' developer
+      tools include a way to render a page as it would look under different color vision
+      deficiencies, and dedicated simulator tools do the same for exported designs. Running that
+      simulation on the real screen — not just checking ratios — is the step that catches this
+      failure before a user does.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-4-lesson-3">
+      <p class="quiz-question">
+        A screen's error state uses a saturated red and its success state uses a saturated green,
+        each individually measured at a comfortable contrast ratio against the background. A
+        reviewer calls the pair "accessible" because both pass. What are they missing?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">Nothing — if each color passes its own contrast check against the background, the pair is accessible.</button></li>
+        <li><button class="quiz-option" data-correct="true">Contrast ratio only measures how light or dark a color is against its background, not whether it's distinguishable from another color at similar lightness — the red and green could still look identical to a red-green colorblind viewer.</button></li>
+        <li><button class="quiz-option" data-correct="false">Contrast ratio doesn't apply to red or green at all, only to blue and yellow.</button></li>
+        <li><button class="quiz-option" data-correct="false">The colors need an even higher contrast ratio against the background, not a vision simulation.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Contrast ratio checks light-versus-dark separation between a color and its background;
+          it says nothing about whether two colors are separable from each other in hue. A
+          saturated red and a saturated green can each individually pass, while still reading as
+          the same color once viewed through a red-green deficiency simulation. Ratio math can't
+          catch that failure — only simulating the actual color vision deficiency reveals it.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Red/green status pairing is the most common real-world failure</a>
+      <a href="lesson-4.html">Lesson 4: Choosing a status palette that survives colorblind simulation &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

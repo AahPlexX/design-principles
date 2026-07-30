@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2, Lesson 3: Why large text gets a lower bar — stroke width, letterform recognition — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice explaining why large text earns a lower contrast minimum instead of just memorizing the number.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-2/lesson-3.html">
+<meta property="og:title" content="Level 2, Lesson 3: Why large text gets a lower bar — stroke width, letterform recognition">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-2/lesson-3.html">
+<meta property="og:description" content="Practice explaining why large text earns a lower contrast minimum instead of just memorizing the number.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 2, Lesson 3: Why large text gets a lower bar — stroke width, letterform recognition">
+<meta name="twitter:description" content="Practice explaining why large text earns a lower contrast minimum instead of just memorizing the number.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 2, Lesson 3: Why large text gets a lower bar — stroke width, letterform recognition</h1>
+    <p>
+      The 3:1 threshold for large text isn't a rounding-down of 4.5:1 out of pity for headings —
+      it comes from how reading actually works at that size. A letter's strokes take up more
+      physical space on screen the bigger the text gets, so even a fainter color still puts down
+      enough pixels to read as a solid shape instead of a thin, breakable line. At smaller sizes,
+      a stroke is only a pixel or two wide, so the same faint color can visually dissolve into
+      the background — turning a letter into a smudge instead of a shape.
+    </p>
+    <p>
+      There's a second reason on top of that: at large sizes, your eye recognizes a whole
+      letterform's outline — its overall shape — rather than needing to resolve every fine
+      detail inside it. That's a lower bar to clear than reading small text, where you're relying
+      on much finer detail to tell one letter from another. Neither reason has anything to do
+      with how "important" the text is — it's about what the eye can still resolve at that size.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-2-lesson-3">
+      <p class="quiz-question">
+        A designer says: "Large headings can use lower contrast because they're less important
+        than body copy, so it's fine if they fade a bit." What's wrong with this reasoning?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The lower bar is about legibility physics, not importance — thicker strokes and larger, more recognizable shapes stay readable at lower contrast regardless of how important the text is.</button></li>
+        <li><button class="quiz-option" data-correct="false">The reasoning is correct — less important text should always get lower contrast to signal that it matters less.</button></li>
+        <li><button class="quiz-option" data-correct="false">Large text actually needs higher contrast than body text, not lower.</button></li>
+        <li><button class="quiz-option" data-correct="false">Contrast minimums only apply to body text — large text has no minimum at all.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Large text gets a lower minimum because thicker strokes and bigger, more recognizable
+          shapes are physically easier for the eye to resolve at a fainter color — not because
+          the text matters less. A large, unimportant label and a large, critical warning both
+          get the same 3:1 floor; a small, critical warning still needs 4.5:1.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Level 2, Lesson 2: The 3:1 minimum for large text, and the exact size/weight cutoffs</a>
+      <a href="lesson-4.html">Level 2, Lesson 4: Helper text and captions still owe the full minimum &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

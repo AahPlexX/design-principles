@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 5, Lesson 3: Saturated colors that work in light mode often glare in dark mode — Contrast You Can Prove | Design Principles</title>
+<meta name="description" content="Practice spotting when a brand color needs its own dark-mode variant instead of reusing the light-mode hex value.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-3.html">
+<meta property="og:title" content="Level 5, Lesson 3: Saturated colors that work in light mode often glare in dark mode">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/color-contrast/level-5/lesson-3.html">
+<meta property="og:description" content="Practice spotting when a brand color needs its own dark-mode variant instead of reusing the light-mode hex value.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 5, Lesson 3: Saturated colors that work in light mode often glare in dark mode">
+<meta name="twitter:description" content="Practice spotting when a brand color needs its own dark-mode variant instead of reusing the light-mode hex value.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/color-contrast/">&larr; Contrast You Can Prove</a></p>
+    <h1>Level 5, Lesson 3: Saturated colors that work in light mode often glare in dark mode</h1>
+    <p>
+      A brand's link color might sit calmly on a white background, doing its job without calling
+      attention to itself. Move that exact same saturated hue onto a near-black background, and it
+      can start to visually buzz at its edges — uncomfortable to stare at even though the ratio
+      checks out fine on paper.
+    </p>
+
+    <div class="quiz" data-quiz data-course="color-contrast" data-lesson="level-5-lesson-3">
+      <p class="quiz-question">
+        A design system reuses one saturated blue hex value as the link color in both its light
+        and dark themes, since that same value passes the contrast minimum against both
+        backgrounds. Testers report that in dark mode the blue text feels like it's "vibrating" or
+        glowing and is tiring to read for long stretches, even though nobody complains about it in
+        light mode. What's the right fix?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Give the dark theme its own less-saturated or lighter version of the color — a passing contrast ratio doesn't mean a highly saturated hue is comfortable to look at against a dark background.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing needs to change, since a passing contrast ratio is the only thing that determines whether a color choice is finished.</button></li>
+        <li><button class="quiz-option" data-correct="false">Increase the saturation further so the link stands out from the dark background even more clearly.</button></li>
+        <li><button class="quiz-option" data-correct="false">Replace the link color with pure white in both themes, since white is always the safest choice regardless of context.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Contrast ratio measures the luminance gap between two colors — it says nothing about how
+          comfortable a saturated hue feels to look at against a very dark surround. Highly
+          saturated colors can appear to glow or vibrate against near-black backgrounds even when
+          the ratio passes. That's why dark themes typically get their own desaturated or
+          lightened variant of a brand color instead of reusing the light theme's exact value.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Pure white on pure black causes halation for some readers</a>
+      <a href="lesson-4.html">Lesson 4: Elevation/surface colors need their own contrast pass &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>
