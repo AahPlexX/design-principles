@@ -300,8 +300,19 @@ User challenged that 3 lessons/course "cannot possibly be the depth and breadth 
 - [x] *(turn 17)* Collect all 8 course outlines from the planning subagents — all 8 returned: visual-hierarchy 33/6, color-contrast 39/9, accessibility 50/11, typography 34/8, spacing-layout 31/6, responsive-design 29/7, forms-inputs 41/9, dark-patterns-ethics 34/7. **Total: 291 lessons across 63 levels (~12x the current 24).**
 - [x] *(turn 17)* Reviewed outlines for one real issue already caught by the accessibility agent itself: its old lesson-2 ("labels vs. placeholders") duplicates forms-inputs' lesson-1 — dropped from the new outline, courses cross-link instead.
 - [x] *(turn 17)* Presented consolidated outlines to the user as a published artifact (level/lesson breakdown per course, grounded/new/needs-verification tags per lesson, and 4 flagged decision points: overall scale, the one duplicate, `docs/craft/index.html`'s now-inaccurate "10-15 minutes" copy, and the outstanding research pass needed for every "needs verification" tag before it can be written as fact) — awaiting user go-ahead before any lesson content is written.
-- [ ] Once approved: update `courses.json`'s schema to the new nested level/lesson structure
-- [ ] Update `docs/assets/craft-progress.js` and the course-overview page template to render/track a level-grouped lesson list instead of a flat one
-- [ ] Generate the actual lesson content per course (likely via parallel subagents again, given the scale), grounded per the approved outlines
-- [ ] Full verification pass (`scripts/verify-site.py`, real html5validator, nav parity, Playwright) before commit
-- [ ] Commit, push, confirm CI/Pages via the API
+- [x] *(turn 17)* User approved: course-by-course with a checkpoint after each; removed the "10-15 minutes" promise from `docs/craft/index.html` entirely (not replaced with a new duration claim); confirmed "we don't ever cite" — lesson content states facts plainly, never with an inline citation apparatus like "(WCAG SC ...)".
+- [x] *(turn 17-18)* Course 1 of 8: **Responsive Design**, chosen first as the smallest (29 lessons/7 levels) and lowest-research-burden course, to prove the new architecture before committing to the larger ones.
+- [x] *(turn 18)* Updated `courses.json`'s schema to the new nested level/lesson structure for `responsive-design` (7 levels, 29 lessons total) — `docs/assets/craft-progress.js` needed **no changes at all**: it already treats `data-lesson` as an opaque string key and queries every `.lesson-progress-list[data-course]` on a page regardless of how many separate lists exist, so `level-N-lesson-M` keys and a course overview with one list per level both worked with zero JS changes.
+- [x] *(turn 18)* Rebuilt `docs/craft/responsive-design/index.html` with one `<h3>` + `<ul class="lesson-progress-list">` pair per level (7 pairs, 29 `<li data-lesson>` total).
+- [x] *(turn 18)* Generated the actual lesson content via 7 parallel subagents (one per level). One agent (`Level 7`) hit a hard API session-limit failure after writing 5 of its 6 lesson files — caught by checking actual file state rather than trusting the notification, and the missing 6th lesson ("Foldables and ultra-wide monitors") was written directly, keeping the required qualitative-only framing (no invented device-API names or unverified numbers, per the outline's own "needs verification" flag on this lesson). 3 lessons (breakpoints-by-content, touch-target sizing — already WCAG-corrected earlier this session — and reprioritizing mobile content) were carried forward verbatim from the old flat structure rather than rewritten, preserving the earlier accuracy fix.
+- [x] *(turn 18)* Full verification pass: `scripts/verify-site.py` clean; the real W3C html5validator (0 genuine errors, after the same JAVA_TOOL_OPTIONS-banner false positive already diagnosed this session); nav parity (1 unique variant across 79 files); a 16-assertion Playwright test of the new level-scoped progress mechanic (localStorage keys like `level-1-lesson-1`, course-overview per-lesson completion, and the catalog badge correctly reading "2/29 complete").
+- [x] *(turn 18)* Committed (`76281f3`, following the architecture-prep commit `59d7eb6`) and pushed to `main`. Confirmed via the GitHub Actions API: CI run `30510618779` and Pages run `30510618786`, both `conclusion: success`. **Course 1 of 8 (Responsive Design) is complete — checkpoint: awaiting user review before starting course 2.**
+
+### Remaining courses (7 of 8), each its own checkpoint
+- [ ] Color & Contrast (39 lessons/9 levels)
+- [ ] Accessibility (50 lessons/11 levels)
+- [ ] Typography (34 lessons/8 levels)
+- [ ] Spacing & Layout (31 lessons/6 levels)
+- [ ] Visual Hierarchy (33 lessons/6 levels)
+- [ ] Forms & Inputs (41 lessons/9 levels)
+- [ ] Dark Patterns & Ethics (34 lessons/7 levels)
