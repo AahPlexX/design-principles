@@ -6,7 +6,14 @@
       "hook": "Practice spotting broken hierarchy and fixing it with size, contrast, and position.",
       "principle": "visual-hierarchy",
       "principleTitle": "Visual Hierarchy",
-      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+      "levels": [
+        { "id": "level-1", "title": "The Toolkit: What Actually Creates Dominance", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5", "lesson-6", "lesson-7", "lesson-8"] },
+        { "id": "level-2", "title": "Gestalt Grouping Applied to Hierarchy", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-3", "title": "How the Eye Actually Scans a Screen", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5", "lesson-6"] },
+        { "id": "level-4", "title": "Hierarchy in Actions and CTAs", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-5", "title": "Hierarchy Across Real Contexts", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-6", "title": "Hierarchy, Accessibility, and Keeping It Intact", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] }
+      ]
     },
     {
       "id": "color-contrast",
@@ -48,7 +55,14 @@
       "hook": "Practice using whitespace and alignment to show what's related before a reader has to guess.",
       "principle": "spacing-layout",
       "principleTitle": "Spacing & Layout",
-      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+      "levels": [
+        { "id": "level-1", "title": "Why Gaps Read as Meaning", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5", "lesson-6"] },
+        { "id": "level-2", "title": "Spacing Scales & Tokens", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-3", "title": "Alignment in Practice", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-4", "title": "The CSS That Enforces It", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-5", "title": "Whitespace as a Structural Tool", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-6", "title": "Composition & Responsive Spacing Patterns", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] }
+      ]
     },
     {
       "id": "responsive-design",
