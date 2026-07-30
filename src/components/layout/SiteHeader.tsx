@@ -111,6 +111,19 @@ export function SiteHeader({ section, activePrincipleSlug }: SiteHeaderProps) {
 
           <div className="absolute end-0 top-11 max-h-[min(70vh,32rem)] w-[min(20rem,calc(100vw-2rem))] overflow-y-auto rounded-lg border border-line bg-canvas p-2 shadow-lifted motion-safe:animate-in motion-safe:fade-in-0 motion-safe:slide-in-from-top-1">
             <nav aria-label="All pages">
+              {/*
+                Search is repeated here because the header's own trigger is hidden below `sm`, and a
+                phone has no ⌘K. Without this entry, search is unreachable on a touch device except by
+                navigating to the home page and scrolling to the filter box.
+              */}
+              <a
+                href={`${withBase("")}#principle-search`}
+                data-enhance="command-trigger"
+                className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-medium text-ink no-underline hover:bg-surface"
+              >
+                <Search aria-hidden="true" className="size-3.5 text-ink-subtle" />
+                Search
+              </a>
               <a
                 href={withBase("craft/")}
                 className="block rounded-md px-3 py-2 text-sm font-medium text-ink no-underline hover:bg-surface"

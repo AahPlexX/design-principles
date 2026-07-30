@@ -284,18 +284,32 @@ describe("the course page", () => {
     const meter = document.querySelector<HTMLElement>("[data-course-meter]");
     if (!meter) throw new Error("the course page rendered no [data-course-meter]");
 
+    /*
+     * The role lives on the track rather than the wrapper on purpose: `progressbar` makes its subtree
+     * presentational, so a label nested inside it is dropped from the accessibility tree entirely. With
+     * the role on the track, the visible count is announced as text *and* the bar still reports a
+     * number — and the label is referenced by `aria-labelledby` so the bar is named by the same string
+     * a sighted reader sees.
+     */
+    const track = meter.querySelector<HTMLElement>("[data-meter-track]");
+    if (!track) throw new Error("the course page rendered no [data-meter-track]");
+    const label = meter.querySelector<HTMLElement>("[data-meter-label]");
+
+    expect(meter.getAttribute("role")).toBeNull();
+    expect(track.getAttribute("role")).toBe("progressbar");
+    expect(track.getAttribute("aria-labelledby")).toBe(label?.id);
+    expect(label?.id).toBeTruthy();
+
     // The served HTML has to describe zero progress, because it is one file for every reader.
-    expect(meter.getAttribute("role")).toBe("progressbar");
-    expect(meter.getAttribute("aria-valuenow")).toBe("0");
-    expect(meter.getAttribute("aria-valuemin")).toBe("0");
-    expect(meter.getAttribute("aria-valuemax")).toBe("3");
-    expect(meter.getAttribute("aria-label")).toBe("Course progress");
-    expect(meter.querySelector("[data-meter-label]")?.textContent).toBe("3 lessons");
+    expect(track.getAttribute("aria-valuenow")).toBe("0");
+    expect(track.getAttribute("aria-valuemin")).toBe("0");
+    expect(track.getAttribute("aria-valuemax")).toBe("3");
+    expect(label?.textContent).toBe("3 lessons");
 
     enhanceProgress();
 
-    expect(meter.getAttribute("aria-valuenow")).toBe("1");
-    expect(meter.querySelector("[data-meter-label]")?.textContent).toBe("1 of 3 lessons done");
+    expect(track.getAttribute("aria-valuenow")).toBe("1");
+    expect(label?.textContent).toBe("1 of 3 lessons done");
     expect(meter.querySelector<HTMLElement>("[data-meter-fill]")?.style.inlineSize).toBe("33%");
   });
 

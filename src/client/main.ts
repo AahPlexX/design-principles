@@ -23,12 +23,15 @@ function openPalette(initialQuery = ""): void {
 }
 
 function enhanceCommandTrigger(): void {
-  const trigger = document.querySelector<HTMLAnchorElement>('[data-enhance="command-trigger"]');
+  // All of them, not the first: the header's trigger is hidden on small screens, so there is a second
+  // one inside the mobile menu. A phone has no ⌘K either, which would otherwise leave search
+  // unreachable on the devices where the filter box is hardest to scroll to.
+  const triggers = document.querySelectorAll<HTMLAnchorElement>('[data-enhance="command-trigger"]');
 
-  // Until this runs, the trigger is a link to the home page's filter box, so search is reachable
-  // without JavaScript. Once it runs, it becomes a palette button — including for assistive tech,
+  // Until this runs, each trigger is a link to the home page's filter box, so search is reachable
+  // without JavaScript. Once it runs, they become palette buttons — including for assistive tech,
   // hence the role and aria-keyshortcuts rather than only the visual change.
-  if (trigger) {
+  for (const trigger of triggers) {
     trigger.setAttribute("role", "button");
     trigger.setAttribute("aria-haspopup", "dialog");
     trigger.setAttribute("aria-keyshortcuts", "Meta+K Control+K");

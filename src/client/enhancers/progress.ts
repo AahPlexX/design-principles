@@ -144,9 +144,12 @@ function renderCourseMeter(): void {
     const done = Math.min(countComplete(courseId), total);
     const label = meter.querySelector<HTMLElement>("[data-meter-label]");
     const fill = meter.querySelector<HTMLElement>("[data-meter-fill]");
+    // The progressbar role is on the track, not the wrapper, so that the visible label stays outside it
+    // and therefore announced — a label inside a progressbar is dropped from the accessibility tree.
+    const track = meter.querySelector<HTMLElement>("[data-meter-track]");
     const percent = total > 0 ? Math.round((done / total) * 100) : 0;
 
-    meter.setAttribute("aria-valuenow", String(done));
+    track?.setAttribute("aria-valuenow", String(done));
     if (fill) fill.style.inlineSize = `${String(percent)}%`;
     if (label) {
       label.textContent =
