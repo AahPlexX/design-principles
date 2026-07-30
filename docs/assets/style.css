@@ -32,8 +32,12 @@
   --shadow-md: 0 6px 16px rgba(23, 23, 40, 0.08);
 }
 
+/* Dark theme values apply either from the OS-level preference (unless the
+   reader has explicitly chosen light via the toggle) or from an explicit
+   data-theme="dark" set by docs/assets/theme.js -- the reader's manual
+   choice always wins over the system preference. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --bg: #101014;
     --bg-raised: #18181d;
     --text: #e7e7ea;
@@ -47,6 +51,20 @@
     --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
     --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
   }
+}
+:root[data-theme="dark"] {
+  --bg: #101014;
+  --bg-raised: #18181d;
+  --text: #e7e7ea;
+  --text-muted: #a1a1aa;
+  --accent: #8ab4ff;
+  --border: #2a2a30;
+  --good: #4ade80;
+  --bad: #f87171;
+  --good-bg: #10261a;
+  --bad-bg: #2a1414;
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 6px 16px rgba(0, 0, 0, 0.4);
 }
 
 /* ---- Reset ---- */
@@ -155,6 +173,44 @@ main .wrap > p, main .wrap > .definition { max-width: var(--prose-width); }
 }
 .site-nav a:hover, .site-nav a[aria-current="page"] {
   color: var(--accent);
+}
+@media (width <= 40rem) {
+  .site-nav ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: var(--space-1);
+  }
+  .site-nav a { white-space: nowrap; }
+}
+
+/* ---- Theme toggle ---- */
+.theme-toggle {
+  font: inherit;
+  font-size: var(--step-0);
+  line-height: 1;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--text);
+  cursor: pointer;
+}
+.theme-toggle:hover { border-color: var(--accent); }
+.theme-toggle::before {
+  content: "🌙";
+}
+:root[data-theme="dark"] .theme-toggle::before {
+  content: "☀️";
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .theme-toggle::before,
+  :root[data-theme="dark"] .theme-toggle::before {
+    content: "☀️";
+  }
+  :root[data-theme="light"] .theme-toggle::before {
+    content: "🌙";
+  }
 }
 
 /* ---- Footer ---- */
@@ -471,7 +527,7 @@ th, td {
 /* ---- Print ---- */
 @media print {
   body { background: #fff; color: #000; }
-  .skip-link, .site-header, .site-footer, .search-box, .search-empty { display: none; }
+  .skip-link, .site-header, .site-footer, .search-box, .search-empty, .theme-toggle { display: none; }
   main .wrap { max-width: none; padding: 0; }
   a { color: #000; text-decoration: underline; }
   a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.75em; color: #333; }

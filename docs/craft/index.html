@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>Craft — hands-on practice courses | Design Principles</title>
 <meta name="description" content="Short, hands-on courses that pair with a principle page — practice the skill instead of just reading about it.">
 <link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/">
@@ -15,6 +16,20 @@
 <meta name="twitter:title" content="Craft">
 <meta name="twitter:description" content="Short, hands-on courses that pair with a principle page — practice the skill instead of just reading about it.">
 <link rel="stylesheet" href="/design-principles/assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Craft",
+  "description": "Short, hands-on courses that pair with a principle page \u2014 practice the skill instead of just reading about it.",
+  "url": "https://aahplexx.github.io/design-principles/craft/",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Design Principles",
+    "url": "https://aahplexx.github.io/design-principles/"
+  }
+}
+</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Skip to content</a>
@@ -45,6 +60,7 @@
         <li><a href="/design-principles/about.html">About</a></li>
       </ul>
     </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false"></button>
   </div>
 </header>
 
@@ -128,5 +144,6 @@
   </div>
 </footer>
 <script src="/design-principles/assets/craft-progress.js"></script>
+<script src="/design-principles/assets/theme.js"></script>
 </body>
 </html>

@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>Dark Patterns &amp; Ethics — Design Principles</title>
 <meta name="description" content="Recognizing interfaces designed to trick people, and the test for whether yours is one of them.">
 <link rel="canonical" href="https://aahplexx.github.io/design-principles/principles/dark-patterns-ethics.html">
@@ -65,6 +66,7 @@
         <li><a href="/design-principles/about.html">About</a></li>
       </ul>
     </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false"></button>
   </div>
 </header>
 
@@ -169,7 +171,7 @@
         the European Commission fined X (formerly Twitter) €120 million — the DSA's first
         formal non-compliance decision — citing, among other breaches, a "verified"
         blue-checkmark badge the Commission found deceptive: it kept implying identity
-        verification even though anyone could get it simply by paying, with no identity check
+        verification even though anyone could get it by paying, with no identity check
         at all.
       </p>
       <p>
@@ -188,5 +190,6 @@
   </div>
 </footer>
 <script src="/design-principles/assets/print-details.js"></script>
+<script src="/design-principles/assets/theme.js"></script>
 </body>
 </html>

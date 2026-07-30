@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>(function(){try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 <title>Level 3, Lesson 4: Container queries — a component responding to its own box — One Layout, Every Screen | Design Principles</title>
 <meta name="description" content="Practice telling apart a component that reacts to its own container and one that only reacts to the viewport.">
 <link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-3/lesson-4.html">
@@ -45,6 +46,7 @@
         <li><a href="/design-principles/about.html">About</a></li>
       </ul>
     </nav>
+    <button type="button" class="theme-toggle" id="theme-toggle" aria-label="Switch to dark theme" aria-pressed="false"></button>
   </div>
 </header>
 
@@ -104,5 +106,6 @@
   </div>
 </footer>
 <script src="/design-principles/assets/craft-progress.js"></script>
+<script src="/design-principles/assets/theme.js"></script>
 </body>
 </html>
