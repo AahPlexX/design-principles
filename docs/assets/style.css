@@ -156,12 +156,20 @@ main .wrap > p, main .wrap > .definition { max-width: var(--prose-width); }
   text-decoration: none;
   letter-spacing: -0.01em;
 }
+.site-nav {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  min-width: 0;
+}
 .site-nav ul {
   list-style: none;
   margin: 0;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
+  flex: 1 1 auto;
+  min-width: 0;
   gap: var(--space-1) var(--space-4);
 }
 .site-nav a {
@@ -186,6 +194,7 @@ main .wrap > p, main .wrap > .definition { max-width: var(--prose-width); }
 
 /* ---- Theme toggle ---- */
 .theme-toggle {
+  flex: none;
   font: inherit;
   font-size: var(--step-0);
   line-height: 1;
