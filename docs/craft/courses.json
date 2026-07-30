@@ -14,7 +14,17 @@
       "hook": "Practice reading contrast ratios and catching pairs that fail before a user does.",
       "principle": "color-contrast",
       "principleTitle": "Color & Contrast",
-      "lessons": ["lesson-1", "lesson-2", "lesson-3"]
+      "levels": [
+        { "id": "level-1", "title": "The Ratio, Precisely", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-2", "title": "Text Thresholds in Context", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-3", "title": "Beyond Text: Non-Text & UI Component Contrast", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-4", "title": "Designing for Color Vision Deficiency", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-5", "title": "Dark Mode & Theming", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-6", "title": "Contrast on Unpredictable Backgrounds", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-7", "title": "Tools & Workflow", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4"] },
+        { "id": "level-8", "title": "Real-World Failure Patterns Across UI", "lessons": ["lesson-1", "lesson-2", "lesson-3", "lesson-4", "lesson-5"] },
+        { "id": "level-9", "title": "Where the Standard Is Headed", "lessons": ["lesson-1", "lesson-2", "lesson-3"] }
+      ]
     },
     {
       "id": "accessibility",
