@@ -54,6 +54,19 @@ export function lessonPath(lesson: Lesson): string {
     : `craft/${lesson.courseId}/${lesson.levelId}/${file}`;
 }
 
+/**
+ * A lesson's href relative to its course's overview page.
+ *
+ * The course overview lives at `craft/<id>/index.html`, so a flat course's lessons are siblings
+ * (`lesson-1.html`) and a levelled course's sit one directory down (`level-2/lesson-3.html`). Relative
+ * hrefs rather than absolute ones because the course page and its lessons move together: a relative
+ * link cannot end up pointing at another course.
+ */
+export function courseRelativeLessonHref(lesson: Lesson): string {
+  const file = `lesson-${String(lesson.lessonNumber)}.html`;
+  return lesson.levelId === null ? file : `${lesson.levelId}/${file}`;
+}
+
 /** Relative href between two lessons in the same course, used by the prev/next lesson navigation. */
 export function relativeLessonHref(from: Lesson, to: Lesson): string {
   const file = `lesson-${String(to.lessonNumber)}.html`;

@@ -22,6 +22,27 @@ requireDist(gate);
 
 const HREF_PATTERN = /(?:href|src)="([^"]+)"/g;
 
+/** `<pre>` first, so a `<pre><code>` pair is removed in one step rather than leaving a stray `</pre>`. */
+const CODE_SAMPLE_PATTERN = /<pre\b[^>]*>[\s\S]*?<\/pre>|<code\b[^>]*>[\s\S]*?<\/code>/gi;
+
+/**
+ * A page's HTML with its code samples removed.
+ *
+ * Several lessons quote HTML markup inside a `<code>` element — `&lt;img src="photo-800.jpg"&gt;` — as
+ * the subject of the question. That is text a reader sees, not a link a browser follows: the angle
+ * brackets are escaped, so no element exists. The quotes inside them are not escaped, though, so a
+ * regex over the raw bytes finds `src="photo-800.jpg"` and reports a broken link to a file that was
+ * never supposed to exist.
+ *
+ * The pre-migration Python checker parsed the document and read `href` off real `<a>` elements, so it
+ * never had this problem; scanning bytes reintroduced it. Removing `<pre>` and `<code>` bodies restores
+ * the old behaviour and loosens nothing, because neither element contains a link anywhere in this
+ * content — the allowed-inline-tag set permits `<a>` inside `<code>`, and nothing uses it.
+ */
+function linkableHtml(page: string): string {
+  return readDistPage(page).replace(CODE_SAMPLE_PATTERN, "");
+}
+
 /** Resolves an href the way a static host would, and reports the file it should map to. */
 function resolveTarget(href: string, fromPage: string): string | null {
   const [withoutHash] = href.split("#");
@@ -48,7 +69,7 @@ let internalLinks = 0;
 let externalLinks = 0;
 
 for (const page of pages) {
-  const html = readDistPage(page);
+  const html = linkableHtml(page);
 
   for (const match of html.matchAll(HREF_PATTERN)) {
     const href = match[1];
@@ -88,7 +109,7 @@ for (const page of pages) {
  */
 const linkedTargets = new Set<string>();
 for (const page of pages) {
-  for (const match of readDistPage(page).matchAll(HREF_PATTERN)) {
+  for (const match of linkableHtml(page).matchAll(HREF_PATTERN)) {
     const href = match[1];
     if (href === undefined || /^(?:https?:|mailto:|tel:|data:|#)/.test(href)) continue;
     const target = resolveTarget(href, page);

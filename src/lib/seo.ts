@@ -54,10 +54,25 @@ function fitTitle(subject: string, context: readonly string[]): string {
   return title;
 }
 
-function lessonHeading(lesson: Lesson): string {
+/**
+ * A lesson's numbered heading: `Level 2, Lesson 3: Title` in a levelled course, `Lesson 3: Title` in a
+ * flat one. Titles are stored without their numbering, so the prefix is derived.
+ *
+ * Exported because the lesson page renders it as its `<h1>` while `buildMeta` puts it in the page's
+ * JSON-LD and `pageHeading` reports it to the SEO gate. Three call sites deriving the same string
+ * independently is how a page's heading and its metadata end up describing different things.
+ */
+export function lessonHeading(lesson: Lesson): string {
   return lesson.levelNumber === null
     ? `Lesson ${String(lesson.lessonNumber)}: ${lesson.title}`
     : `Level ${String(lesson.levelNumber)}, Lesson ${String(lesson.lessonNumber)}: ${lesson.title}`;
+}
+
+/** The short form used in breadcrumbs and prev/next links, where the full title is too long. */
+export function lessonLabel(lesson: Lesson): string {
+  return lesson.levelNumber === null
+    ? `Lesson ${String(lesson.lessonNumber)}`
+    : `Level ${String(lesson.levelNumber)}, Lesson ${String(lesson.lessonNumber)}`;
 }
 
 /**
@@ -67,7 +82,7 @@ function lessonHeading(lesson: Lesson): string {
 export function pageHeading(route: Route): string {
   switch (route.kind) {
     case "home":
-      return HOME_PAGE.title;
+      return HOME_PAGE.heading;
     case "about":
       return ABOUT_PAGE.title;
     case "not-found":

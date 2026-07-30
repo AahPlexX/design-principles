@@ -56,9 +56,18 @@ function bodyFor(route: Route) {
   }
 }
 
-/** Index pages show card grids and use the wide measure; reading pages stay narrow. */
+/**
+ * Index pages show card grids and use the wide measure; reading pages stay narrow.
+ *
+ * Principle pages are wide for a different reason: they carry a sticky section index in a second column
+ * from `lg` up, and that column has to come out of the page's margins rather than out of the prose. The
+ * template caps its own reading column at the prose measure, so the line length a reader gets is the same
+ * as on any other reading page — the extra width is spent on the index and on nothing else.
+ */
 function widthFor(route: Route): "prose" | "wide" {
-  return route.kind === "home" || route.kind === "craft-index" ? "wide" : "prose";
+  return route.kind === "home" || route.kind === "craft-index" || route.kind === "principle"
+    ? "wide"
+    : "prose";
 }
 
 /**

@@ -40,8 +40,15 @@ const SAMPLE: readonly { page: string; why: string }[] = [
   { page: "craft/accessibility/index.html", why: "course overview: flat" },
   { page: "craft/color-contrast/level-1/lesson-1.html", why: "lesson: levelled, quiz" },
   { page: "craft/accessibility/lesson-1.html", why: "lesson: flat, quiz" },
+  { page: "craft/spacing-layout/level-2/lesson-1.html", why: "lesson: a second levelled instance" },
+  /*
+   * Added because the entry above was labelled as the code-block case and is not one — its prompt is a
+   * single paragraph. Seven lessons interleave a `<pre>` between two prompt paragraphs, and that shape
+   * is the one worth auditing: the option group takes its accessible name from the whole prompt, and the
+   * code block inside it is a focusable scroll container.
+   */
   {
-    page: "craft/spacing-layout/level-2/lesson-1.html",
+    page: "craft/spacing-layout/level-4/lesson-3.html",
     why: "lesson: quiz containing a code block",
   },
 ];

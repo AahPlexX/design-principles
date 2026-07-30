@@ -44,7 +44,7 @@ export function enhanceSearch(): void {
           ? ""
           : matches === 0
             ? `No principles match “${input.value.trim()}”.`
-            : `${String(matches)} ${matches === 1 ? "principle" : "principles"} match.`;
+            : `${String(matches)} ${matches === 1 ? "principle matches" : "principles match"}.`;
     }
   }
 

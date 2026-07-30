@@ -37,6 +37,23 @@ export default tseslint.config(
   // accessibility, so a violation here is a contradiction rather than a style nit.
   {
     files: ["src/**/*.{ts,tsx}"],
+    settings: {
+      // Tell jsx-a11y which project components render which element, so its rules follow content
+      // through the wrappers instead of only checking literal <a>/<h3> in the same file. Without this
+      // the wrappers themselves report false positives while real misuse at call sites goes unchecked.
+      "jsx-a11y": {
+        polymorphicPropName: "as",
+        components: {
+          ButtonLink: "a",
+          Button: "button",
+          CardLink: "a",
+          CardTitle: "h3",
+          CardBody: "p",
+          CardMeta: "p",
+          ContentHtml: "p",
+        },
+      },
+    },
     languageOptions: {
       globals: globals.browser,
     },

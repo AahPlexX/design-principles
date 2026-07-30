@@ -18,9 +18,18 @@ export function readProgress(): Progress {
     const raw = window.localStorage.getItem(STORAGE_KEY);
     if (!raw) return {};
     const parsed: unknown = JSON.parse(raw);
-    // Guard the shape rather than trusting it: this value has been written by earlier versions of the
-    // site and can be edited by hand.
-    return typeof parsed === "object" && parsed !== null ? (parsed as Progress) : {};
+    /*
+     * Guard the shape rather than trusting it: this value was written by earlier versions of the site
+     * and can be edited by hand.
+     *
+     * The array check is not redundant. `typeof [] === "object"`, so an array would pass as progress,
+     * and the failure it causes is silent and permanent: `markComplete` would set a named property on
+     * an array, `JSON.stringify` would drop it, and every lesson would appear to record and never
+     * persist.
+     */
+    return typeof parsed === "object" && parsed !== null && !Array.isArray(parsed)
+      ? (parsed as Progress)
+      : {};
   } catch {
     return {};
   }
