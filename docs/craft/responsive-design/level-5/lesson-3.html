@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 5, Lesson 3: Responsive navigation patterns — hamburger, priority nav, bottom tabs — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice matching a navigation pattern — hamburger, priority nav, or bottom tabs — to how a page's nav actually gets used.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-5/lesson-3.html">
+<meta property="og:title" content="Level 5, Lesson 3: Responsive navigation patterns — hamburger, priority nav, bottom tabs">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-5/lesson-3.html">
+<meta property="og:description" content="Practice matching a navigation pattern — hamburger, priority nav, or bottom tabs — to how a page's nav actually gets used.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 5, Lesson 3: Responsive navigation patterns — hamburger, priority nav, bottom tabs">
+<meta name="twitter:description" content="Practice matching a navigation pattern — hamburger, priority nav, or bottom tabs — to how a page's nav actually gets used.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 5, Lesson 3: Responsive navigation patterns — hamburger, priority nav, bottom tabs</h1>
+    <p>
+      A row of ten nav links across the top of a desktop page has nowhere to go on a phone-width
+      screen — there simply isn't room to lay them out side by side anymore. Three common patterns
+      solve this differently: a hamburger menu tucks everything behind one icon; priority nav
+      keeps whatever fits visible and hides the rest behind a "More" button; a bottom tab bar
+      pins a handful of top destinations to the bottom of the screen at all times. Picking between
+      them is about how the nav actually gets used, not which one looks the most modern.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-5-lesson-3">
+      <p class="quiz-question">
+        A mobile app has exactly four core destinations — Home, Search, Messages, Profile — and
+        people switch between them constantly throughout every session. The design puts all four
+        behind a hamburger icon in the top corner to keep the screen looking uncluttered. What's
+        the problem with that choice?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">Nothing — a hamburger menu and a bottom tab bar give people the exact same speed of access to a destination.</button></li>
+        <li><button class="quiz-option" data-correct="true">Destinations used constantly need to stay visible and reachable in one tap; a hamburger menu hides all four behind an extra tap, adding friction to something that happens all session long. A bottom tab bar fits this case better.</button></li>
+        <li><button class="quiz-option" data-correct="false">Hamburger menus are against web standards and shouldn't be used at all.</button></li>
+        <li><button class="quiz-option" data-correct="false">The fix is to switch to a priority nav pattern, since that's the newest of the three options.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A bottom tab bar keeps a small set of frequently-used destinations visible and one tap
+          away at all times, which matches constant switching between them. A hamburger menu
+          trades that visibility for a tidier-looking screen — reasonable when nav is used
+          occasionally, but it adds an extra tap to something this app's users do all the time.
+          Priority nav solves a different problem (more items than fit, ranked by importance);
+          it isn't automatically the better choice just because it's a newer pattern.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Hover states don't reliably exist on touchscreens</a>
+      <a href="lesson-4.html">Lesson 4: Reprioritizing content instead of hiding it &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

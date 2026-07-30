@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 7, Lesson 4: Orientation change and text-resize/zoom as test cases too — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice testing a layout against orientation change and enlarged text, not just narrower widths.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-7/lesson-4.html">
+<meta property="og:title" content="Level 7, Lesson 4: Orientation change and text-resize/zoom as test cases too">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-7/lesson-4.html">
+<meta property="og:description" content="Practice testing a layout against orientation change and enlarged text, not just narrower widths.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 7, Lesson 4: Orientation change and text-resize/zoom as test cases too">
+<meta name="twitter:description" content="Practice testing a layout against orientation change and enlarged text, not just narrower widths.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 7, Lesson 4: Orientation change and text-resize/zoom as test cases too</h1>
+    <p>
+      "Every screen" isn't only about width — the same phone can be rotated to a much shorter,
+      wider viewport, and the same layout can be handed a much larger text size by a reader who
+      enlarges it for their own eyesight. Both change the space a layout has to work with just as
+      much as swapping devices does, so both deserve their own pass through your testing, not just
+      a check at a fixed portrait width and a fixed font size.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-7-lesson-4">
+      <p class="quiz-question">
+        A settings screen with a confirmation dialog looks correct on a phone held upright
+        (portrait). Rotated to landscape — same phone, now wider but much shorter — the dialog's
+        "Save" and "Cancel" buttons are pushed below the bottom edge of the screen with no way to
+        scroll down to reach them. What does this reveal about the layout?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">It was only built to respond to changes in width, not to the sharply reduced height that landscape orientation creates on the same device.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing — orientation only ever affects images, never interactive elements like buttons.</button></li>
+        <li><button class="quiz-option" data-correct="false">The dialog component itself is broken and needs to be replaced.</button></li>
+        <li><button class="quiz-option" data-correct="false">This can only happen on tablets, never on phones.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A layout tested only in portrait can quietly assume there's always plenty of vertical
+          room. Landscape rotation on that same phone removes most of that room without changing
+          the width much at all — if the dialog has no way to scroll or reflow when height runs
+          short, content gets stranded off-screen even though nothing about the device itself
+          changed except how it's being held.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Level 7, Lesson 3: Browser DevTools device emulation: useful, not a substitute for real testing</a>
+      <a href="lesson-5.html">Level 7, Lesson 5: Print and other non-screen media as part of “every screen” &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

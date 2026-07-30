@@ -3,17 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Lesson 3: Reprioritizing content instead of hiding it — One Layout, Every Screen | Design Principles</title>
-<meta name="description" content="Practice telling reprioritized mobile content apart from content that's just been deleted.">
-<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/lesson-3.html">
-<meta property="og:title" content="Lesson 3: Reprioritizing content instead of hiding it">
+<title>Level 1, Lesson 2: There's no "standard" screen size — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice reasoning about screen-width diversity instead of designing for one guessed device size.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-1/lesson-2.html">
+<meta property="og:title" content="Level 1, Lesson 2: There's no &quot;standard&quot; screen size">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/lesson-3.html">
-<meta property="og:description" content="Practice telling reprioritized mobile content apart from content that's just been deleted.">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-1/lesson-2.html">
+<meta property="og:description" content="Practice reasoning about screen-width diversity instead of designing for one guessed device size.">
 <meta property="og:site_name" content="Design Principles">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Lesson 3: Reprioritizing content instead of hiding it">
-<meta name="twitter:description" content="Practice telling reprioritized mobile content apart from content that's just been deleted.">
+<meta name="twitter:title" content="Level 1, Lesson 2: There's no &quot;standard&quot; screen size">
+<meta name="twitter:description" content="Practice reasoning about screen-width diversity instead of designing for one guessed device size.">
 <link rel="stylesheet" href="/design-principles/assets/style.css">
 </head>
 <body>
@@ -51,33 +51,33 @@
 <main id="main">
   <div class="wrap">
     <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
-    <h1>Lesson 3: Reprioritizing content instead of hiding it</h1>
+    <h1>Level 1, Lesson 2: There's no "standard" screen size</h1>
     <p>
-      Space runs out fast on a narrow screen, and deleting something is often the easiest way to
-      make room. But "delete" and "rearrange" produce very different results for the person
-      holding the phone — one keeps them from finishing what they came to do, the other just asks
-      them to scroll a little further to reach it.
+      Design briefs used to say "design for a 320-pixel-wide screen" back when that
+      covered nearly the whole market. Today, phones alone ship in a wide spread of
+      widths, before tablets, laptops, and desktop monitors even enter the picture.
     </p>
 
-    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="lesson-3">
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-1-lesson-2">
       <p class="quiz-question">
-        A restaurant's mobile layout is cramped, so the redesign removes the phone number and
-        address on small screens, keeping them only in the desktop layout. Is this a good
-        responsive design decision?
+        A designer sets a single target: "the layout should look perfect at 390 pixels
+        wide, the width of a common phone." Real visitor data shows screen widths
+        spread continuously from around 320 pixels to well over 1400, with no single
+        width covering anywhere near a majority of visitors. What does this tell the
+        designer about that plan?
       </p>
       <ul class="quiz-options">
-        <li><button class="quiz-option" data-correct="false">Yes — mobile users don't need contact information as often as desktop users do.</button></li>
-        <li><button class="quiz-option" data-correct="true">No — hiding content on mobile instead of re-prioritizing it often removes something a mobile user specifically needed; it should be rearranged to fit instead of deleted.</button></li>
-        <li><button class="quiz-option" data-correct="false">Yes — a narrow screen simply can't fit as much content as a wide one, so something always has to go.</button></li>
-        <li><button class="quiz-option" data-correct="false">No, but only because phone numbers must always appear at the top of a page.</button></li>
+        <li><button class="quiz-option" data-correct="true">There's no representative single width to design for — the layout needs to hold up across the whole range, not just look ideal at one chosen number.</button></li>
+        <li><button class="quiz-option" data-correct="false">390 pixels is still fine to target alone, since it's close to the middle of the range.</button></li>
+        <li><button class="quiz-option" data-correct="false">The data must be wrong — most sites overwhelmingly get traffic at one standard width.</button></li>
+        <li><button class="quiz-option" data-correct="false">This means the layout needs a completely separate design for every individual width in the data.</button></li>
       </ul>
       <div class="quiz-feedback" hidden>
         <p>
-          Hiding content on mobile instead of re-prioritizing it often removes something a mobile
-          user specifically needed — like a phone number or address someone is looking up on
-          their phone precisely because they're about to call or visit. The fix is to
-          re-arrange the layout so it still fits, not to cut the content because the screen is
-          narrow.
+          Screen width is continuous, not a small set of standard sizes, and it hasn't
+          been a small set for a long time. A layout tuned to look perfect at exactly
+          390 pixels is only ever exactly right at that one number, and increasingly
+          wrong the further a real visitor's screen gets from it.
         </p>
       </div>
     </div>
@@ -87,8 +87,8 @@
     </p>
 
     <nav class="lesson-nav">
-      <a href="lesson-2.html">&larr; Lesson 2: Sizing touch targets for a finger, not a cursor</a>
-      <a href="/design-principles/craft/responsive-design/">Back to course overview &rarr;</a>
+      <a href="lesson-1.html">&larr; Lesson 1: One layout vs. a build per device</a>
+      <a href="lesson-3.html">Lesson 3: Fixed-width first vs. starting fluid &rarr;</a>
     </nav>
   </div>
 </main>

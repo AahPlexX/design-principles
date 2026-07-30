@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 5, Lesson 1: Sizing touch targets for a finger, not a cursor — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice checking whether a touch target is big enough for a finger, not just a mouse cursor.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-5/lesson-1.html">
+<meta property="og:title" content="Level 5, Lesson 1: Sizing touch targets for a finger, not a cursor">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-5/lesson-1.html">
+<meta property="og:description" content="Practice checking whether a touch target is big enough for a finger, not just a mouse cursor.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 5, Lesson 1: Sizing touch targets for a finger, not a cursor">
+<meta name="twitter:description" content="Practice checking whether a touch target is big enough for a finger, not just a mouse cursor.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 5, Lesson 1: Sizing touch targets for a finger, not a cursor</h1>
+    <p>
+      Testing a layout with a mouse hides a problem that only shows up once someone tries it on
+      a real phone: a fingertip is a much blunter tool than a cursor's single pixel. A button
+      that felt perfectly clickable on a laptop screen can turn into a frustrating
+      miss-then-retry once it's tapped instead of clicked.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-5-lesson-1">
+      <p class="quiz-question">
+        A mobile nav bar uses icon buttons that are 20×20px. In testing on a laptop, clicking
+        them with a mouse pointer works perfectly every time. Is that enough to call the buttons
+        done?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">Yes — if it's clickable with a mouse, it will work fine with a finger too.</button></li>
+        <li><button class="quiz-option" data-correct="true">No — at 20×20px, well under the ~44×44px recommended size, a button is hard to tap accurately with a finger, even though a precise mouse cursor has no trouble hitting it.</button></li>
+        <li><button class="quiz-option" data-correct="false">No, but only because icon buttons should never be used without visible text labels.</button></li>
+        <li><button class="quiz-option" data-correct="false">Yes, as long as the icon itself is recognizable at that size.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A link or button well under the ~44×44px recommended size is hard to tap accurately
+          with a finger, even if it's perfectly clickable with a precise mouse cursor. Mouse
+          testing can't catch this — the target needs to be checked (or sized) for touch
+          specifically, not assumed safe because a cursor never missed it.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="../level-4/lesson-4.html">&larr; Level 4, Lesson 4: Performance cost of shipping desktop-sized images to mobile</a>
+      <a href="lesson-2.html">Lesson 2: Hover states don't reliably exist on touchscreens &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

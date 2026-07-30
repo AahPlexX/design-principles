@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 3, Lesson 2: Mobile-first vs. desktop-first media queries — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice recognizing why building up from a small screen produces simpler CSS than paring down from a wide one.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-3/lesson-2.html">
+<meta property="og:title" content="Level 3, Lesson 2: Mobile-first vs. desktop-first media queries">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-3/lesson-2.html">
+<meta property="og:description" content="Practice recognizing why building up from a small screen produces simpler CSS than paring down from a wide one.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 3, Lesson 2: Mobile-first vs. desktop-first media queries">
+<meta name="twitter:description" content="Practice recognizing why building up from a small screen produces simpler CSS than paring down from a wide one.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 3, Lesson 2: Mobile-first vs. desktop-first media queries</h1>
+    <p>
+      A breakpoint has a direction, not just a position. Writing <code>min-width</code> queries
+      starts from the smallest screen and adds rules as space opens up; writing
+      <code>max-width</code> queries starts from the widest screen and takes rules away as space
+      shrinks. Same breakpoint, opposite amount of undoing.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-3-lesson-2">
+      <p class="quiz-question">
+        A developer builds a three-column layout as the base CSS, then adds
+        <code>@media (max-width: 600px)</code> rules to collapse it to one column on a phone.
+        A teammate suggests flipping it around: write the one-column layout as the base, then add
+        <code>@media (min-width: 600px)</code> rules to add columns back for wider screens. What's
+        the real advantage of the second approach?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">There's no real difference — <code>min-width</code> and <code>max-width</code> queries always produce identical CSS.</button></li>
+        <li><button class="quiz-option" data-correct="true">The base styles (the ones no media query touches) end up being the simplest layout, so every breakpoint only adds complexity instead of having to override and undo the desktop layout first.</button></li>
+        <li><button class="quiz-option" data-correct="false"><code>max-width</code> media queries don't work in current browsers, so the first version is broken.</button></li>
+        <li><button class="quiz-option" data-correct="false">Flipping the order changes nothing except which breakpoint number gets used.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Base styles apply to every screen width, including ones no media query happens to
+          cover. In the desktop-first version, the base is the three-column layout — so the
+          phone has to override and undo those rules just to get back to something simple. In
+          the mobile-first version, the base is already the simple one-column layout, and each
+          wider breakpoint only adds columns rather than fighting a layout meant for a bigger
+          screen.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-1.html">&larr; Lesson 1: Picking breakpoints by content, not by device</a>
+      <a href="lesson-3.html">Lesson 3: Fewer content-driven breakpoints vs. adding extras "just in case" &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2, Lesson 4: Letting the grid decide how many columns fit — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice comparing a fixed-column float layout against a fluid auto-fit grid at one container width.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-2/lesson-4.html">
+<meta property="og:title" content="Level 2, Lesson 4: Letting the grid decide how many columns fit">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-2/lesson-4.html">
+<meta property="og:description" content="Practice comparing a fixed-column float layout against a fluid auto-fit grid at one container width.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 2, Lesson 4: Letting the grid decide how many columns fit">
+<meta name="twitter:description" content="Practice comparing a fixed-column float layout against a fluid auto-fit grid at one container width.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 2, Lesson 4: Letting the grid decide how many columns fit</h1>
+    <p>
+      A percentage-based float layout and a fluid grid can look identical on one screen and
+      behave completely differently on the next. The float locks in a column count up front; the
+      grid asks how much room each column actually needs and works the count out itself.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-2-lesson-4">
+      <p class="quiz-question">
+        A row of product cards is built two ways.
+      </p>
+      <pre><code>/* Version A */
+.card { width: 25%; float: left; }
+
+/* Version B */
+.grid {
+  display: grid;
+  grid-template-columns:
+    repeat(auto-fit, minmax(12rem, 1fr));
+  gap: 1rem;
+}</code></pre>
+      <p class="quiz-question">
+        The container is 700px wide, and each card needs at least about 190px to show its image
+        and text without cramming. What's the difference between the two versions at this exact
+        width?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">No difference — both produce the same 4 equal columns at 700px.</button></li>
+        <li><button class="quiz-option" data-correct="true">Version A still forces exactly 4 columns at 175px each, squeezing every card; Version B fits as many 12rem-minimum columns as actually have room — 3, at this width — and wraps the 4th card onto a new row.</button></li>
+        <li><button class="quiz-option" data-correct="false">Version B also locks in 4 columns, since <code>auto-fit</code> always matches whatever count Version A used.</button></li>
+        <li><button class="quiz-option" data-correct="false">Version A adds a horizontal scrollbar at 700px, while Version B doesn't.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          <code>width: 25%</code> always produces exactly 4 columns, whatever their content
+          needs — at 700px that's 175px per card, tighter than the ~190px each one needs to
+          breathe. It doesn't overflow, it just cramps. <code>repeat(auto-fit, minmax(12rem,
+          1fr))</code> asks a different question: how many 12rem (192px) columns, plus the gaps
+          between them, actually fit in this container? Three 192px columns plus two 1rem gaps
+          add up to 608px — comfortably within 700px — while a fourth column would need 816px,
+          past the container's width. So the grid keeps 3 columns and wraps the 4th card to a new
+          row instead of squeezing it in.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Clamping type between a floor and a ceiling</a>
+      <a href="../level-3/lesson-1.html">Level 3, Lesson 1: Picking breakpoints by content, not by device &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

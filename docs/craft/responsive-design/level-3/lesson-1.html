@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 3, Lesson 1: Picking breakpoints by content, not by device — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice choosing where a breakpoint belongs instead of guessing at a device size.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-3/lesson-1.html">
+<meta property="og:title" content="Level 3, Lesson 1: Picking breakpoints by content, not by device">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-3/lesson-1.html">
+<meta property="og:description" content="Practice choosing where a breakpoint belongs instead of guessing at a device size.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 3, Lesson 1: Picking breakpoints by content, not by device">
+<meta name="twitter:description" content="Practice choosing where a breakpoint belongs instead of guessing at a device size.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 3, Lesson 1: Picking breakpoints by content, not by device</h1>
+    <p>
+      A new project kicks off and someone opens a spec doc with a "Breakpoints" section already
+      filled in: 375px, 768px, 1440px. It feels like a shortcut — skip the debate, just match
+      what's popular this year. But the layout in front of you doesn't know it's supposed to
+      break at those exact numbers; it only knows when its own content stops fitting.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-3-lesson-1">
+      <p class="quiz-question">
+        A team sets breakpoints at 375px, 768px, and 1440px because those match a phone, a
+        tablet, and a laptop. What's wrong with choosing breakpoints this way?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">Nothing — matching common device widths is exactly how breakpoints should be chosen.</button></li>
+        <li><button class="quiz-option" data-correct="true">Device names aren't a real category system — screen widths are continuous and new sizes appear constantly. A breakpoint belongs wherever this specific layout starts to look bad, not at a guessed device width.</button></li>
+        <li><button class="quiz-option" data-correct="false">The problem is there are only three breakpoints; every popular device model needs its own.</button></li>
+        <li><button class="quiz-option" data-correct="false">The problem is the values are in pixels instead of a device name.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          "iPhone, iPad, desktop" isn't a real category system — screen widths are continuous,
+          and new device sizes appear constantly. The right place for a breakpoint is wherever
+          this layout's own content actually starts to break, found by resizing and watching,
+          not by copying a list of device widths.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="../level-2/lesson-4.html">&larr; Level 2, Lesson 4: Letting the grid decide how many columns fit</a>
+      <a href="lesson-2.html">Lesson 2: Mobile-first vs. desktop-first media queries &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

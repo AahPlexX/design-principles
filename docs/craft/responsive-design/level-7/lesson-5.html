@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 7, Lesson 5: Print and other non-screen media as part of “every screen” — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice adapting a page for print instead of leaving it unstyled.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-7/lesson-5.html">
+<meta property="og:title" content="Level 7, Lesson 5: Print and other non-screen media as part of “every screen”">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-7/lesson-5.html">
+<meta property="og:description" content="Practice adapting a page for print instead of leaving it unstyled.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 7, Lesson 5: Print and other non-screen media as part of “every screen”">
+<meta name="twitter:description" content="Practice adapting a page for print instead of leaving it unstyled.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 7, Lesson 5: Print and other non-screen media as part of “every screen”</h1>
+    <p>
+      "Every screen" stretches all the way to no screen at all. A page a reader prints out is
+      still an output your layout is responsible for — navigation bars, sidebars, and buttons
+      that only make sense on a live, clickable page are dead weight on paper, and a dark
+      background that looked great on a monitor just burns through ink.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-7-lesson-5">
+      <p class="quiz-question">
+        A blog post's on-screen design has a dark navy header, a sticky sidebar of related
+        articles, and a floating "Share" button bar. A reader prints the article to read later.
+        What's the responsive-design fix for that printed page?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Add print-specific styles that hide the navigation, sidebar, and share buttons, and switch the background to plain white — none of those are usable on paper, and a dark background wastes ink.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing — a browser's print output always matches the screen version automatically.</button></li>
+        <li><button class="quiz-option" data-correct="false">Constrain the printed page to a narrow single column sized like a phone screen.</button></li>
+        <li><button class="quiz-option" data-correct="false">Printing is outside the scope of responsive design entirely.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Without any print-specific styling, a browser prints the page exactly as it appears
+          on-screen, elements meant for on-screen interaction and all. Hiding what's meaningless
+          on paper and dropping to a plain, ink-friendly background reshapes the page for that
+          output the same way a breakpoint reshapes a layout for a narrower viewport.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-4.html">&larr; Level 7, Lesson 4: Orientation change and text-resize/zoom as test cases too</a>
+      <a href="lesson-6.html">Level 7, Lesson 6: Foldables and ultra-wide monitors as the spectrum's far ends &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

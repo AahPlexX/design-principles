@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 1, Lesson 1: One layout vs. a build per device — One Layout, Every Screen | Design Principles</title>
+<meta name="description" content="Practice recognizing why one adaptive layout beats maintaining a separate build per device.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/responsive-design/level-1/lesson-1.html">
+<meta property="og:title" content="Level 1, Lesson 1: One layout vs. a build per device">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/responsive-design/level-1/lesson-1.html">
+<meta property="og:description" content="Practice recognizing why one adaptive layout beats maintaining a separate build per device.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 1, Lesson 1: One layout vs. a build per device">
+<meta name="twitter:description" content="Practice recognizing why one adaptive layout beats maintaining a separate build per device.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a></p>
+    <h1>Level 1, Lesson 1: One layout vs. a build per device</h1>
+    <p>
+      Some teams handle "responsive" by building two separate sites — one at a mobile
+      subdomain for phones, one at the main domain for everything else — instead of one
+      layout that adapts. That split creates a maintenance problem the single-layout
+      approach never has.
+    </p>
+
+    <div class="quiz" data-quiz data-course="responsive-design" data-lesson="level-1-lesson-1">
+      <p class="quiz-question">
+        A shop runs two separate builds: a mobile subdomain for phones and the main
+        domain for everyone else. Marketing updates the homepage sale banner on the
+        main domain but forgets to update the mobile version. A phone visitor sees last
+        week's price. What's the real problem with this setup?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">The mobile site should redirect straight to the main domain so there's nothing to forget.</button></li>
+        <li><button class="quiz-option" data-correct="true">Maintaining two separate builds means every change has to be made twice, and the two inevitably drift out of sync — like this stale banner.</button></li>
+        <li><button class="quiz-option" data-correct="false">This is only a problem if the mobile site also has bad color contrast.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing — phone visitors expect a mobile site to lag behind the desktop version.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          One adaptive layout has only one place to update, so the sale banner would
+          have changed everywhere at once. Two separate builds mean two places to
+          remember, and eventually one gets missed — exactly what happened here.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/responsive-design.html">Responsive Design</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="/design-principles/craft/responsive-design/">&larr; One Layout, Every Screen</a>
+      <a href="lesson-2.html">Lesson 2: There's no "standard" screen size &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>
