@@ -1,0 +1,34 @@
+{
+  "about": {
+    "title": "About this site",
+    "blurb": "What this site is, who it's for, and how to use its exported skills and prompts.",
+    "definition": "A reference for web design that doesn't assume you already know the vocabulary, and doesn't waste the time of people who do.",
+    "blocks": [
+      "<h2>Who this is for</h2>",
+      "<p> Anyone who touches a web page's design: developers who need to make a reasonable call without a designer in the room, designers who want a shared vocabulary with their team, and beginners who want to know <em>why</em> a rule exists, not just that it does. </p>",
+      "<p> Every page is written so a first-time reader can follow it start to finish. If you already know the basics, the \"Go deeper\" section at the bottom of each page has the edge cases and spec details you're actually looking for. </p>",
+      "<h2>How to read a page</h2>",
+      "<p>Every principle page has the same six parts, in the same order, on purpose — once you know the shape, you can skim straight to the part you need:</p>",
+      "<ol> <li><strong>Definition</strong> — what the term means, in one sentence.</li> <li><strong>Why it matters</strong> — what actually breaks when you get it wrong.</li> <li><strong>The core rule</strong> — the one thing to remember.</li> <li><strong>Good vs. bad example</strong> — a concrete comparison, not a theory.</li> <li><strong>Common mistakes</strong> — the specific ways people get this wrong in practice.</li> <li><strong>Checklist</strong> — run this against your own work.</li> </ol>",
+      "<h2>Using the exports</h2>",
+      "<p> This site is the canonical explanation. Two other formats package the same rules for machine use, kept in sync with the site so none of them drift apart: </p>",
+      "<h3>Skills</h3>",
+      "<p> <a href=\"https://github.com/aahplexx/design-principles/tree/main/skills\">/skills</a> holds <a href=\"https://code.claude.com/docs\">Claude Code</a> skills — each one turns a principle's checklist into something an agent can run against real code or copy. Copy the folder you want into your own project: </p>",
+      "<pre><code>cp -r skills/design-critique your-project/.claude/skills/</code></pre>",
+      "<h3>Prompts</h3>",
+      "<p> <a href=\"https://github.com/aahplexx/design-principles/tree/main/prompts\">/prompts</a> holds standalone system prompts. Each one gives an LLM a persona and a checklist — paste the file's contents in as a system prompt for whatever tool you're using. </p>",
+      "<h2>Contributing</h2>",
+      "<p> See <a href=\"https://github.com/aahplexx/design-principles/blob/main/CONTRIBUTING.md\">CONTRIBUTING.md</a> on GitHub for how to add a principle, skill, or prompt. </p>"
+    ]
+  },
+  "notFound": {
+    "title": "This page doesn't exist",
+    "blurb": "This page doesn't exist — find your way back to the design principles reference.",
+    "definition": "The link that brought you here is either outdated or mistyped — this exact page was never part of the site, or it's been renamed since whatever linked to it was written.",
+    "blocks": [
+      "<h2>What to do next</h2>",
+      "<p> Head back to the <a href=\"/design-principles/\">home page</a> and use the filter box to find the principle you were looking for, or pick one directly from the navigation above. </p>",
+      "<div class=\"callout\"> <p> If you followed a link from somewhere else on the web and it led you here, that link is stale — the page it pointed to has moved or no longer exists under that name. </p> </div>"
+    ]
+  }
+}

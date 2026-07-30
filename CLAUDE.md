@@ -35,7 +35,7 @@ This is the one rule every other rule in this file exists to serve. If a new rul
 4. **Good vs. bad example** — concrete and, where possible, visual or runnable, shown side by side.
 5. **Common mistakes** — 3–5 specific, named failure modes, not generic warnings.
 6. **Quick checklist** — scannable, actionable, checkbox-style.
-7. *(optional)* **Go deeper** — a collapsed `<details>` block: edge cases, spec links, browser-support notes, for the reader who wants more than the page's main flow gives.
+7. _(optional)_ **Go deeper** — a collapsed `<details>` block: edge cases, spec links, browser-support notes, for the reader who wants more than the page's main flow gives.
 
 ## Adding a new principle
 
@@ -48,9 +48,10 @@ This is the one rule every other rule in this file exists to serve. If a new rul
 
 A Craft course is the practice companion to exactly one principle page. It never restates that page's explanation — it links to it, then puts the reader to work.
 
-**Naming rule.** A course's title is a short (3–6 word) concrete outcome-phrase, not a category label. "Where the Eye Goes First," not "Visual Hierarchy 101" or "Introduction to Hierarchy." If you can't tell what you'll be *able to do* after the course from its title alone, rewrite the title.
+**Naming rule.** A course's title is a short (3–6 word) concrete outcome-phrase, not a category label. "Where the Eye Goes First," not "Visual Hierarchy 101" or "Introduction to Hierarchy." If you can't tell what you'll be _able to do_ after the course from its title alone, rewrite the title.
 
 **File layout — one manifest, one folder per course, nothing hand-duplicated:**
+
 ```
 docs/craft/
   index.html            the dedicated course index (data-driven from courses.json)
@@ -62,13 +63,15 @@ docs/craft/
     level-2/
       lesson-1.html, ...
 ```
+
 The catalog page (`docs/craft/index.html`) renders itself from `courses.json` the same way the home page's search already reads `data-search` attributes — a new course is added to the manifest once, never hand-copied into a second listing.
 
 **Per course:**
+
 1. **The hook** — one sentence, stated as a concrete outcome, on the overview page and in the manifest (this is what sells the click — see Tone below for how persuasive differs from hype).
 2. **What you'll practice** — 1-2 sentences, plain language, naming the specific skill.
 3. **A link to the paired principle page** — "why this rule holds" lives there, not here.
-4. **Levels and lessons, sized to the topic, never to a formula.** A course is organized into levels — thematic sub-sections of the subject — each containing several short lessons. How many levels and lessons a course has is determined by how much the subject genuinely supports, not a preset target: a narrow topic might complete in 3-4 levels; a broad one might need six or more. Never pad a level or a lesson to hit a round number — the same anti-slop rule that governs a principle page's checklist ("no padding a list to look thorough") applies here exactly. Each lesson is still short: a one-paragraph bite-sized framing (not a restatement of the principle page), then one interactive multiple-choice question with instant right/wrong feedback and a one-sentence explanation of *why* — never a question without a real explanation on both the correct and incorrect paths.
+4. **Levels and lessons, sized to the topic, never to a formula.** A course is organized into levels — thematic sub-sections of the subject — each containing several short lessons. How many levels and lessons a course has is determined by how much the subject genuinely supports, not a preset target: a narrow topic might complete in 3-4 levels; a broad one might need six or more. Never pad a level or a lesson to hit a round number — the same anti-slop rule that governs a principle page's checklist ("no padding a list to look thorough") applies here exactly. Each lesson is still short: a one-paragraph bite-sized framing (not a restatement of the principle page), then one interactive multiple-choice question with instant right/wrong feedback and a one-sentence explanation of _why_ — never a question without a real explanation on both the correct and incorrect paths.
 5. **Progress**, tracked client-side only (`localStorage` via `docs/assets/craft-progress.js`) — no accounts, no server. A lesson is either complete or not; a course's progress badge counts completed lessons against its actual total, whatever that total is. No points, streaks, or leaderboards (see Engineering standards — that's gamification scope, not proof-of-skill scope, and stays out until a real need for it exists).
 
 ## Adding a new course
@@ -85,9 +88,31 @@ Every piece of markup, CSS, or code in this repo — the site, a skill, a prompt
 
 - **Standards-compliant, not clever.** HTML and CSS must match current WHATWG/W3C specs and documented MDN behavior. No deprecated elements or attributes, no browser-specific hacks, no relying on undocumented behavior.
 - **YAGNI.** Don't add a page, script, dependency, or abstraction for a need that doesn't exist yet. Build for the concept in front of you, not a hypothetical future one.
-- **KISS.** The simplest markup, CSS, or script that correctly does the job wins over a more "capable" one nobody asked for. This is a static reference site — reach for a build step, framework, or dependency only when plain HTML/CSS genuinely can't do it.
+- **KISS.** The simplest markup, CSS, or script that correctly does the job wins over a more "capable" one nobody asked for. Prefer the platform: if plain HTML and CSS do the job, that is the answer. See the recorded exception below for the site's build step.
 - **DRY.** A rule, checklist, or nav list is written once and reused, never hand-duplicated in a way that can drift out of sync — the shared nav block across pages, or a skill linking back to its canonical page instead of restating it, are both this rule in practice.
-- **Verify before calling it done.** Run `scripts/verify-site.py` after any change to the site: it checks that internal links resolve, that HTML tags balance, and that every principle page has all the sections the skeleton above requires. A change isn't finished until that check passes clean — this is the repo's substitute for a test suite.
+- **Verify before calling it done.** Run `npm run gate:all` after any change to the site. It type-checks, lints, unit-tests, builds, prerenders, then verifies URL parity, content invariants, W3C validity, link resolution, and accessibility. A change isn't finished until that passes clean — this is the repo's test suite.
+
+### Recorded exception: the site has a build step
+
+The site's presentation layer is a Vite + TypeScript + React + Tailwind application, prerendered to
+static HTML. This is a deliberate, recorded exception to KISS and YAGNI above, not an oversight.
+
+**Why.** The no-build-step version reached 173 hand-written HTML files that duplicated the same
+`<head>`, nav, and footer 173 times. DRY was already broken and getting worse: `CONTRIBUTING.md` had
+to instruct contributors to paste a new nav item "into every existing HTML file, in the same
+position," and `courses.json` had drifted out of sync with the catalog markup that was supposed to be
+derived from it. At that scale the duplication, not the tooling, had become the source of defects.
+
+**What it does not license.** The exception covers the presentation layer only:
+
+- Content remains the source of truth and stays in typed content modules — one canonical definition
+  per concept, as the Mission requires. Adding a dependency to avoid writing content is still wrong.
+- Output is still static HTML on GitHub Pages. No server, no runtime data fetching, no accounts.
+- Every URL the hand-written site served is still served, byte-identical (see
+  `.kiro/steering/migration-invariants.md`).
+- The output must still pass the W3C Nu Html Checker. Standards-compliant markup is unchanged as a
+  requirement; the framework is not an excuse for markup a validator rejects.
+- New dependencies beyond the established toolchain still need the YAGNI argument made and won.
 
 ## Tone
 

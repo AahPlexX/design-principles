@@ -1,0 +1,263 @@
+// Generated from the pre-migration HTML by scripts/extract/legacy-extract.ts.
+// Reviewed and now maintained by hand — edit this file directly, do not re-run the extractor over it.
+
+import type { Course } from "@/content/types";
+
+export const courses: readonly Course[] = [
+  {
+    id: "visual-hierarchy",
+    title: "Where the Eye Goes First",
+    hook: "Practice spotting broken hierarchy and fixing it with size, contrast, and position.",
+    principleSlug: "visual-hierarchy",
+    principleTitle: "Visual Hierarchy",
+    searchKeywords: "where the eye goes first visual hierarchy practice spotting broken hierarchy fixing size contrast position",
+    structure: {
+      kind: "levelled",
+      levels: [
+        {
+          id: "level-1",
+          number: 1,
+          title: "The Toolkit: What Actually Creates Dominance",
+          lessonIds: ["level-1-lesson-1", "level-1-lesson-2", "level-1-lesson-3", "level-1-lesson-4", "level-1-lesson-5", "level-1-lesson-6", "level-1-lesson-7", "level-1-lesson-8"],
+        },
+        {
+          id: "level-2",
+          number: 2,
+          title: "Gestalt Grouping Applied to Hierarchy",
+          lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4", "level-2-lesson-5"],
+        },
+        {
+          id: "level-3",
+          number: 3,
+          title: "How the Eye Actually Scans a Screen",
+          lessonIds: ["level-3-lesson-1", "level-3-lesson-2", "level-3-lesson-3", "level-3-lesson-4", "level-3-lesson-5", "level-3-lesson-6"],
+        },
+        {
+          id: "level-4",
+          number: 4,
+          title: "Hierarchy in Actions and CTAs",
+          lessonIds: ["level-4-lesson-1", "level-4-lesson-2", "level-4-lesson-3", "level-4-lesson-4"],
+        },
+        {
+          id: "level-5",
+          number: 5,
+          title: "Hierarchy Across Real Contexts",
+          lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4", "level-5-lesson-5"],
+        },
+        {
+          id: "level-6",
+          number: 6,
+          title: "Hierarchy, Accessibility, and Keeping It Intact",
+          lessonIds: ["level-6-lesson-1", "level-6-lesson-2", "level-6-lesson-3", "level-6-lesson-4", "level-6-lesson-5"],
+        },
+      ],
+    },
+  },
+  {
+    id: "color-contrast",
+    title: "Contrast You Can Prove",
+    hook: "Practice reading contrast ratios and catching pairs that fail before a user does.",
+    principleSlug: "color-contrast",
+    principleTitle: "Color & Contrast",
+    searchKeywords: "contrast you can prove color contrast practice reading ratios catching pairs that fail",
+    structure: {
+      kind: "levelled",
+      levels: [
+        {
+          id: "level-1",
+          number: 1,
+          title: "The Ratio, Precisely",
+          lessonIds: ["level-1-lesson-1", "level-1-lesson-2", "level-1-lesson-3", "level-1-lesson-4"],
+        },
+        {
+          id: "level-2",
+          number: 2,
+          title: "Text Thresholds in Context",
+          lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4", "level-2-lesson-5"],
+        },
+        {
+          id: "level-3",
+          number: 3,
+          title: "Beyond Text: Non-Text & UI Component Contrast",
+          lessonIds: ["level-3-lesson-1", "level-3-lesson-2", "level-3-lesson-3", "level-3-lesson-4"],
+        },
+        {
+          id: "level-4",
+          number: 4,
+          title: "Designing for Color Vision Deficiency",
+          lessonIds: ["level-4-lesson-1", "level-4-lesson-2", "level-4-lesson-3", "level-4-lesson-4", "level-4-lesson-5"],
+        },
+        {
+          id: "level-5",
+          number: 5,
+          title: "Dark Mode & Theming",
+          lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4", "level-5-lesson-5"],
+        },
+        {
+          id: "level-6",
+          number: 6,
+          title: "Contrast on Unpredictable Backgrounds",
+          lessonIds: ["level-6-lesson-1", "level-6-lesson-2", "level-6-lesson-3", "level-6-lesson-4"],
+        },
+        {
+          id: "level-7",
+          number: 7,
+          title: "Tools & Workflow",
+          lessonIds: ["level-7-lesson-1", "level-7-lesson-2", "level-7-lesson-3", "level-7-lesson-4"],
+        },
+        {
+          id: "level-8",
+          number: 8,
+          title: "Real-World Failure Patterns Across UI",
+          lessonIds: ["level-8-lesson-1", "level-8-lesson-2", "level-8-lesson-3", "level-8-lesson-4", "level-8-lesson-5"],
+        },
+        {
+          id: "level-9",
+          number: 9,
+          title: "Where the Standard Is Headed",
+          lessonIds: ["level-9-lesson-1", "level-9-lesson-2", "level-9-lesson-3"],
+        },
+      ],
+    },
+  },
+  {
+    id: "accessibility",
+    title: "Built for Everyone",
+    hook: "Practice finding the keyboard traps and missing labels that shut people out.",
+    principleSlug: "accessibility",
+    principleTitle: "Accessibility",
+    searchKeywords: "built for everyone accessibility practice finding keyboard traps missing labels",
+    structure: { kind: "flat", lessonIds: ["lesson-1", "lesson-2", "lesson-3"] },
+  },
+  {
+    id: "typography",
+    title: "Text People Actually Read",
+    hook: "Practice sizing and spacing type so it actually gets read instead of skipped.",
+    principleSlug: "typography",
+    principleTitle: "Typography",
+    searchKeywords: "text people actually read typography practice sizing spacing type gets read not skipped",
+    structure: { kind: "flat", lessonIds: ["lesson-1", "lesson-2", "lesson-3"] },
+  },
+  {
+    id: "spacing-layout",
+    title: "Show What Belongs Together",
+    hook: "Practice using whitespace and alignment to show what's related before a reader has to guess.",
+    principleSlug: "spacing-layout",
+    principleTitle: "Spacing & Layout",
+    searchKeywords: "show what belongs together spacing layout practice whitespace alignment related",
+    structure: {
+      kind: "levelled",
+      levels: [
+        {
+          id: "level-1",
+          number: 1,
+          title: "Why Gaps Read as Meaning",
+          lessonIds: ["level-1-lesson-1", "level-1-lesson-2", "level-1-lesson-3", "level-1-lesson-4", "level-1-lesson-5", "level-1-lesson-6"],
+        },
+        {
+          id: "level-2",
+          number: 2,
+          title: "Spacing Scales & Tokens",
+          lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4", "level-2-lesson-5"],
+        },
+        {
+          id: "level-3",
+          number: 3,
+          title: "Alignment in Practice",
+          lessonIds: ["level-3-lesson-1", "level-3-lesson-2", "level-3-lesson-3", "level-3-lesson-4", "level-3-lesson-5"],
+        },
+        {
+          id: "level-4",
+          number: 4,
+          title: "The CSS That Enforces It",
+          lessonIds: ["level-4-lesson-1", "level-4-lesson-2", "level-4-lesson-3", "level-4-lesson-4", "level-4-lesson-5"],
+        },
+        {
+          id: "level-5",
+          number: 5,
+          title: "Whitespace as a Structural Tool",
+          lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4", "level-5-lesson-5"],
+        },
+        {
+          id: "level-6",
+          number: 6,
+          title: "Composition & Responsive Spacing Patterns",
+          lessonIds: ["level-6-lesson-1", "level-6-lesson-2", "level-6-lesson-3", "level-6-lesson-4", "level-6-lesson-5"],
+        },
+      ],
+    },
+  },
+  {
+    id: "responsive-design",
+    title: "One Layout, Every Screen",
+    hook: "Practice spotting the layouts that break between a phone, a tablet, and a desktop.",
+    principleSlug: "responsive-design",
+    principleTitle: "Responsive Design",
+    searchKeywords: "one layout every screen responsive design practice spotting layouts break phone tablet desktop",
+    structure: {
+      kind: "levelled",
+      levels: [
+        {
+          id: "level-1",
+          number: 1,
+          title: "Foundations: Why \"One Layout\" Beats Device-Specific Builds",
+          lessonIds: ["level-1-lesson-1", "level-1-lesson-2", "level-1-lesson-3", "level-1-lesson-4", "level-1-lesson-5"],
+        },
+        {
+          id: "level-2",
+          number: 2,
+          title: "Flexible Units & Fluid Sizing",
+          lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4"],
+        },
+        {
+          id: "level-3",
+          number: 3,
+          title: "Breakpoint Strategy",
+          lessonIds: ["level-3-lesson-1", "level-3-lesson-2", "level-3-lesson-3", "level-3-lesson-4"],
+        },
+        {
+          id: "level-4",
+          number: 4,
+          title: "Flexible Media & Responsive Images",
+          lessonIds: ["level-4-lesson-1", "level-4-lesson-2", "level-4-lesson-3", "level-4-lesson-4"],
+        },
+        {
+          id: "level-5",
+          number: 5,
+          title: "Touch, Input & Responsive Navigation",
+          lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4"],
+        },
+        {
+          id: "level-6",
+          number: 6,
+          title: "Responsive Typography",
+          lessonIds: ["level-6-lesson-1", "level-6-lesson-2"],
+        },
+        {
+          id: "level-7",
+          number: 7,
+          title: "Testing & the Edges of the Spectrum",
+          lessonIds: ["level-7-lesson-1", "level-7-lesson-2", "level-7-lesson-3", "level-7-lesson-4", "level-7-lesson-5", "level-7-lesson-6"],
+        },
+      ],
+    },
+  },
+  {
+    id: "forms-inputs",
+    title: "Forms People Actually Finish",
+    hook: "Practice fixing the small form details that make people give up halfway through.",
+    principleSlug: "forms-inputs",
+    principleTitle: "Forms & Inputs",
+    searchKeywords: "forms people actually finish forms inputs practice fixing details give up",
+    structure: { kind: "flat", lessonIds: ["lesson-1", "lesson-2", "lesson-3"] },
+  },
+  {
+    id: "dark-patterns-ethics",
+    title: "Design That Doesn't Trick People",
+    hook: "Practice spotting manipulative patterns and naming the honest fix for each one.",
+    principleSlug: "dark-patterns-ethics",
+    principleTitle: "Dark Patterns & Ethics",
+    searchKeywords: "design that doesn't trick people dark patterns ethics practice spotting manipulative patterns",
+    structure: { kind: "flat", lessonIds: ["lesson-1", "lesson-2", "lesson-3"] },
+  },
+];
