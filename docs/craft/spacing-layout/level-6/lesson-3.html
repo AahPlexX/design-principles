@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 6, Lesson 3: Common layout skeletons and their alignment mistakes — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice spotting the alignment slip a familiar layout skeleton is most prone to.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-6/lesson-3.html">
+<meta property="og:title" content="Level 6, Lesson 3: Common layout skeletons and their alignment mistakes">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-6/lesson-3.html">
+<meta property="og:description" content="Practice spotting the alignment slip a familiar layout skeleton is most prone to.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 6, Lesson 3: Common layout skeletons and their alignment mistakes">
+<meta name="twitter:description" content="Practice spotting the alignment slip a familiar layout skeleton is most prone to.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 6, Lesson 3: Common layout skeletons and their alignment mistakes</h1>
+    <p>
+      Most pages are built from a handful of repeating skeletons: a sidebar next to a content
+      column, a grid of equal-width cards, a single centered reading column. Each one has its own
+      favorite way of quietly slipping out of alignment, even when every individual piece looks
+      fine on its own.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-6-lesson-3">
+      <p class="quiz-question">
+        A dashboard uses a sidebar-plus-content skeleton: a 240px sidebar and the main content
+        area are both direct children of the same CSS grid row, so their boxes start at the exact
+        same height. The sidebar's nav list has <code>padding-top: 24px</code>. The main content
+        starts with a plain <code>&lt;h1&gt;</code>, still carrying the browser's default top
+        margin. Why do the sidebar's first link and the page's heading end up sitting at
+        different heights, even though both columns start at the same grid line?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The grid line only fixes where each column's box starts, not where the content inside it sits — the nav's padding and the h1's un-reset margin push their content down by two different amounts.</button></li>
+        <li><button class="quiz-option" data-correct="false">CSS grid automatically vertically centers the first child of every column, so a small offset like this is expected behavior.</button></li>
+        <li><button class="quiz-option" data-correct="false">It's a browser bug — a grid is supposed to force every column's content to start at an identical offset automatically.</button></li>
+        <li><button class="quiz-option" data-correct="false">A grid column isn't allowed to contain a padded child, so the nav's padding is being silently ignored.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Lining up a column's outer box tells you nothing about where the content inside it
+          starts. Here the sidebar's nav has 24px of its own padding-top, while the h1 still
+          carries whatever top margin the browser applies to headings by default — two unrelated
+          numbers, so the two columns' first lines land at different heights even though the grid
+          itself is perfectly aligned. The fix is to match those numbers on purpose: reset the
+          h1's default margin and give both columns' first line the same offset from the grid
+          line, instead of leaving it to whatever each piece's default happens to be. The same
+          slip shows up in other skeletons too — a card grid where one card's button sits lower
+          because its body text ran one line longer, or a centered column where the heading is
+          optically centered but the paragraph below it is centered by strict math and looks
+          slightly off as a result.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Nested padding stacking into an oversized gap</a>
+      <a href="lesson-4.html">Lesson 4: Keeping row-gap and column-gap equal at wrap points &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

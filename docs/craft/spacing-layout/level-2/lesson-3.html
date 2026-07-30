@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2, Lesson 3: Spacing as design tokens — naming vs. raw values — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice seeing why a named spacing token holds up better than a hardcoded pixel value.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-3.html">
+<meta property="og:title" content="Level 2, Lesson 3: Spacing as design tokens — naming vs. raw values">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-3.html">
+<meta property="og:description" content="Practice seeing why a named spacing token holds up better than a hardcoded pixel value.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 2, Lesson 3: Spacing as design tokens — naming vs. raw values">
+<meta name="twitter:description" content="Practice seeing why a named spacing token holds up better than a hardcoded pixel value.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 2, Lesson 3: Spacing as design tokens — naming vs. raw values</h1>
+    <p>
+      A product goes through a visual refresh, and the spacing scale needs to shift slightly
+      denser across the board. One codebase has "margin: 16px" typed into 200 different
+      component files. Another has "margin: var(--space-md)" in those same 200 places, with
+      "--space-md: 16px" declared once. Only one of those codebases gets to change its mind in
+      a single edit.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-2-lesson-3">
+      <p class="quiz-question">
+        A design system defines <code>--space-md: 16px;</code> once, and every component
+        references <code>var(--space-md)</code> instead of typing <code>16px</code> directly.
+        What's the actual benefit of that named token over the raw value?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Changing the token's declared value in one place updates every component that references it, instead of requiring an edit everywhere the raw number was typed.</button></li>
+        <li><button class="quiz-option" data-correct="false">Named tokens make the CSS file noticeably smaller than writing out the raw pixel numbers.</button></li>
+        <li><button class="quiz-option" data-correct="false">A browser won't apply spacing at all unless it's declared through a named token.</button></li>
+        <li><button class="quiz-option" data-correct="false">Using a token instead of a raw value makes that spacing automatically adjust for different screen sizes.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A design token is just a named stand-in for a value — here, a CSS custom property
+          like <code>--space-md</code> that holds <code>16px</code> and gets referenced by name
+          instead of the raw number being retyped everywhere. The scale from the earlier lessons
+          (pick every value from a fixed set of multiples) still decides what the number is;
+          tokens are the naming layer on top that makes that scale maintainable. The real payoff
+          shows up when the value needs to change: edit the one declaration, and every component
+          that referenced <code>--space-md</code> updates with it. A raw <code>16px</code> typed
+          in 200 places has no such single point of change — someone has to find and edit all
+          200. Tokens don't shrink file size in any meaningful way, don't make spacing appear
+          without one being applied, and don't add any responsive behavior on their own — that
+          would require a media query or a fluid unit, not a naming convention.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: 4pt vs. 8pt grid — the two conventions</a>
+      <a href="lesson-4.html">Lesson 4: rem/px/em for spacing, and why rem respects zoom &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 1, Lesson 4: Alignment as a grouping signal — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice recognizing how a shared edge, not just a gap, tells the reader which items belong to the same list.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-1/lesson-4.html">
+<meta property="og:title" content="Level 1, Lesson 4: Alignment as a grouping signal">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-1/lesson-4.html">
+<meta property="og:description" content="Practice recognizing how a shared edge, not just a gap, tells the reader which items belong to the same list.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 1, Lesson 4: Alignment as a grouping signal">
+<meta name="twitter:description" content="Practice recognizing how a shared edge, not just a gap, tells the reader which items belong to the same list.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 1, Lesson 4: Alignment as a grouping signal</h1>
+    <p>
+      A checkout summary lists three lines — Subtotal, Tax, Total — with their dollar amounts
+      right-aligned to the same vertical edge on the panel's right side. The line spacing between
+      them is nothing special, just a plain 8px. But something about the layout makes the three
+      amounts read as one connected column of numbers, clearly separate from the "Place order"
+      button underneath.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-1-lesson-4">
+      <p class="quiz-question">
+        The three dollar amounts (Subtotal, Tax, Total) all line up on the same right edge. If the
+        "Total" amount were shifted 6px to the left of that shared edge — everything else
+        unchanged — what would happen to how the summary reads?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">"Total" would stop looking like part of the same column — breaking the shared edge breaks the alignment cue that tied the three numbers together, even though the spacing between the lines hasn't changed at all.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing would change, because alignment only matters for text, not for numbers.</button></li>
+        <li><button class="quiz-option" data-correct="false">The whole summary would become unreadable, because a 6px shift is larger than any browser's default line height.</button></li>
+        <li><button class="quiz-option" data-correct="false">Users would read "Total" as the most important line, because misalignment is a technique for emphasis, not grouping.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Items that share an edge — a left edge, a right edge, a baseline — read as connected,
+          independent of the gap between them. That's why the three amounts in the checkout
+          summary feel like one list: the shared right edge gives the eye an invisible line to
+          follow down the column. Breaking that shared edge, even by a few pixels, breaks the
+          grouping signal, because alignment is a separate cue from spacing — a layout can have
+          consistent gaps and still read as disorganized if nothing actually lines up.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Common region — a shared background groups items</a>
+      <a href="lesson-5.html">Lesson 5: Figure/ground — how much space reads as foreground &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

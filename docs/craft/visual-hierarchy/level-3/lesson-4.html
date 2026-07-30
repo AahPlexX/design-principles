@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 3, Lesson 4: Strong hierarchy overrides the default scan pattern — Where the Eye Goes First | Design Principles</title>
+<meta name="description" content="Practice recognizing when strong visual emphasis overrides a page's default scan pattern.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-3/lesson-4.html">
+<meta property="og:title" content="Level 3, Lesson 4: Strong hierarchy overrides the default scan pattern">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-3/lesson-4.html">
+<meta property="og:description" content="Practice recognizing when strong visual emphasis overrides a page's default scan pattern.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 3, Lesson 4: Strong hierarchy overrides the default scan pattern">
+<meta name="twitter:description" content="Practice recognizing when strong visual emphasis overrides a page's default scan pattern.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/visual-hierarchy/">&larr; Where the Eye Goes First</a></p>
+    <h1>Level 3, Lesson 4: Strong hierarchy overrides the default scan pattern</h1>
+    <p>
+      The F-pattern, the Z-pattern, and the Gutenberg diagram all describe the same situation:
+      what an eye does by default when nothing on the page is actively competing for its
+      attention. None of them are a law of nature. The instant one element gets real emphasis — a
+      much bigger headline, a single saturated button, an image sitting alone in open space — the
+      eye breaks from whatever default path it was tracing and jumps straight to the loud thing
+      first. Emphasis outranks position every time.
+    </p>
+
+    <div class="quiz" data-quiz data-course="visual-hierarchy" data-lesson="level-3-lesson-4">
+      <p class="quiz-question">
+        A long-form article (normally an F-pattern page) has, halfway down its right-hand margin —
+        the area an F-pattern reader typically skips entirely — a bright red banner reading
+        "Limited-time offer," set in large bold white text, far bigger and higher-contrast than
+        anything else on the page. Will the F-pattern still cause most readers to miss it?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="false">Yes — the F-pattern is fixed, and no amount of styling changes where the eye lands.</button></li>
+        <li><button class="quiz-option" data-correct="true">No — the banner's size, color, and contrast are strong enough to pull the eye out of its default path and toward it, regardless of its position.</button></li>
+        <li><button class="quiz-option" data-correct="false">No, but only because banners are always placed earlier in the page's HTML than the surrounding article text.</button></li>
+        <li><button class="quiz-option" data-correct="false">Yes — but only on a phone screen; a desktop reader would still notice it.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Scan patterns like the F-pattern describe default behavior on a low-hierarchy page — they
+          don't override a genuinely strong emphasis signal. A banner with far more size, color, and
+          contrast than anything around it functions as a much higher-priority instruction to the
+          eye than its position on the page does, so it gets noticed even sitting in a spot the
+          default pattern usually skips. Where an element sits in the HTML has nothing to do with
+          this — it's what the eye sees, not the order it was written in.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: The Gutenberg diagram and reading gravity</a>
+      <a href="lesson-5.html">Lesson 5: Focal points and directional cues &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

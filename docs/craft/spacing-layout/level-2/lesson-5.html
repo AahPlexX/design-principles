@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2, Lesson 5: Sharing one rhythm between spacing scale and type scale — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice spotting when line-height and the spacing scale share a base unit instead of running on two disconnected systems.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-5.html">
+<meta property="og:title" content="Level 2, Lesson 5: Sharing one rhythm between spacing scale and type scale">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-5.html">
+<meta property="og:description" content="Practice spotting when line-height and the spacing scale share a base unit instead of running on two disconnected systems.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 2, Lesson 5: Sharing one rhythm between spacing scale and type scale">
+<meta name="twitter:description" content="Practice spotting when line-height and the spacing scale share a base unit instead of running on two disconnected systems.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 2, Lesson 5: Sharing one rhythm between spacing scale and type scale</h1>
+    <p>
+      A two-column article splits a long feature into two blocks of body text. The spacing
+      scale is built on multiples of 8px, but nobody checked the type scale against it — the
+      body copy's line-height comes out to an odd 23px. Scroll down the page and the two
+      columns' lines slowly drift out of step with each other, even though every individual
+      paragraph looks fine on its own.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-2-lesson-5">
+      <p class="quiz-question">
+        A page's spacing scale is built on multiples of 8px (8, 16, 24, 32...). A paragraph is
+        set with <code>font-size: 16px; line-height: 24px;</code>, so each line of text takes up
+        24px vertically. Why does that particular line-height help the paragraph's text blend
+        into the same rhythm as the whitespace around it?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">24px is itself a multiple of the spacing scale's 8px base unit, so the paragraph's lines and the gaps around it land on the same underlying grid.</button></li>
+        <li><button class="quiz-option" data-correct="false">Font-size and spacing units are unrelated by definition, so no real coordination between them is possible.</button></li>
+        <li><button class="quiz-option" data-correct="false">Only headings need to match the spacing scale — body text line-height has no effect on a page's rhythm.</button></li>
+        <li><button class="quiz-option" data-correct="false">Matching the two scales only matters for printed layouts, not for pages viewed on a screen.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A spacing scale and a type scale can either share one base unit or run as two
+          disconnected systems, and the difference shows up the moment text sits next to other
+          spaced elements. Here, 24px is 3&times; the page's 8px base unit, so a paragraph's
+          line-height lands on the exact same grid as every margin and gap built from that scale
+          — the text and the whitespace around it read as one continuous rhythm instead of two
+          things that happen to be near each other. An odd line-height like 23px breaks that:
+          nothing about it aligns with 8, 16, 24, or 32, so the text's own rhythm quietly runs out
+          of sync with the layout's, and a reader feels that misalignment even without being able
+          to name it. This applies to body copy as much as headings, and it matters on-screen
+          exactly as much as in print, since it's the same visual grid either way.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-4.html">&larr; Lesson 4: rem/px/em for spacing, and why rem respects zoom</a>
+      <a href="../level-3/lesson-1.html">Level 3, Lesson 1: One consistent left edge per column &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

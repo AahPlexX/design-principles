@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 1, Lesson 1: Proximity — closer reads as related — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice spotting whether a gap between two elements is small enough to read as 'these belong together.'">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-1/lesson-1.html">
+<meta property="og:title" content="Level 1, Lesson 1: Proximity — closer reads as related">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-1/lesson-1.html">
+<meta property="og:description" content="Practice spotting whether a gap between two elements is small enough to read as 'these belong together.'">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 1, Lesson 1: Proximity — closer reads as related">
+<meta name="twitter:description" content="Practice spotting whether a gap between two elements is small enough to read as 'these belong together.'">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 1, Lesson 1: Proximity — closer reads as related</h1>
+    <p>
+      You're reviewing a signup form before it ships. The copy reads fine and the colors pass
+      contrast, but something about the layout still makes it hard to tell which label goes with
+      which field. The fix isn't in the wording — it's in the gaps.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-1-lesson-1">
+      <p class="quiz-question">
+        A form uses <code>margin-bottom: 24px</code> between one field group and the next, and
+        <code>margin-bottom: 8px</code> between a field's label and its own input. Why does this
+        combination make the grouping easy to read?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The label-to-input gap (8px) is smaller than the group-to-group gap (24px), so the eye reads the label as part of its own input rather than the one above it.</button></li>
+        <li><button class="quiz-option" data-correct="false">Both 24px and 8px are round numbers, and round numbers always look intentional.</button></li>
+        <li><button class="quiz-option" data-correct="false">8px is the minimum gap the CSS spec requires between a label and an input.</button></li>
+        <li><button class="quiz-option" data-correct="false">Larger gaps like 24px are only ever placed above headings.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Space between related items should always be smaller than the space between unrelated
+          groups. Here, the gap between a label and its own input (8px) is clearly smaller than
+          the gap between one field group and the next (24px) — proximity tells the reader what
+          belongs together before they even read the labels.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="/design-principles/craft/spacing-layout/">&larr; Course overview</a>
+      <a href="lesson-2.html">Lesson 2: Similarity — same-styled items read as one group &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

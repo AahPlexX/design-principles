@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 4, Lesson 4: Disabled states carry deliberately reduced weight — Where the Eye Goes First | Design Principles</title>
+<meta name="description" content="Practice recognizing why a disabled button needs visibly reduced weight, not just a blocked click handler.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-4/lesson-4.html">
+<meta property="og:title" content="Level 4, Lesson 4: Disabled states carry deliberately reduced weight">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-4/lesson-4.html">
+<meta property="og:description" content="Practice recognizing why a disabled button needs visibly reduced weight, not just a blocked click handler.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 4, Lesson 4: Disabled states carry deliberately reduced weight">
+<meta name="twitter:description" content="Practice recognizing why a disabled button needs visibly reduced weight, not just a blocked click handler.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/visual-hierarchy/">&larr; Where the Eye Goes First</a></p>
+    <h1>Level 4, Lesson 4: Disabled states carry deliberately reduced weight</h1>
+    <p>
+      A checkout form's "Place order" button won't do anything yet because a required field is
+      still empty &mdash; but it's rendered in the same full-strength brand color and contrast as
+      when it's ready to submit. A shopper has no visual reason to suspect the button won't work
+      until after they've clicked it and nothing happened.
+    </p>
+
+    <div class="quiz" data-quiz data-course="visual-hierarchy" data-lesson="level-4-lesson-4">
+      <p class="quiz-question">
+        What's the correct fix for that "Place order" button while a required field is still
+        empty?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">Give it deliberately reduced visual weight &mdash; lower contrast or a muted fill &mdash; so it reads as currently unavailable, and mark it disabled in the markup so assistive tech announces it that way too.</button></li>
+        <li><button class="quiz-option" data-correct="false">Leave its styling untouched, since visual weight only matters for buttons that are actually clickable.</button></li>
+        <li><button class="quiz-option" data-correct="false">Hide the button completely until every required field is filled in.</button></li>
+        <li><button class="quiz-option" data-correct="false">Increase its contrast further so shoppers definitely notice where the order button is.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          A disabled control is telling the reader "not yet," and hierarchy needs to say that
+          visually before anyone clicks it, not after. Muting the contrast or fill is what signals
+          unavailability at a glance &mdash; it's also why accessibility guidelines don't hold a
+          disabled control to the usual contrast requirements that apply to active text and
+          buttons: the reduced contrast is the intended signal, not a failure to meet one. Hiding
+          the button removes the reader's roadmap entirely, since they can no longer see what's
+          coming once the form is complete, and boosting its contrast does the opposite of what a
+          disabled state needs &mdash; it makes an inactive action look like the screen's most
+          important one.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Destructive actions shouldn't out-rank the safe path</a>
+      <a href="../level-5/lesson-1.html">Level 5, Lesson 1: Forms — label vs. input vs. helper/error hierarchy &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

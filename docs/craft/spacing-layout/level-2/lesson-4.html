@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 2, Lesson 4: rem/px/em for spacing, and why rem respects zoom — Show What Belongs Together | Design Principles</title>
+<meta name="description" content="Practice choosing the unit that keeps spacing proportioned when a reader increases their text size.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-4.html">
+<meta property="og:title" content="Level 2, Lesson 4: rem/px/em for spacing, and why rem respects zoom">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/spacing-layout/level-2/lesson-4.html">
+<meta property="og:description" content="Practice choosing the unit that keeps spacing proportioned when a reader increases their text size.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 2, Lesson 4: rem/px/em for spacing, and why rem respects zoom">
+<meta name="twitter:description" content="Practice choosing the unit that keeps spacing proportioned when a reader increases their text size.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/spacing-layout/">&larr; Show What Belongs Together</a></p>
+    <h1>Level 2, Lesson 4: rem/px/em for spacing, and why rem respects zoom</h1>
+    <p>
+      A reader with low vision opens their browser's settings and raises the default text size,
+      the way the browser's own accessibility options intend. On one site, the padding around
+      every card grows along with the bigger text, so the layout still looks balanced. On
+      another, the text grows but the padding doesn't move at all — the bigger words start
+      crowding right up against the edge of the box.
+    </p>
+
+    <div class="quiz" data-quiz data-course="spacing-layout" data-lesson="level-2-lesson-4">
+      <p class="quiz-question">
+        A card's padding is set with <code>padding: 1rem;</code>. A reader raises their
+        browser's default font-size setting from 16px to 20px. What happens to that padding,
+        and why?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The padding grows from 16px to 20px, because rem is defined relative to the root element's font-size, and that root size is exactly what the reader just changed.</button></li>
+        <li><button class="quiz-option" data-correct="false">The padding stays fixed at 16px, because rem is a fixed unit like px and doesn't respond to font-size changes.</button></li>
+        <li><button class="quiz-option" data-correct="false">The padding disappears, because rem units are only valid on font-size, not on padding.</button></li>
+        <li><button class="quiz-option" data-correct="false">The padding shrinks, because raising the root font-size proportionally reduces every rem value on the page.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          "rem" stands for root em — one rem always equals the font-size set on the page's root
+          <code>&lt;html&gt;</code> element, which defaults to 16px but is exactly what a reader
+          changes when they raise their browser's text-size preference. Raise that root size to
+          20px, and every rem-based value on the page — including <code>padding: 1rem</code> —
+          scales up with it, to 20px. <code>em</code> is also relative, but to the current
+          element's own font-size rather than the root's, so nested em values can compound in
+          ways that make them harder to predict for spacing. <code>px</code> is an absolute unit
+          tied to a fixed number of pixels, so it ignores the reader's font-size preference
+          entirely — which is exactly why fixed-px padding stayed put while the text around it
+          grew. That's the practical reason rem is the more common choice for spacing that needs
+          to stay proportioned as text scales.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-3.html">&larr; Lesson 3: Spacing as design tokens — naming vs. raw values</a>
+      <a href="lesson-5.html">Lesson 5: Sharing one rhythm between spacing scale and type scale &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>

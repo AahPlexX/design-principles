@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Level 4, Lesson 3: Destructive actions shouldn't out-rank the safe path — Where the Eye Goes First | Design Principles</title>
+<meta name="description" content="Practice spotting when a destructive action is styled to out-rank the safer, default option next to it.">
+<link rel="canonical" href="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-4/lesson-3.html">
+<meta property="og:title" content="Level 4, Lesson 3: Destructive actions shouldn't out-rank the safe path">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://aahplexx.github.io/design-principles/craft/visual-hierarchy/level-4/lesson-3.html">
+<meta property="og:description" content="Practice spotting when a destructive action is styled to out-rank the safer, default option next to it.">
+<meta property="og:site_name" content="Design Principles">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Level 4, Lesson 3: Destructive actions shouldn't out-rank the safe path">
+<meta name="twitter:description" content="Practice spotting when a destructive action is styled to out-rank the safer, default option next to it.">
+<link rel="stylesheet" href="/design-principles/assets/style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="/design-principles/">Design Principles</a>
+    <nav class="site-nav" aria-label="Primary">
+      <ul>
+        <li><a href="/design-principles/craft/" aria-current="page">Craft</a></li>
+        <li><a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a></li>
+        <li><a href="/design-principles/principles/typography.html">Typography</a></li>
+        <li><a href="/design-principles/principles/color-contrast.html">Color &amp; Contrast</a></li>
+        <li><a href="/design-principles/principles/spacing-layout.html">Spacing &amp; Layout</a></li>
+        <li><a href="/design-principles/principles/iconography-imagery.html">Iconography &amp; Imagery</a></li>
+        <li><a href="/design-principles/principles/accessibility.html">Accessibility</a></li>
+        <li><a href="/design-principles/principles/responsive-design.html">Responsive Design</a></li>
+        <li><a href="/design-principles/principles/performance.html">Performance</a></li>
+        <li><a href="/design-principles/principles/motion-feedback.html">Motion &amp; Feedback</a></li>
+        <li><a href="/design-principles/principles/internationalization-localization.html">Internationalization &amp; Localization</a></li>
+        <li><a href="/design-principles/principles/navigation-ia.html">Navigation &amp; IA</a></li>
+        <li><a href="/design-principles/principles/forms-inputs.html">Forms &amp; Inputs</a></li>
+        <li><a href="/design-principles/principles/content-microcopy.html">Content &amp; Microcopy</a></li>
+        <li><a href="/design-principles/principles/empty-error-states.html">Empty &amp; Error States</a></li>
+        <li><a href="/design-principles/principles/data-tables.html">Data &amp; Tables</a></li>
+        <li><a href="/design-principles/principles/onboarding-progressive-disclosure.html">Onboarding &amp; Progressive Disclosure</a></li>
+        <li><a href="/design-principles/principles/dark-patterns-ethics.html">Dark Patterns &amp; Ethics</a></li>
+        <li><a href="/design-principles/about.html">About</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <p><a href="/design-principles/craft/visual-hierarchy/">&larr; Where the Eye Goes First</a></p>
+    <h1>Level 4, Lesson 3: Destructive actions shouldn't out-rank the safe path</h1>
+    <p>
+      A project management tool's "delete project" confirmation shows two buttons: "Delete
+      project" rendered as a bold, saturated red filled button, and "Cancel" rendered as a small
+      gray text link beside it. The dialog exists specifically to give someone a chance to back
+      out of something irreversible &mdash; but its own styling is pulling the eye toward the
+      option that can't be undone.
+    </p>
+
+    <div class="quiz" data-quiz data-course="visual-hierarchy" data-lesson="level-4-lesson-3">
+      <p class="quiz-question">
+        In that dialog &mdash; "Delete project" as a bold filled red button, "Cancel" as a small
+        gray text link &mdash; what's the actual hierarchy problem?
+      </p>
+      <ul class="quiz-options">
+        <li><button class="quiz-option" data-correct="true">The irreversible action ("Delete project") has been given the strongest visual weight, while the safe default ("Cancel") is styled as an afterthought &mdash; hierarchy is pointing at the riskiest choice instead of the safest one.</button></li>
+        <li><button class="quiz-option" data-correct="false">Nothing is wrong &mdash; red is the conventional color for a destructive action, so the styling is already correct.</button></li>
+        <li><button class="quiz-option" data-correct="false">The dialog should remove the "Cancel" button entirely so there's only one option to consider.</button></li>
+        <li><button class="quiz-option" data-correct="false">The only fix needed is renaming "Delete project" to "Confirm," since wording drives hierarchy, not styling.</button></li>
+      </ul>
+      <div class="quiz-feedback" hidden>
+        <p>
+          Color-coding a destructive action red is fine on its own &mdash; it helps someone
+          recognize what the button does. The mistake is separate: giving that red button the
+          loudest, most dominant styling on the screen while the safer "Cancel" path fades into
+          the background. A confirmation dialog's whole job is to make backing out easy and make
+          the irreversible action require deliberate effort, so the safe option should be at least
+          as visually prominent as the destructive one &mdash; often the filled, primary-weight
+          button should be Cancel, with the destructive action styled a level down even though it
+          keeps its warning color. Removing the cancel option or just renaming a label doesn't
+          touch the actual weight imbalance.
+        </p>
+      </div>
+    </div>
+
+    <p>
+      Full explanation: <a href="/design-principles/principles/visual-hierarchy.html">Visual Hierarchy</a>.
+    </p>
+
+    <nav class="lesson-nav">
+      <a href="lesson-2.html">&larr; Lesson 2: Primary/secondary/tertiary button tiers</a>
+      <a href="lesson-4.html">Lesson 4: Disabled states carry deliberately reduced weight &rarr;</a>
+    </nav>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>Design Principles — <a href="https://github.com/aahplexx/design-principles">source on GitHub</a>, MIT licensed.</p>
+  </div>
+</footer>
+<script src="/design-principles/assets/craft-progress.js"></script>
+</body>
+</html>
