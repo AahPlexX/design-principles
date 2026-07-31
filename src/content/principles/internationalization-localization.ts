@@ -37,7 +37,7 @@ export const internationalizationLocalization: Principle = {
       context: "A button box sized to fit the English label exactly",
       good: {
         label: "Good — width follows the label",
-        code: "button {\n  padding-inline: 12px 20px;\n  width: max-content;\n}",
+        code: "button {\n  padding-inline: 12px 20px;\n  width: max-content;\n  max-width: 100%;\n}",
         note: html("The button grows or shrinks with whatever text ends up inside it, so a translated label that's longer or shorter than the English original still fits without wrapping or clipping."),
       },
       bad: {

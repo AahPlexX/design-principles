@@ -110,9 +110,9 @@ export function PrinciplePage({ principle }: PrinciplePageProps) {
           <div className="space-y-8">
             {principle.examples.map((scenario) => (
               <div key={scenario.context}>
-                <p className="mb-3 text-xs font-semibold tracking-wide text-ink-muted uppercase">
+                <h3 className="mb-3 text-xs font-semibold tracking-wide text-ink-muted uppercase">
                   {scenario.context}
-                </p>
+                </h3>
                 <ExamplePair good={scenario.good} bad={scenario.bad} />
               </div>
             ))}

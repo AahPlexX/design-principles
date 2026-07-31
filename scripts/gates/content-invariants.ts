@@ -52,8 +52,18 @@ for (const principle of principles) {
       scenario.good.code.trim() !== "" && scenario.bad.code.trim() !== "",
       `${where}: ${label} ("${scenario.context}") has an incomplete good/bad pair`,
     );
+    // ExamplePair renders label and note unconditionally, so an empty one is a blank panel, not a
+    // missing-but-harmless field.
+    for (const side of [scenario.good, scenario.bad] as const) {
+      gate.check(
+        side.label.trim() !== "" && toPlainText(side.note).trim() !== "",
+        `${where}: ${label} ("${scenario.context}") has an empty label or note`,
+      );
+    }
   }
-  const exampleContexts = new Set(principle.examples.map((scenario) => scenario.context));
+  // Trimmed, since a context that differs only by leading/trailing whitespace renders identically (and
+  // collides as a React key) but would otherwise slip past a raw-string uniqueness check.
+  const exampleContexts = new Set(principle.examples.map((scenario) => scenario.context.trim()));
   gate.check(
     exampleContexts.size === principle.examples.length,
     `${where}: two example scenarios share a context label`,

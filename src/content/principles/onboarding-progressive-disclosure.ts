@@ -50,7 +50,7 @@ export const onboardingProgressiveDisclosure: Principle = {
       context: "A signup form collecting account details",
       good: {
         label: "Good — asks only what's needed to start",
-        code: "<form>\n  <input type=\"email\" placeholder=\"Email\" />\n  <input type=\"password\" placeholder=\"Password\" />\n  <button>Create account</button>\n</form>\n<!-- name, company size, and phone number\n     are asked for later, inside the\n     product, when each is actually\n     needed for something specific -->",
+        code: "<form>\n  <label for=\"email\">Email</label>\n  <input id=\"email\" type=\"email\" />\n  <label for=\"password\">Password</label>\n  <input id=\"password\" type=\"password\" />\n  <button>Create account</button>\n</form>\n<!-- name, company size, and phone number\n     are asked for later, inside the\n     product, when each is actually\n     needed for something specific -->",
         note: html("Two fields are the minimum required to create something to sign back into. Everything else is deferred to the moment it's needed — a phone number when two-factor login is turned on, a company size when a plan limit is reached."),
       },
       bad: {
