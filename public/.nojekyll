@@ -1,0 +1,4 @@
+Presence of this file tells GitHub Pages to skip its Jekyll build step.
+
+Without it, Pages silently drops files and directories whose names begin with an underscore. Keeping
+it in public/ means it is copied into the deployed artifact on every build.

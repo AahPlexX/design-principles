@@ -4,3 +4,43 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+
+  # The site has an npm dependency tree now. Grouped so a week's updates arrive as two reviewable
+  # pull requests instead of twenty: the gates either pass on the group or they do not, and bisecting
+  # a single failing package out of a group is cheaper than reviewing each one separately.
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 5
+    groups:
+      production:
+        applies-to: version-updates
+        dependency-type: "production"
+      development:
+        applies-to: version-updates
+        dependency-type: "development"
+    ignore:
+      # Majors of the build and styling toolchain land breaking changes that need a deliberate
+      # migration rather than a dependency bump — Tailwind v3 to v4 moved configuration out of
+      # JavaScript entirely, and React majors change rendering semantics. Minors and patches still
+      # come through; only the majors are held back for a human to plan.
+      - dependency-name: "tailwindcss"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "@tailwindcss/*"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "vite"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react"
+        update-types: ["version-update:semver-major"]
+      - dependency-name: "react-dom"
+        update-types: ["version-update:semver-major"]
+      # typescript-eslint pins the TypeScript versions it supports, so TypeScript majors have to move
+      # together with it rather than ahead of it.
+      - dependency-name: "typescript"
+        update-types: ["version-update:semver-major"]
+
+  - package-ecosystem: "pip"
+    directory: "/scripts"
+    schedule:
+      interval: "monthly"
