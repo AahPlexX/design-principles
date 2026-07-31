@@ -50,8 +50,8 @@ export const motionFeedback: Principle = {
       context: "An auto-advancing hero carousel",
       good: {
         label: "Good — pausable, and off by default for reduced motion",
-        code: "<div class=\"carousel\">\n  <button aria-label=\"Pause slideshow\">Pause</button>\n  <!-- slides auto-advance every 6s -->\n</div>\n\n@media (prefers-reduced-motion: reduce) {\n  .carousel { animation-play-state: paused; }\n}",
-        note: html("The visible pause control satisfies the requirement that any auto-advancing content running longer than five seconds be stoppable, and the media query stops the motion outright for anyone who's told their system they don't want it."),
+        code: "<div class=\"carousel\">\n  <button type=\"button\">Pause slideshow</button>\n</div>\n\n<script>\n  const reduceMotion =\n    matchMedia(\"(prefers-reduced-motion: reduce)\").matches;\n  // slides auto-advance every 6s, unless the\n  // reader has told their system they don't want it\n  if (!reduceMotion) startAutoAdvance();\n</script>",
+        note: html("The visible pause control satisfies the requirement that any auto-advancing content running longer than five seconds be stoppable. Checking <code>prefers-reduced-motion</code> before ever starting the timer stops the motion outright for anyone who's asked for less of it — a CSS media query alone can pause a CSS animation, but it can't stop a JavaScript timer that's already running, so the check has to gate the code that starts it."),
       },
       bad: {
         label: "Bad — autoplays forever, no way to stop it",

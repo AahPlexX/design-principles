@@ -74,10 +74,10 @@ export interface Principle {
   /** Plain-English definition, before any jargon. */
   readonly definition: HtmlString;
   /** At least two concrete paragraphs — a single abstract sentence doesn't earn the section. */
-  readonly whyItMatters: readonly HtmlString[];
+  readonly whyItMatters: readonly [HtmlString, HtmlString, ...HtmlString[]];
   readonly coreRule: readonly HtmlString[];
   /** At least two scenarios covering genuinely different contexts the rule applies in. */
-  readonly examples: readonly ExampleScenario[];
+  readonly examples: readonly [ExampleScenario, ExampleScenario, ...ExampleScenario[]];
   readonly mistakes: readonly Mistake[];
   readonly checklist: readonly HtmlString[];
   /** Set when a Craft course pairs with this principle. */

@@ -82,7 +82,7 @@ export const accessibility: Principle = {
     { name: "Reordering content visually without reordering it in the HTML", body: html("CSS properties like <code>order</code>, <code>flex-direction: row-reverse</code>, or absolute positioning can make content appear in a different order on screen than it exists in the HTML. Tab order and most screen-reader navigation follow the HTML order, not the visual one, so a keyboard user can watch focus jump to a completely different part of the page than where their eyes are looking.") },
   ],
   checklist: [
-    html("Every interactive control is reachable and operable with Tab, Enter, and Space alone."),
+    html("Every interactive control is reachable with Tab and operable with the keys its type expects — Enter or Space for buttons and links, arrow keys for selects, radio groups, and sliders."),
     html("Focus is always visible — never removed without a replacement like <code>:focus-visible</code>."),
     html("Icon-only buttons have an accessible name via <code>aria-label</code> or visually-hidden text."),
     html("Every image has appropriate <code>alt</code> text (or <code>alt=\"\"</code> if purely decorative)."),

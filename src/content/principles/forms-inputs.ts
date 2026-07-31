@@ -69,7 +69,7 @@ export const formsInputs: Principle = {
       bad: {
         label: "Bad",
         code: "<label for=\"card\">Card number</label>\n<input id=\"card\" type=\"number\">",
-        note: html("<code>type=\"number\"</code> treats a card number as an actual number: it adds spin-button arrows that mean nothing here, and in most browsers, scrolling the page while the field is focused silently changes a digit."),
+        note: html("<code>type=\"number\"</code> treats a card number as an actual number: it adds spin-button arrows that mean nothing here, and scrolling the page while the field is focused can silently change a digit in some engines."),
       },
     },
   ],

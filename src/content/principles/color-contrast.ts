@@ -41,7 +41,7 @@ export const colorContrast: Principle = {
         note: html("\"De-emphasized\" doesn't have to mean \"unreadable.\" This gray reads as clearly secondary next to darker body text, while still landing right at the 4.5:1 floor."),
       },
       bad: {
-        label: "Bad — 2.9:1",
+        label: "Bad — 2.8:1",
         code: "color: #999999;      /* looks \"subtle\" in a design file */\nbackground: #ffffff;",
         note: html("This is the exact gray that shows up in most design files labeled \"secondary text.\" It looks deliberate on a calibrated monitor and disappears everywhere else — a timestamp or byline styled this faint just isn't there for a meaningful share of readers."),
       },
