@@ -27,20 +27,22 @@ Every explanation must be reachable by a reader who has never opened a CSS file,
 
 This is the one rule every other rule in this file exists to serve. If a new rule ever conflicts with Rule Zero, Rule Zero wins.
 
-## Page skeleton (every file in `/docs/principles/*.html`)
+## Page skeleton (every file in `src/content/principles/*.ts`, rendered by `PrinciplePage.tsx`)
 
 1. **One-sentence plain-English definition** — no jargon, no unexpanded acronym.
-2. **Why it matters** — the real consequence of getting it wrong, told as a concrete situation, not an abstraction.
+2. **Why it matters** — at least two concrete paragraphs, not one abstract sentence. Tell a real situation (who hits this, what breaks, what it costs them) before naming the consequence in the abstract. A reader should recognize themselves or their product in it, not just be told a rule exists.
 3. **The core rule** — the single heuristic to remember, stated as an instruction, not a description.
-4. **Good vs. bad example** — concrete and, where possible, visual or runnable, shown side by side.
-5. **Common mistakes** — 3–5 specific, named failure modes, not generic warnings.
+4. **Good vs. bad example(s)** — at least two scenarios (`examples`, plural), each a genuinely different real context the rule shows up in, not the same context restated. One worked example proves the rule holds once; several prove it's actually a rule. Each scenario gets a short context label (e.g. "Text over a photo", "A disabled-looking button") so a reader can jump to the one closest to what they're building.
+5. **Common mistakes** — 3–6 specific, named failure modes, not generic warnings. Size to what the topic actually supports — a narrow principle may only have three real ones; don't invent a fourth to hit a round number, and don't cap a rich topic at three if it genuinely has five.
 6. **Quick checklist** — scannable, actionable, checkbox-style.
-7. _(optional)_ **Go deeper** — a collapsed `<details>` block: edge cases, spec links, browser-support notes, for the reader who wants more than the page's main flow gives.
+7. **Go deeper** — a collapsed `<details>` block: edge cases, spec-adjacent nuance, browser-support notes, for the reader who wants more than the page's main flow gives.
+
+**On jargon, specifically:** a term earns its place in the main flow only if it's defined in the same sentence or the one right after it. If a reader would need to already know the term to parse the sentence it's in, that's a Rule Zero violation, not an acceptable level of "technical." Reserve genuinely unavoidable jargon — spec names, algorithm names, browser-internals terms — for "Go deeper," where the reader has already opted into more depth.
 
 ## Adding a new principle
 
-1. Write the canonical page in `/docs/principles/` following the skeleton above.
-2. Add its card to the home page grid (`/docs/index.html`) — title plus the one-sentence definition, nothing more.
+1. Write the canonical content module in `src/content/principles/` following the skeleton above.
+2. Add its slug to `NAV_PRINCIPLE_ORDER` and to the right category in `HOME_GROUPS`, both in `src/content/site.ts` — the home page card and nav entry are derived from these, not hand-written.
 3. If the concept has a pass/fail heuristic, add it to (or start) a matching skill in `/skills/`.
 4. Never duplicate the page's explanation inside a skill or prompt — link back to the page and extract only the actionable checklist.
 

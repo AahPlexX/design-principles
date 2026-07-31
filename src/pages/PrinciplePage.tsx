@@ -107,7 +107,16 @@ export function PrinciplePage({ principle }: PrinciplePageProps) {
         </Section>
 
         <Section id={EXAMPLES.id} heading={EXAMPLES.label}>
-          <ExamplePair good={principle.goodVsBad.good} bad={principle.goodVsBad.bad} />
+          <div className="space-y-8">
+            {principle.examples.map((scenario) => (
+              <div key={scenario.context}>
+                <p className="mb-3 text-xs font-semibold tracking-wide text-ink-muted uppercase">
+                  {scenario.context}
+                </p>
+                <ExamplePair good={scenario.good} bad={scenario.bad} />
+              </div>
+            ))}
+          </div>
         </Section>
 
         <Section id={MISTAKES.id} heading={MISTAKES.label}>

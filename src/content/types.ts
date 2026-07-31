@@ -36,6 +36,21 @@ export interface ExampleSide {
   readonly note: HtmlString;
 }
 
+/**
+ * One concrete before/after scenario inside a principle's "Good vs. bad" section.
+ *
+ * A principle almost never has just one real context it shows up in — color contrast applies to body
+ * text, buttons, and text over a photo; visual hierarchy applies to a checkout page and a dashboard.
+ * One example proves the rule holds once; several prove it's actually a rule. `context` names the
+ * specific situation ("Body text on a white card", "A disabled-looking button") so a reader can jump
+ * straight to the one closest to what they're building.
+ */
+export interface ExampleScenario {
+  readonly context: string;
+  readonly good: ExampleSide;
+  readonly bad: ExampleSide;
+}
+
 /** A named failure mode. The name is bolded and read as a heading, so it stands alone. */
 export interface Mistake {
   readonly name: string;
@@ -58,12 +73,11 @@ export interface Principle {
   readonly searchKeywords: string;
   /** Plain-English definition, before any jargon. */
   readonly definition: HtmlString;
+  /** At least two concrete paragraphs — a single abstract sentence doesn't earn the section. */
   readonly whyItMatters: readonly HtmlString[];
   readonly coreRule: readonly HtmlString[];
-  readonly goodVsBad: {
-    readonly good: ExampleSide;
-    readonly bad: ExampleSide;
-  };
+  /** At least two scenarios covering genuinely different contexts the rule applies in. */
+  readonly examples: readonly ExampleScenario[];
   readonly mistakes: readonly Mistake[];
   readonly checklist: readonly HtmlString[];
   /** Set when a Craft course pairs with this principle. */
