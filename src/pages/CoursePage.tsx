@@ -1,14 +1,14 @@
 import { ArrowRight } from "lucide-react";
 
 import { Breadcrumb } from "@/components/common/Breadcrumb";
+import { ContentHtml } from "@/components/common/ContentHtml";
 import { Section } from "@/components/common/Section";
 import { CourseProgressMeter } from "@/components/craft/CourseProgressMeter";
 import { LessonList } from "@/components/craft/LessonList";
 import { ButtonLink } from "@/components/ui/button";
-import { getPrinciple } from "@/content";
 import type { Course, Lesson } from "@/content/types";
 import { withBase } from "@/lib/base";
-import { courseRelativeLessonHref, findLesson, orderedLessons, principlePath } from "@/lib/routes";
+import { courseRelativeLessonHref, findLesson, orderedLessons } from "@/lib/routes";
 import { lessonLabel } from "@/lib/seo";
 
 interface CoursePageProps {
@@ -32,7 +32,6 @@ interface CoursePageProps {
  * description. Branding it as HTML to fit the prop would trade correct escaping for a shared component.
  */
 export function CoursePage({ course }: CoursePageProps) {
-  const principle = getPrinciple(course.principleSlug);
   const order = orderedLessons(course);
   const first = order[0];
 
@@ -41,19 +40,22 @@ export function CoursePage({ course }: CoursePageProps) {
       <header className="mb-2">
         <Breadcrumb items={[{ label: "Craft", href: withBase("craft/") }]} current={course.title} />
         <h1 className="mt-3 text-step-3 font-semibold tracking-tight">{course.title}</h1>
-        <p className="mt-4 max-w-(--container-prose) text-step-1 leading-relaxed text-ink-muted">
-          {course.hook}
-        </p>
-        <p className="mt-4 max-w-(--container-prose) text-ink-muted">
-          Pairs with{" "}
-          <a
-            href={withBase(principlePath(course.principleSlug))}
-            className="text-accent underline decoration-accent/40 underline-offset-2 hover:decoration-accent"
-          >
-            {principle.title}
-          </a>
-          , which carries the full explanation. This page is the practice.
-        </p>
+        {/*
+          The course's own two paragraphs, not a template's paraphrase of them.
+          
+          These were written per course and say more than `hook` does: which signals the course covers,
+          which rule the paired page explains, and what specifically you practise here. An earlier pass
+          rendered `hook` plus a generic "Pairs with X, which carries the full explanation" line, which
+          read the same on all eight pages and dropped the rest.
+        */}
+        <ContentHtml
+          html={course.definition}
+          className="mt-4 max-w-(--container-prose) text-step-1 leading-relaxed text-ink-muted"
+        />
+        <ContentHtml
+          html={course.pairing}
+          className="mt-4 max-w-(--container-prose) text-ink-muted"
+        />
       </header>
 
       <CourseProgressMeter course={course} />

@@ -15,13 +15,32 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  verify-site:
-    name: Verify site (links, structure, W3C HTML)
+  # Everything that inspects the source or the build output. Split into one job rather than many
+  # because each gate after the build needs the build, and re-running it per job would cost more than
+  # the parallelism saves on a site this size.
+  verify:
+    name: Verify (types, tests, build, and site gates)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # The sitemap's <lastmod> per page comes from `git log` on the content module behind it.
+          # At the default depth of 1 every page would claim the date of the most recent commit.
+          fetch-depth: 0
 
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      # The W3C Nu Html Checker runs through html5validator, which is Python and needs a JVM. Both
+      # were already how this repo validated its markup before the site had a build step, and the
+      # standard has not moved.
       - name: Set up Python
         uses: actions/setup-python@v7
         with:
@@ -29,15 +48,28 @@ jobs:
           cache: pip
           cache-dependency-path: scripts/requirements.txt
 
-      - name: Run site verification script
-        run: python3 scripts/verify-site.py
-
       - name: Install html5validator
         run: pip install -r scripts/requirements.txt
 
-      - name: Validate HTML against the W3C Nu Html Checker
-        run: html5validator --root docs
+      # Runs formatting, lint, types, content invariants, colour contrast, unit tests, the build, then
+      # URL parity, internal links, SEO, accessibility, the performance budget and HTML validity.
+      # Identical to what `npm run gate:all` does locally, so a green pull request means the same thing
+      # a green working tree does.
+      - name: Run all gates
+        run: npm run gate:all
 
+      # Kept for a failed run: the prerendered HTML is what every gate above was actually judging, and
+      # reading it beats reproducing the build to find out what was emitted.
+      - name: Upload build output
+        if: failure()
+        uses: actions/upload-artifact@v7
+        with:
+          name: dist-client
+          path: dist/client
+          retention-days: 7
+
+  # External links are checked separately: it depends on other people's servers, so it is the one job
+  # whose failure is not necessarily this repository's fault.
   link-check:
     name: External link check
     runs-on: ubuntu-latest
@@ -45,30 +77,34 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v7
 
-      # Our internal links use an absolute /design-principles/... prefix
-      # (the GitHub Pages subpath), which isn't a real filesystem path.
-      # lychee's --exclude only matches URLs it already resolved, but these
-      # fail to resolve at all before that filter ever runs (confirmed by
-      # running the real lychee binary locally, not assumed from --help
-      # text) -- so instead this makes the convention real for resolution:
-      # a symlink plus --root-dir. Verified locally: 197/197 links OK.
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build the site
+        run: npm run build
+
+      # Internal links use an absolute /design-principles/... prefix — the GitHub Pages subpath, which
+      # is not a real filesystem path. lychee's --exclude only filters URLs it has already resolved,
+      # and these fail to resolve before that filter runs, so the convention is made real for
+      # resolution instead: a symlink plus --root-dir. This is the same approach the pre-migration
+      # workflow used, repointed from docs/ to the build output.
       - name: Prepare local root for absolute-path link resolution
         run: |
           mkdir -p /tmp/lychee-root
-          ln -s "$GITHUB_WORKSPACE/docs" /tmp/lychee-root/design-principles
+          ln -s "$GITHUB_WORKSPACE/dist/client" /tmp/lychee-root/design-principles
 
-      # lycheeverse/lychee-action, pinned to the commit the v2 tag points to
+      # lycheeverse/lychee-action, pinned to the commit the v2 tag points to.
       #
-      # --exclude skips the site's own absolute self-references (canonical,
-      # og:url, JSON-LD mainEntityOfPage -- added for v4's SEO tooling).
-      # These point at aahplexx.github.io, which may not have redeployed yet
-      # for whatever's in *this* push, so checking them live is inherently
-      # racy against the separate Pages workflow -- confirmed by running the
-      # real lychee binary locally: without the exclude, all 20 of them fail
-      # (verified locally as a network/connectivity failure in this exact
-      # sandboxed environment, not a live 404 -- either way, self-checking
-      # your own not-yet-guaranteed-deployed URLs live is the wrong test;
-      # verify-site.py already checks these pages exist as local files).
+      # --exclude skips the site's own absolute self-references (canonical, og:url, JSON-LD). Those
+      # point at aahplexx.github.io, which may not have redeployed yet for whatever is in this push, so
+      # checking them live races the separate Pages workflow. gate:links already proves every one of
+      # them exists as a local file, which is the part this repository controls.
       - name: Lychee link check
         uses: lycheeverse/lychee-action@e7477775783ea5526144ba13e8db5eec57747ce8 # v2
         with:
@@ -76,5 +112,5 @@ jobs:
             --no-progress
             --root-dir /tmp/lychee-root
             --exclude 'https://aahplexx\.github\.io/design-principles'
-            'docs/**/*.html'
+            'dist/client/**/*.html'
           fail: true

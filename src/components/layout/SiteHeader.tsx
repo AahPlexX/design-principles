@@ -50,14 +50,14 @@ export function SiteHeader({ section, activePrincipleSlug }: SiteHeaderProps) {
           <a
             href={withBase("")}
             className={linkClass}
-            aria-current={section === "principles" ? "true" : undefined}
+            aria-current={section === "principles" ? "page" : undefined}
           >
             Principles
           </a>
           <a
             href={withBase("craft/")}
             className={linkClass}
-            aria-current={section === "craft" ? "true" : undefined}
+            aria-current={section === "craft" ? "page" : undefined}
           >
             Craft
           </a>

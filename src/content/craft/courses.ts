@@ -2,12 +2,15 @@
 // Reviewed and now maintained by hand — edit this file directly, do not re-run the extractor over it.
 
 import type { Course } from "@/content/types";
+import { html } from "@/lib/html";
 
 export const courses: readonly Course[] = [
   {
     id: "visual-hierarchy",
     title: "Where the Eye Goes First",
     hook: "Practice spotting broken hierarchy and fixing it with size, contrast, and position.",
+    definition: html("Practice spotting broken hierarchy and fixing it with size, contrast, position, and every other signal that decides what a reader notices first — level by level, each with a real example and instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/visual-hierarchy.html\">Visual Hierarchy</a> — read that page first if you want the full explanation of why hierarchy works the way it does. This is where you practice spotting it going wrong."),
     principleSlug: "visual-hierarchy",
     principleTitle: "Visual Hierarchy",
     searchKeywords: "where the eye goes first visual hierarchy practice spotting broken hierarchy fixing size contrast position",
@@ -57,6 +60,8 @@ export const courses: readonly Course[] = [
     id: "color-contrast",
     title: "Contrast You Can Prove",
     hook: "Practice reading contrast ratios and catching pairs that fail before a user does.",
+    definition: html("Practice reading contrast ratios and catching pairs that fail before a user does — real ratios and real UI, level by level, each with instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/color-contrast.html\">Color &amp; Contrast</a> — read that page first for the full explanation of the 4.5:1/3:1 rule and how the ratio is calculated. This is where you practice applying it."),
     principleSlug: "color-contrast",
     principleTitle: "Color & Contrast",
     searchKeywords: "contrast you can prove color contrast practice reading ratios catching pairs that fail",
@@ -124,6 +129,8 @@ export const courses: readonly Course[] = [
     id: "accessibility",
     title: "Built for Everyone",
     hook: "Practice finding the keyboard traps and missing labels that shut people out.",
+    definition: html("Practice finding the keyboard traps and missing labels that shut people out — three short lessons, each with a real code example and instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/accessibility.html\">Accessibility</a> — read that page first for the full explanation of why keyboard and screen-reader support matter. This is where you practice spotting the actual code patterns that break them."),
     principleSlug: "accessibility",
     principleTitle: "Accessibility",
     searchKeywords: "built for everyone accessibility practice finding keyboard traps missing labels",
@@ -133,6 +140,8 @@ export const courses: readonly Course[] = [
     id: "typography",
     title: "Text People Actually Read",
     hook: "Practice sizing and spacing type so it actually gets read instead of skipped.",
+    definition: html("Practice sizing and spacing type so it actually gets read instead of skipped — three short lessons, each with a real scenario and instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/typography.html\">Typography</a> — read that page first for the full explanation of line length, line height, and how hierarchy is built from more than one signal. This is where you practice applying it."),
     principleSlug: "typography",
     principleTitle: "Typography",
     searchKeywords: "text people actually read typography practice sizing spacing type gets read not skipped",
@@ -142,6 +151,8 @@ export const courses: readonly Course[] = [
     id: "spacing-layout",
     title: "Show What Belongs Together",
     hook: "Practice using whitespace and alignment to show what's related before a reader has to guess.",
+    definition: html("Practice using whitespace, scales, alignment, and layout mechanics to show what's related before a reader has to guess — level by level, each with a real layout choice and instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/spacing-layout.html\">Spacing &amp; Layout</a> — read that page first for the full explanation of proximity, spacing scales, and alignment. This is where you practice applying it."),
     principleSlug: "spacing-layout",
     principleTitle: "Spacing & Layout",
     searchKeywords: "show what belongs together spacing layout practice whitespace alignment related",
@@ -191,6 +202,8 @@ export const courses: readonly Course[] = [
     id: "responsive-design",
     title: "One Layout, Every Screen",
     hook: "Practice spotting the layouts that break between a phone, a tablet, and a desktop.",
+    definition: html("Practice spotting the layouts that break between a phone, a tablet, and a desktop — real layouts and real screens, level by level, each with instant feedback."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/responsive-design.html\">Responsive Design</a> — read that page first for the full explanation of why a layout should respond to content running out of room instead of a guessed list of device widths. This is where you practice applying it."),
     principleSlug: "responsive-design",
     principleTitle: "Responsive Design",
     searchKeywords: "one layout every screen responsive design practice spotting layouts break phone tablet desktop",
@@ -246,6 +259,8 @@ export const courses: readonly Course[] = [
     id: "forms-inputs",
     title: "Forms People Actually Finish",
     hook: "Practice fixing the small form details that make people give up halfway through.",
+    definition: html("Practice fixing the small form details that make people give up halfway through — three short lessons, each built around one label, error, or moment of friction that real forms get wrong."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/forms-inputs.html\">Forms &amp; Inputs</a> — read that page first for the full rule on labels, error messages, and when validation should run. This is where you practice applying it."),
     principleSlug: "forms-inputs",
     principleTitle: "Forms & Inputs",
     searchKeywords: "forms people actually finish forms inputs practice fixing details give up",
@@ -255,6 +270,8 @@ export const courses: readonly Course[] = [
     id: "dark-patterns-ethics",
     title: "Design That Doesn't Trick People",
     hook: "Practice spotting manipulative patterns and naming the honest fix for each one.",
+    definition: html("Practice spotting manipulative patterns and naming the honest fix for each one."),
+    pairing: html("This course pairs with <a href=\"/design-principles/principles/dark-patterns-ethics.html\">Dark Patterns &amp; Ethics</a> — read that page first for the test that separates a manipulative interface from an honest one, and the named patterns that keep showing up. This is where you practice applying it."),
     principleSlug: "dark-patterns-ethics",
     principleTitle: "Dark Patterns & Ethics",
     searchKeywords: "design that doesn't trick people dark patterns ethics practice spotting manipulative patterns",

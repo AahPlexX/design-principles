@@ -3,8 +3,18 @@ name: Deploy GitHub Pages
 on:
   push:
     branches: [main]
+    # The site is built from source now, so the filter has to cover everything the build reads.
+    # A filter that still only watched docs/** would mean content and template changes deployed
+    # nothing, silently — the failure mode being no failure at all, just a stale site.
     paths:
-      - "docs/**"
+      - "src/**"
+      - "public/**"
+      - "scripts/**"
+      - "index.html"
+      - "package.json"
+      - "package-lock.json"
+      - "vite.config.ts"
+      - "tsconfig.json"
       - ".github/workflows/pages.yml"
   workflow_dispatch:
 
@@ -23,6 +33,28 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          # Full history: the sitemap dates each URL from the last commit that touched the content
+          # module behind it. At depth 1 every page would claim the date of this deploy.
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v7
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build and prerender
+        run: npm run build
+
+      # Cheap insurance against deploying a broken URL surface. CI covers this on the pull request, but
+      # this workflow can also be dispatched manually against a branch that never had one, and a
+      # renamed page is not recoverable once it is live — GitHub Pages has no redirects.
+      - name: Verify the URL surface before publishing
+        run: npx tsx scripts/gates/url-parity.ts
 
       - name: Configure Pages
         uses: actions/configure-pages@v6
@@ -30,23 +62,23 @@ jobs:
       - name: Upload site artifact
         uses: actions/upload-pages-artifact@v5
         with:
-          path: docs
+          # dist/client, not dist: dist/server holds the SSR bundle the prerenderer imports, which is
+          # build machinery and has no business being served.
+          path: dist/client
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # No `environment: { name: github-pages }` block here on purpose: that
-    # environment's default branch-restriction setting only allows the
-    # repo's default branch to deploy, and the default branch is still the
-    # old feature-branch name (a repo-admin-only setting, not fixable by
-    # any available tool) rather than main. With the block present, every
-    # push here failed with "Branch 'main' is not allowed to deploy to
-    # github-pages due to environment protection rules" -- confirmed from
-    # the actual GitHub API error, not assumed. This is a workaround, not
-    # the root-cause fix: once a repo admin allows `main` under Settings ->
-    # Environments -> github-pages -> Deployment branches and tags (or
-    # switches the actual default branch to main), the environment block
-    # can be reinstated to restore deployment protection.
+    # No `environment: { name: github-pages }` block here on purpose: that environment's default
+    # branch-restriction setting only allows the repository's default branch to deploy, and the
+    # default branch is still an old feature-branch name rather than main. With the block present,
+    # every push failed with "Branch 'main' is not allowed to deploy to github-pages due to
+    # environment protection rules" -- confirmed from the actual GitHub API error, not assumed.
+    #
+    # This is a workaround, not the root-cause fix, and it is still outstanding: once a repo admin
+    # allows `main` under Settings -> Environments -> github-pages -> Deployment branches and tags
+    # (or switches the actual default branch to main), reinstate the block to restore deployment
+    # protection.
     steps:
       - name: Deploy to GitHub Pages
         id: deployment

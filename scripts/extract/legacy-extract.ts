@@ -266,8 +266,41 @@ interface CourseManifestEntry {
   lessons?: string[];
 }
 
+/**
+ * The prose on a course overview page.
+ *
+ * This does not exist in `courses.json` — each course page was hand-written with its own opening
+ * sentence and its own paragraph about the principle it pairs with, and both say more than the
+ * manifest's one-line `hook`. Reading only the manifest loses them, which is how a migration quietly
+ * flattens eight distinct pages into one template's worth of generic copy.
+ */
+interface CourseProse {
+  definition: string;
+  pairing: string;
+}
+
+function extractCourseProse(courseId: string): CourseProse {
+  const file = path.join(DOCS, "craft", courseId, "index.html");
+  const $ = cheerio.load(readFileSync(file, "utf8"));
+  const root = $("main .wrap");
+
+  const definitionEl = root.children("p.definition").first();
+  assert(definitionEl.length === 1, file, "course overview has no p.definition");
+
+  // The paragraph immediately after the definition is the one that links the paired principle page.
+  const pairingEl = definitionEl.nextAll("p").first();
+  assert(pairingEl.length === 1, file, "course overview has no paragraph after its definition");
+  assert(
+    pairingEl.find('a[href*="/principles/"]').length === 1,
+    file,
+    "the paragraph after the definition does not link a principle page",
+  );
+
+  return { definition: innerHtml($, definitionEl), pairing: innerHtml($, pairingEl) };
+}
+
 function extractCourses(): {
-  courses: (CourseManifestEntry & { searchKeywords: string })[];
+  courses: (CourseManifestEntry & { searchKeywords: string } & CourseProse)[];
 } {
   const manifestFile = path.join(DOCS, "craft", "courses.json");
   const manifest = JSON.parse(readFileSync(manifestFile, "utf8")) as {
@@ -301,7 +334,11 @@ function extractCourses(): {
       );
     }
 
-    return { ...course, searchKeywords: keywordsById.get(course.id) ?? "" };
+    return {
+      ...course,
+      searchKeywords: keywordsById.get(course.id) ?? "",
+      ...extractCourseProse(course.id),
+    };
   });
 
   return { courses };
@@ -582,7 +619,9 @@ ${entries}
   );
 }
 
-function emitCourses(courses: (CourseManifestEntry & { searchKeywords: string })[]): void {
+function emitCourses(
+  courses: (CourseManifestEntry & { searchKeywords: string } & CourseProse)[],
+): void {
   const entries = courses
     .map((c) => {
       const structure = c.levels
@@ -608,6 +647,8 @@ ${c.levels
     id: ${lit(c.id)},
     title: ${lit(c.title)},
     hook: ${lit(c.hook)},
+    definition: ${htmlLit(c.definition)},
+    pairing: ${htmlLit(c.pairing)},
     principleSlug: ${lit(c.principle)},
     principleTitle: ${lit(c.principleTitle)},
     searchKeywords: ${lit(c.searchKeywords)},
@@ -620,6 +661,7 @@ ${c.levels
     path.join("craft", "courses.ts"),
     `${BANNER}
 import type { Course } from "@/content/types";
+import { html } from "@/lib/html";
 
 export const courses: readonly Course[] = [
 ${entries}

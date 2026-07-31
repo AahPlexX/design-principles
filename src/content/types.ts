@@ -136,6 +136,15 @@ export interface Course {
   /** A 3–6 word concrete outcome phrase, per the naming rule in CLAUDE.md. */
   readonly title: string;
   readonly hook: string;
+  /**
+   * The course page's opening sentence.
+   *
+   * Longer and more specific than `hook`, which is the one-liner the catalog card shows. Each course
+   * page was hand-written with its own, and they are not interchangeable.
+   */
+  readonly definition: HtmlString;
+  /** The paragraph naming the principle page that carries the explanation this course practises. */
+  readonly pairing: HtmlString;
   readonly principleSlug: string;
   readonly principleTitle: string;
   readonly searchKeywords: string;

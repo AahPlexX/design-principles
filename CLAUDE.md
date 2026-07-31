@@ -50,21 +50,20 @@ A Craft course is the practice companion to exactly one principle page. It never
 
 **Naming rule.** A course's title is a short (3–6 word) concrete outcome-phrase, not a category label. "Where the Eye Goes First," not "Visual Hierarchy 101" or "Introduction to Hierarchy." If you can't tell what you'll be _able to do_ after the course from its title alone, rewrite the title.
 
-**File layout — one manifest, one folder per course, nothing hand-duplicated:**
+**File layout — one manifest, one module per course, nothing hand-duplicated:**
 
 ```
-docs/craft/
-  index.html            the dedicated course index (data-driven from courses.json)
-  courses.json           single source of truth: id, title, hook, linked principle, level/lesson structure
-  <course-id>/
-    index.html            course overview: the hook, what you'll practice, the level-by-level lesson list
-    level-1/
-      lesson-1.html, lesson-2.html, ...   one short lesson per file
-    level-2/
-      lesson-1.html, ...
+src/content/craft/
+  courses.ts       single source of truth: id, title, hook, the course's own prose,
+                   the principle it pairs with, and its full level/lesson structure
+  lessons/
+    <course-id>.ts every lesson in that course: framing, question, four options,
+                   exactly one correct, and the explanation
 ```
 
-The catalog page (`docs/craft/index.html`) renders itself from `courses.json` the same way the home page's search already reads `data-search` attributes — a new course is added to the manifest once, never hand-copied into a second listing.
+The catalog, each course overview, every lesson page, the search index and the sitemap are all generated from those modules — a course is described once and appears everywhere. There is no page markup to keep in step, and no second listing to hand-copy into.
+
+This is the rule the pre-migration site stated and did not keep: `courses.json` was described as the single source of truth while the catalog's cards, level counts and lesson totals were hand-typed beside it, free to drift. Two of the four levelled course pages had also silently lost their level headings. Deriving the pages from the manifest is what makes the claim true.
 
 **Per course:**
 
@@ -80,7 +79,7 @@ The catalog page (`docs/craft/index.html`) renders itself from `courses.json` th
 2. Plan the level/lesson outline before writing any lesson content — level titles and lesson titles, sized to what the topic actually supports (see point 4 above). Sense-check the outline for padding before writing a single lesson.
 3. Write the course folder following the Course skeleton above.
 4. Add a "Practice this" link from the paired principle page to the new course — the only place the principle page should mention Craft at all.
-5. Run `python3 scripts/verify-site.py` before committing, same as any other site change.
+5. Run `npm run gate:all` before committing, same as any other site change.
 
 ## Engineering standards
 
