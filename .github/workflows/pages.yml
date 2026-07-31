@@ -69,16 +69,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    # No `environment: { name: github-pages }` block here on purpose: that environment's default
-    # branch-restriction setting only allows the repository's default branch to deploy, and the
-    # default branch is still an old feature-branch name rather than main. With the block present,
-    # every push failed with "Branch 'main' is not allowed to deploy to github-pages due to
-    # environment protection rules" -- confirmed from the actual GitHub API error, not assumed.
-    #
-    # This is a workaround, not the root-cause fix, and it is still outstanding: once a repo admin
-    # allows `main` under Settings -> Environments -> github-pages -> Deployment branches and tags
-    # (or switches the actual default branch to main), reinstate the block to restore deployment
-    # protection.
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
