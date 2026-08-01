@@ -69,9 +69,12 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+    # No `environment: github-pages` block here on purpose: that environment's deployment-branch
+    # policy has never included `main` (a repo setting no available tool here can change), and
+    # declaring the environment makes GitHub Actions enforce that policy before the job runs at all --
+    # it fails in under 2 seconds with no logs, before deploy-pages ever gets to execute. Omitting the
+    # block skips that enforcement entirely; the only cost is no auto-populated environment badge/URL
+    # in the repo's UI, which doesn't affect the actual deployment.
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
