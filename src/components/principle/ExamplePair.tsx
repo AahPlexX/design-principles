@@ -40,9 +40,12 @@ interface ExampleProps {
  * tells readers not to let colour carry meaning on its own, and the tint disappears entirely when the
  * page is printed, where `print-flat` flattens every panel to black on white.
  *
- * The label is a real `<h3>` rather than styled text so the two sides show up when a screen-reader user
+ * The label is a real `<h4>` rather than styled text so the two sides show up when a screen-reader user
  * navigates the page by heading, which is how "Good — 7.7:1" and "Bad — 2.4:1" become the summary of the
- * section rather than decoration inside it.
+ * section rather than decoration inside it. It is an `<h4>`, one level below the `<h3>` scenario-context
+ * label `PrinciplePage` renders above each pair — a principle with several example scenarios repeats
+ * "Good"/"Bad" once per scenario, so without that parent heading a reader navigating by heading would land
+ * on identical, unlabelled entries with no way to tell which scenario each belongs to.
  */
 function Example({ side, verdict }: ExampleProps) {
   const Icon = verdict === "good" ? Check : X;
@@ -54,12 +57,12 @@ function Example({ side, verdict }: ExampleProps) {
         verdict === "good" ? "border-good-line bg-good-soft" : "border-bad-line bg-bad-soft",
       )}
     >
-      <h3>
+      <h4>
         <Badge variant={verdict}>
           <Icon aria-hidden="true" className="size-3.5" />
           {side.label}
         </Badge>
-      </h3>
+      </h4>
       <CodeBlock code={side.code} className="bg-canvas" />
       <ContentHtml html={side.note} className="text-sm leading-relaxed text-ink" />
     </Panel>

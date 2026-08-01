@@ -9,45 +9,93 @@ export const typography: Principle = {
   title: "Typography",
   category: "Foundations",
   blurb: "How type size, line length, and hierarchy decide whether text gets read or skipped.",
-  searchKeywords: "typography how type size, spacing, and hierarchy decide whether text gets read or skipped",
+  searchKeywords:
+    "typography how type size, line length, and hierarchy decide whether text gets read or skipped line height leading measure heading hierarchy uppercase all caps letter spacing data table modular scale",
   definition: html("Typography is the set of decisions that control how easy text is to read: how big it is, how long each line runs, how much space separates lines and paragraphs, and which words stand out as more important than others."),
   whyItMatters: [
-    html("Text is what most of the web actually is. A page can have a striking layout and still fail if the paragraphs are painful to read — lines too long to track, text too small to see comfortably, or no visual difference between a heading and a caption. Readers don't consciously notice good typography; they notice bad typography, as fatigue, and they leave."),
+    html("Picture a reader who found your long-form explainer article from a search result and opened it on a laptop with the browser window maximized across a wide monitor. Nothing about the page is broken — the colors work, the layout is clean — but the paragraph text stretches from the left edge of the screen to the right, one line running past 150 characters before it wraps. By the third paragraph, the reader's eye keeps losing the thread: it reaches the end of a long line, sweeps back to the left margin, and has to hunt for which line it just finished. They don't diagnose \"the measure is too wide\" — the article feels exhausting to get through, and they close the tab before reaching the point they came for."),
+    html("This isn't a rare failure mode. Typography carries almost every word on almost every page — the product description, the error message, the multi-step form — so a typographic problem touches more of a site than nearly any other design decision does. And the readers who pay the highest price for it aren't an edge case: readers over about forty read fine print less comfortably as their eyes change, readers scanning in a second language lean harder on visual structure like headings and spacing to navigate text they're processing more slowly, and readers with dyslexia recognize a whole word by its overall shape — its mix of tall, short, and descending letters — more than most readers do. Set that word in all-caps, which flattens every word into the same rectangle, or squeeze the lines around it so tight they blur together, and the shape cue those readers depend on disappears."),
+    html("The failure rarely announces itself as a typography problem, either. A visitor who can't tell a heading from a body paragraph doesn't think \"the hierarchy is unclear\" — they don't find the section they came for, and they leave. A shopper squinting at tiny product details on a phone doesn't blame the font size — they assume the store is sketchy and check a competitor instead. Bad typography reads as a content problem or a trust problem, even when the words underneath it were written perfectly well."),
   ],
   coreRule: [
-    html("Keep line length between <strong>45 and 75 characters</strong> (about 60 is the sweet spot), keep line height around <strong>1.4–1.6× the font size</strong> for body text, and make sure every level of hierarchy (heading, subheading, body, caption) is distinguishable by more than one signal — size <em>and</em> weight, not size alone."),
+    html("Keep line length — how many characters fit on one line before it wraps — between <strong>45 and 75 characters</strong> (about 60 is the sweet spot). Keep line height — the vertical space between lines, expressed as a multiple of the font size — around <strong>1.4–1.6×</strong> for body text. And give every level of hierarchy (heading, subheading, body text, caption) more than one visual signal that sets it apart — size and weight together, never size alone."),
   ],
-  goodVsBad: {
-    good: {
-      label: "Good",
-      code: "body {\n  font-size: 1.125rem;\n  line-height: 1.6;\n  max-width: 65ch;\n}\nh1 { font-size: 2.5rem; font-weight: 700; }\nh2 { font-size: 1.75rem; font-weight: 700; }",
-      note: html("Body text is capped at a readable line length, line height gives text room to breathe, and headings are distinguished by both size and weight."),
+  examples: [
+    {
+      context: "Line length in a wide article column",
+      good: {
+        label: "Good — capped at about 60–65 characters",
+        code: "article {\n  max-width: 65ch;\n  margin-inline: auto;\n  font-size: 1.125rem;\n  line-height: 1.6;\n}",
+        note: html("The <code>ch</code> unit equals the width of the font's \"0\" character, so <code>65ch</code> is a reliable proxy for roughly 65 characters per line no matter how wide the browser window gets."),
+      },
+      bad: {
+        label: "Bad — no cap, lines run 150+ characters wide",
+        code: "article {\n  /* no max-width — the column is\n     however wide the browser window is */\n  font-size: 1.125rem;\n  line-height: 1.6;\n}",
+        note: html("On a wide monitor with the window maximized, a line can run past 150 characters before it wraps — the eye has to travel that whole distance and then relocate the start of the next line, which is exhausting over a full article."),
+      },
     },
-    bad: {
-      label: "Bad",
-      code: "body {\n  font-size: 0.9rem;\n  line-height: 1.1;\n  /* no max-width — text spans\n     the full browser window */\n}\nh1 { font-size: 1.1rem; font-weight: 400; }",
-      note: html("Lines run the full width of a wide monitor, text is cramped together, and the heading barely differs from body text — a reader has to work to find the structure."),
+    {
+      context: "Line height in a dense data table",
+      good: {
+        label: "Good — 1.4 line-height, real padding",
+        code: "td {\n  padding: 0.75rem 1rem;\n  line-height: 1.4;\n}",
+        note: html("A line-height of 1.4 plus genuine padding keeps a two-line cell readable and keeps each row visually distinct from the one below it, even in a compact table."),
+      },
+      bad: {
+        label: "Bad — 1.0 line-height, minimal padding",
+        code: "td {\n  padding: 0.25rem 0.5rem;\n  line-height: 1;\n}",
+        note: html("This looks efficient while every cell holds one line. The moment a cell wraps — a long product name, a status message — its two lines nearly touch, and the tight padding leaves no gap to separate one row from the next."),
+      },
     },
-  },
+    {
+      context: "A heading hierarchy that only changes size",
+      good: {
+        label: "Good — size, weight, and color all shift together",
+        code: "h1 { font-size: 2.5rem; font-weight: 700; }\nh2 { font-size: 1.75rem; font-weight: 700; color: #1a1a2e; }\nh3 { font-size: 1.25rem; font-weight: 600; color: #4b4b57; }",
+        note: html("Each level down is smaller, lighter in weight or color than the one above it, so a reader can tell which heading outranks which without reading the words."),
+      },
+      bad: {
+        label: "Bad — same weight throughout, sizes barely differ",
+        code: "h1 { font-size: 1.4rem; font-weight: 400; }\nh2 { font-size: 1.2rem; font-weight: 400; }\nh3 { font-size: 1.05rem; font-weight: 400; }",
+        note: html("At a glance, h2 and h3 read as slightly-bigger body text rather than headings — the size gap is too small and nothing else about them changes, so a reader scanning for a section has no visual jump to look for."),
+      },
+    },
+    {
+      context: "Emphasis carried by literal all-caps text",
+      good: {
+        label: "Good — sentence case in the markup, CSS handles the look",
+        code: "<p class=\"eyebrow\">New feature</p>\n\n.eyebrow {\n  text-transform: uppercase;\n  letter-spacing: 0.08em;\n  font-size: 0.75rem;\n}",
+        note: html("The actual text is still \"New feature,\" so assistive technology reads it normally; <code>text-transform</code> renders it in capitals, and the added letter-spacing keeps the tightly-packed capital letters from feeling cramped."),
+      },
+      bad: {
+        label: "Bad — a full sentence typed in literal capitals",
+        code: "<h2>WE'VE SHIPPED THREE NEW FEATURES FOR YOUR TEAM</h2>",
+        note: html("Capital letters erase the ascenders and descenders that let a fluent reader recognize a whole word by its shape, so long stretches of all-caps text read measurably slower for every reader — and some screen readers will spell a short word inside it out letter by letter, mistaking it for an acronym."),
+      },
+    },
+  ],
   mistakes: [
-    { name: "Letting lines run edge-to-edge on wide screens", body: html("Past about 75 characters, the eye loses track of which line to return to when it wraps. Always cap the width of a text block, even on a full-width layout.") },
-    { name: "Using font size as the only signal of hierarchy", body: html("A heading that's only slightly bigger than body text, in the same weight, reads as an accident rather than a heading. Pair size changes with weight or color changes.") },
-    { name: "Tight line height on body text", body: html("Line height under 1.4 makes lines of text feel like they're touching, which slows reading, especially for longer paragraphs.") },
-    { name: "Centering paragraphs of body text", body: html("Centered alignment works for a short headline; for multiple lines, the ragged left edge forces the eye to hunt for where each new line starts.") },
-    { name: "Too many typefaces or weights on one page", body: html("More than two typeface families, or more than three weights of one family, usually means the hierarchy is being carried by novelty instead of a clear system.") },
+    { name: "Letting lines run edge-to-edge on wide screens", body: html("Past about 75 characters, the eye loses track of which line to return to after a wrap. Cap the width of any text block with something like <code>max-width: 65ch</code>, even inside an otherwise full-width layout.") },
+    { name: "Using font size as the only signal of hierarchy", body: html("A heading that's only slightly bigger than body text, in the same weight and color, reads as an accident rather than a heading. Pair a size change with a weight or color change, the way the heading example above does.") },
+    { name: "Tight line height on body text", body: html("Line height under about 1.4 makes adjacent lines feel like they're touching, which slows reading — and the same failure shows up in a dense table the moment a cell wraps to a second line, not only in long-form paragraphs.") },
+    { name: "Centering paragraphs of body text", body: html("Centered alignment works for a short headline, where every line runs a similar length. Across multiple lines of body text, the ragged left edge shifts from line to line, and the eye has to hunt for where each new line starts instead of returning to a fixed spot.") },
+    { name: "Too many typefaces or weights on one page", body: html("More than two typeface families, or more than three weights of one family, usually means the hierarchy is being carried by novelty instead of a deliberate, repeatable system.") },
+    { name: "Typing text in literal capitals instead of styling it", body: html("Writing a heading or button label in all caps directly in the copy — rather than in sentence case with CSS <code>text-transform</code> applied on top — does two things wrong at once: it reads measurably slower, because capital letters erase the word-shape cues fluent readers rely on, and some screen readers will spell a short all-caps word out letter by letter, mistaking it for an acronym.") },
   ],
   checklist: [
     html("Body text line length stays under ~75 characters at any viewport width."),
-    html("Body line height is 1.4–1.6×."),
+    html("Body line height is 1.4–1.6×, and dense UI text (tables, cards) still gets enough line-height to survive a wrapped line."),
     html("Each heading level is distinguishable by more than one property (size + weight, or size + color)."),
-    html("Body text is at least 16px (1rem) on mobile — smaller forces zooming."),
+    html("Body text is at least 16px (1rem) on mobile, and form inputs stay at 16px or larger so iOS Safari doesn't zoom in when someone taps into one."),
     html("No more than two typeface families are in use."),
+    html("Any all-caps text is short (a label or button, not a sentence) and set with CSS, not typed in literal capitals."),
   ],
   practiceCourseId: "typography",
   goDeeper: [
-    { lead: "Modular scales", body: html("instead of picking heading sizes by eye, multiply a base size by a fixed ratio (1.25 for a moderate scale, 1.333 or higher for something more dramatic) to get each next size up. This keeps the relationships between sizes consistent as you add more heading levels.") },
-    { lead: "Optical sizing", body: html("some variable fonts adjust stroke thickness and spacing automatically as size changes (the <code>font-optical-sizing</code> CSS property), so a heading and a caption of the same family both look correct rather than the caption looking like a shrunk heading.") },
-    { lead: "Fluid type", body: html("<code>clamp()</code> lets a font size scale smoothly between a minimum and maximum based on viewport width, e.g. <code>font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem)</code>, instead of jumping abruptly at breakpoints.") },
+    { lead: "Modular type scales", body: html("Instead of picking each heading size by eye, multiply a base size by a fixed ratio — 1.25 for a moderate scale, 1.333 or higher for something more dramatic — to generate every size above it. The relationship between sizes stays consistent as more heading levels get added, rather than drifting further apart or closer together each time a size gets picked separately.") },
+    { lead: "Optical sizing", body: html("Some variable fonts adjust stroke thickness and spacing automatically as size changes, through the <code>font-optical-sizing</code> CSS property. Without it, a font scaled to an extreme size can look subtly wrong — a caption that looks like a shrunk heading, or a heading that looks inflated — because strokes and spacing that read cleanly at one size don't always read cleanly at another.") },
+    { lead: "Fluid type with clamp()", body: html("<code>clamp()</code> lets a font size scale smoothly between a minimum and a maximum based on viewport width — for example <code>font-size: clamp(1rem, 0.9rem + 0.5vw, 1.25rem)</code> — instead of jumping abruptly at each breakpoint.") },
+    { lead: "WCAG's text-spacing override (1.4.12)", body: html("WCAG 2.1's Text Spacing success criterion doesn't set the line height a site has to ship by default — it requires the page to keep working if a reader's own stylesheet pushes line height to at least 1.5× the font size, paragraph spacing to at least 2× the font size, letter spacing to at least 0.12× the font size, and word spacing to at least 0.16× the font size. A layout that clips text or hides content once those overrides are applied fails the criterion, even if the page's own default spacing looks fine.") },
   ],
   datePublished: "2026-07-23",
 };

@@ -12,43 +12,91 @@ export const formsInputs: Principle = {
   searchKeywords: "forms inputs why most forms lose people and the handful of rules that fix almost all of it",
   definition: html("A form is any part of a page where someone types, selects, or uploads something. Form design is about removing every point of friction and confusion between \"I want to submit this\" and actually submitting it."),
   whyItMatters: [
-    html("Forms are where a site asks something of the reader instead of just giving them information, and that's exactly where people quit. A confusing error message, a field whose purpose isn't clear, or a validation rule discovered only after submitting is often the single biggest drop-off point in a signup, checkout, or contact flow."),
+    html("Picture someone filling out a checkout form on their phone during a lunch break: they type their card number, tap submit, and the page reloads with a red asterisk next to a field near the top — no message, no indication of which of the six fields on the page it belongs to. They scroll up, guess, retype the same digits, and get the same red mark back. After the second failed guess, they close the tab and buy the item from a competitor instead, or abandon the purchase entirely. Nothing about the product changed and the price didn't move — the only thing standing between them and paying was a form that couldn't say what it wanted."),
+    html("That failure repeats at every task a form exists to do: signing up, checking out, filling in a contact page, applying for a job, booking an appointment. A form is the one part of a page where the reader has to do something instead of reading, and doing something is where confusion turns into abandonment. A form problem doesn't register as a form problem to the person hitting it — it registers as \"this site is broken\" or \"I did something wrong,\" and either way, the response is the same: leave, rather than debug someone else's interface."),
+    html("The stakes are highest for anyone using a screen reader, a switch device, or voice control, because a form asks those tools to do their most interpretive work on the page. A screen reader user tabbing to a field hears whatever is programmatically tied to it — if that's a placeholder that vanished on focus, or nothing at all, they're filling in a box with no idea what it wants from them. Someone with a motor impairment who wants to type as little as possible, or someone who relies on autofill to avoid re-entering the same information on every site, depends on the same handful of form conventions everyone else benefits from without noticing: a real label, a specific error, an input that asks the browser for the right kind of help."),
   ],
   coreRule: [
-    html("Every field needs a visible label, a clear reason for existing, and an error message that says exactly what to fix — shown as close to the moment of the mistake as possible, not only after a full-page submit. If you can't explain why a field is required, remove it."),
+    html("Every field needs three things before it's finished: a label that stays visible the whole time (not a placeholder that vanishes the moment someone starts typing), an error message that names the specific problem and, where possible, the fix — shown as soon as the reader leaves that field, not held back until they hit submit — and a reason for existing that you could state in one sentence. If you can't state that reason, delete the field: every field left on the page is a place someone can get stuck or give up."),
   ],
-  goodVsBad: {
-    good: {
-      label: "Good",
-      code: "<label for=\"email\">Email</label>\n<input id=\"email\" type=\"email\" required>\n<p id=\"email-err\" role=\"alert\">\n  Enter an email with an @ symbol,\n  like name@example.com\n</p>",
-      note: html("A real label, the right input type (brings up an email keyboard on mobile), and an error that tells you exactly what a valid answer looks like."),
+  examples: [
+    {
+      context: "A required email field",
+      good: {
+        label: "Good",
+        code: "<label for=\"email\">Email</label>\n<input\n  id=\"email\"\n  type=\"email\"\n  autocomplete=\"email\"\n  required\n>",
+        note: html("A label that stays on screen after typing starts, <code>type=\"email\"</code> for the right mobile keyboard, and <code>autocomplete=\"email\"</code> so a returning visitor's browser can fill it in with one tap."),
+      },
+      bad: {
+        label: "Bad",
+        code: "<input type=\"text\" placeholder=\"Email\">",
+        note: html("The placeholder is the only label there is. It disappears the instant someone types a single character, so anyone who gets interrupted, or scrolls back up to double check, has no way to see what this field was asking for."),
+      },
     },
-    bad: {
-      label: "Bad",
-      code: "<input type=\"text\" placeholder=\"Email\">\n<p>Invalid input</p>",
-      note: html("The label disappears once you start typing, the input type doesn't help mobile keyboards, and \"Invalid input\" gives no clue what was wrong or how to fix it."),
+    {
+      context: "The error after a failed submit",
+      good: {
+        label: "Good",
+        code: "<label for=\"password\">Password</label>\n<input\n  id=\"password\"\n  type=\"password\"\n  aria-describedby=\"password-err\"\n  aria-invalid=\"true\"\n>\n<p id=\"password-err\" role=\"alert\">\n  Password needs at least 8 characters\n  and one number.\n</p>",
+        note: html("Names the exact rule that failed, so the reader knows what to change without guessing. <code>aria-describedby</code> ties the message to the field, so a screen reader announces it as soon as the input gets focus, not only if it happens to be read next."),
+      },
+      bad: {
+        label: "Bad",
+        code: "<input id=\"password\" type=\"password\">\n<p class=\"error\">Invalid input</p>",
+        note: html("\"Invalid input\" doesn't say which rule — length, a number, a symbol — was the one that failed, and nothing in the markup connects this paragraph to the field it's about, so a screen reader user may never hear it at all."),
+      },
     },
-  },
+    {
+      context: "When validation errors appear",
+      good: {
+        label: "Good — checked as the reader leaves the field",
+        code: "emailInput.addEventListener(\"blur\", () => {\n  if (!emailInput.validity.valid) {\n    showError(emailInput, \"Enter an email with an @, like name@example.com\");\n  }\n});",
+        note: html("Catches the mistake while the reader is still thinking about that field, one at a time, instead of saving every error up for the end."),
+      },
+      bad: {
+        label: "Bad — checked only on submit",
+        code: "form.addEventListener(\"submit\", (event) => {\n  event.preventDefault();\n  validateAllFields(); // every error surfaces at once, here\n});",
+        note: html("Someone who filled out a ten-field form correctly except for field two doesn't find out until after finishing the other eight — then has to scroll back to find the one that's wrong."),
+      },
+    },
+    {
+      context: "A card or PIN number field",
+      good: {
+        label: "Good",
+        code: "<label for=\"card\">Card number</label>\n<input\n  id=\"card\"\n  type=\"text\"\n  inputmode=\"numeric\"\n  autocomplete=\"cc-number\"\n>",
+        note: html("<code>inputmode=\"numeric\"</code> brings up a number pad on mobile without the side effects of <code>type=\"number\"</code> — no spin-button arrows, and no accidental change from a stray scroll while the field has focus."),
+      },
+      bad: {
+        label: "Bad",
+        code: "<label for=\"card\">Card number</label>\n<input id=\"card\" type=\"number\">",
+        note: html("<code>type=\"number\"</code> treats a card number as an actual number: it adds spin-button arrows that mean nothing here, and scrolling the page while the field is focused can silently change a digit in some engines."),
+      },
+    },
+  ],
   mistakes: [
-    { name: "Placeholder text used as the only label", body: html("It vanishes the moment someone starts typing, so if they get interrupted or scroll back up, the field's purpose is gone. Use a persistent, visible label.") },
-    { name: "Vague error messages", body: html("\"Invalid input\" or \"Something went wrong\" forces the reader to guess. Say what's wrong (\"Password needs at least 8 characters\") and, ideally, how to fix it.") },
-    { name: "Validating only on submit", body: html("Waiting until the whole form is submitted to reveal an error made three fields ago means the reader has to scroll back and re-find their mistake. Validate a field once the reader has finished with it, not only at the very end.") },
-    { name: "Asking for information the task doesn't need", body: html("Every extra field is another chance to abandon the form. If a field's answer isn't used anywhere, remove it.") },
-    { name: "Wrong input type or keyboard", body: html("A phone number field using <code>type=\"text\"</code> brings up a full alphabetic keyboard on mobile instead of a numeric one — a small thing that adds friction to every single user on a phone.") },
+    { name: "Placeholder text used as the only label", body: html("It vanishes the instant someone types a single character, so anyone who gets interrupted, whose browser autofills something unexpected, or who scrolls back up to check has no way to see what the field was for. Use a persistent, visible label element instead — a placeholder can supplement it with a format hint, never replace it.") },
+    { name: "Vague error messages", body: html("\"Invalid input\" or \"Something went wrong\" tells the reader an error exists without telling them what it is, so they're left guessing at rules they can't see. Name the specific rule that failed (\"Password needs at least 8 characters\") and, where you can, the fix.") },
+    { name: "Validating only on submit", body: html("Holding every error until the reader clicks submit means a mistake in field two surfaces only after they've filled in fields three through ten — and now they have to scroll back to find it. Validate a field once the reader has finished with it, on blur, and keep the full-form check at submission as a backstop, not the only check.") },
+    { name: "Asking for information the task doesn't use", body: html("Every extra field is one more decision, one more chance to stall, and one more reason to abandon the form entirely. If nothing downstream reads a field's answer, the field doesn't belong on the page.") },
+    { name: "Input type that doesn't match the data", body: html("A phone number field left as <code>type=\"text\"</code> brings up a full alphabetic keyboard on a phone instead of a numeric one; a quantity field set to <code>type=\"number\"</code> adds spin-button arrows nobody asked for and lets an accidental scroll change the value while the field is focused. Match the type, or <code>inputmode</code>, to what's actually being typed.") },
+    { name: "Turning autocomplete off to tidy up the markup", body: html("<code>autocomplete=\"off\"</code> on a login or address field mostly doesn't do what it's set to do — most browsers ignore it on those fields and offer to save the password anyway, because they've decided remembering login details matters more than a site's preference. What it does reliably do is remove the autofill that readers with motor or cognitive disabilities depend on to avoid retyping the same information on every form they meet. Leave it on, and set specific values (<code>email</code>, <code>given-name</code>, <code>street-address</code>) so the browser fills the right field with the right thing.") },
   ],
   checklist: [
-    html("Every field has a persistent, visible <code>&lt;label&gt;</code> — not just a placeholder."),
-    html("Error messages state the specific problem and, where possible, the fix."),
+    html("Every field has a persistent, visible <code>&lt;label&gt;</code> — not a placeholder standing in for one."),
+    html("Error messages name the specific problem and, where possible, the fix, instead of settling for \"invalid.\""),
+    html("Errors are tied to their field with <code>aria-describedby</code> so a screen reader announces them."),
     html("Fields validate as the reader finishes each one, not only on final submit."),
-    html("Input types match the data (<code>email</code>, <code>tel</code>, <code>number</code>) so mobile keyboards adapt."),
+    html("Input types and <code>inputmode</code> match the data (<code>email</code>, <code>tel</code>, <code>inputmode=\"numeric\"</code>) so mobile keyboards adapt."),
+    html("<code>autocomplete</code> is set to a specific value for common fields (<code>email</code>, <code>name</code>, <code>street-address</code>) rather than switched off."),
     html("Every field's purpose could be explained in one sentence — if it can't, it's cut."),
-    html("Required fields are marked clearly, not implied."),
+    html("Required fields are marked in a way everyone can perceive, not implied by color or an asterisk alone."),
   ],
   practiceCourseId: "forms-inputs",
   goDeeper: [
-    { lead: "Autocomplete attributes", body: html("<code>autocomplete=\"email\"</code>, <code>autocomplete=\"name\"</code>, <code>autocomplete=\"street-address\"</code>, and similar values let the browser fill known fields automatically, which measurably speeds up form completion and reduces typos.") },
-    { lead: "Associating errors with fields for screen readers", body: html("pairing <code>aria-describedby</code> on the input with the error message's <code>id</code> means a screen reader announces the error when the field receives focus, not only when it's visually near the input.") },
-    { lead: "Multi-step forms", body: html("breaking a long form into steps can reduce the perceived effort, but only if progress is visible (a step indicator) and answers are preserved when someone goes back — an invisible multi-step flow just adds extra clicks without the psychological benefit.") },
+    { lead: "The full autocomplete vocabulary", body: html("<code>autocomplete</code> recognizes dozens of specific values beyond <code>email</code> and <code>name</code> — <code>given-name</code>, <code>family-name</code>, <code>street-address</code>, <code>postal-code</code>, <code>tel</code>, <code>cc-number</code>, <code>new-password</code>, <code>current-password</code>, and <code>one-time-code</code> for an SMS or authenticator code, among others. A form with two addresses (shipping and billing) can tell the browser which is which by adding a <code>shipping</code> or <code>billing</code> prefix, or a custom <code>section-*</code> token when it has more than one of the same kind. This is also the mechanism behind WCAG's Identify Input Purpose criterion (1.3.5, Level AA), which exists specifically so assistive technology and browser autofill can recognize what a field is asking for even when its visible label is unconventional.") },
+    { lead: "role=\"alert\" is assertive — use it deliberately", body: html("<code>role=\"alert\"</code> is equivalent to <code>aria-live=\"assertive\"</code>: it interrupts whatever a screen reader is currently announcing to speak immediately. That's the right behavior for an error that appears once, when a field loses focus — but wiring it to something that updates on every keystroke means it re-interrupts on every keystroke too, which is disorienting rather than helpful. For real-time-as-you-type feedback, a quieter <code>aria-live=\"polite\"</code> region, or no live region at all beyond <code>aria-describedby</code>, is the better default.") },
+    { lead: "Multi-step forms", body: html("Breaking a long form into steps can reduce how effortful it feels, but only if progress is visible — a step indicator naming how many steps remain — and answers already given survive a click back. An invisible multi-step flow adds extra clicks without the psychological benefit, and one that discards answers on back is worse than a single long page.") },
+    { lead: "Why <code>&lt;input type=\"number\"&gt;</code> keeps causing trouble", body: html("Browsers give <code>&lt;input type=\"number\"&gt;</code> an implicit spin-button role, and by default a mouse wheel or trackpad scroll over a focused number field silently changes its value with no visual confirmation — a real risk for a field like a donation amount or a quantity. Browser vendors have been walking this back — Firefox and other engines have shipped changes to stop scroll from changing the value by default — but behavior still isn't consistent everywhere, so don't design around it being fixed. For anything numeric that isn't meant to be incremented with arrows, such as a PIN, a card number, or a year, <code>type=\"text\"</code> with <code>inputmode=\"numeric\"</code> is the more predictable choice.") },
   ],
   datePublished: "2026-07-23",
 };
