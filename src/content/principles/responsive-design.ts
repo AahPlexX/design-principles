@@ -82,7 +82,7 @@ export const responsiveDesign: Principle = {
     { name: "Shipping the same image file to every screen", body: html("A 2000px-wide photo displayed at 400px on a phone still downloads at its full file size unless the markup says otherwise. It looks correct — the CSS scaled it down visually — while quietly costing a mobile visitor, often on a slower connection, several extra seconds of load time for pixels they never actually see. <code>srcset</code> and <code>sizes</code> let the browser choose a file sized for the screen it's rendering on, instead of the largest one on the server.") },
   ],
   checklist: [
-    html("No horizontal scrolling at any viewport width, from a 320px phone up to a wide desktop monitor."),
+    html("No horizontal scrolling at the page level, at any viewport width from a 320px phone up to a wide desktop monitor — a content region that's genuinely two-dimensional, like a wide data table, can still scroll sideways inside its own contained box; see <a href=\"/design-principles/principles/data-tables.html\">Data Tables</a> for why WCAG treats that case differently from the page itself scrolling sideways."),
     html("Containers use flexible units and CSS Grid/Flexbox wrapping, not fixed pixel widths."),
     html("Breakpoints sit where the specific layout breaks, not at guessed device widths."),
     html("Images and other media scale within their container (<code>max-width: 100%</code>) instead of overflowing it, and larger ones use <code>srcset</code>/<code>sizes</code> so phones aren't downloading desktop-sized files."),

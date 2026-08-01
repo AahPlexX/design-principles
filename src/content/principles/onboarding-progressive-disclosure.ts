@@ -37,8 +37,8 @@ export const onboardingProgressiveDisclosure: Principle = {
       context: "A settings panel with basic and advanced options",
       good: {
         label: "Good — advanced options tucked behind a toggle",
-        code: "<section>\n  <label><input type=\"checkbox\" checked /> Email notifications</label>\n  <label><input type=\"checkbox\" /> Weekly summary</label>\n  <button aria-expanded=\"false\">Advanced settings ▾</button>\n  <!-- webhook URL, API key, and rate-limit\n       override render inside this panel\n       once it's expanded -->\n</section>",
-        note: html("<code>aria-expanded=\"false\"</code> on the toggle tells assistive technology the advanced panel is currently collapsed — it flips to <code>\"true\"</code> once opened — so a screen reader user knows the panel's state without needing to see it. The two settings most people actually touch stay visible. The ones most people never touch are one labeled click away — findable the moment someone needs them, invisible until then."),
+        code: "<section>\n  <label><input type=\"checkbox\" checked /> Email notifications</label>\n  <label><input type=\"checkbox\" /> Weekly summary</label>\n  <button aria-expanded=\"false\" aria-controls=\"advanced-panel\">\n    Advanced settings ▾\n  </button>\n  <div id=\"advanced-panel\" hidden>\n    <!-- webhook URL, API key, and rate-limit\n         override render here once expanded -->\n  </div>\n</section>",
+        note: html("<code>aria-expanded=\"false\"</code> on the toggle tells assistive technology the advanced panel is currently collapsed — it flips to <code>\"true\"</code> once opened — so a screen reader user knows the panel's state without needing to see it. <code>aria-controls=\"advanced-panel\"</code> ties the button to the exact panel it operates, rather than leaving that relationship implied by the two elements just sitting next to each other in the markup. The two settings most people actually touch stay visible. The ones most people never touch are one labeled click away — findable the moment someone needs them, invisible until then."),
       },
       bad: {
         label: "Bad — every setting shown flat",

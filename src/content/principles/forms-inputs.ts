@@ -103,10 +103,10 @@ export const formsInputs: Principle = {
     html("Input types and <code>inputmode</code> match the data (<code>email</code>, <code>tel</code>, <code>inputmode=\"numeric\"</code>) so mobile keyboards adapt."),
     html("<code>autocomplete</code> is set to a specific value for common fields (<code>email</code>, <code>name</code>, <code>street-address</code>) rather than switched off."),
     html("Every field's purpose could be explained in one sentence — if it can't, it's cut."),
-    html("Required fields are marked in a way everyone can perceive — pair a red asterisk or color with the word \"required\" in the label (or an <code>aria-required</code> attribute), since color and a lone asterisk both fail for colorblind readers and screen-reader users who can't see either."),
+    html("Required fields are marked in a way everyone can perceive — pair a red asterisk or color with the visible word \"required\" in the label, since color and a lone asterisk both fail for colorblind readers and screen-reader users who can't see either. On a native form control, the <code>required</code> attribute itself is the right mechanism — it's announced by assistive technology and enforced by the browser for free; reach for <code>aria-required</code> only on a custom, non-native control built from a <code>&lt;div&gt;</code> or similar, where there's no native attribute to set."),
     html("Format requirements (a password's rules, a username's allowed characters) are shown before a field is touched, so the reader avoids a mistake instead of only being told about one after making it."),
     html("Auto-formatting input (adding dashes to a phone number, spacing a card number) never fights what the reader is actively typing — the cursor doesn't jump, and a pasted value isn't broken by the mask."),
-    html("A CAPTCHA or other bot check offers a non-visual path — an audio alternative, or a behavior-based check that needs no puzzle at all — instead of relying only on distorted text or image grids that exclude screen-reader and low-vision readers."),
+    html("A CAPTCHA or other bot check doesn't rely only on a visual puzzle — distorted text or image grids exclude screen-reader and low-vision readers outright. A behavior-based check that needs no puzzle at all is the option that's accessible to everyone; an audio-only alternative isn't a full substitute on its own, since it excludes deaf and hard-of-hearing readers the same way the visual version excludes low-vision ones."),
   ],
   practiceCourseId: "forms-inputs",
   goDeeper: [
