@@ -38,7 +38,7 @@ export const onboardingProgressiveDisclosure: Principle = {
       good: {
         label: "Good — advanced options tucked behind a toggle",
         code: "<section>\n  <label><input type=\"checkbox\" checked /> Email notifications</label>\n  <label><input type=\"checkbox\" /> Weekly summary</label>\n  <button aria-expanded=\"false\">Advanced settings ▾</button>\n  <!-- webhook URL, API key, and rate-limit\n       override render inside this panel\n       once it's expanded -->\n</section>",
-        note: html("The two settings most people actually touch stay visible. The ones most people never touch are one labeled click away — findable the moment someone needs them, invisible until then."),
+        note: html("<code>aria-expanded=\"false\"</code> on the toggle tells assistive technology the advanced panel is currently collapsed — it flips to <code>\"true\"</code> once opened — so a screen reader user knows the panel's state without needing to see it. The two settings most people actually touch stay visible. The ones most people never touch are one labeled click away — findable the moment someone needs them, invisible until then."),
       },
       bad: {
         label: "Bad — every setting shown flat",
@@ -64,12 +64,25 @@ export const onboardingProgressiveDisclosure: Principle = {
       good: {
         label: "Good — a hint shown at the moment it's useful",
         code: "<!-- tooltip fires once, the first\n     time someone opens the Filters\n     panel -->\n<div class=\"tooltip\" data-trigger=\"filters-panel-first-open\">\n  Save this filter combination as a\n  view you can jump back to later.\n</div>",
-        note: html("This tip about saved views appears right after someone has used filters enough to plausibly want to save one. It's dismissible, shown once, and never blocks the panel it's explaining."),
+        note: html("This is a <strong>coach mark</strong> — a single, dismissible pointer highlighting one specific piece of the interface at the moment it becomes relevant — not a multi-step guided tour that walks through several features in sequence regardless of what the reader has actually touched. This tip about saved views appears right after someone has used filters enough to plausibly want to save one. It's dismissible, shown once, and never blocks the panel it's explaining."),
       },
       bad: {
         label: "Bad — a mandatory tour with no way out",
         code: "<div class=\"tour-modal\" data-step=\"1\" data-total-steps=\"10\">\n  <h3>Welcome! Let's take a quick tour.</h3>\n  <p>Step 1 of 10: this is your sidebar…</p>\n  <!-- \"Next\" is the only button;\n       there is no Skip or close -->\n</div>",
         note: html("Ten screens of information land before the account holds a single project. Most of it — the sidebar, the filters panel, the export menu — won't be needed for weeks, so it's forgotten well before it's relevant, and there's no way to skip to the one thing that mattered today."),
+      },
+    },
+    {
+      context: "A setup checklist tracking onboarding progress",
+      good: {
+        label: "Good — optional, skippable, and it remembers where you left off",
+        code: "<aside class=\"setup-checklist\">\n  <h2>2 of 5 steps complete</h2>\n  <ul>\n    <li data-done=\"true\">Verify your email</li>\n    <li data-done=\"true\">Set a password</li>\n    <li>Invite your team</li>\n    <li>Connect your calendar</li>\n    <li>Create your first project</li>\n  </ul>\n  <button aria-label=\"Hide checklist for now\">Hide</button>\n</aside>\n<!-- reachable again later from\n     Settings → Getting started -->",
+        note: html("A visible, optional checklist works because of two effects: the <strong>Zeigarnik Effect</strong>, where an unfinished task is remembered and felt as unresolved far more strongly than a finished one, and the <strong>Goal-Gradient Effect</strong>, where motivation to finish rises the closer the goal feels — \"2 of 5\" pulls less than \"4 of 5\" will once the reader actually gets there. Hiding the checklist doesn't delete it; it's still reachable later, on the reader's own schedule."),
+      },
+      bad: {
+        label: "Bad — mandatory, and it won't stop asking",
+        code: "<div class=\"setup-modal\" role=\"dialog\" aria-modal=\"true\">\n  <h2>Complete your setup: 2 of 5</h2>\n  <p>Finish every step before you can\n     use the dashboard.</p>\n  <!-- reopens on every login until all\n       5 steps are checked off; there\n       is no close button -->\n</div>",
+        note: html("Blocking the dashboard until every step is checked off, or reopening the same modal every login with no way to close it, turns the exact psychology that makes an optional checklist motivating into pressure the reader never asked for — the open loop that pulls someone back voluntarily starts to feel like a gate the moment it's forced."),
       },
     },
   ],
@@ -95,6 +108,7 @@ export const onboardingProgressiveDisclosure: Principle = {
     { lead: "Time-to-value", body: html("Product teams often track onboarding by how quickly a new user reaches their first genuine \"aha\" moment — the point where a product's value becomes obvious from direct experience rather than from being told about it, sometimes shortened to <em>time-to-value</em>. Progressive disclosure is largely in service of shortening that path: every screen between signup and that first real result is a screen that has to earn the delay it adds.") },
     { lead: "This is not the same as a dark pattern", body: html("See <a href=\"/design-principles/principles/dark-patterns-ethics.html\">Dark Patterns &amp; Ethics</a> — progressive disclosure delays complexity for the reader's own benefit, and the hidden functionality remains fully reachable. A dark pattern instead hides information the reader needs to make a fair decision, or makes something they'd want artificially hard to find. The test is who benefits from what's currently out of view.") },
     { lead: "First-run empty states are a specific case of this", body: html("See <a href=\"/design-principles/principles/empty-error-states.html\">Empty &amp; Error States</a> for how the very first screen someone sees — with zero data in it yet — should be designed as its own deliberate moment, not a placeholder.") },
+    { lead: "Feature flags are progressive disclosure at the release-engineering level", body: html("The same principle operates below the interface, too: a feature flag lets a team release a new capability to a small percentage of users first, then widen the rollout as confidence grows, instead of turning it on for everyone at once — \"reveal capability incrementally\" applied to a release rather than a screen. Most teams pair a staged rollout with a kill switch: a way to turn the feature back off for everyone within seconds if it misbehaves in production, without needing a code rollback.") },
   ],
   datePublished: "2026-07-27",
 };

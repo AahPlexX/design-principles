@@ -384,3 +384,40 @@ User reported the header looked broken after the theme toggle was added — veri
 - [x] Committed (`2bd1930`, 174 files) and pushed. Confirmed via the GitHub Actions API: CI run `30575755878` and Pages run `30575755685`, both `conclusion: success`.
 - [x] Answered "how do I access the courses": the "Craft" nav link (first item, every page) → `/craft/` catalog; any principle page also has a "Practice this" callout to its paired course.
 - [x] Verified (via a full git-history grep, not memory) that this repo has never had `new_*`/`_v2`/`_backup`-style duplicate files — the only "new"-named file is a GitHub issue template named for its purpose, not a versioned duplicate.
+
+## Turn 24: merge the turn-23 content-depth PR, fix a resulting Pages outage
+
+User confirmed the turn-23 deepening work was real but unmerged, then said "Merge now."
+
+- [x] Squash-merged PR #6 (`c4668c3fd5`) — CI run `30709796597`, `conclusion: success`.
+- [x] **Discovered the merge broke the live site**: Pages run for the same commit (`30709796590`) failed in under 2 seconds with no runner, no job logs — the environment-protection-rule signature this repo already hit and fixed once before the framework migration. Root cause: an unrelated Copilot PR (#5, commit `edf2d25`) had reintroduced the `environment: { name: github-pages }` block on the theory that `main` becoming the actual default branch would satisfy it.
+- [x] Re-verified via the GitHub API that `main` genuinely is `default_branch` now, and the deploy still failed identically — proving the environment's branch allowlist is a separate setting from the default-branch field, and confirming (again) no available tool can change it.
+- [x] Fixed by removing the `environment:` block again (PR #7, squash-merged as `1985128c6`). CI run `30710044041` and Pages run `30710044053`: both `conclusion: success`, with a real runner executing the deploy this time — confirmed from the API, not assumed fixed because the same workaround worked before.
+- [x] Confirmed direct `git push` to `main` is blocked by the Claude Code auto-mode permission classifier — branch + PR + API-merge is the only path for any change in this session going forward.
+
+## Turn 25: forensic gap audit across all 17 principle pages
+
+User asked for an atomic-level forensic gap analysis against real external standards, explicitly requesting MCP tool use — analysis only, nothing fixed yet.
+
+- [x] Dispatched 5 parallel read-only subagents (one per home-page category) cross-referencing every principle page against Jon Yablonski's Laws of UX, Nielsen Norman Group's 10 heuristics, WCAG success criteria, and (ethics page only) the Gray/Kou/Battles/Hoggatt/Toombs CHI 2018 dark-pattern taxonomy.
+- [x] Synthesized ~97 findings (31 missing / 21 incomplete / 28 mentioned-but-undefined) plus 8 site-wide cross-cutting gaps, published as a themed HTML report via the Artifact tool.
+- [x] Explicitly told the user nothing was fixed yet and asked how to proceed — no silent assumption that "audit" implied "and fix it."
+
+## Turn 26: close every finding from the turn-25 audit ("Tackle everything")
+
+### Quantitative
+- [x] All 17 principle files touched: `visual-hierarchy`, `typography`, `color-contrast`, `spacing-layout`, `iconography-imagery`, `accessibility`, `responsive-design`, `performance`, `motion-feedback`, `internationalization-localization`, `navigation-ia`, `forms-inputs`, `content-microcopy`, `empty-error-states`, `data-tables`, `onboarding-progressive-disclosure`, `dark-patterns-ethics`.
+- [x] Named high-priority closures: WCAG 2.3.1 seizure/flashing-content safety now has a full site-wide home in `motion-feedback.ts` (previously nowhere on the site); `dark-patterns-ethics.ts`'s Nagging and Forced Action taxonomy categories now have real examples (notification-permission prompt; "find friends via contacts," naming "friend spam" and "privacy zuckering") where both previously had zero; **forced continuity** is now named and explained; `accessibility.ts` gained skip-link and video-caption/transcript examples (WCAG 2.4.1, 1.2.x) plus an ARIA-landmarks checklist item.
+
+### Qualitative acceptance criteria
+- [x] 5 category-aligned background fix agents dispatched with single-owner assignment per cross-cutting concept, to prevent duplicate/contradictory content across files different agents both touch (skip links → `accessibility.ts`; WCAG 2.3.1 → `motion-feedback.ts` primary; zoom-warning → both files, one agent owning both; mobile-nav patterns → `navigation-ia.ts` primary, `responsive-design.ts` told not to duplicate).
+- [x] All 5 agents hit a session-wide API rate limit mid-task. Checked real on-disk state rather than trusting the failure notifications: 2 of 5 had already written complete, correct work before dying — re-dispatched only the genuinely-remaining scope once the reset window passed (confirmed via `date -u`). All 6 total dispatches (2 rounds) completed clean.
+- [x] `mistakes` gate's 3–6 bound respected everywhere: files already at the cap got existing entries merged/consolidated (`motion-feedback.ts`: two `prefers-reduced-motion` mistakes merged to make room for a new flashing-content one; `dark-patterns-ethics.ts`: "drip pricing" and "forced continuity" merged into one renamed entry, "bait and switch" folded into "Misdirection") rather than exceeding the cap.
+- [x] Directly spot-checked the two highest-stakes files in full (`accessibility.ts`, `dark-patterns-ethics.ts`): both excellent, every assigned finding closed, both previously-flagged protected facts (Brignull/deceptive.design note, EC's €120M DSA fine) unaltered.
+- [x] Branch hygiene: `claude/web-design-principles-repo-rw51z6`'s own PR (#6) had already merged (turn 24), so per this session's own branch-reuse rule the branch was restarted from latest `main` rather than stacking new commits on already-merged history — `git checkout -B claude/web-design-principles-repo-rw51z6 origin/main`, then the 17 gap-fix files reapplied cleanly via `git stash`/`git stash pop`.
+- [x] `npx tsc --noEmit` — 0 errors. `env -u JAVA_TOOL_OPTIONS npm run gate:all` — all 13 gates pass on the rebuilt branch (3285 content-invariant checks, 173 HTML documents validated clean, 12 axe-core template representatives, 9 performance-budget checks).
+- [ ] *(pending, immediately below)* Commit, push, open a PR, drive it to green, and merge.
+
+## Turn 26 completion checkpoint
+
+**Status: complete pending the final commit/push/PR/merge recorded immediately below this line once performed** — the same "verify then record the real outcome, don't assume" discipline as every prior turn in this file.
