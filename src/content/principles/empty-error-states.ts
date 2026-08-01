@@ -50,7 +50,7 @@ export const emptyErrorStates: Principle = {
       context: "A broken or outdated link (404)",
       good: {
         label: "Good — two ways forward",
-        code: "<main>\n  <h1>We can't find that page</h1>\n  <p>It may have moved, or the link\n     might be out of date.</p>\n  <a href=\"/\">Back to homepage</a>\n  <input type=\"search\"\n         aria-label=\"Search the site\"\n         placeholder=\"Search the site\" />\n</main>",
+        code: "<main>\n  <h1>We can't find that page</h1>\n  <p>It may have moved, or the link\n     might be out of date.</p>\n  <a href=\"/\">Back to homepage</a>\n  <form role=\"search\" action=\"/search\" method=\"get\">\n    <label for=\"site-search\">Search the site</label>\n    <input id=\"site-search\" name=\"q\" type=\"search\" />\n    <button type=\"submit\">Search</button>\n  </form>\n</main>",
         note: html("Names what likely happened, then offers two different routes forward — home, or a search for whatever the reader was actually looking for — instead of leaving them stranded on a dead link."),
       },
       bad: {
