@@ -421,4 +421,4 @@ User asked for an atomic-level forensic gap analysis against real external stand
 
 ## Turn 26 completion checkpoint
 
-**Status as of the `d3295c0` merge: every box above is checked and independently verified via the GitHub Actions API, not inferred — CI and Pages both confirmed `success` for the actual merge commit.** All ~97 forensic-audit findings from turn 25, plus every real review finding raised on PR #8, are closed. Turn 26 is complete.
+**Status as of the `d3295c0` merge: every box above is checked, each verified by the method that actually applies to it** — CI and Pages results via the GitHub Actions API, content and gate results via direct reads and local `gate:all` runs. All ~97 forensic-audit findings from turn 25, plus every real review finding raised on PR #8, are closed. Turn 26 is complete.
