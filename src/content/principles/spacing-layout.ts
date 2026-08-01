@@ -60,6 +60,19 @@ export const spacingLayout: Principle = {
       },
     },
     {
+      context: "A two-dimensional card grid next to a one-dimensional button toolbar",
+      good: {
+        label: "Good — Grid for rows and columns, Flexbox for a single row",
+        code: ".card-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));\n  gap: 24px;\n}\n\n.toolbar {\n  display: flex;\n  gap: 8px;\n}",
+        note: html("The card grid needs items to line up along two axes at once — every card's left edge lines up down a column, every row's top edge lines up across — which is what CSS Grid is for. The toolbar only ever distributes buttons along a single line, so Flexbox does that whole job with less code and no unused second dimension."),
+      },
+      bad: {
+        label: "Bad — Flexbox stretched to do Grid's job",
+        code: ".card-grid {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 24px;\n}\n.card-grid > * {\n  width: calc(25% - 18px);\n}",
+        note: html("Flexbox only tracks alignment along its one main axis; once items wrap onto a second row, that row doesn't know about the columns above it. A taller card in row one won't line up with anything in row two, and the width has to be hand-calculated instead of left to a real two-dimensional grid — the exact problem <code>grid-template-columns</code> solves natively."),
+      },
+    },
+    {
       context: "Marking a section break with space vs. with a border",
       good: {
         label: "Good — 48px of space marks the break",
@@ -77,7 +90,7 @@ export const spacingLayout: Principle = {
     { name: "Equal spacing everywhere", body: html("When every gap on the page measures the same, nothing reads as a group. A settings page with 16px between every label, input, and section heading looks like one long undifferentiated list of controls, not a page organized into topics.") },
     { name: "Centering body copy", body: html("Centered text gives the eye a different starting position on every line, forcing a reader to relocate the start of the next line instead of sweeping back to one fixed edge. Reserve centering for headlines and other short, single-line elements where there's no \"next line\" to relocate — left-align (right-align for RTL languages) anything longer.") },
     { name: "Picking spacing values by eye, component by component", body: html("Without a shared scale, a page ends up with dozens of near-identical gaps — 13px here, 15px there, 22px somewhere else — that read as sloppy even though no single one looks wrong in isolation.") },
-    { name: "Cramming content edge-to-edge on mobile to \"fit more in\"", body: html("Removing margin on small screens doesn't create more usable space — it removes the breathing room that makes content feel readable instead of crowded, and it's usually the first thing a reader notices as \"off\" about a page even if they can't say why.") },
+    { name: "Cramming content edge-to-edge on mobile to \"fit more in\"", body: html("Removing margin on small screens doesn't create more usable space — it removes the breathing room that makes content feel readable instead of crowded, and it's usually the first thing a reader notices as \"off\" about a page even if they can't say why. Generous whitespace does a second job independent of grouping, too: on its own, it signals a kind of quality and intentionality, which is why a cramped layout can read as budget or rushed even when every individual grouping decision in it is correct.") },
     { name: "Reaching for a border or background tint before trying more space", body: html("A visible line or a tinted background is a heavier signal than most page structure needs. Try a bigger gap — and a heading, if one is warranted — before adding a border; it usually does the same job with less visual noise.") },
     { name: "Stacking margin on children inside a flex or grid container that already sets gap", body: html("<code>gap</code> already puts space between every child of a flex or grid container. Adding margin on top of it doubles the space at some edges and not others, producing gaps that look inconsistent even though every value in the CSS is deliberate. Use one or the other on a given axis, not both.") },
   ],

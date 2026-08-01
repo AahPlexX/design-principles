@@ -14,7 +14,7 @@ export const accessibility: Principle = {
   whyItMatters: [
     html("Picture someone who's been blind since birth, shopping for a flight, moving through the page with a screen reader and the Tab key instead of a mouse. She reaches a control and the screen reader says only <em>\"button\"</em> — no name, no purpose — because whoever built it wrapped an airplane icon in a <code>&lt;div&gt;</code> with a click handler instead of a real <code>&lt;button&gt;</code> with a label. She can't tell whether it books the flight, opens a filter, or dismisses an ad. She backs out and books somewhere else. Nothing crashed. The page never told her what was there."),
     html("Now picture someone with no visual impairment at all: a developer who broke her wrist last week and is doing everything — email, banking, work — from the keyboard because gripping a mouse hurts. She tabs to what looks like a dropdown for choosing a shipping country, presses the down arrow, and nothing happens, because the \"dropdown\" is a styled <code>&lt;div&gt;</code> with click handlers standing in for a real <code>&lt;select&gt;</code>. There's no way to open it and no way to choose an option without a mouse she can't currently use. Her impairment is temporary, and it isn't rare — a sprain, a migraine that makes it painful to focus on a screen, a baby asleep on one arm — but the page fails her exactly the way it would fail someone with a lifelong disability, because the two situations need the same fix."),
-    html("This adds up to more people than most teams assume: the World Health Organization estimates that roughly one in six people worldwide live with a significant disability, and that's before counting the temporary and situational limits above. None of them file a bug report when a site fails them this way — they leave, or they guess, or they never find out the button they couldn't identify did anything at all. A page that looks finished on the designer's own mouse and monitor can still be quietly unusable for a meaningful share of everyone who visits it."),
+    html("This adds up to more people than most teams assume: the World Health Organization estimates that roughly one in six people worldwide live with a significant disability, and that's before counting the temporary and situational limits above. That estimate also includes people with cognitive and learning disabilities — conditions that affect memory, attention, or how much complexity someone can hold in mind at once — a population this principle serves just as directly as it serves keyboard and screen-reader users, through plain language, predictable navigation, and interfaces that don't demand more effort to parse than the task actually requires. None of them file a bug report when a site fails them this way — they leave, or they guess, or they never find out the button they couldn't identify did anything at all. A page that looks finished on the designer's own mouse and monitor can still be quietly unusable for a meaningful share of everyone who visits it."),
   ],
   coreRule: [
     html("Everything a mouse can do, a keyboard must also be able to do — and everything shown visually needs a text equivalent a screen reader (software that reads the page aloud for people who are blind, have low vision, or otherwise can't rely on a display) can announce. Two quick tests catch most violations before they ship: try reaching the control with Tab or Shift+Tab and activating it with Enter or Space, using no mouse at all; then cover the screen and see whether what gets announced actually tells you what the control does. If either test fails, it's not accessible yet."),
@@ -72,6 +72,32 @@ export const accessibility: Principle = {
         note: html("This removes the browser's default focus indicator and puts nothing in its place — a keyboard user tabbing through the page has no way to see which button is about to activate when they press Enter."),
       },
     },
+    {
+      context: "A hidden \"skip to main content\" link",
+      good: {
+        label: "Good — hidden until it receives keyboard focus",
+        code: "<body>\n  <a class=\"skip-link\" href=\"#main\">Skip to main content</a>\n  <nav>\n    <!-- a dozen repeated nav links -->\n  </nav>\n  <main id=\"main\">…</main>\n</body>\n\n<style>\n  .skip-link {\n    position: absolute;\n    left: -9999px;\n  }\n  .skip-link:focus {\n    left: 8px;\n    top: 8px;\n  }\n</style>",
+        note: html("The link is the very first focusable element on the page. It stays visually hidden until Tab moves focus onto it, then appears and jumps straight to <code>#main</code> — letting a keyboard user skip the repeated navigation on every page instead of tabbing through it each time (WCAG 2.4.1, \"Bypass Blocks\")."),
+      },
+      bad: {
+        label: "Bad — no way to bypass the repeated nav",
+        code: "<body>\n  <nav>\n    <!-- a dozen repeated nav links -->\n  </nav>\n  <main>…</main>\n</body>\n<!-- no skip link anywhere on the page -->",
+        note: html("A keyboard user has to tab through every one of those nav links, on every single page, before ever reaching the content they came for — a tax a mouse user never pays, since a click goes straight to whatever they're looking at."),
+      },
+    },
+    {
+      context: "A video with no captions or transcript",
+      good: {
+        label: "Good — captions plus a transcript link",
+        code: "<video controls>\n  <source src=\"demo.mp4\" type=\"video/mp4\">\n  <track kind=\"captions\" src=\"demo.en.vtt\"\n         srclang=\"en\" label=\"English\">\n</video>\n<a href=\"/demo-transcript\">Read the full transcript</a>",
+        note: html("Captions keep the dialogue and important sound effects visible in sync with the video, serving readers who are deaf or hard of hearing. The transcript link goes further, serving anyone who can't play audio at all — a shared office, a library, a slow connection that can't stream video — since it carries the same information as plain text (WCAG 1.2.x). Neither one covers meaning the video only conveys visually, like an on-screen demonstration with no narration — that needs an audio description track, or the transcript written to describe what's happening on screen, not just what's said."),
+      },
+      bad: {
+        label: "Bad — audio-only information, no alternative",
+        code: "<video controls>\n  <source src=\"demo.mp4\" type=\"video/mp4\">\n</video>\n<!-- no captions track, no transcript -->",
+        note: html("Everything the video says only exists as sound. A deaf or hard-of-hearing reader, or anyone who simply can't turn the audio on right now, gets nothing — not because the information wasn't there, but because it was only ever offered one way."),
+      },
+    },
   ],
   mistakes: [
     { name: "Building custom controls out of <div> or <span>", body: html("Native elements (<code>&lt;button&gt;</code>, <code>&lt;a&gt;</code>, <code>&lt;input&gt;</code>, <code>&lt;select&gt;</code>) come with keyboard behavior, focus handling, and screen-reader semantics built in for free. Recreating one from a <code>&lt;div&gt;</code> means re-implementing all of that by hand — focusability, every keyboard interaction, every announcement — and it's almost always missing something.") },
@@ -89,11 +115,16 @@ export const accessibility: Principle = {
     html("Every form field has a real, connected <code>&lt;label&gt;</code> — not a placeholder standing in for one."),
     html("Modals trap focus while open and return it to the trigger on close."),
     html("Visual order matches the HTML order, so Tab and screen readers follow what's actually shown on screen."),
-    html("Headings are structured in order (one <code>&lt;h1&gt;</code>, then <code>&lt;h2&gt;</code>, etc.) so a screen reader user can navigate by heading."),
+    html("Headings are structured in a logical order (typically one <code>&lt;h1&gt;</code> per page, then <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code>, and so on without skipping a level) — screen readers let someone jump heading-to-heading the way a table of contents lets a reader jump between sections. Skipping a level, like going from <code>&lt;h1&gt;</code> straight to <code>&lt;h3&gt;</code>, doesn't break that jump mechanism, but it does make the outline misleading about which section actually nests under which."),
+    html("A hidden \"skip to main content\" link becomes visible on keyboard focus and jumps past repeated navigation (WCAG 2.4.1, \"Bypass Blocks\"), so a keyboard user isn't stuck tabbing through the same menu on every page."),
+    html("Video has captions and audio has a transcript (WCAG 1.2.x) — not just a player with no alternative for anyone who can't hear or can't play sound. If the video shows something meaningful with no narration to describe it, captions alone don't cover that — it needs an audio description track or a transcript that describes the visual, not just the spoken, content."),
+    html("The page stays usable at 200% browser zoom (WCAG 1.4.4) — the viewport meta tag never sets <code>user-scalable=no</code> or <code>maximum-scale=1</code>, which blocks pinch-zoom outright."),
+    html("Landmark elements (<code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>, <code>&lt;header&gt;</code>, <code>&lt;footer&gt;</code>, <code>&lt;aside&gt;</code>) mark out page regions a screen-reader user can jump to directly, separate from tabbing through every control in order."),
+    html("Flashing or strobing content stays under three flashes per second (WCAG 2.3.1) — see <a href=\"/design-principles/principles/motion-feedback.html\">Motion &amp; Feedback</a> for the full mechanism and threshold."),
   ],
   practiceCourseId: "accessibility",
   goDeeper: [
-    { lead: "WCAG's four principles (POUR)", body: html("content should be Perceivable (available to the senses, e.g. via alt text or captions), Operable (usable via keyboard and other input methods), Understandable (clear language and predictable behavior), and Robust (works with current and future assistive technology, largely via correct HTML semantics).") },
+    { lead: "WCAG's four principles (POUR)", body: html("WCAG (the Web Content Accessibility Guidelines — the standard most accessibility laws and audits are measured against) organizes accessibility into four principles: Content should be Perceivable (available to the senses, e.g. via alt text or captions), Operable (usable via keyboard and other input methods), Understandable (clear language and predictable behavior), and Robust (works with current and future assistive technology, largely via correct HTML semantics).") },
     { lead: "ARIA is a patch, not a first choice", body: html("ARIA attributes (<code>role</code>, <code>aria-*</code>) exist to describe custom components that HTML has no native element for. The first rule of ARIA is: if a native HTML element already does what you need, use that instead of adding ARIA to a div.") },
     { lead: "<dialog> handles focus, not naming", body: html("<code>showModal()</code> gives a dialog an implicit role of \"dialog\" and an implicit <code>aria-modal=\"true\"</code> for free, but it doesn't give the dialog an accessible name on its own. Pair it with <code>aria-labelledby</code> pointing at the dialog's own heading (or <code>aria-label</code> if it has none), so a screen reader announces what the dialog is about, not just that one opened.") },
     { lead: "Testing without a mouse", body: html("unplug your mouse (or just don't touch it) and try to complete your site's core task using only Tab, Shift+Tab, Enter, and Space. This alone catches a large share of accessibility issues before any specialized tooling is involved.") },

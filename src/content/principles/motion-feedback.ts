@@ -17,7 +17,7 @@ export const motionFeedback: Principle = {
     html("Both failures trace back to the same misunderstanding: treating motion as decoration instead of as a channel of information. Motion's job is to answer three questions the reader is implicitly asking every time they act — did that register, what changed, and where did it go? An animation that doesn't answer one of those is either missing, leaving the reader guessing like the checkout example above, or in the way, competing for attention or causing discomfort like the parallax example. Get that balance right and motion becomes invisible in the best sense: the reader never has to wonder whether the interface heard them."),
   ],
   coreRule: [
-    html("Every interactive action needs immediate, visible feedback — a color change, a state change, a spinner — and every animation needs a job: showing what changed, where it went, or that the system is working, never decoration for its own sake. Before playing anything that isn't essential feedback, check <code>prefers-reduced-motion</code> — a setting the reader's operating system exposes to the browser once they've asked for less on-screen movement — and cut the motion itself, not the underlying state change it was communicating."),
+    html("Give every interactive action immediate feedback — a color change, a state change, a spinner, or (used sparingly) a short confirmation sound — and give every animation a job: showing what changed, where it went, or that the system is working, never decoration for its own sake. Treat a brief success or error sound as a legitimate feedback channel in its own right; it's web-native, unlike haptic (vibration) feedback, which stays mostly in native mobile apps and is reasonably out of scope here. Before playing anything that isn't essential feedback, check <code>prefers-reduced-motion</code> — a setting the reader's operating system exposes to the browser once they've asked for less on-screen movement — and cut the motion itself, not the underlying state change it was communicating."),
   ],
   examples: [
     {
@@ -72,12 +72,25 @@ export const motionFeedback: Principle = {
         note: html("There's no intermediate state between hidden and shown — the layout jumps in a single frame, which is disorienting if it happens while someone is mid-read or clicking near that part of the screen."),
       },
     },
+    {
+      context: "A promotional banner that flashes for attention",
+      good: {
+        label: "Good — under three flashes per second",
+        code: "@keyframes pulse {\n  50% { background-color: #fef08a; }\n}\n.flash-sale-banner {\n  animation: pulse 1s ease-in-out infinite;\n  /* one flash per second */\n}",
+        note: html("One flash per second stays comfortably under WCAG 2.3.1's three-flashes-per-second seizure threshold — the point past which a flash can trigger a seizure in someone with photosensitive epilepsy — so the banner still grabs attention without carrying that risk."),
+      },
+      bad: {
+        label: "Bad — strobes past the seizure threshold",
+        code: "@keyframes strobe {\n  50% { background-color: #ff0000; }\n}\n.flash-sale-banner {\n  animation: strobe 0.15s steps(1) infinite;\n  /* toggles roughly 6-7 times per second */\n}",
+        note: html("A 150ms animation cycle flashes the banner six to seven times a second — more than double WCAG 2.3.1's three-per-second limit — and in saturated red, which the guideline treats as an even greater seizure risk than other colors. This isn't a matter of taste; it's a physical hazard for a real, definable population of readers."),
+      },
+    },
   ],
   mistakes: [
-    { name: "No loading state for anything that takes a moment", body: html("A form submission, a search, or a page navigation that takes more than a couple hundred milliseconds needs a visible pending state — a spinner, a disabled button, a progress bar — or the reader has no way to know whether to wait or try again. See the form-submission example above for what that pending state should actually communicate.") },
+    { name: "No loading state for anything that takes a moment", body: html("A form submission, a search, or a page navigation that takes more than a couple hundred milliseconds needs a visible pending state — a spinner, a progress bar, or a disabled button — or the reader has no way to know whether to wait or try again. A spinner says <em>something is happening, but how long is unknown</em> (indeterminate); a progress bar says <em>X% done, here's how much is left</em> (determinate) — reach for a progress bar whenever the remaining work can actually be calculated, and fall back to a spinner when it can't. See the form-submission example above for what that pending state should actually communicate.") },
     { name: "Feedback animations that are too slow or too fast to read", body: html("Under roughly 100ms, a transition happens faster than the eye can register it, so it might as well be instant. Much past 500ms for a simple UI response — a menu opening, a tab switching — starts to feel sluggish rather than responsive. Most feedback animations belong well inside that window.") },
-    { name: "Ignoring prefers-reduced-motion entirely", body: html("Large-scale motion — parallax, zooming transitions, auto-playing background video — can trigger real vestibular discomfort for some readers. Checking for <code>prefers-reduced-motion</code> isn't a polish item to add if there's time left; it's respecting a preference the reader deliberately set at the operating-system level.") },
-    { name: "Cutting all motion instead of just the decorative part", body: html("<code>prefers-reduced-motion</code> asks for less motion, not for the interface to go silent. A press state, a focus outline, a loading indicator aren't the large-scale motion the setting exists to suppress. Removing feedback animations along with the decorative ones trades one accessibility problem for another — now the reader who asked for calmer motion also can't tell whether their click registered.") },
+    { name: "Flashing or strobing content with no safeguard", body: html("Content that flashes more than three times in any one-second window — a fast-cycling promotional banner, a strobing loading animation, a rapid-cut video background — can trigger a seizure in someone with photosensitive epilepsy, potentially on first exposure, before anyone could act on a warning. That's a different hazard from the vestibular discomfort large-scale motion causes below: it's about flash rate and contrast, not the scale of movement, and it needs its own safeguard. A warning-and-opt-in screen isn't a substitute for staying under the threshold — the only real fix is keeping any flashing effect under three flashes per second, full stop (WCAG 2.3.1).") },
+    { name: "Mishandling prefers-reduced-motion — ignoring it, or overcorrecting", body: html("Large-scale motion — parallax, zooming transitions, auto-playing background video — can trigger real vestibular discomfort for some readers, and checking for <code>prefers-reduced-motion</code> isn't a polish item to add if there's time left; it's respecting a preference the reader deliberately set at the operating-system level. But the setting asks for less motion, not silence: a press state, a focus outline, and a loading indicator aren't the large-scale motion it exists to suppress, so cutting feedback animations along with the decorative ones trades one accessibility problem for another — now the reader who asked for calmer motion also can't tell whether their click registered.") },
     { name: "Motion used purely as decoration", body: html("An element that animates in for no reason connected to what the reader is doing competes with the content for attention instead of supporting it. If removing an animation would change nothing about whether the reader can tell what happened, it was decoration, not feedback.") },
     { name: "Abrupt layout changes with no transition", body: html("Content that appears, disappears, or moves instantly — an accordion snapping open, a modal appearing with no transition — can be disorienting, because there's no visual thread connecting the before and after. A short transition, like the modal example above, gives the eye time to track what moved and where it went.") },
   ],
@@ -88,6 +101,7 @@ export const motionFeedback: Principle = {
     html("<code>prefers-reduced-motion: reduce</code> turns off decorative and large-scale motion, while pressed states, focus indicators, and loading indicators still show up, just without the animated transition."),
     html("Any content that moves, auto-advances, or auto-updates for more than 5 seconds has a visible pause, stop, or hide control (WCAG 2.2.2, Level A)."),
     html("Elements that appear, disappear, or reposition get a short transition instead of snapping instantly."),
+    html("Nothing on the page flashes more than three times in any one-second window (WCAG 2.3.1) — a seizure risk for photosensitive readers, separate from the vestibular-motion checks above."),
   ],
   practiceCourseId: null,
   goDeeper: [
