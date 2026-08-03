@@ -2,6 +2,7 @@
 // Reviewed and now maintained by hand — edit this file directly, do not re-run the extractor over it.
 
 import type { Principle } from "@/content/types";
+import { previewDocument } from "@/content/previewDoc";
 import { html } from "@/lib/html";
 
 export const typography: Principle = {
@@ -14,7 +15,7 @@ export const typography: Principle = {
   definition: html("Typography is the set of decisions that control how easy text is to read: how big it is, how long each line runs, how much space separates lines and paragraphs, and which words stand out as more important than others."),
   whyItMatters: [
     html("Picture a reader who found your long-form explainer article from a search result and opened it on a laptop with the browser window maximized across a wide monitor. Nothing about the page is broken — the colors work, the layout is clean — but the paragraph text stretches from the left edge of the screen to the right, one line running past 150 characters before it wraps. By the third paragraph, the reader's eye keeps losing the thread: it reaches the end of a long line, sweeps back to the left margin, and has to hunt for which line it just finished. They don't diagnose \"the measure is too wide\" — the article feels exhausting to get through, and they close the tab before reaching the point they came for."),
-    html("This isn't a rare failure mode. Typography carries almost every word on almost every page — the product description, the error message, the multi-step form — so a typographic problem touches more of a site than nearly any other design decision does. And the readers who pay the highest price for it aren't an edge case: readers over about forty read fine print less comfortably as their eyes change, readers scanning in a second language lean harder on visual structure like headings and spacing to navigate text they're processing more slowly, and readers with dyslexia recognize a whole word by its overall shape — its mix of tall, short, and descending letters — more than most readers do. Set that word in all-caps, which flattens every word into the same rectangle, or squeeze the lines around it so tight they blur together, and the shape cue those readers depend on disappears."),
+    html("This isn't a rare failure mode, either. Typography carries almost every word on the page — headlines, error messages, form labels — so it touches more of a site than nearly any other design decision does. And the readers who pay the highest price for it aren't an edge case: someone with presbyopia (the age-related loss of near-focus most people develop after about forty) needs text that's genuinely larger, not just technically legible, and a reader with dyslexia recognizes a word by its overall shape — the mix of tall, short, and descending letters — more than most readers do. Set that word in all-caps, which flattens every word into the same rectangle, and the shape cue they depend on disappears."),
     html("The failure rarely announces itself as a typography problem, either. A visitor who can't tell a heading from a body paragraph doesn't think \"the hierarchy is unclear\" — they don't find the section they came for, and they leave. A shopper squinting at tiny product details on a phone doesn't blame the font size — they assume the store is sketchy and check a competitor instead. Bad typography reads as a content problem or a trust problem, even when the words underneath it were written perfectly well."),
   ],
   coreRule: [
@@ -26,12 +27,21 @@ export const typography: Principle = {
       good: {
         label: "Good — capped at about 60–65 characters",
         code: "article {\n  max-width: 65ch;\n  margin-inline: auto;\n  font-size: 1.125rem;\n  line-height: 1.6;\n}",
+        preview: previewDocument(
+          "body{font-family:Georgia,serif;color:#1a1a1a;background:#fff;padding:1rem}article{max-width:65ch;margin-inline:auto;font-size:1.0625rem;line-height:1.6}",
+          "<article><p>A reader's eye travels to the end of a line, then has to find the start of the next one. Keep that trip short and the eye barely notices making it.</p></article>",
+        ),
         note: html("The <code>ch</code> unit equals the width of the font's \"0\" character, so <code>65ch</code> is a reliable proxy for roughly 65 characters per line no matter how wide the browser window gets."),
       },
       bad: {
         label: "Bad — no cap, lines run 150+ characters wide",
         code: "article {\n  /* no max-width — the column is\n     however wide the browser window is */\n  font-size: 1.125rem;\n  line-height: 1.6;\n}",
-        note: html("On a wide monitor with the window maximized, a line can run past 150 characters before it wraps — the eye has to travel that whole distance and then relocate the start of the next line, which is exhausting over a full article."),
+        preview: previewDocument(
+          "body{font-family:Georgia,serif;color:#1a1a1a;background:#fff;padding:1rem;width:1400px}article{font-size:1.0625rem;line-height:1.6}",
+          "<article><p>A reader's eye travels to the end of a line, then has to find the start of the next one — and with no width limit at all, that line just keeps running, and running, past the point a reader can comfortably track where it started. Scroll right to see exactly how far this one goes before it finally wraps.</p></article>",
+        ),
+        previewSize: "sm",
+        note: html("On a wide monitor with the window maximized, a line can run past 150 characters before it wraps — the eye has to travel that whole distance and then relocate the start of the next line, which is exhausting over a full article. (Scroll the preview above sideways — that scroll is the failure.)"),
       },
     },
     {
@@ -39,11 +49,21 @@ export const typography: Principle = {
       good: {
         label: "Good — 1.4 line-height, real padding",
         code: "td {\n  padding: 0.75rem 1rem;\n  line-height: 1.4;\n}",
+        preview: previewDocument(
+          "body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a1a;background:#fff;padding:1rem;font-size:0.875rem}table{border-collapse:collapse;width:100%}td{padding:0.75rem 1rem;line-height:1.4;border-bottom:1px solid #e2e2e2;vertical-align:top}",
+          "<table><tr><td>Espresso Machine — Pro Series</td><td>In stock, ships in 2 days</td></tr><tr><td>Kettle</td><td>Backordered until next month</td></tr></table>",
+        ),
+        previewSize: "sm",
         note: html("A line-height of 1.4 plus genuine padding keeps a two-line cell readable and keeps each row visually distinct from the one below it, even in a compact table."),
       },
       bad: {
         label: "Bad — 1.0 line-height, minimal padding",
         code: "td {\n  padding: 0.25rem 0.5rem;\n  line-height: 1;\n}",
+        preview: previewDocument(
+          "body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a1a;background:#fff;padding:1rem;font-size:0.875rem}table{border-collapse:collapse;width:100%}td{padding:0.25rem 0.5rem;line-height:1;border-bottom:1px solid #e2e2e2;vertical-align:top}",
+          "<table><tr><td>Espresso Machine — Pro Series</td><td>In stock, ships in 2 days</td></tr><tr><td>Kettle</td><td>Backordered until next month</td></tr></table>",
+        ),
+        previewSize: "sm",
         note: html("This looks efficient while every cell holds one line. The moment a cell wraps — a long product name, a status message — its two lines nearly touch, and the tight padding leaves no gap to separate one row from the next."),
       },
     },
@@ -52,11 +72,19 @@ export const typography: Principle = {
       good: {
         label: "Good — size, weight, and color all shift together",
         code: "h1 { font-size: 2.5rem; font-weight: 700; }\nh2 { font-size: 1.75rem; font-weight: 700; color: #1a1a2e; }\nh3 { font-size: 1.25rem; font-weight: 600; color: #4b4b57; }",
+        preview: previewDocument(
+          "body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a1a;background:#fff;padding:1rem}h1{font-size:1.75rem;font-weight:700;margin:0 0 0.4rem}h2{font-size:1.25rem;font-weight:700;color:#1a1a2e;margin:0.6rem 0 0.2rem}h3{font-size:1rem;font-weight:600;color:#4b4b57;margin:0.4rem 0 0.2rem}p{margin:0.2rem 0;font-size:0.8125rem;color:#4b4b57}",
+          "<h1>Account settings</h1><h2>Notifications</h2><p>Choose how you hear from us.</p><h3>Email frequency</h3>",
+        ),
         note: html("Each level down is smaller, lighter in weight or color than the one above it, so a reader can tell which heading outranks which without reading the words."),
       },
       bad: {
         label: "Bad — same weight throughout, sizes barely differ",
         code: "h1 { font-size: 1.4rem; font-weight: 400; }\nh2 { font-size: 1.2rem; font-weight: 400; }\nh3 { font-size: 1.05rem; font-weight: 400; }",
+        preview: previewDocument(
+          "body{font-family:-apple-system,BlinkMacSystemFont,sans-serif;color:#1a1a1a;background:#fff;padding:1rem}h1{font-size:1.4rem;font-weight:400;margin:0 0 0.4rem}h2{font-size:1.2rem;font-weight:400;margin:0.6rem 0 0.2rem}h3{font-size:1.05rem;font-weight:400;margin:0.4rem 0 0.2rem}p{margin:0.2rem 0;font-size:1rem}",
+          "<h1>Account settings</h1><h2>Notifications</h2><p>Choose how you hear from us.</p><h3>Email frequency</h3>",
+        ),
         note: html("At a glance, h2 and h3 read as slightly-bigger body text rather than headings — the size gap is too small and nothing else about them changes, so a reader scanning for a section has no visual jump to look for."),
       },
     },

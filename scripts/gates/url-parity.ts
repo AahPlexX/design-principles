@@ -19,13 +19,25 @@ import { DIST, Gate, distPages, repoRoot, requireDist } from "./lib";
 
 const EXPECTED_FILE = path.join(repoRoot, "scripts", "gates", "expected-urls.txt");
 
+/**
+ * Written back by `--write` every time, so the file's own warning against casual edits can never be
+ * silently dropped by the tool whose job is to keep the file honest.
+ */
+const HEADER = `# The site's URL contract: every page the hand-written site served, snapshotted before it was removed.
+#
+# These paths appear in sitemap.xml, in every page's canonical tag, and in inbound links this project
+# does not control. GitHub Pages has no redirect configuration, so removing or renaming an entry here
+# breaks those links permanently. Change this file only alongside a deliberate decision to change a
+# public URL, and never to make a failing build pass.
+`;
+
 const gate = new Gate("URL parity");
 requireDist(gate);
 
 const actual = distPages();
 
 if (process.argv.includes("--write")) {
-  writeFileSync(EXPECTED_FILE, `${actual.join("\n")}\n`, "utf8");
+  writeFileSync(EXPECTED_FILE, `${HEADER}${actual.join("\n")}\n`, "utf8");
   console.log(`Wrote ${String(actual.length)} paths to ${path.relative(repoRoot, EXPECTED_FILE)}`);
   process.exit(0);
 }

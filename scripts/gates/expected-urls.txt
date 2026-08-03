@@ -1,9 +1,3 @@
-# The site's URL contract: every page the hand-written site served, snapshotted before it was removed.
-#
-# These paths appear in sitemap.xml, in every page's canonical tag, and in inbound links this project
-# does not control. GitHub Pages has no redirect configuration, so removing or renaming an entry here
-# breaks those links permanently. Change this file only alongside a deliberate decision to change a
-# public URL, and never to make a failing build pass.
 404.html
 about.html
 craft/accessibility/index.html
@@ -122,9 +116,36 @@ craft/spacing-layout/level-6/lesson-3.html
 craft/spacing-layout/level-6/lesson-4.html
 craft/spacing-layout/level-6/lesson-5.html
 craft/typography/index.html
-craft/typography/lesson-1.html
-craft/typography/lesson-2.html
-craft/typography/lesson-3.html
+craft/typography/level-1/lesson-1.html
+craft/typography/level-1/lesson-2.html
+craft/typography/level-1/lesson-3.html
+craft/typography/level-1/lesson-4.html
+craft/typography/level-2/lesson-1.html
+craft/typography/level-2/lesson-2.html
+craft/typography/level-2/lesson-3.html
+craft/typography/level-2/lesson-4.html
+craft/typography/level-2/lesson-5.html
+craft/typography/level-3/lesson-1.html
+craft/typography/level-3/lesson-2.html
+craft/typography/level-3/lesson-3.html
+craft/typography/level-3/lesson-4.html
+craft/typography/level-3/lesson-5.html
+craft/typography/level-3/lesson-6.html
+craft/typography/level-4/lesson-1.html
+craft/typography/level-4/lesson-2.html
+craft/typography/level-4/lesson-3.html
+craft/typography/level-4/lesson-4.html
+craft/typography/level-4/lesson-5.html
+craft/typography/level-5/lesson-1.html
+craft/typography/level-5/lesson-2.html
+craft/typography/level-5/lesson-3.html
+craft/typography/level-5/lesson-4.html
+craft/typography/level-5/lesson-5.html
+craft/typography/level-6/lesson-1.html
+craft/typography/level-6/lesson-2.html
+craft/typography/level-6/lesson-3.html
+craft/typography/level-6/lesson-4.html
+craft/typography/level-6/lesson-5.html
 craft/visual-hierarchy/index.html
 craft/visual-hierarchy/level-1/lesson-1.html
 craft/visual-hierarchy/level-1/lesson-2.html
