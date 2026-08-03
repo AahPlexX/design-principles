@@ -36,13 +36,20 @@ export interface ExampleSide {
   readonly note: HtmlString;
   /**
    * Optional self-contained HTML document — full `<style>` plus real demo markup, not a fragment —
-   * rendered live inside a sandboxed iframe next to the code sample. Reserve this for a side whose
-   * difference is genuinely visual (a spacing value, a contrast pair, a wrapped line, a heading stack):
-   * reading `line-height: 1` and seeing two lines of text touch are not the same lesson. Omit it for a
-   * side whose difference isn't visible on screen (a JS behavior, an ARIA attribute, a data-format
-   * rule) — the code sample alone is the right and sufficient teaching tool there.
+   * rendered live inside a sandboxed iframe next to the code sample. Build it with `previewDocument()`
+   * (`src/content/previewDoc.ts`) rather than writing the boilerplate inline. Reserve this for a side
+   * whose difference is genuinely visual (a spacing value, a contrast pair, a wrapped line, a heading
+   * stack): reading `line-height: 1` and seeing two lines of text touch are not the same lesson. Omit
+   * it for a side whose difference isn't visible on screen (a JS behavior, an ARIA attribute, a
+   * data-format rule) — the code sample alone is the right and sufficient teaching tool there.
    */
   readonly preview?: string;
+  /**
+   * How tall the preview iframe renders, since there is no runtime JS here to size it to its content
+   * automatically. Defaults to `"md"` (12rem) when a `preview` is set and this is omitted — pick `"sm"`
+   * for a single line or two of content, `"lg"` for a stacked heading hierarchy or a multi-row table.
+   */
+  readonly previewSize?: "sm" | "md" | "lg";
 }
 
 /**

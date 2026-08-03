@@ -67,8 +67,15 @@ for (const principle of principles) {
           `${where}: ${label} ("${scenario.context}") declares a preview but it is empty`,
         );
         gate.check(
-          /<!doctype html>/i.test(side.preview),
+          /^<!doctype html>/i.test(side.preview.trim()),
           `${where}: ${label} ("${scenario.context}") preview is not a self-contained HTML document — it must start with <!doctype html> so it renders correctly in a sandboxed iframe on its own`,
+        );
+        // The iframe's sandbox="" already blocks script execution, but a preview is documented as
+        // static markup and CSS only — a <script> tag here would be dead code at best and a
+        // maintenance trap at worst if the sandbox setting ever changed.
+        gate.check(
+          !/<script[\s>]/i.test(side.preview),
+          `${where}: ${label} ("${scenario.context}") preview contains a <script> tag — previews are static HTML/CSS only`,
         );
       }
     }

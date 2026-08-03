@@ -66,7 +66,11 @@ function Example({ side, verdict }: ExampleProps) {
         </Badge>
       </h4>
       {side.preview === undefined ? null : (
-        <ExamplePreview html={side.preview} title={`Live render — ${side.label}`} />
+        <ExamplePreview
+          html={side.preview}
+          title={`Live render — ${side.label}`}
+          size={side.previewSize}
+        />
       )}
       <CodeBlock code={side.code} className="bg-canvas" />
       <ContentHtml html={side.note} className="text-sm leading-relaxed text-ink" />
