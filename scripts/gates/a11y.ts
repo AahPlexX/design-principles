@@ -34,6 +34,10 @@ const SAMPLE: readonly { page: string; why: string }[] = [
     page: "principles/color-contrast.html",
     why: "principle: example pair, mistakes, checklist, details",
   },
+  {
+    page: "principles/typography.html",
+    why: "principle: example pairs with a live-rendered iframe preview",
+  },
   { page: "principles/data-tables.html", why: "principle: a second instance, tables in prose" },
   { page: "craft/index.html", why: "craft catalog: course cards, progress badges" },
   { page: "craft/color-contrast/index.html", why: "course overview: levelled, 9 levels" },

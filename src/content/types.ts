@@ -34,6 +34,15 @@ export interface ExampleSide {
   readonly code: string;
   /** One sentence on why this side lands where it does. */
   readonly note: HtmlString;
+  /**
+   * Optional self-contained HTML document — full `<style>` plus real demo markup, not a fragment —
+   * rendered live inside a sandboxed iframe next to the code sample. Reserve this for a side whose
+   * difference is genuinely visual (a spacing value, a contrast pair, a wrapped line, a heading stack):
+   * reading `line-height: 1` and seeing two lines of text touch are not the same lesson. Omit it for a
+   * side whose difference isn't visible on screen (a JS behavior, an ARIA attribute, a data-format
+   * rule) — the code sample alone is the right and sufficient teaching tool there.
+   */
+  readonly preview?: string;
 }
 
 /**

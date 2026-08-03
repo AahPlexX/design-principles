@@ -7,6 +7,8 @@ import { Panel } from "@/components/ui/card";
 import type { ExampleSide } from "@/content/types";
 import { cn } from "@/lib/utils";
 
+import { ExamplePreview } from "./ExamplePreview";
+
 interface ExamplePairProps {
   readonly good: ExampleSide;
   readonly bad: ExampleSide;
@@ -63,6 +65,9 @@ function Example({ side, verdict }: ExampleProps) {
           {side.label}
         </Badge>
       </h4>
+      {side.preview === undefined ? null : (
+        <ExamplePreview html={side.preview} title={`Live render — ${side.label}`} />
+      )}
       <CodeBlock code={side.code} className="bg-canvas" />
       <ContentHtml html={side.note} className="text-sm leading-relaxed text-ink" />
     </Panel>

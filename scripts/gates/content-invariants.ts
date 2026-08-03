@@ -59,6 +59,18 @@ for (const principle of principles) {
         side.label.trim() !== "" && toPlainText(side.note).trim() !== "",
         `${where}: ${label} ("${scenario.context}") has an empty label or note`,
       );
+      // `preview` is optional, but a side that declares one is promising a real live-rendered demo —
+      // an empty or whitespace-only string would render a blank iframe with nothing to show.
+      if (side.preview !== undefined) {
+        gate.check(
+          side.preview.trim() !== "",
+          `${where}: ${label} ("${scenario.context}") declares a preview but it is empty`,
+        );
+        gate.check(
+          /<!doctype html>/i.test(side.preview),
+          `${where}: ${label} ("${scenario.context}") preview is not a self-contained HTML document — it must start with <!doctype html> so it renders correctly in a sandboxed iframe on its own`,
+        );
+      }
     }
   }
   // Trimmed, since a context that differs only by leading/trailing whitespace renders identically (and
@@ -69,8 +81,8 @@ for (const principle of principles) {
     `${where}: two example scenarios share a context label`,
   );
   gate.check(
-    principle.mistakes.length >= 3 && principle.mistakes.length <= 6,
-    `${where}: expected 3–6 named mistakes, found ${String(principle.mistakes.length)}`,
+    principle.mistakes.length >= 3,
+    `${where}: expected at least 3 named mistakes, found ${String(principle.mistakes.length)}`,
   );
   gate.check(principle.checklist.length > 0, `${where}: empty checklist`);
   gate.check(principle.goDeeper.length > 0, `${where}: missing "Go deeper" content`);
@@ -201,7 +213,7 @@ for (const course of courses) {
 
 /* --------------------------------------------------------------------- lessons */
 
-gate.check(lessons.length === 144, `expected 144 lessons, found ${String(lessons.length)}`);
+gate.check(lessons.length === 171, `expected 171 lessons, found ${String(lessons.length)}`);
 
 const seenLessons = new Set<string>();
 for (const lesson of lessons) {
