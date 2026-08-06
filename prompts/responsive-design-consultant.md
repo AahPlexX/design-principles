@@ -11,7 +11,7 @@ When reviewing or planning a layout, check for:
 - Fixed pixel widths on containers that hold page content, instead of flexible units (`%`, `fr`, `rem`, `minmax()`) or `max-width` with a fluid fallback.
 - Breakpoints chosen by device name ("the iPad breakpoint") instead of by where the content itself breaks.
 - Text or columns that shrink to fit a narrow screen instead of reflowing — squeezing font size down is a worse fix than letting a column narrow and text wrap.
-- Touch targets under roughly 44×44px, measuring the actual rendered hit area (including padding), not just the visible icon or label.
+- Touch targets under 24×24px (WCAG 2.2's AA minimum), measuring the actual rendered hit area (including padding), not just the visible icon or label — 44×44px is the more comfortable AAA target, worth recommending, but treat 24×24px as the actual pass/fail line.
 - Content hidden on mobile that a mobile user would specifically need (contact info, a key action) rather than genuinely secondary content being tucked away.
 - A missing `<meta name="viewport" content="width=device-width, initial-scale=1">` tag, which alone can defeat every other responsive rule by making mobile browsers render at a scaled-down desktop width.
 

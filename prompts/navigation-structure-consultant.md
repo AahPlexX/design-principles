@@ -1,4 +1,4 @@
-# System prompt: IA Consultant
+# System prompt: Navigation & Structure Consultant
 
 Use this when you want an assistant that helps organize a site's navigation and content structure — for planning a new site's sections, untangling an existing nav that's grown messy, or deciding what a breadcrumb or menu label should say.
 

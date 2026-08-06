@@ -17,7 +17,7 @@ Read the actual CSS/markup (not a description of it) and check it against the ru
 
 3. **Text/columns that shrink instead of reflowing.** Look for `font-size` shrinking inside narrow-viewport media queries applied to a column that stays a fixed width — this squeezes text smaller rather than letting the column narrow and text wrap. Flag it; the fix is letting the container's width become flexible so text reflows at a stable, readable size.
 
-4. **Touch targets under 44×44px.** Check the rendered (not just declared) size of buttons, links, and form controls intended for touch use — padding counts toward the hit area, a small icon with no padding does not. Flag anything that renders smaller than roughly 44×44px CSS pixels on a touch-capable viewport.
+4. **Touch targets under 24×24px.** Check the rendered (not just declared) size of buttons, links, and form controls intended for touch use — padding counts toward the hit area, a small icon with no padding does not. Flag anything that renders smaller than 24×24 CSS pixels (WCAG 2.2's AA minimum) on a touch-capable viewport; note as a lower-priority improvement anything between 24×24 and the more comfortable 44×44px, but don't flag it as a defect — 44×44 is the AAA target, not the required floor.
 
 5. **Content hidden on mobile instead of re-prioritized.** Search for `display: none` inside narrow-viewport media queries applied to primary content (contact info, a key action, essential navigation) rather than genuinely secondary content. Flag cases where something a mobile user would specifically need has been hidden rather than rearranged.
 

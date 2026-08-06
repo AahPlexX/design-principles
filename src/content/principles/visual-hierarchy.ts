@@ -64,7 +64,7 @@ export const visualHierarchy: Principle = {
       good: {
         label: "Good — visual order matches HTML order",
         code: "<div class=\"card\">\n  <h2>Order #48213</h2>\n  <p class=\"status\">Shipped</p>\n  <p class=\"detail\">Arriving Thursday</p>\n</div>\n\n<style>\n.card {\n  display: flex;\n  flex-direction: column;\n}\n</style>",
-        note: html("A sighted reader scanning top to bottom and a screen reader announcing the same markup top to bottom land on the identical sequence: order number, then status, then detail."),
+        note: html("A sighted reader scanning top to bottom and a screen reader (software that reads the page aloud) announcing the same markup top to bottom land on the identical sequence: order number, then status, then detail."),
       },
       bad: {
         label: "Bad — flex-direction: column-reverse flips the visual order",

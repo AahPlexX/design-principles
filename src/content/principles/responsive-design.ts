@@ -17,7 +17,7 @@ export const responsiveDesign: Principle = {
     html("The cost shows up as lost business, not a support ticket. A checkout button that sits past the right edge of the screen because the layout didn't reflow doesn't get reported — the visitor just abandons the cart, assuming the site is broken or the store stopped bothering with mobile shoppers. Having to pinch-zoom just to read body text reads as neglect, even when the design underneath it was carefully made. A layout failure looks exactly like a code bug to the person hitting it, whether or not any code actually broke."),
   ],
   coreRule: [
-    html("Design the layout to respond to the <em>content</em> running out of room within the <strong>viewport</strong> — the visible area of a page inside the browser window, which varies by device — not to a fixed list of device widths. A <strong>breakpoint</strong> — the point where a layout switches to a different arrangement — belongs wherever your specific content starts to look cramped or oddly sparse, not at a guessed number like \"iPhone width\" or \"iPad width.\" Reach for flexible units — percentages, <code>fr</code> (a CSS Grid unit meaning \"a fraction of the remaining space\"), <code>ch</code> (a CSS length equal to the width of the font's \"0\" character), <code>rem</code>, <code>clamp()</code> — and let CSS Grid or Flexbox reflow the content first; add a breakpoint only once flexible units alone can't hold the layout together anymore."),
+    html("Design the layout to respond to the <em>content</em> running out of room within the <strong>viewport</strong> — the visible area of a page inside the browser window, which varies by device — not to a fixed list of device widths. A <strong>breakpoint</strong> — the point where a layout switches to a different arrangement — belongs wherever your specific content starts to look cramped or oddly sparse, not at a guessed number like \"iPhone width\" or \"iPad width.\" Reach for flexible units — percentages, <code>fr</code> (a CSS Grid unit meaning \"a fraction of the remaining space\"), <code>ch</code> (a CSS length equal to the width of the font's \"0\" character), <code>rem</code> (a length relative to the root element's font size), <code>clamp()</code> — and let CSS Grid or Flexbox reflow the content first; add a breakpoint only once flexible units alone can't hold the layout together anymore."),
   ],
   examples: [
     {
@@ -51,7 +51,7 @@ export const responsiveDesign: Principle = {
       good: {
         label: "Good — 44×44px tap target",
         code: ".close-button {\n  width: 44px;\n  height: 44px;\n  padding: 12px;\n}",
-        note: html("Comfortably clears WCAG 2.2's actual 24×24px minimum (Success Criterion 2.5.8) with room to spare for an imprecise thumb, not just a precise mouse pointer."),
+        note: html("Comfortably clears WCAG (the Web Content Accessibility Guidelines — the standard most accessibility laws and audits are measured against) 2.2's actual 24×24px minimum (Success Criterion 2.5.8) with room to spare for an imprecise thumb, not just a precise mouse pointer."),
       },
       bad: {
         label: "Bad — 18×18px tap target",

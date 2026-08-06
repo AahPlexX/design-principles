@@ -25,7 +25,7 @@ export const accessibility: Principle = {
       good: {
         label: "Good — announces as \"Close dialog, button\"",
         code: "<button aria-label=\"Close dialog\">\n  <svg aria-hidden=\"true\">\n    <!-- X icon -->\n  </svg>\n</button>",
-        note: html("A real <code>&lt;button&gt;</code> is focusable and clickable by keyboard with no extra work, and <code>aria-label</code> gives a screen reader the name \"Close dialog\" even though the only visible content is an icon."),
+        note: html("A real <code>&lt;button&gt;</code> is focusable and clickable by keyboard with no extra work, and <code>aria-label</code> gives it an accessible name (the text a screen reader actually announces for a control) of \"Close dialog\" even though the only visible content is an icon."),
       },
       bad: {
         label: "Bad — announces as nothing, or just \"clickable\"",
@@ -77,7 +77,7 @@ export const accessibility: Principle = {
       good: {
         label: "Good — hidden until it receives keyboard focus",
         code: "<body>\n  <a class=\"skip-link\" href=\"#main\">Skip to main content</a>\n  <nav>\n    <!-- a dozen repeated nav links -->\n  </nav>\n  <main id=\"main\">…</main>\n</body>\n\n<style>\n  .skip-link {\n    position: absolute;\n    left: -9999px;\n  }\n  .skip-link:focus {\n    left: 8px;\n    top: 8px;\n  }\n</style>",
-        note: html("The link is the very first focusable element on the page. It stays visually hidden until Tab moves focus onto it, then appears and jumps straight to <code>#main</code> — letting a keyboard user skip the repeated navigation on every page instead of tabbing through it each time (WCAG 2.4.1, \"Bypass Blocks\")."),
+        note: html("The link is the very first focusable element on the page. It stays visually hidden until Tab moves focus onto it, then appears and jumps straight to <code>#main</code> — letting a keyboard user skip the repeated navigation on every page instead of tabbing through it each time (WCAG — the Web Content Accessibility Guidelines, the standard most accessibility laws and audits are measured against — 2.4.1, \"Bypass Blocks\")."),
       },
       bad: {
         label: "Bad — no way to bypass the repeated nav",
@@ -127,7 +127,7 @@ export const accessibility: Principle = {
     { lead: "WCAG's four principles (POUR)", body: html("WCAG (the Web Content Accessibility Guidelines — the standard most accessibility laws and audits are measured against) organizes accessibility into four principles: Content should be Perceivable (available to the senses, e.g. via alt text or captions), Operable (usable via keyboard and other input methods), Understandable (clear language and predictable behavior), and Robust (works with current and future assistive technology, largely via correct HTML semantics).") },
     { lead: "ARIA is a patch, not a first choice", body: html("ARIA attributes (<code>role</code>, <code>aria-*</code>) exist to describe custom components that HTML has no native element for. The first rule of ARIA is: if a native HTML element already does what you need, use that instead of adding ARIA to a div.") },
     { lead: "<dialog> handles focus, not naming", body: html("<code>showModal()</code> gives a dialog an implicit role of \"dialog\" and an implicit <code>aria-modal=\"true\"</code> for free, but it doesn't give the dialog an accessible name on its own. Pair it with <code>aria-labelledby</code> pointing at the dialog's own heading (or <code>aria-label</code> if it has none), so a screen reader announces what the dialog is about, not just that one opened.") },
-    { lead: "Testing without a mouse", body: html("unplug your mouse (or just don't touch it) and try to complete your site's core task using only Tab, Shift+Tab, Enter, and Space. This alone catches a large share of accessibility issues before any specialized tooling is involved.") },
+    { lead: "Testing without a mouse", body: html("Unplug your mouse (or set it aside) and try to complete your site's core task using only Tab, Shift+Tab, Enter, and Space. This alone catches a large share of accessibility issues before any specialized tooling is involved.") },
   ],
   datePublished: "2026-07-23",
 };

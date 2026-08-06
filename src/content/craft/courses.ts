@@ -26,7 +26,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-2",
           number: 2,
-          title: "Gestalt Grouping Applied to Hierarchy",
+          title: "How Grouping Creates Hierarchy",
           lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4", "level-2-lesson-5"],
         },
         {
@@ -44,7 +44,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-5",
           number: 5,
-          title: "Hierarchy Across Real Contexts",
+          title: "Hierarchy When Everything Competes",
           lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4", "level-5-lesson-5"],
         },
         {
@@ -107,7 +107,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-7",
           number: 7,
-          title: "Tools & Workflow",
+          title: "Checking Contrast Without Guessing",
           lessonIds: ["level-7-lesson-1", "level-7-lesson-2", "level-7-lesson-3", "level-7-lesson-4"],
         },
         {
@@ -175,7 +175,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-5",
           number: 5,
-          title: "Case, Tracking & Emphasis",
+          title: "Emphasis That Doesn't Hurt Readability",
           lessonIds: ["level-5-lesson-1", "level-5-lesson-2", "level-5-lesson-3", "level-5-lesson-4", "level-5-lesson-5"],
         },
         {
@@ -208,7 +208,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-2",
           number: 2,
-          title: "Spacing Scales & Tokens",
+          title: "A Scale Instead of Guessing",
           lessonIds: ["level-2-lesson-1", "level-2-lesson-2", "level-2-lesson-3", "level-2-lesson-4", "level-2-lesson-5"],
         },
         {
@@ -265,7 +265,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-3",
           number: 3,
-          title: "Breakpoint Strategy",
+          title: "Choosing Breakpoints by Content, Not Devices",
           lessonIds: ["level-3-lesson-1", "level-3-lesson-2", "level-3-lesson-3", "level-3-lesson-4"],
         },
         {
@@ -283,7 +283,7 @@ export const courses: readonly Course[] = [
         {
           id: "level-6",
           number: 6,
-          title: "Responsive Typography",
+          title: "Type Sizes That Scale With the Screen",
           lessonIds: ["level-6-lesson-1", "level-6-lesson-2"],
         },
         {

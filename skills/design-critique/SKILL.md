@@ -46,7 +46,7 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 **Responsive design** — full reference: <https://aahplexx.github.io/design-principles/principles/responsive-design.html>
 - No horizontal scroll or overflow at narrow widths.
 - Fixed pixel widths aren't used for layout containers.
-- Tap targets at least 44×44px on touch surfaces.
+- Tap targets at least 24×24px on touch surfaces (WCAG 2.2 AA minimum), and ideally 44×44px for comfortable use.
 
 **Performance** — full reference: <https://aahplexx.github.io/design-principles/principles/performance.html>
 - Images have explicit dimensions or `aspect-ratio` so nothing shifts on load.
