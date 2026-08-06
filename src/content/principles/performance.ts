@@ -51,7 +51,7 @@ export const performance: Principle = {
       good: {
         label: "Good — only what's on screen loads first",
         code: "<img src=\"hero-banner.webp\" width=\"1600\" height=\"500\"\n     alt=\"Summer sale, up to 40% off\">\n\n<img src=\"thumbnail-01.webp\" width=\"300\" height=\"300\"\n     loading=\"lazy\" alt=\"Blue cotton shirt\">\n<!-- 36 more thumbnails, same pattern -->",
-        note: html("The hero banner is the first thing visible, so it loads eagerly. The 37 thumbnails further down the page carry <code>loading=\"lazy\"</code>, so the browser holds off requesting them until someone actually scrolls close — full bandwidth stays available for the banner they can already see."),
+        note: html("\"Below the fold\" means not visible without scrolling — a term carried over from a folded newspaper's front page. The hero banner is the first thing visible, so it loads eagerly. The 37 thumbnails further down the page carry <code>loading=\"lazy\"</code>, so the browser holds off requesting them until someone actually scrolls close — full bandwidth stays available for the banner they can already see."),
       },
       bad: {
         label: "Bad — 38 images compete for the same connection",
@@ -88,7 +88,7 @@ export const performance: Principle = {
     html("Images are served at multiple sizes via <code>srcset</code>/<code>sizes</code> or an image CDN, not shipped at one fixed resolution for every screen."),
     html("Nothing decorative — autoplaying video, a hero animation, tracking scripts — outranks the page's actual headline and primary action for load priority."),
     html("Performance was checked on a throttled connection and a mid-range device, not only on office wifi and the newest phone."),
-    html("Critical cross-origin resources — a font host, an image CDN — get a <code>&lt;link rel=\"preconnect\"&gt;</code>, so the browser opens that connection before it actually needs to fetch anything from it. For a font host specifically, that tag needs a <code>crossorigin</code> attribute too, since fonts are always fetched in CORS mode — without it, the browser only does the DNS lookup and skips the rest of the handshake, and the preconnect ends up not helping the actual font request at all."),
+    html("Critical cross-origin resources — a font host, an image CDN — get a <code>&lt;link rel=\"preconnect\"&gt;</code>, so the browser opens that connection before it actually needs to fetch anything from it. For a font host specifically, that tag needs a <code>crossorigin</code> attribute too, since fonts are always fetched in CORS mode (Cross-Origin Resource Sharing — the browser's rule for how a page is allowed to request resources from a different domain) — without it, the browser only does the DNS lookup and skips the rest of the handshake, and the preconnect ends up not helping the actual font request at all."),
   ],
   practiceCourseId: null,
   goDeeper: [

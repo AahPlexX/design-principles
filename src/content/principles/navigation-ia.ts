@@ -6,7 +6,7 @@ import { html } from "@/lib/html";
 
 export const navigationIa: Principle = {
   slug: "navigation-ia",
-  title: "Navigation & IA",
+  title: "Navigation & Site Structure",
   category: "Task-Specific",
   blurb: "How a site's structure and labels either help someone find things or leave them stuck using the back button.",
   searchKeywords: "navigation ia information architecture how a site's structure and labels either help someone find things or leave them stuck",

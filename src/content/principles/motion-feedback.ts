@@ -77,7 +77,7 @@ export const motionFeedback: Principle = {
       good: {
         label: "Good — under three flashes per second",
         code: "@keyframes pulse {\n  50% { background-color: #fef08a; }\n}\n.flash-sale-banner {\n  animation: pulse 1s ease-in-out infinite;\n  /* one flash per second */\n}",
-        note: html("One flash per second stays comfortably under WCAG 2.3.1's three-flashes-per-second seizure threshold — the point past which a flash can trigger a seizure in someone with photosensitive epilepsy — so the banner still grabs attention without carrying that risk."),
+        note: html("One flash per second stays comfortably under WCAG (the Web Content Accessibility Guidelines — the standard most accessibility laws and audits are measured against) 2.3.1's three-flashes-per-second seizure threshold — the point past which a flash can trigger a seizure in someone with photosensitive epilepsy — so the banner still grabs attention without carrying that risk."),
       },
       bad: {
         label: "Bad — strobes past the seizure threshold",

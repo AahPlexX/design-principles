@@ -445,4 +445,26 @@ User challenged the Typography page's prose-to-visual ratio, explicitly requirin
 
 ## Turn 27 completion checkpoint
 
+**Status: complete.** PR #10 opened, live-bot review round triaged (6 findings fixed, 3 declined with reasoning — see `changelog.md` turn 27), CI green, squash-merged as `d3c94f9`. Confirmed via the GitHub Actions API: both `CI` and `Deploy GitHub Pages` runs for `d3c94f9` `conclusion: success`.
+
+## Turn 28: project-wide qualitative Rule-Zero audit
+
+User applied a standing "decompose, then execute" instruction to the project's own goal rather than to one open task: decompose everything built so far into qualitative assets, resolve every unchecked one found, keep any resulting audit record from going stale.
+
+- [x] Interpreted "qualitative assets" as CLAUDE.md's own named, falsifiable rules (Rule Zero's clauses; the Course skeleton's naming/anti-padding rules) — not open-ended taste, since only a falsifiable claim can be verified rather than argued about.
+- [x] Decided against a new standalone audit file: folded findings into this file and `changelog.md`, both already continuously maintained, rather than inventing a third artifact with no mechanism keeping it current.
+- [x] Ran `gate:all` as the mechanical baseline; diagnosed the one failure (`gate:html`) as a local-sandbox-only false positive (`html5validator`'s hardcoded `_JAVA_OPTIONS` ignore-regex doesn't match this sandbox's `JAVA_TOOL_OPTIONS` proxy env var) rather than a real defect — confirmed by running the actual Nu checker jar directly against all 200 built pages: 0 errors, both before and after this turn's edits.
+- [x] Dispatched 5 parallel read-only audits (3 covering all 17 principle pages for Rule Zero, 1 covering all 8 Craft courses' full lesson content, 1 covering `/skills` and `/prompts` for drift/duplication) each instructed to report only quotable, line-anchored findings.
+- [x] Verified every finding against actual file content before acting — several claimed findings did not survive this check and were correctly not applied (see `changelog.md` turn 28 for the two declined: `dark-patterns-ethics.ts`'s "Confirmshaming" name, and `motion-feedback.ts`'s two examples sharing a button).
+- [x] Fixed real touch-target drift in 3 skill/prompt files (hardcoded 44×44px, contradicting the canonical page's actual 24×24px WCAG AA floor).
+- [x] Fixed a genuine, previously-undetected nav/heading jargon violation beyond the audit's own scope: `navigation-ia.ts`'s page title "Navigation & IA" is jargon in a nav-bar label, seen before a reader ever reaches the page's own definition of "IA" — renamed to "Navigation & Site Structure"; renamed the sibling prompt `ia-consultant.md` → `navigation-structure-consultant.md` for the same reason.
+- [x] Fixed 10 undefined-jargon-at-first-use instances across `visual-hierarchy.ts`, `typography.ts`, `accessibility.ts`, `motion-feedback.ts`, `responsive-design.ts`, `performance.ts`, `spacing-layout.ts`, `dark-patterns-ethics.ts`, `empty-error-states.ts` — each given a short inline gloss at first use only, matching the convention already used correctly elsewhere in the same files.
+- [x] Fixed one tone-rule violation ("just" before an instruction, `accessibility.ts`) and one orphaned-jargon-in-a-name violation (`color-contrast.ts`'s mistake name).
+- [x] Fixed 7 Craft-course level titles that read as category labels next to their more concrete siblings in the same course — scoped narrower than the audit brief asked (CLAUDE.md's naming rule text names only "a course's title," not every level's; extending it to all ~40 level titles across 8 courses would have been scope creep against a rule stricter than the one actually written). Each replacement grounded in that level's real lesson content, not guessed.
+- [x] Confirmed clean, not fixed: `content-microcopy.ts`, `data-tables.ts`, `onboarding-progressive-disclosure.ts`, `iconography-imagery.ts`, `internationalization-localization.ts`, `forms-inputs.ts`, and the 3 flat 3-lesson Craft courses (`accessibility`, `forms-inputs`, `dark-patterns-ethics`) — zero genuine findings, reported as a real clean result rather than manufactured to pad the audit.
+- [x] Full re-verification: `npx tsc --noEmit` clean; `gate:all` 12/13 (the 1 failure being the pre-diagnosed sandbox artifact, re-confirmed via direct jar check: 0 real errors post-edit).
+- [ ] *(pending, immediately below)* Commit on `audit-quality-pass`, push, open a PR, drive it to green, merge.
+
+## Turn 28 completion checkpoint
+
 **Status: complete pending the final commit/push/PR/merge recorded immediately below this line once performed** — same discipline as every prior turn.

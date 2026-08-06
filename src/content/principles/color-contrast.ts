@@ -51,7 +51,7 @@ export const colorContrast: Principle = {
       good: {
         label: "Good — scrim holds the ratio everywhere",
         code: "background-image: linear-gradient(\n  to top,\n  rgb(0 0 0 / 0.65),\n  rgb(0 0 0 / 0)\n), url(\"hero.jpg\");\ncolor: #ffffff;",
-        note: html("The dark gradient (a \"scrim\") sits between the photo and the text, so white text stays readable no matter what's directly behind it — a bright sky, a dark jacket, anything in between."),
+        note: html("The dark gradient (a \"scrim\") sits between the photo and the text. It only holds the ratio where it's actually dark enough — here, positioning the text within the gradient's near-opaque top band means white text clears 4.5:1 against any photo color underneath, a bright sky or a dark jacket alike. A gradient that fades to fully transparent right where the text sits would offer no such guarantee — check the ratio at the text's actual position, not just anywhere the gradient appears."),
       },
       bad: {
         label: "Bad — contrast depends on the pixel underneath",
@@ -75,7 +75,7 @@ export const colorContrast: Principle = {
   ],
   mistakes: [
     { name: "Using gray-on-gray for \"de-emphasized\" text", body: html("Muted text (captions, timestamps, helper text) still needs to clear the contrast minimum — \"less important\" doesn't mean \"allowed to be unreadable.\" See the muted-caption example above for a gray that does both jobs at once.") },
-    { name: "Placing text over a photo without a scrim", body: html("A busy image behind text makes contrast unpredictable pixel by pixel. Add a solid or gradient overlay behind the text so the ratio holds everywhere it appears, not just in the one spot you happened to check.") },
+    { name: "Placing text over a photo with no overlay behind it", body: html("A busy image behind text makes contrast unpredictable pixel by pixel. Add a solid or gradient overlay (a \"scrim\") behind the text so the ratio holds everywhere it appears, not just in the one spot you happened to check.") },
     { name: "Checking contrast in isolation, not in the actual UI", body: html("A color pair that passes in a swatch can still fail once it's a link color on a tinted background, or a disabled-looking gray on a card. Check the ratio where the color is actually used, not where it was first picked.") },
     { name: "Relying on color alone to carry meaning", body: html("Red and green to mean error and success fails for colorblind readers if there's no icon, label, or shape backing it up — the color is a bonus signal, never the only one. Red-green color vision deficiency is the classic failure case because it can make red and green difficult or impossible to distinguish — a color that reads clearly as red to a typical viewer can read as muddy or greenish to someone with one of these conditions. Blue-yellow confusion (tritanopia) is rarer, but the fix is identical either way: never let color be the only signal.") },
     { name: "Trusting how it looks on your own monitor", body: html("Screens vary in brightness and calibration far more than most people assume, and a designer's monitor is usually better-calibrated than an average reader's. Measure the ratio with a tool; don't eyeball it on the screen in front of you.") },

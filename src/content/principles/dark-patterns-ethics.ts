@@ -56,7 +56,7 @@ export const darkPatternsEthics: Principle = {
       bad: {
         label: "Bad — the \"roach motel\"",
         code: "Account > Subscription\n\"To cancel, please call\n1-800-555-0199,\nMon–Fri 9am–5pm ET.\"",
-        note: html("Signing up took one click and no wait. Canceling requires finding a phone number, calling during narrow business hours, and holding — an asymmetry that only exists to make leaving cost more effort than the reader is willing to spend."),
+        note: html("Nicknamed a \"roach motel\": easy to get into, hard to get out of. Signing up took one click and no wait. Canceling requires finding a phone number, calling during narrow business hours, and holding — an asymmetry that only exists to make leaving cost more effort than the reader is willing to spend."),
       },
     },
     {
@@ -69,7 +69,7 @@ export const darkPatternsEthics: Principle = {
       bad: {
         label: "Bad — drip pricing",
         code: "Item price:        $42.00\n  (the only number shown until now)\n\nStep 4 of 4 — Review\n+ Service fee:       $3.50\n+ \"Convenience\" fee: $4.99\n+ Processing fee:    $2.10\n---------------------------\nTotal:              $52.59",
-        note: html("Each fee may be legitimate, but none of them appeared until the reader had already spent several minutes choosing a size, a color, and a shipping method — exactly the point in the flow where they're least willing to start over."),
+        note: html("This is drip pricing: revealing mandatory costs gradually instead of upfront. Each fee may be legitimate, but none of them appeared until the reader had already spent several minutes choosing a size, a color, and a shipping method — exactly the point in the flow where they're least willing to start over."),
       },
     },
     {
