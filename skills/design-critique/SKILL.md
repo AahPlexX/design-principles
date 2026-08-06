@@ -63,7 +63,7 @@ Review the target (HTML/CSS, a rendered screenshot, or a described layout) again
 - Dates, numbers, and currency are produced by a locale-aware formatting API, not a hand-built string.
 - CSS uses logical properties (`margin-inline-start`, `text-align: start`) instead of `left`/`right`.
 
-**Navigation & IA** — full reference: <https://aahplexx.github.io/design-principles/principles/navigation-ia.html>
+**Navigation & Site Structure** — full reference: <https://aahplexx.github.io/design-principles/principles/navigation-ia.html>
 - Navigation labels describe visitor goals, not internal org structure.
 - The current page's location is visually indicated (`aria-current="page"`, a highlighted nav item, or a breadcrumb).
 - Navigation works by tap as well as by mouse hover.

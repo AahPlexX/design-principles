@@ -98,7 +98,7 @@ export const typography: Principle = {
       bad: {
         label: "Bad — a full sentence typed in literal capitals",
         code: "<h2>WE'VE SHIPPED THREE NEW FEATURES FOR YOUR TEAM</h2>",
-        note: html("Capital letters erase the ascenders and descenders that let a fluent reader recognize a whole word by its shape, so long stretches of all-caps text read measurably slower for every reader — and some screen readers (software that reads the page aloud) will spell a short word inside it out letter by letter, mistaking it for an acronym."),
+        note: html("Capital letters erase the ascenders and descenders that let a fluent reader recognize a whole word by its shape, so long stretches of all-caps text read measurably slower for every reader — and some screen readers (software that reads the page aloud or sends it to a braille display) will spell a short word inside it out letter by letter, mistaking it for an acronym."),
       },
     },
   ],

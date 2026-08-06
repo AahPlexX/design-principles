@@ -86,7 +86,7 @@ export function Document({
         <SkipLink />
         <SiteHeader section={section} activePrincipleSlug={activePrincipleSlug} />
 
-        <main id="main" className="flex-1">
+        <main id="main" tabIndex={-1} className="flex-1">
           <div
             className={
               width === "wide"

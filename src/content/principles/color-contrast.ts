@@ -51,7 +51,7 @@ export const colorContrast: Principle = {
       good: {
         label: "Good — scrim holds the ratio everywhere",
         code: "background-image: linear-gradient(\n  to top,\n  rgb(0 0 0 / 0.65),\n  rgb(0 0 0 / 0)\n), url(\"hero.jpg\");\ncolor: #ffffff;",
-        note: html("The dark gradient (a \"scrim\") sits between the photo and the text, so white text stays readable no matter what's directly behind it — a bright sky, a dark jacket, anything in between."),
+        note: html("The dark gradient (a \"scrim\") sits between the photo and the text. It only holds the ratio where it's actually dark enough — here, positioning the text within the gradient's near-opaque top band means white text clears 4.5:1 against any photo color underneath, a bright sky or a dark jacket alike. A gradient that fades to fully transparent right where the text sits would offer no such guarantee — check the ratio at the text's actual position, not just anywhere the gradient appears."),
       },
       bad: {
         label: "Bad — contrast depends on the pixel underneath",
